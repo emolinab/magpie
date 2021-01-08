@@ -16,6 +16,7 @@ clustering<-c("c200")
 
 #Factor cost realizations
 realization<-c("mixed_feb17")
+climate<-c("cc","nocc")
 
 
 for (k in 1:length(climate)){
@@ -23,15 +24,15 @@ for (k in 1:length(climate)){
 
         #Change the results folder name
         #NBC STANDS FOR NEW BEST CALIBRATION
-        cfg$title<-paste0("OldLPJ",realization[j],"_rcp6p0_",climate[k])
+        cfg$title<-paste0("OldLPJ",realization[j],"_rcp6p0_",climate[k],"_")
 
         cfg <- setScenario(cfg,climate[k])
 
-        cfg$input <- c("rev4.51+mrmagpie10_h12_magpie_debug.tgz",
-                       "rev4.51+mrmagpie8_h12_cfc9a5551f05ca4efc6cbc7016516432_cellularmagpie_debug.tgz",
-                       "rev4.51+mrmagpie10_h12_validation_debug.tgz",
-                       "additional_data_rev3.85.tgz",
-                       "calibration_H12_mixed_feb17_c200_LUH2v2_managementcalib_aug19__08Jan21.tgz")
+        cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp6p0-co2_rev50_c200_690d3718e151be1b450b394c1064b1c5.tgz",
+                 "rev4.52_h12_magpie.tgz",
+                 "rev4.52_h12_validation.tgz",
+                 "calibration_Current_develop_H12_mixed_feb17_c200_08Jan21.tgz",
+                 "additional_data_rev3.89.tgz")
 
         #recalibrate
         cfg$recalibrate <- FALSE
