@@ -23,18 +23,11 @@ cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
 realization<-c("mixed_feb17","sticky_feb18")
-#realization<-c("sticky_feb18")
-#clustering<-c("n200","c200")
 clustering<-c("c200")
-#AEI<-c("LUH2v2","Siebert")
-AEI<-c("LUH2v2")
-#preloopCalib<-c("managementcalib_aug19","dynamic_aug18")
-preloopCalib<-c("managementcalib_aug19")
 
 for (i in realization){
   for (k in clustering){
-    for (av in AEI){
-      for (p in preloopCalib){
+
 #removes previous calibration factors
 remove <- dir(pattern=c(".cs3"))
 file.remove(remove,recursive=FALSE)
@@ -68,5 +61,4 @@ cfg$gms$c41_initial_irrigation_area  <- av
 start_run(cfg,codeCheck=FALSE)
 magpie4::submitCalibration(paste0("Current_develop_H12_",i,"_"))
 }
-}}
 }
