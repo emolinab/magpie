@@ -15,7 +15,7 @@ source("config/default.cfg")
 clustering<-c("c200")
 
 #Factor cost realizations
-realization<-c("mixed_feb17")
+realization<-c("sticky_feb18")
 climate<-c("cc","nocc")
 
 
@@ -31,7 +31,7 @@ for (k in 1:length(climate)){
         cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp6p0-co2_rev50_c200_690d3718e151be1b450b394c1064b1c5.tgz",
                  "rev4.52_h12_magpie.tgz",
                  "rev4.52_h12_validation.tgz",
-                 "calibration_Current_develop_H12_mixed_feb17_c200_08Jan21.tgz",
+                 "calibration_Current_develop_H12_sticky_feb18_c200_08Jan21.tgz",
                  "additional_data_rev3.89.tgz")
 
         #recalibrate
