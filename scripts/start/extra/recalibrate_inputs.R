@@ -28,10 +28,6 @@ clustering<-c("c200")
 for (i in realization){
   for (k in clustering){
 
-#removes previous calibration factors
-remove <- dir(pattern=c(".cs3"))
-file.remove(remove,recursive=FALSE)
-
 cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp6p0-co2_rev50_c200_690d3718e151be1b450b394c1064b1c5.tgz",
          "rev4.52_h12_magpie.tgz",
          "rev4.52_h12_validation.tgz",
@@ -41,9 +37,7 @@ cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp6p0-co2_rev50_c200_690d3718e151be1b45
 
 cfg$force_download <- TRUE
 
-cfg$gms$yields <- p
-
-cfg$title <- paste0("Current_develop_calib_run_",i,"_")
+cfg$title <- paste0("Current_develop_calib_run_",i,"_",k,"")
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- i
@@ -53,12 +47,8 @@ cfg$output <- c("rds_report")
 cfg$sequential <- TRUE
 
 
-# AEI switch
-
-cfg$gms$c41_initial_irrigation_area  <- av
-
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("Current_develop_H12_",i,"_"))
+magpie4::submitCalibration(paste0("Current_develop_H12_",i,"_",k,""))
 }
 }
