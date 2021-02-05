@@ -10,7 +10,7 @@ scalars
 
 *' share of capital in the factor costs are based on the AgTFP Agricultural total factor productivity document by the USDA
 *' http://www.ers.usda.gov/data-products/international-agricultural-productivity.aspx
-s38_capital_cost_share capital cost share (share of costs) / 0.46 /
+*s38_capital_cost_share capital cost share (share of costs) / 0.46 /
 *' depreciation rate assuming roughly 20 years linear depreciation for invesment goods
 s38_depreciation_rate depreciation rate (share of costs)  / 0.05 /
 *' Share of immobile capital.
@@ -21,10 +21,20 @@ s38_mi_start global management intensity in 1995 /0.47/
 s38_fraction_gdp maximum percentage of the overall GDP /0.15/
 ;
 
-parameter f38_fac_req_per_ton(kcr) Factor requirements (US$05 per ton DM)
+parameter f38_fac_req_per_ton(i,kcr) Factor requirements (US$05 per ton DM)
 /
 $ondelim
-$include "./modules/38_factor_costs/input/f38_fac_req_per_ton.csv"
+*$include "./modules/38_factor_costs/input/f38_fac_req_per_ton.csv"
+$include "./modules/38_factor_costs/input/f38_region_req.csv"
+$offdelim
+/
+;
+
+parameter f38_capital_cost_share(i) Factor requirements (US$05 per ton DM)
+/
+$ondelim
+*$include "./modules/38_factor_costs/input/f38_fac_req_per_ton.csv"
+$include "./modules/38_factor_costs/input/f38_region_req.csv"
 $offdelim
 /
 ;
