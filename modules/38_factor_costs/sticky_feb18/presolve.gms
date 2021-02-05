@@ -12,7 +12,7 @@ i38_capital_need(i,kcr,"immobile") = f38_fac_req(i,kcr) *f38_capital_cost_share(
 
 if (ord(t) = 1,
 
-i38_variable_costs(i2,kcr) = f38_fac_req(i,kcr)  * (1-f38_capital_cost_share(i)) * (1-s38_mi_start);
+i38_variable_costs(i2,kcr) = f38_fac_req(i2,kcr)  * (1-f38_capital_cost_share(i2)) * (1-s38_mi_start);
 
 *' Estimate capital stock based on capital remuneration
 p38_capital_immobile(t,j,kcr)   = sum(cell(i,j), i38_capital_need(i,kcr,"immobile")*pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
