@@ -43,8 +43,3 @@ table f38_region_yield(i,kcr) Regional crop yields (tDM per ha)
 $ondelim
 $include "./modules/38_factor_costs/sticky_feb18/input/f38_region_yield.csv"
 $offdelim;
-
-table f38_fac_req(kcr,w) Factor requirement costs (USD05MER per tDM)
-$ondelim
-$include "./modules/38_factor_costs/input/f38_fac_req.csv"
-$offdelim;
