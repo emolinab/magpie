@@ -14,23 +14,20 @@ scalars
 *' depreciation rate assuming roughly 20 years linear depreciation for invesment goods
 s38_depreciation_rate depreciation rate (share of costs)  / 0.05 /
 *' Share of immobile capital.
-s38_immobile  immobile capital in perennial crops (share) / 0.7 /
+s38_immobile  immobile capital (share) / 1 /
 *' Initial management intensity
 s38_mi_start global management intensity in 1995 /0.47/
 *' Maximum fraction of the total gdp invested in capital in agriculture
 s38_fraction_gdp maximum percentage of the overall GDP /0.15/
 ;
 
-parameter f38_fac_req_per_ton(i,kcr) Factor requirements (US$05 per ton DM)
-/
-$ondelim
-*$include "./modules/38_factor_costs/input/f38_fac_req_per_ton.csv"
-$include "./modules/38_factor_costs/input/f38_region_req.csv"
-$offdelim
-/
-;
 
-parameter f38_capital_cost_share(i) Share of capital in factor requirements 
+table f38_fac_req(i,kcr) Factor requirement costs (USD05MER per tDM)
+$ondelim
+$include "./modules/38_factor_costs/input/f38_region_req.csv"
+$offdelim;
+
+parameter f38_capital_cost_share(i) Share of capital in factor requirements
 /
 $ondelim
 *$include "./modules/38_factor_costs/input/f38_fac_req_per_ton.csv"
