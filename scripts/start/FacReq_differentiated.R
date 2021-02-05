@@ -27,6 +27,8 @@ realization<-c("mixed_feb17","sticky_feb18")
                  "additional_data_rev3.89.tgz",
                  "additionl_regional_differentiated.tgz")
 
+        #force download
+        cfg$force_download <- TRUE
         #recalibrate
         cfg$recalibrate <- TRUE
 
