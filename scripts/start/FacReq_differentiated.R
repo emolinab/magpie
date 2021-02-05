@@ -10,7 +10,7 @@ source("scripts/start_functions.R")
 # Sources the default configuration file
 source("config/default.cfg")
 
-realization<-c("mixed_feb17","sticky_feb18")
+realization<-c("sticky_feb18")
 
 
     for(j in 1:length(realization)){
