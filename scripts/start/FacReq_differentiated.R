@@ -10,16 +10,16 @@ source("scripts/start_functions.R")
 # Sources the default configuration file
 source("config/default.cfg")
 
-realization<-c("sticky_feb18")
+realization<-c("sticky_feb18","mixed_feb17")
 
 
     for(j in 1:length(realization)){
 
         #Change the results folder name
         #NBC STANDS FOR NEW BEST CALIBRATION
-        cfg$title<-paste0("FacReq_region_differentiated_",realization[j],"_rcp6p0_cc_ON")
+        cfg$title<-paste0("FacReq_region_differentiated_",realization[j],"_rcp6p0_cc_OFF")
 
-        cfg <- setScenario(cfg,"cc")
+        cfg <- setScenario(cfg,"nocc")
 
         cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp2p6-co2_rev50_c200_690d3718e151be1b450b394c1064b1c5.tgz",
                  "rev4.52_h12_magpie.tgz",
