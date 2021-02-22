@@ -11,5 +11,3 @@
 *cannot be smaller than 0!
 pm_croparea_start(j,kcr) = f30_croparea("y1995",j,kcr);
 pm_croparea_start(j,kcr)$(pm_croparea_start(j,kcr)<0) = 0;
-
-vm_area.fx(j,kcr,w)$(vm_yld(j,kcr,w)=0) = 0;

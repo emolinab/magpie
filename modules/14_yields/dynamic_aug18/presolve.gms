@@ -56,3 +56,5 @@ pm_timber_yield(t,j,ac,"forestry")$(s14_timber_plantation_yield = 0) = pm_timber
 p14_growing_stock_report(t,j,ac,"forestry")$(s14_timber_plantation_yield = 1) = p14_growing_stock(t,j,ac,"forestry","plantations");
 p14_growing_stock_report(t,j,ac,land_natveg) = p14_growing_stock(t,j,ac,land_natveg,"natveg");
 p14_growing_stock_report(t,j,ac,"forestry")$(s14_timber_plantation_yield = 0) = p14_growing_stock_report(t,j,ac,"secdforest");
+
+vm_area.fx(j,kcr,w)$(f14_yields(t,j,kcr,w)0) = 0;
