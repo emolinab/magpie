@@ -11,21 +11,24 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 realization<-c("sticky_feb18","mixed_feb17")
+climate<-c("cc","nocc")
+
 
 
     for(j in 1:length(realization)){
+      for(i in 1:length(climate)){
 
         #Change the results folder name
         #NBC STANDS FOR NEW BEST CALIBRATION
-        cfg$title<-paste0("FacReq_region_differentiated_",realization[j],"_rcp6p0_cc_OFF")
+        cfg$title<-paste0("Test_regionalStatic_",realization[j],"_rcp6p0_",climate[i],"_")
 
-        cfg <- setScenario(cfg,"nocc")
+        cfg <- setScenario(cfg,climate[i])
 
-        cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp2p6-co2_rev50_c200_690d3718e151be1b450b394c1064b1c5.tgz",
-                 "rev4.52_h12_magpie.tgz",
-                 "rev4.52_h12_validation.tgz",
-                 "additional_data_rev3.89.tgz",
-                 "additionl_regional_differentiated.tgz")
+        cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp6p0-co2_rev50_c200_690d3718e151be1b450b394c1064b1c5.tgz",
+                 "rev4.57_h12_magpie.tgz",
+                 "rev4.57_h12_validation.tgz",
+                 "additional_data_rev3.95.tgz",
+                 "additiona_sticky_regional.tgz")
 
         #force download
         cfg$force_download <- TRUE
@@ -38,3 +41,4 @@ realization<-c("sticky_feb18","mixed_feb17")
 
         start_run(cfg=cfg)
         }
+}

@@ -56,8 +56,5 @@ $include "./modules/59_som/input/lpj_carbon_topsoil.cs2"
 $offdelim
 /
 ;
-$if "%c59_som_scenario%" == "nocc" f59_topsoilc_density(t_all,j) = f59_topsoilc_density("y1995",j);
+$if "%c59_som_scenario%" == "nocc" f59_topsoilc_density(t_nocc,j) = f59_topsoilc_density("y2020",j);
 m_fillmissingyears(f59_topsoilc_density,"j");
-
-
-

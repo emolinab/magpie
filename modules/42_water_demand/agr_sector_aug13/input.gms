@@ -74,7 +74,7 @@ $ondelim
 $include "./modules/42_water_demand/input/lpj_airrig.cs2"
 $offdelim
 ;
-$if "%c42_watdem_scenario%" == "nocc" f42_wat_req_kve(t_all,j,kve) = f42_wat_req_kve("y1995",j,kve);
+$if "%c42_watdem_scenario%" == "nocc" f42_wat_req_kve(t_nocc,j,kve) = f42_wat_req_kve("y2020",j,kve);
 m_fillmissingyears(f42_wat_req_kve,"j,kve");
 
 
@@ -92,7 +92,7 @@ $ondelim
 $include "./modules/42_water_demand/input/lpj_envflow_grper.cs2"
 $offdelim
 /;
-$if "%c42_watdem_scenario%" == "nocc" f42_env_flows(t_all,j) = f42_env_flows("y1995",j);
+$if "%c42_watdem_scenario%" == "nocc" f42_env_flows(t_nocc,j) = f42_env_flows("y2020",j);
 m_fillmissingyears(f42_env_flows,"j");
 
 $setglobal c42_env_flow_policy  off

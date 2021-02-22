@@ -19,7 +19,7 @@ $include "./modules/52_carbon/input/lpj_carbon_stocks.cs3"
 $offdelim
 ;
 
-$if "%c52_carbon_scenario%" == "nocc" fm_carbon_density(t_all,j,land,c_pools) = fm_carbon_density("y1995",j,land,c_pools);
+$if "%c52_carbon_scenario%" == "nocc" fm_carbon_density(t_nocc,j,land,c_pools) = fm_carbon_density("y2020",j,land,c_pools);
 m_fillmissingyears(fm_carbon_density,"j,land,c_pools");
 
 parameter f52_growth_par(clcl,chap_par,forest_type) Parameters for chapman-richards equation (1)
