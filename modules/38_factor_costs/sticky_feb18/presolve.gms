@@ -23,4 +23,4 @@ vm_prod.l(j,kcr)=sum(cell(i,j),pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)*
 
 *' The maximum allocation of mobile and immobile capital is equal to the existing capital
 vm_cost_inv.up(i)=im_gdp_pc_mer(t,i)*im_pop(t,i)*s38_fraction_gdp;
-vm_prod.fx(j,kcr)$(f38_fac_req(i,kcr)=0) = 0;
+vm_prod.fx(j,kcr)$(sum(cell(i,j),f38_fac_req(i,kcr)=0)) = 0;
