@@ -11,12 +11,12 @@ p38_capital_cost_share(i) = 0.1778*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t
 
 *' calculation of capital needed per unit produced
 
-i38_capital_need(i,kcr,"mobile") = f38_fac_req(i,kcr)  * p38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
-i38_capital_need(i,kcr,"immobile") = f38_fac_req(i,kcr) *p38_capital_cost_share(i) / pm_interest(t,i) * s38_immobile;
+i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr)  * p38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
+i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr) *p38_capital_cost_share(i) / pm_interest(t,i) * s38_immobile;
 
 if (ord(t) = 1,
 
-i38_variable_costs(i2,kcr) = f38_fac_req(i2,kcr)  * (1-p38_capital_cost_share(i2)) * (1-s38_mi_start);
+i38_variable_costs(i2,kcr) = f38_fac_req(kcr)  * (1-p38_capital_cost_share(i2)) * (1-s38_mi_start);
 
 *' Estimate capital stock based on capital remuneration
 p38_capital_immobile(t,j,kcr)   = sum(cell(i,j), i38_capital_need(i,kcr,"immobile")*pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
@@ -27,4 +27,3 @@ vm_prod.l(j,kcr)=sum(cell(i,j),pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)*
 
 *' The maximum allocation of mobile and immobile capital is equal to the existing capital
 vm_cost_inv.up(i)=im_gdp_pc_mer(t,i)*im_pop(t,i)*s38_fraction_gdp;
-vm_prod.fx(j,kcr)$(sum(cell(i,j),f38_fac_req(i,kcr)=0)) = 0;
