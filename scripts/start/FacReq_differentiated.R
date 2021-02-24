@@ -10,7 +10,7 @@ source("scripts/start_functions.R")
 # Sources the default configuration file
 source("config/default.cfg")
 
-realization<-c("sticky_feb18","mixed_feb17")
+realization<-c("sticky_feb18")
 climate<-c("cc","nocc")
 
 
@@ -20,7 +20,7 @@ climate<-c("cc","nocc")
 
         #Change the results folder name
         #NBC STANDS FOR NEW BEST CALIBRATION
-        cfg$title<-paste0("RegionalStatic_",realization[j],"_rcp6p0_",climate[i],"_")
+        cfg$title<-paste0("StickyDynamic_",realization[j],"_rcp6p0_",climate[i],"_")
 
         cfg <- setScenario(cfg,climate[i])
 
