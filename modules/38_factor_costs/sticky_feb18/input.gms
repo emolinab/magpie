@@ -33,7 +33,7 @@ $offdelim
 parameter f38_capital_cost_share(i) Share of capital in factor requirements
 /
 $ondelim
-$include "./modules/38_factor_costs/input/f38_REG_req.csv"
+$include "./modules/38_factor_costs/input/f38_REG_share.csv"
 $offdelim
 /
 ;
