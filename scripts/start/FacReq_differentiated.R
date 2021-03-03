@@ -10,7 +10,8 @@ source("scripts/start_functions.R")
 # Sources the default configuration file
 source("config/default.cfg")
 
-realization<-c("sticky_feb18")
+#realization<-c("sticky_feb18")
+realization<-c("mixed_feb17")
 climate<-c("cc","nocc")
 
 
@@ -20,7 +21,8 @@ climate<-c("cc","nocc")
 
         #Change the results folder name
         #NBC STANDS FOR NEW BEST CALIBRATION
-        cfg$title<-paste0("Sticky_Dynamic_rcp6p0_",climate[i],"_")
+#        cfg$title<-paste0("Sticky_Dynamic_rcp6p0_",climate[i],"_")
+        cfg$title<-paste0("Mixed_rcp6p0_",climate[i],"_")
 
         cfg <- setScenario(cfg,climate[i])
 
@@ -29,7 +31,7 @@ climate<-c("cc","nocc")
          "rev4.58_h12_validation.tgz",
          "calibration_H12_c200_23Feb21.tgz",
          "additional_data_rev3.98.tgz",
-          "additional_sticky.tgz") 
+          "additional_sticky.tgz")
 
         #force download
         cfg$force_download <- TRUE
