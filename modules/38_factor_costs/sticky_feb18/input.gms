@@ -22,13 +22,18 @@ s38_fraction_gdp maximum percentage of the overall GDP /0.15/
 ;
 
 
-parameter f38_fac_req(kcr) Factor requirement costs (USD05MER per tDM)
-/
+table f38_fac_req(i,kcr) Factor requirement costs (USD05MER per tDM)
 $ondelim
-$include "./modules/38_factor_costs/input/f38_GLO_req.csv"
+$include "./modules/38_factor_costs/input/f38_REG_req.csv"
 $offdelim
-/
 ;
+*parameter f38_fac_req(kcr) Factor requirement costs (USD05MER per tDM)
+*$ondelim
+*/
+*$offdelim
+*$include "./modules/38_factor_costs/input/f38_GLO_req.csv"
+*/
+*;
 
 
 
