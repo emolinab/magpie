@@ -27,7 +27,7 @@ climate<-c("cc","nocc")
         cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp6p0-co2_rev50_c200_690d3718e151be1b450b394c1064b1c5.tgz",
                  "rev4.57_h12_magpie.tgz",
                  "rev4.57_h12_validation.tgz",
-                 "additional_data_rev3.98.tgz",
+                 "additional_data_rev3.95.tgz",
                  "additional_sticky.tgz")
 
         #force download
