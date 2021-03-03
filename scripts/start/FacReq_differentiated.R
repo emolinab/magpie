@@ -20,7 +20,7 @@ climate<-c("cc","nocc")
 
         #Change the results folder name
         #NBC STANDS FOR NEW BEST CALIBRATION
-        cfg$title<-paste0("StickyStatic_REG_req_rcp6p0_",climate[i],"_")
+        cfg$title<-paste0("StickyStatic_GLO_R&S_rcp6p0_",climate[i],"_")
 
         cfg <- setScenario(cfg,climate[i])
 
