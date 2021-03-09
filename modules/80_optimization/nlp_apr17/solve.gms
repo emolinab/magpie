@@ -29,6 +29,7 @@ Tol_Obj_Change = 3.0e-6
 Tol_Feas_Min = 4.0e-7
 Tol_Feas_Max = 4.0e-6
 Tol_Feas_Tria = 4.0e-6
+Lim_Pre_Msg = 50
 $offecho
 
 $onecho > conopt4.op2
