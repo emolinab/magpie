@@ -15,8 +15,8 @@ source("config/default.cfg")
 #clustering<-c("c200")
 
 #Factor cost realizations
-#realization<-c("mixed_feb17","sticky_feb18")
-realization<-c("mixed_feb17")
+realization<-c("mixed_feb17","sticky_feb18")
+#realization<-c("mixed_feb17")
 climate<-c("cc","nocc")
 #AEI<-c("LUH2v2","Siebert")
 #AEI<-c("LUH2v2")
@@ -27,7 +27,7 @@ for (k in 1:length(climate)){
 
         #Change the results folder name
         #NBC STANDS FOR NEW BEST CALIBRATION
-        cfg$title<-paste0("New_LPJmL_AreaFixed_0_yield_GFDL_ssp370_",realization[j],"_",climate[k])
+        cfg$title<-paste0("New_LPJmL_Yield0_GFDL_ssp370_",realization[j],"_",climate[k])
 
         cfg <- setScenario(cfg,climate[k])
 

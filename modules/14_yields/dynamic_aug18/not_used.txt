@@ -6,4 +6,3 @@
 # |  Contact: magpie@pik-potsdam.de
 name,type,reason
 fm_croparea,input,questionnaire
-vm_area,input, not used

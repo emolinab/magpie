@@ -52,4 +52,4 @@ pm_timber_yield(t,j,ac,land_natveg) = p14_growing_stock(t,j,ac,land_natveg,"natv
 ** If the plantation yield switch is off, then the forestry yields are given the same values as secdforest yields,
 pm_timber_yield(t,j,ac,"forestry")$(s14_timber_plantation_yield = 0) = pm_timber_yield(t,j,ac,"secdforest");
 ** constrainf for vm area equal to zero if yields are less than 1e-4
-vm_area.fx(j,kcr,w)$(f14_yields(t,j,kcr,w)<=1e-4) = 0;
+*vm_area.fx(j,kcr,w)$(f14_yields(t,j,kcr,w)<=1e-4) = 0;
