@@ -15,9 +15,9 @@ source("config/default.cfg")
 #clustering<-c("c200")
 
 #Factor cost realizations
-realization<-c("mixed_feb17","sticky_feb18")
-#realization<-c("mixed_feb17")
-climate<-c("cc","nocc")
+#realization<-c("mixed_feb17","sticky_feb18")
+realization<-c("mixed_feb17")
+climate<-c("cc")
 #AEI<-c("LUH2v2","Siebert")
 #AEI<-c("LUH2v2")
 
