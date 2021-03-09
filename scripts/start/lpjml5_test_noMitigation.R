@@ -27,7 +27,7 @@ for (k in 1:length(climate)){
 
         #Change the results folder name
         #NBC STANDS FOR NEW BEST CALIBRATION
-        cfg$title<-paste0("New_LPJmL_Test_0_yield_GFDL_ssp370_",realization[j],"_",climate[k])
+        cfg$title<-paste0("New_LPJmL_AreaFixed_0_yield_GFDL_ssp370_",realization[j],"_",climate[k])
 
         cfg <- setScenario(cfg,climate[k])
 
