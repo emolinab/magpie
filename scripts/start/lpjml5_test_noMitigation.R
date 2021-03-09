@@ -15,9 +15,9 @@ source("config/default.cfg")
 #clustering<-c("c200")
 
 #Factor cost realizations
-#realization<-c("mixed_feb17","sticky_feb18")
-realization<-c("mixed_feb17")
-climate<-c("cc")
+realization<-c("mixed_feb17","sticky_feb18")
+#realization<-c("mixed_feb17")
+climate<-c("cc","nocc")
 #AEI<-c("LUH2v2","Siebert")
 #AEI<-c("LUH2v2")
 
@@ -27,18 +27,18 @@ for (k in 1:length(climate)){
 
         #Change the results folder name
         #NBC STANDS FOR NEW BEST CALIBRATION
-        cfg$title<-paste0("New_LPJmL_Yield0_GFDL_ssp370_",realization[j],"_",climate[k])
+        cfg$title<-paste0("Test_LPJmL_Yield0_GFDL_ssp370_",realization[j],"_",climate[k])
 
         cfg <- setScenario(cfg,climate[k])
 
         cfg$input <- c("rev4.58_h12_validation.tgz",
                  "additional_data_rev3.98.tgz",
                  "rev4.58+mrmagpie_LPJmL_new_h12_ee4336a969c590c612a80f2a9db04bdc_cellularmagpie_debug.tgz",
-                 "rev4.58+mrmagpie_LPJmL_new_h12_magpie_debug.tgz",
-                 "newlpj_mixed_030821.tgz")
+                 "rev4.58+mrmagpie_LPJmL_new_h12_magpie_debug.tgz")
+                 #,"newlpj_mixed_030821.tgz"
 
         #recalibrate
-        cfg$recalibrate <- FALSE
+        cfg$recalibrate <- TRUE
 
         #AEI
 #        cfg$gms$c41_initial_irrigation_area  <- AEI[i]
