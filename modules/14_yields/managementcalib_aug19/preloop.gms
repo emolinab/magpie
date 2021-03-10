@@ -86,4 +86,4 @@ pm_timber_yield_initial(j,ac,"forestry")$(s14_timber_plantation_yield = 0) = pm_
 ** Natveg yields are unchanged and doesn't depend on plantation yield switch
 pm_timber_yield_initial(j,ac,land_natveg) = p14_growing_stock_initial(j,ac,land_natveg,"natveg");
 
-f14_yields(t,j,kcr,w)$(f14_yields(t,j,kcr,w)<=1e-4) = 0;
+*f14_yields(t,j,kcr,w)$(f14_yields(t,j,kcr,w)<=1e-4) = 0;
