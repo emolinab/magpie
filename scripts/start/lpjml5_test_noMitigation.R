@@ -56,7 +56,7 @@ for (k in 1:length(climate)){
 
         #Factor costs realization
         cfg$gms$factor_costs <- realization[j]
-        cfg$qos <- "prio"
+        cfg$qos <- "priority"
 
         #Climate impact or not
 
