@@ -22,23 +22,19 @@ source("config/default.cfg")
 cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
-realization<-c("mixed_feb17")
-resolution<-c("c200")
-rcp<-c("6p0")
+realization<-c("mixed_feb17","sticky_feb18")
 #realization<-c("sticky_feb18")
 
 for (i in realization){
-for (r in resolution){
-for (rc in rcp){
 
-cfg$title <- paste0("calib_run_best_",i,"_")
+cfg$title <- paste0("calib_run_NLPj",i,"_")
 
 
-cfg$input <- c(paste0("isimip_rcp-IPSL_CM5A_LR-rcp",rc,"-co2_rev48_",r,"_690d3718e151be1b450b394c1064b1c5.tgz"),
- "rev4.52_h12_magpie.tgz",
- "rev4.52_h12_validation.tgz",
- "additional_data_rev3.86.tgz",
- "additional_regional_sticky.tgz")
+cfg$input <- c("rev4.58_h12_validation.tgz",
+         "additional_data_rev3.98.tgz",
+         "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
+         "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz"
+         )
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- i
@@ -50,8 +46,6 @@ cfg$sequential <- TRUE
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H12","_",i,"_",r,"_"))
+magpie4::submitCalibration(paste0("H12","_NLPj",i,"_"))
 
-}
-}
 }
