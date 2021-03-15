@@ -56,13 +56,13 @@ for (g in gcms){
         }
 
         #BAU or policy
-        if (mitigation_scenario == "BAU") {
+        if (m == "BAU") {
           cfg$recalibrate <- TRUE
           cfg <- setScenario(cfg,c(s,"NPI"))
           cfg$gms$c56_pollutant_prices <- "R2M41-SSP2-NPi"
           cfg$gms$c60_2ndgen_biodem <- "R2M41-SSP2-NPi"
 
-        } else if (mitigation_scenario == "POL"){
+        } else if (m == "POL"){
           cfg$recalibrate <- FALSE
           cfg <- setScenario(cfg,c(s,"NDC"))
           cfg$gms$c56_pollutant_prices <- "SSPDB-SSP2-26-REMIND-MAGPIE"
