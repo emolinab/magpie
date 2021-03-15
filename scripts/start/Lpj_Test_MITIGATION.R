@@ -11,8 +11,8 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 #Factor cost realizations
-realization<-c("mixed_feb17","sticky_feb18")
-#realization<-c("mixed_feb17")
+#realization<-c("mixed_feb17","sticky_feb18")
+realization<-c("mixed_feb17")
 climate<-c("cc","nocc")
 gcms<-c("GFDL")
 rcps<-c("70")
