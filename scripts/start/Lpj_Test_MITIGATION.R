@@ -11,7 +11,7 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 #Factor cost realizations
-realization<-c("mixed_feb17","sticky_feb18")
+realization<-c("mixed_feb17")
 #realization<-c("mixed_feb17")
 climate<-c("cc","nocc")
 gcms<-c("GFDL")
@@ -46,7 +46,7 @@ for (g in gcms){
                    "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz",
                    "calibration_H12_NLPjsticky_feb18__15Mar21.tgz")
 
-        }else if (r=="mixed_feb17"){
+        }else if(r=="mixed_feb17"){
           cfg$input <- c("rev4.58_h12_validation.tgz",
                    "additional_data_rev3.98.tgz",
                    "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
@@ -71,7 +71,7 @@ for (g in gcms){
 
 
         #Force download? recalibrate?
-        #cfg$force_download <- TRUE
+        cfg$force_download <- TRUE
         cfg$recalibrate <- FALSE
 
         #Factor costs realization
