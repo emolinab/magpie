@@ -79,6 +79,7 @@ for (g in gcms){
 
         #priority
         #cfg$qos <- "priority"
+        cfg$output <- c("rds_report")
 
 
         start_run(cfg=cfg)
