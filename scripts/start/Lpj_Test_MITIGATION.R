@@ -12,6 +12,7 @@ source("config/default.cfg")
 
 #Factor cost realizations
 realization<-c("mixed_feb17","sticky_feb18")
+#realization<-c("mixed_feb17")
 climate<-c("cc","nocc")
 gcms<-c("GFDL")
 rcps<-c("70")
@@ -41,14 +42,16 @@ for (g in gcms){
           #this could be extended for different gcms and rcps
           cfg$input <- c("rev4.58_h12_validation.tgz",
                    "additional_data_rev3.98.tgz",
-                   "rev4.58+mrmagpie_LPJmL_new_h12_ee4336a969c590c612a80f2a9db04bdc_cellularmagpie_debug.tgz",
-                   "rev4.58+mrmagpie_LPJmL_new_h12_magpie_debug.tgz")
+                   "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
+                   "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz",
+                   "calibration_H12_NLPjsticky_feb18__15Mar21.tgz")
 
         }else if (realization[j]=="mixed_feb17"){
           cfg$input <- c("rev4.58_h12_validation.tgz",
                    "additional_data_rev3.98.tgz",
-                   "rev4.58+mrmagpie_LPJmL_new_h12_ee4336a969c590c612a80f2a9db04bdc_cellularmagpie_debug.tgz",
-                   "rev4.58+mrmagpie_LPJmL_new_h12_magpie_debug.tgz")
+                   "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
+                   "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz",
+                   "calibration_H12_NLPjmixed_feb17__15Mar21.tgz")
 
         }
 
@@ -69,13 +72,13 @@ for (g in gcms){
 
         #Force download? recalibrate?
         #cfg$force_download <- TRUE
-        cfg$recalibrate <- TRUE
+        cfg$recalibrate <- FALSE
 
         #Factor costs realization
         cfg$gms$factor_costs <- realization[j]
 
         #priority
-        cfg$qos <- "priority"
+        #cfg$qos <- "priority"
 
 
         start_run(cfg=cfg)
