@@ -28,7 +28,7 @@ for (g in gcms){
              }else{
                mitigation_scenario<-c("BAU")
              }
-             
+
             for (m in mitigation_scenario){
 
         #Title
@@ -42,15 +42,13 @@ for (g in gcms){
           cfg$input <- c("rev4.58_h12_validation.tgz",
                    "additional_data_rev3.98.tgz",
                    "rev4.58+mrmagpie_LPJmL_new_h12_ee4336a969c590c612a80f2a9db04bdc_cellularmagpie_debug.tgz",
-                   "rev4.58+mrmagpie_LPJmL_new_h12_magpie_debug.tgz",
-                    "newlpj_sticky__120321.tgz")
+                   "rev4.58+mrmagpie_LPJmL_new_h12_magpie_debug.tgz")
 
         }else if (realization[j]=="mixed_feb17"){
           cfg$input <- c("rev4.58_h12_validation.tgz",
                    "additional_data_rev3.98.tgz",
                    "rev4.58+mrmagpie_LPJmL_new_h12_ee4336a969c590c612a80f2a9db04bdc_cellularmagpie_debug.tgz",
-                   "rev4.58+mrmagpie_LPJmL_new_h12_magpie_debug.tgz",
-                   "newlpj_mixed_120321.tgz")
+                   "rev4.58+mrmagpie_LPJmL_new_h12_magpie_debug.tgz")
 
         }
 
@@ -69,8 +67,9 @@ for (g in gcms){
         }
 
 
-        #Force download?
-        cfg$force_download <- TRUE
+        #Force download? recalibrate?
+        #cfg$force_download <- TRUE
+        cfg$recalibrate <- TRUE
 
         #Factor costs realization
         cfg$gms$factor_costs <- realization[j]
