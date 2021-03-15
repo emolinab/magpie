@@ -78,7 +78,7 @@ for (g in gcms){
         cfg$gms$factor_costs <- r
 
         #priority
-        #cfg$qos <- "priority"
+        cfg$qos <- "priority"
         cfg$output <- c("rds_report")
 
 
