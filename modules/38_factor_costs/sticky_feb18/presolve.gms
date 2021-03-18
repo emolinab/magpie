@@ -23,7 +23,7 @@ $ifthen ("%c38_sticky_mode%" == "free" or "%c38_sticky_mode%" == "regional")
   p38_capital_mobile(t,j)   = sum((cell(i,j),kcr), i38_capital_need(i,kcr,"mobile")*pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
 
   vm_prod.l(j,kcr)=sum(cell(i,j),pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
-    ))
+    ));
 
 $elseif "%c38_sticky_mode%" == "dynamic"
 
@@ -40,7 +40,7 @@ p38_capital_mobile(t,j)   = sum((cell(i,j),kcr), i38_capital_need(i,kcr,"mobile"
 
 vm_prod.l(j,kcr)=sum(cell(i,j),pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
   );
-  )
+  );
 $endif
 *' The maximum allocation of mobile and immobile capital is equal to the existing capital
 vm_cost_inv.up(i)=im_gdp_pc_mer(t,i)*im_pop(t,i)*s38_fraction_gdp;
