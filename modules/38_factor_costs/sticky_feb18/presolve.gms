@@ -5,6 +5,8 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
+p38_capital_cost_share(i) = 0;
+
 $ifthen "%c38_sticky_mode%" == "free" f38_capital_cost_share(i) = 0;
 $elseif "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1778*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.44459;
 $endif
@@ -14,7 +16,7 @@ if (("%c38_sticky_mode%" == "free" or "%c38_sticky_mode%" == "regional"),
 *' calculation of capital needed per unit produced
   i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
   i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr) *f38_capital_cost_share(i) / pm_interest(t,i) * s38_immobile;
-   p38_capital_cost_share(i) = 0;
+
 
   if (ord(t) = 1,
 
