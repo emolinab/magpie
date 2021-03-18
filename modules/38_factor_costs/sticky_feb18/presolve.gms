@@ -9,7 +9,7 @@ $ifthen "%c38_sticky_mode%" == "free" f38_capital_cost_share(i) = 0;
 $elseif "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1778*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.44459;
 $endif
 
-$ontext
+*$ontext
 if (("%c38_sticky_mode%" == "free" or "%c38_sticky_mode%" == "regional"),
 *' calculation of capital needed per unit produced
   i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
@@ -24,7 +24,8 @@ if (("%c38_sticky_mode%" == "free" or "%c38_sticky_mode%" == "regional"),
   p38_capital_mobile(t,j)   = sum((cell(i,j),kcr), i38_capital_need(i,kcr,"mobile")*pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
 
   vm_prod.l(j,kcr)=sum(cell(i,j),pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
-    ));
+    );
+    );
 
 if( "%c38_sticky_mode%" == "dynamic",
 i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr)  * p38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
@@ -44,4 +45,4 @@ vm_prod.l(j,kcr)=sum(cell(i,j),pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)*
 
 *' The maximum allocation of mobile and immobile capital is equal to the existing capital
 vm_cost_inv.up(i)=im_gdp_pc_mer(t,i)*im_pop(t,i)*s38_fraction_gdp;
-$offtext
+*$offtext
