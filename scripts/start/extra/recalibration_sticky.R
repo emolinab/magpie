@@ -22,30 +22,33 @@ source("config/default.cfg")
 cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
-realization<-c("mixed_feb17","sticky_feb18")
-#realization<-c("sticky_feb18")
+realization<-c("sticky_feb18")
+sticky_modes<-c("regional","dynamic","free")
 
 for (i in realization){
+  for (so in sticky_modes){
 
-cfg$title <- paste0("calib_run_NLPj",i,"_")
+cfg$title <- paste0("calib_run_sticky_",so,"_")
 
 
 cfg$input <- c("rev4.58_h12_validation.tgz",
          "additional_data_rev3.98.tgz",
          "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
-         "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz"
+         "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz",
+         "additional_sticky.tgz"
          )
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- i
-
+cfg$gms$c38_sticky_mode  <- so
 
 cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
 cfg$sequential <- TRUE
 
 
-start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H12","_NLPj",i,"_"))
 
-}
+start_run(cfg,codeCheck=FALSE)
+magpie4::submitCalibration(paste0("H12","_sticky_",so))
+
+}}
