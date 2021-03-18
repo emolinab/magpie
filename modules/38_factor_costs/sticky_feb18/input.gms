@@ -5,9 +5,9 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
+$setglobal c38_sticky_mode  regional
+
 scalars
-
-
 *' share of capital in the factor costs are based on the AgTFP Agricultural total factor productivity document by the USDA
 *' http://www.ers.usda.gov/data-products/international-agricultural-productivity.aspx
 *s38_capital_cost_share capital cost share (share of costs) / 0.46 /
