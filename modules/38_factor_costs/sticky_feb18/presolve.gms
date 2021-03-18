@@ -11,18 +11,21 @@ $ifthen "%c38_sticky_mode%" == "free" f38_capital_cost_share(i) = 0;
 $elseif "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1778*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.44459;
 $endif
 
-$ifthen ("%c38_sticky_mode%" == "free" or "%c38_sticky_mode%" == "regional") (i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr) * f38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
+$ifthen "%c38_sticky_mode%" == "free" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr) * f38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
+$elseif "%c38_sticky_mode%" == "regional" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr) * f38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
 $elseif "%c38_sticky_mode%" == "dynamic" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr)  * p38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
 $endif
 
-$ifthen ("%c38_sticky_mode%" == "free" or "%c38_sticky_mode%" == "regional") i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / pm_interest(t,i) * s38_immobile;
+$ifthen "%c38_sticky_mode%" == "free" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / pm_interest(t,i) * s38_immobile;
+$elseif "%c38_sticky_mode%" == "regional" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / pm_interest(t,i) * s38_immobile;
 $elseif "%c38_sticky_mode%" == "dynamic" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr) *p38_capital_cost_share(i) / pm_interest(t,i) * s38_immobile;
 $endif
 
 
 if (ord(t) = 1,
 
-$ifthen ("%c38_sticky_mode%" == "free" or "%c38_sticky_mode%" == "regional") i38_variable_costs(i2,kcr) = f38_fac_req(kcr)  * (1-f38_capital_cost_share(i2)) * (1-s38_mi_start);
+$ifthen "%c38_sticky_mode%" == "free" i38_variable_costs(i2,kcr) = f38_fac_req(kcr)  * (1-f38_capital_cost_share(i2)) * (1-s38_mi_start);
+$elseif "%c38_sticky_mode%" == "regional" i38_variable_costs(i2,kcr) = f38_fac_req(kcr)  * (1-f38_capital_cost_share(i2)) * (1-s38_mi_start);
 $elseif "%c38_sticky_mode%" == "dynamic"  i38_variable_costs(i2,kcr) = f38_fac_req(kcr)  * (1-p38_capital_cost_share(i2)) * (1-s38_mi_start);
 $endif
 
