@@ -23,7 +23,7 @@ cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
 realization<-c("sticky_feb18")
-sticky_modes<-c("dynamic","free","regional")
+sticky_modes<-c("free","regional")
 
 for (i in realization){
   for (so in sticky_modes){
