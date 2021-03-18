@@ -23,7 +23,7 @@ cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
 realization<-c("sticky_feb18")
-sticky_modes<-c("regional","dynamic","free")
+sticky_modes<-c("dynamic","free","regional")
 
 for (i in realization){
   for (so in sticky_modes){
@@ -45,7 +45,7 @@ cfg$gms$c38_sticky_mode  <- so
 cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
 cfg$sequential <- TRUE
-
+cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
