@@ -23,7 +23,7 @@ sticky_modes<-c("regional","dynamic","free")
             for (so in sticky_modes){
 
         #Title
-        cfg$title<-paste0("Sticky_LPJmL5_",so,"_"c,"_")
+        cfg$title<-paste0("Sticky_LPJmL5_",so,"_",c,"_")
 
         #configuration of scenarios
         cfg <- setScenario(cfg,c)
