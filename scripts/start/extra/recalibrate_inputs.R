@@ -6,13 +6,13 @@
 # |  Contact: magpie@pik-potsdam.de
 
 # --------------------------------------------------------
-# description: calculate and store new calibration for different factor costs, AEI and clustering
+# description: calculate new calibration factors for different factor costs, resolutions and rcps
 # --------------------------------------------------------
 
 
 library(magpie4)
 library(magclass)
-
+options(warn=-1)
 # Load start_run(cfg) function which is needed to start MAgPIE runs
 source("scripts/start_functions.R")
 
@@ -22,33 +22,34 @@ source("config/default.cfg")
 cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
-realization<-c("mixed_feb17","sticky_feb18")
-clustering<-c("c200")
+realization<-c("sticky_feb18")
+
 
 for (i in realization){
-  for (k in clustering){
-
-cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp6p0-co2_rev50_c200_690d3718e151be1b450b394c1064b1c5.tgz",
-         "rev4.52_h12_magpie.tgz",
-         "rev4.52_h12_validation.tgz",
-         "calibration_H12_c200_26Feb20.tgz",
-         "additional_data_rev3.89.tgz")
 
 
-cfg$force_download <- TRUE
+cfg$title <- paste0("calib_run_sticky_",so,"_Zabel_Patch")
 
-cfg$title <- paste0("Current_develop_calib_run_",i,"_",k,"")
+
+cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp2p6-co2_rev52_c200_690d3718e151be1b450b394c1064b1c5.tgz",
+         "rev4.58_h12_magpie.tgz",
+         "rev4.58_h12_validation.tgz",
+         "additional_data_rev3.98.tgz",
+         "additional_sticky.tgz",
+         "ZabelPatch.tgz"
+         )
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- i
+cfg$gms$c38_sticky_mode  <- so
 
 cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
 cfg$sequential <- TRUE
-
+cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("Current_develop_H12_",i,"_",k,""))
-}
+magpie4::submitCalibration(paste0("H12","_sticky_Zab_",so))
+
 }
