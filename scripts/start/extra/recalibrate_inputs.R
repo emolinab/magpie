@@ -41,7 +41,7 @@ cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp2p6-co2_rev52_c200_690d3718e151be1b45
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- i
-cfg$gms$c38_sticky_mode  <- so
+
 
 cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
