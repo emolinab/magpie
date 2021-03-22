@@ -28,15 +28,14 @@ realization<-c("sticky_feb18")
 for (i in realization){
 
 
-cfg$title <- paste0("calib_run_sticky_dynamic_Zabel_Patch")
+cfg$title <- paste0("calib_run_sticky_dynamic_develop")
 
 
 cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp2p6-co2_rev52_c200_690d3718e151be1b450b394c1064b1c5.tgz",
          "rev4.58_h12_magpie.tgz",
          "rev4.58_h12_validation.tgz",
          "additional_data_rev3.98.tgz",
-         "additional_sticky.tgz",
-         "ZabelPatch.tgz"
+         "additional_sticky.tgz"
          )
 
 #Selects factor costs realization
@@ -50,6 +49,6 @@ cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H12","_sticky_dy_Zab"))
+magpie4::submitCalibration(paste0("H12","_sticky_dynamic_develop"))
 
 }

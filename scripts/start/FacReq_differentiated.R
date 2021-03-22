@@ -22,7 +22,7 @@ climate<-c("cc","nocc")
         #Change the results folder name
         #NBC STANDS FOR NEW BEST CALIBRATION
 #        cfg$title<-paste0("Sticky_Dynamic_rcp6p0_",climate[i],"_")
-        cfg$title<-paste0("Sticky_dynamic_Zabel_Patch_",climate[i],"_")
+        cfg$title<-paste0("Sticky_dynamic_develop_",climate[i],"_")
 
         cfg <- setScenario(cfg,climate[i])
 
@@ -30,14 +30,12 @@ climate<-c("cc","nocc")
                  "rev4.58_h12_magpie.tgz",
                  "rev4.58_h12_validation.tgz",
                  "additional_data_rev3.98.tgz",
-                 "additional_sticky.tgz",
-                 "ZabelPatch.tgz",
-                 "calibration_H12_sticky_dy_Zab_22Mar21.tgz")
+                 "additional_sticky.tgz")
 
         #force download
         cfg$force_download <- TRUE
         #recalibrate
-        cfg$recalibrate <- FALSE
+        cfg$recalibrate <- TRUE
 
         cfg$gms$factor_costs <- realization[j]
 
