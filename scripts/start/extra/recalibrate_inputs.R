@@ -28,7 +28,7 @@ realization<-c("sticky_feb18")
 for (i in realization){
 
 
-cfg$title <- paste0("calib_run_sticky_dynamic_develop")
+cfg$title <- paste0("calib_run_SD_01")
 
 
 cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp2p6-co2_rev52_c200_690d3718e151be1b450b394c1064b1c5.tgz",
@@ -45,10 +45,11 @@ cfg$gms$factor_costs <- i
 cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
 cfg$sequential <- TRUE
-cfg$crop_calib_max <- 2
-
+cfg$crop_calib_max <- 3
+cfg$calib_accuracy <- 0.01
+cfg$calib_maxiter <- 100
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H12","_sticky_dynamic_develop"))
+magpie4::submitCalibration(paste0("H12","_SD_01"))
 
 }
