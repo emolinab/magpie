@@ -30,7 +30,8 @@ climate<-c("cc","nocc")
                  "rev4.58_h12_magpie.tgz",
                  "rev4.58_h12_validation.tgz",
                  "additional_data_rev3.98.tgz",
-                 "additional_sticky.tgz")
+                 "additional_sticky.tgz",
+                 "calibration_H12_sticky_dynamic_develop_22Mar21.tgz")
 
         #force download
         cfg$force_download <- TRUE
