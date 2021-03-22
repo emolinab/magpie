@@ -28,7 +28,7 @@ realization<-c("sticky_feb18")
 for (i in realization){
 
 
-cfg$title <- paste0("calib_run_sticky_",so,"_Zabel_Patch")
+cfg$title <- paste0("calib_run_sticky_dynamic_Zabel_Patch")
 
 
 cfg$input <- c("isimip_rcp-IPSL_CM5A_LR-rcp2p6-co2_rev52_c200_690d3718e151be1b450b394c1064b1c5.tgz",
@@ -50,6 +50,6 @@ cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H12","_sticky_Zab_",so))
+magpie4::submitCalibration(paste0("H12","_sticky_dy_Zab"))
 
 }
