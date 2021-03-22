@@ -28,7 +28,7 @@ sticky_modes<-c("regional")
 for (i in realization){
   for (so in sticky_modes){
 
-cfg$title <- paste0("calib_run_sticky_",so,"_Zabel_Patch")
+cfg$title <- paste0("calib_run_sticky_",so,"_Zabel_Patch1")
 
 
 cfg$input <- c("rev4.58_h12_validation.tgz",
