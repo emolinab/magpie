@@ -8,7 +8,7 @@
 
 *' calculation of capital fraction
 p38_capital_cost_share(i) = 0.1778*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.44459;
-p38_capital_cost_share(i) = 0;
+*p38_capital_cost_share(i) = 0;
 
 
 *' calculation of capital needed per unit produced
