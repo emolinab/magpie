@@ -33,7 +33,7 @@ for (g in gcms){
             for (m in mitigation_scenario){
 
         #Title
-        cfg$title<-paste0("T_LPJmL5_",g,"_rcp",m,"_",r,"_",c,"_",s)
+        cfg$title<-paste0("T_LPJmL5_split_CAZ",g,"_rcp",m,"_",r,"_",c,"_",s)
 
         #configuration of scenarios
         cfg <- setScenario(cfg,c(c,s))

@@ -27,13 +27,13 @@ realization<-c("mixed_feb17","sticky_feb18")
 
 for (i in realization){
 
-cfg$title <- paste0("calib_run_NLPj",i,"_")
+cfg$title <- paste0("calib_run_CAZsplit",i,"_")
 
 
-cfg$input <- c("rev4.58_h12_validation.tgz",
+cfg$input <- c("rev4.59_8f7b9423_validation_debug.tgz",
          "additional_data_rev3.98.tgz",
-         "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
-         "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz"
+         "rev4.59_8f7b9423_024608f1_cellularmagpie_debug.tgz",
+         "rev4.59_8f7b9423_magpie_debug.tgz"
          )
 
 #Selects factor costs realization
@@ -46,6 +46,6 @@ cfg$sequential <- TRUE
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H12","_NLPj",i,"_"))
+magpie4::submitCalibration(paste0("H12","_CAZsplit_",i,"_"))
 
 }
