@@ -24,11 +24,12 @@ cfg$recalibrate <- TRUE
 
 realization<-c("sticky_feb18","mixed")
 sticky_modes<-c("dynamic")
-input <- c("rev4.58_h12_validation.tgz",
-         "additional_data_rev3.98.tgz",
-         "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
-         "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz",
-         "additional_sticky.tgz"
+input <- c("rev4.59_8f7b9423_validation_debug.tgz",
+         "additional_data_rev3.99.tgz",
+         "rev4.59_8f7b9423_024608f1_cellularmagpie_debug.tgz",
+         "rev4.59_8f7b9423_magpie_debug.tgz",
+         "additional_sticky.tgz",
+         "ZabelPatchH13.tgz"
          )
 
 
