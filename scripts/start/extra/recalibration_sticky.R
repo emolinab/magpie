@@ -34,6 +34,7 @@ input <- c("rev4.59_8f7b9423_validation_debug.tgz",
 
 
 for (i in realization){
+  if(i != "sticky_feb18"){
   for (so in sticky_modes){
 
 cfg$title <- paste0("calib_run_",i,"_HalfEarth_")
@@ -55,7 +56,7 @@ cfg$crop_calib_max <- 2
 start_run(cfg,codeCheck=FALSE)
 magpie4::submitCalibration(paste0("H12","_HE_",i))
 
-}}
+}}}
 
 for (i in realization){
   for (so in sticky_modes){
