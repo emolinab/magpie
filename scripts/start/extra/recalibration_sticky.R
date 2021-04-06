@@ -9,7 +9,7 @@
 # description: calculate new calibration factors for different factor costs, resolutions and rcps
 # --------------------------------------------------------
 
-
+#For sensitivity analysis
 library(magpie4)
 library(magclass)
 options(warn=-1)
@@ -22,22 +22,46 @@ source("config/default.cfg")
 cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
-realization<-c("sticky_feb18")
-sticky_modes<-c("regional")
-
-for (i in realization){
-  for (so in sticky_modes){
-
-cfg$title <- paste0("calib_run_sticky_",so,"_Zabel_Patch1")
-
-
-cfg$input <- c("rev4.58_h12_validation.tgz",
+realization<-c("sticky_feb18","mixed")
+sticky_modes<-c("dynamic")
+input <- c("rev4.58_h12_validation.tgz",
          "additional_data_rev3.98.tgz",
          "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
          "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz",
          "additional_sticky.tgz",
          "ZabelPatch.tgz"
          )
+
+
+for (i in realization){
+  for (so in sticky_modes){
+
+cfg$title <- paste0("calib_run_",i,"_HalfEarth_")
+cfg$input <- input
+
+#Selects factor costs realization
+cfg$gms$factor_costs <- i
+cfg$gms$c38_sticky_mode  <- so
+
+# Half earth scenario
+cfg$gms$c35_protect_scenario <- "HalfEarth"
+
+cfg$gms$c_timesteps <- 1
+cfg$output <- c("rds_report")
+cfg$sequential <- TRUE
+cfg$crop_calib_max <- 2
+
+
+start_run(cfg,codeCheck=FALSE)
+magpie4::submitCalibration(paste0("H12","_HE_",i))
+
+}}
+
+for (i in realization){
+  for (so in sticky_modes){
+
+cfg$title <- paste0("calib_run_",i,"_calibLPJ5_")
+cfg$input <- input
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- i
@@ -50,6 +74,30 @@ cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H12","_sticky_Zab_",so))
+magpie4::submitCalibration(paste0("H12","_calibLPJ5_",i))
 
 }}
+
+depreciation<-c(0,0.01,0.1,1)
+
+for (d in depreciation){
+
+
+cfg$title <- paste0("calib_run_dep_",d,"_")
+cfg$input <- input
+
+#Selects factor costs realization
+cfg$gms$factor_costs <- "sticky_feb18"
+cfg$gms$c38_sticky_mode  <- "dynamic"
+cfg$gms$s38_depreciation_rate <- d
+
+cfg$gms$c_timesteps <- 1
+cfg$output <- c("rds_report")
+cfg$sequential <- TRUE
+cfg$crop_calib_max <- 2
+
+
+start_run(cfg,codeCheck=FALSE)
+magpie4::submitCalibration(paste0("H12","_dep_",d))
+
+}

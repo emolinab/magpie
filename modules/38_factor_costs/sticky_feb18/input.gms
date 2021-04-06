@@ -51,3 +51,11 @@ table f38_region_yield(i,kcr) Regional crop yields (tDM per ha)
 $ondelim
 $include "./modules/38_factor_costs/sticky_feb18/input/f38_region_yield.csv"
 $offdelim;
+
+parameter f38_share_calibration(i) Correction value to match regression with historical values
+/
+$ondelim
+$include "./modules/38_factor_costs/input/GDP_correction.csv"
+$offdelim
+/
+;
