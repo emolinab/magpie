@@ -29,7 +29,7 @@ s38_fraction_gdp maximum percentage of the overall GDP /0.15/
 *;
 
 
-$ontext
+
 parameter f38_fac_req(kcr) Factor requirement costs (USD05MER per tDM)
 /
 $ondelim
