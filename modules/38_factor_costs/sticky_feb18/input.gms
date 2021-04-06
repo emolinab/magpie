@@ -29,7 +29,7 @@ s38_fraction_gdp maximum percentage of the overall GDP /0.15/
 *;
 
 
-*$ontext
+$ontext
 parameter f38_fac_req(kcr) Factor requirement costs (USD05MER per tDM)
 /
 $ondelim
@@ -37,8 +37,9 @@ $include "./modules/38_factor_costs/input/f38_GLO_req.csv"
 $offdelim
 /
 ;
-*$offtext
 
+
+$ontext
 parameter f38_capital_cost_share(i) Share of capital in factor requirements
 /
 $ondelim
@@ -46,6 +47,7 @@ $include "./modules/38_factor_costs/input/f38_REG_share.csv"
 $offdelim
 /
 ;
+$offtext
 
 table f38_region_yield(i,kcr) Regional crop yields (tDM per ha)
 $ondelim
