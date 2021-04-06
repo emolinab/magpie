@@ -22,7 +22,7 @@ source("config/default.cfg")
 cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
-realization<-c("sticky_feb18","mixed")
+realization<-c("sticky_feb18","mixed_feb17")
 sticky_modes<-c("dynamic")
 input <- c("rev4.59_8f7b9423_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
