@@ -20,7 +20,7 @@ source("config/default.cfg")
 
 realization<-c("sticky_feb18","mixed_feb17")
 sticky_modes<-c("dynamic")
-input <- c("rev4.59_8f7b9423_validation_debug.tgz",
+inputs <- c("rev4.59_8f7b9423_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "rev4.59_8f7b9423_024608f1_cellularmagpie_debug.tgz",
          "rev4.59_8f7b9423_magpie_debug.tgz",
