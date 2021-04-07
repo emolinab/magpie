@@ -63,8 +63,8 @@ climate<-c("nocc")
 #}}
 #}
 #### Normal runs with changes substitution and patrick's suitable area
-#normal_calib<-c("calibration_H12_calibLPJ5_sticky_feb18_06Apr21.tgz",
-#            "calibration_H12_calibLPJ5_mixed_feb17_07Apr21.tgz")
+normal_calib<-c("calibration_H12_calibLPJ5_sticky_feb18_06Apr21.tgz",
+            "calibration_H12_calibLPJ5_mixed_feb17_07Apr21.tgz")
 # Half Earth
 aux<-1
 
