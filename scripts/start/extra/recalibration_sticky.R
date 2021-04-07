@@ -61,12 +61,13 @@ input <- c("rev4.59_8f7b9423_validation_debug.tgz",
 for (i in realization){
   for (so in sticky_modes){
 
-cfg$title <- paste0("calib_run_",i,"_calibLPJ5_free")
+cfg$title <- paste0("calib_run_",i,"_calibLPJ5_free_HE")
 cfg$input <- input
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- i
 cfg$gms$c38_sticky_mode  <- so
+cfg$gms$c35_protect_scenario <- "HalfEarth"
 
 cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
@@ -75,7 +76,7 @@ cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H13","_calibLPJ5_",i,"_free"))
+magpie4::submitCalibration(paste0("H13","_calibLPJ5_",i,"_freeHE"))
 
 }}
 
