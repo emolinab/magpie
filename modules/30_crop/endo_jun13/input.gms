@@ -20,6 +20,10 @@ $offdelim
 ;
 m_fillmissingyears(fm_croparea,"j,w,kcr");
 
+scalars
+s30_perc_protected percentage of area protected based on 2020 land /0.1/
+;
+
 
 ********* CROP-ROTATIONAL CONSTRAINT *******************************************
 
