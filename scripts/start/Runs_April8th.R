@@ -30,36 +30,36 @@ inputs <- c("rev4.59_8f7b9423_validation_debug.tgz",
 
 climate<-c("cc")
 
-# ##half-earth
-# 
-# he_calib<-c("calibration_H13_calibLPJ5_sticky_feb18_freeHE_07Apr21.tgz"
-#             ,"calibration_H12_HE_sticky_feb18_06Apr21.tgz")
-# 
-# for (c in climate){
-#   for (so in 1:length(sticky_modes)){
-# 
-# cfg$title <- paste0("LPj5_",i,"_HalfEarth_",sticky_modes[so],"_")
-# 
-# #configuration of scenarios
-# cfg <- setScenario(cfg,c)
-# 
-# #inputs
-# cfg$input <- c(inputs,he_calib[so])
-# cfg$force_download <- TRUE
-# cfg$recalibrate <- FALSE
-# 
-# #Selects factor costs realization
-# cfg$gms$factor_costs <- i
-# cfg$gms$c38_sticky_mode  <- sticky_modes[so]
-# 
-# # Half earth scenario
-# cfg$gms$c35_protect_scenario <- "HalfEarth"
-# 
-# cfg$output <- c("rds_report")
-# 
-# start_run(cfg=cfg)
-# 
-# }}
+##half-earth
+
+he_calib<-c("calibration_H13_calibLPJ5_sticky_feb18_freeHE_07Apr21.tgz"
+            ,"calibration_H12_HE_sticky_feb18_06Apr21.tgz")
+
+for (c in climate){
+  for (so in 1:length(sticky_modes)){
+
+cfg$title <- paste0("LPj5__HalfEarth_",sticky_modes[so],"_")
+
+#configuration of scenarios
+cfg <- setScenario(cfg,c)
+
+#inputs
+cfg$input <- c(inputs,he_calib[so])
+cfg$force_download <- TRUE
+cfg$recalibrate <- FALSE
+
+#Selects factor costs realization
+cfg$gms$factor_costs <- "sticky_feb18"
+cfg$gms$c38_sticky_mode  <- sticky_modes[so]
+
+# Half earth scenario
+cfg$gms$c35_protect_scenario <- "HalfEarth"
+
+cfg$output <- c("rds_report")
+
+start_run(cfg=cfg)
+
+}}
 
 
 
@@ -100,6 +100,7 @@ climate<-c("cc")
 
 ### Normal runs
 
+climate<-c("nocc")
 normal_calib<-c("calibration_H13_calibLPJ5_sticky_feb18_free_07Apr21.tgz",
                 "calibration_H12_calibLPJ5_sticky_feb18_06Apr21.tgz")
 
