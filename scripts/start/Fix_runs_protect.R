@@ -21,6 +21,15 @@ source("config/default.cfg")
 ###### Protect existing cropland area
 calib<-"calibration_H12_calibLPJ5_sticky_feb18_06Apr21.tgz"
 percent<-c(0.1,0.3,0.5,0.7,0.9)
+inputs <- c("rev4.59_8f7b9423_validation_debug.tgz",
+         "additional_data_rev3.99.tgz",
+         "rev4.59_8f7b9423_024608f1_cellularmagpie_debug.tgz",
+         "rev4.59_8f7b9423_magpie_debug.tgz",
+         "additional_sticky.tgz",
+         "ZabelPatchH13.tgz"
+         )
+
+climate<-c("cc")
 
 for (p in percent){
 
