@@ -148,6 +148,7 @@ cfg$recalibrate <- FALSE
 #Selects factor costs realization
 cfg$gms$factor_costs <- "sticky_feb18"
 cfg$gms$c38_sticky_mode  <- "dynamic"
+cfg$gms$s38_depreciation_rate <- 0.05
 
 cfg$gms$c30_protect_crop  <- TRUE
 cfg$gms$s30_perc_protected  <- p
