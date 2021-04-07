@@ -30,6 +30,6 @@ vm_area.up(j,bioen_type_30,bioen_water_30)=Inf
 *only valid for coup100 CHANGE FOR A PULL REQUEST
 if (ord(t) > 6,
 $ifthen "%c30_protect_crop%" == "on"
-vm_area.up(j,kcr,w)<-ov_area("y2020",j,kcr,w,"level")*(1-s30_perc_protected)
+vm_area.up(j,kcr,w)<-ov_area("y2020",j,kcr,w,"level")*(1-s30_perc_protected);
 $endif
 );
