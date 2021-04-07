@@ -40,16 +40,6 @@ $offdelim
 
 parameter f38_capital_cost_share(i) Share of capital in factor requirements;
 
-$ontext
-parameter f38_capital_cost_share(i) Share of capital in factor requirements
-/
-$ondelim
-$include "./modules/38_factor_costs/input/f38_REG_share.csv"
-$offdelim
-/
-;
-$offtext
-
 table f38_region_yield(i,kcr) Regional crop yields (tDM per ha)
 $ondelim
 $include "./modules/38_factor_costs/sticky_feb18/input/f38_region_yield.csv"
