@@ -18,8 +18,8 @@ source("scripts/start_functions.R")
 # Sources the default configuration file
 source("config/default.cfg")
 
-realization<-c("sticky_feb18","mixed_feb17")
-sticky_modes<-c("dynamic")
+realization<-c("sticky_feb18")
+sticky_modes<-c("free")
 inputs <- c("rev4.59_8f7b9423_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "rev4.59_8f7b9423_024608f1_cellularmagpie_debug.tgz",
@@ -38,7 +38,7 @@ for (i in realization){
 #  if(i != "sticky_feb18"){
   for (so in sticky_modes){
 
-cfg$title <- paste0("LPj5_",i,"_HalfEarth_",climate,"_")
+cfg$title <- paste0("LPj5_",i,"_HalfEarth_free_",climate,"_")
 
 #configuration of scenarios
 cfg <- setScenario(cfg,climate)
@@ -71,7 +71,7 @@ aux<-1
 for (i in realization){
   for (so in sticky_modes){
 
-    cfg$title <- paste0("LPJ5_",i,"_Normal_",climate,"_")
+    cfg$title <- paste0("LPJ5_",i,"_free_Normal_",so,"_",climate,"_")
 
     #configuration of scenarios
     cfg <- setScenario(cfg,climate)
@@ -96,38 +96,38 @@ for (i in realization){
 ######
 #depreciation
 
-dep_calib<-c("calibration_H12_dep_0_07Apr21.tgz",
-            "calibration_H12_dep_0.01_07Apr21.tgz",
-            "calibration_H12_dep_0.1_07Apr21.tgz",
-            "calibration_H12_dep_1_07Apr21.tgz")
+#dep_calib<-c("calibration_H12_dep_0_07Apr21.tgz",
+#            "calibration_H12_dep_0.01_07Apr21.tgz",
+#            "calibration_H12_dep_0.1_07Apr21.tgz",
+#            "calibration_H12_dep_1_07Apr21.tgz")
 # Half Earth
-aux<-1
-depreciation<-c(0,0.01,0.1,1)
+#aux<-1
+#depreciation<-c(0,0.01,0.1,1)
 
-for (d in depreciation){
+#for (d in depreciation){
 
 
-cfg$title <- paste0("LPJ5_StickyDy_Dep_",d,"_",climate,"_")
-cfg$input <- c(inputs,dep_calib[aux])
+#cfg$title <- paste0("LPJ5_StickyDy_Dep_",d,"_",climate,"_")
+#cfg$input <- c(inputs,dep_calib[aux])
 
 #configuration of scenarios
-cfg <- setScenario(cfg,climate)
+#cfg <- setScenario(cfg,climate)
 #
-cfg$force_download <- TRUE
-cfg$recalibrate <- FALSE
+#cfg$force_download <- TRUE
+#cfg$recalibrate <- FALSE
 
 #Selects factor costs realization
-cfg$gms$factor_costs <- "sticky_feb18"
-cfg$gms$c38_sticky_mode  <- "dynamic"
-cfg$gms$s38_depreciation_rate <- d
+#cfg$gms$factor_costs <- "sticky_feb18"
+#cfg$gms$c38_sticky_mode  <- "dynamic"
+#cfg$gms$s38_depreciation_rate <- d
 
 
-cfg$output <- c("rds_report")
+#cfg$output <- c("rds_report")
 
-start_run(cfg=cfg)
+#start_run(cfg=cfg)
 
-aux<-aux+1
-}
+#aux<-aux+1
+#}
 
 ###### Protect existing cropland area
 calib<-"calibration_H12_calibLPJ5_sticky_feb18_06Apr21.tgz"
@@ -147,7 +147,7 @@ cfg$recalibrate <- FALSE
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- "sticky_feb18"
-cfg$gms$c38_sticky_mode  <- "dynamic"
+cfg$gms$c38_sticky_mode  <- "free"
 cfg$gms$s38_depreciation_rate <- 0.05
 
 cfg$gms$c30_protect_crop  <- TRUE

@@ -38,6 +38,7 @@ $offdelim
 /
 ;
 
+parameter f38_capital_cost_share(i) Share of capital in factor requirements;
 
 $ontext
 parameter f38_capital_cost_share(i) Share of capital in factor requirements
