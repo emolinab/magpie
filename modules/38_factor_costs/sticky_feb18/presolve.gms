@@ -12,14 +12,14 @@ $ifthen "%c38_sticky_mode%" == "free" f38_capital_cost_share(i) = 0;
 $elseif "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1870421*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.4917691+f38_Share_calibration(i) ;
 $endif
 
-$ifthen "%c38_sticky_mode%" == "free" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr) * f38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
-$elseif "%c38_sticky_mode%" == "regional" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr) * f38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
-$elseif "%c38_sticky_mode%" == "dynamic" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr)  * p38_capital_cost_share(i) / pm_interest(t,i) * (1-s38_immobile);
+$ifthen "%c38_sticky_mode%" == "free" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr) * f38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * (1-s38_immobile);
+$elseif "%c38_sticky_mode%" == "regional" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr) * f38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * (1-s38_immobile);
+$elseif "%c38_sticky_mode%" == "dynamic" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr)  * p38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * (1-s38_immobile);
 $endif
 
-$ifthen "%c38_sticky_mode%" == "free" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / pm_interest(t,i) * s38_immobile;
-$elseif "%c38_sticky_mode%" == "regional" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / pm_interest(t,i) * s38_immobile;
-$elseif "%c38_sticky_mode%" == "dynamic" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr) *p38_capital_cost_share(i) / pm_interest(t,i) * s38_immobile;
+$ifthen "%c38_sticky_mode%" == "free" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * s38_immobile;
+$elseif "%c38_sticky_mode%" == "regional" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * s38_immobile;
+$elseif "%c38_sticky_mode%" == "dynamic" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr) *p38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * s38_immobile;
 $endif
 
 

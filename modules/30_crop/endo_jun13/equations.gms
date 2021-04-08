@@ -62,3 +62,6 @@
  q30_bv_per(j2,potnatveg) .. vm_bv(j2,"crop_per",potnatveg)
  					=e=
  					sum((crop_per30,w), vm_area(j2,crop_per30,w)) * fm_bii_coeff("crop_per",potnatveg) * fm_luh2_side_layers(j2,potnatveg);
+
+*' Protected areas
+ q30_protect_area(j2) .. sum((kcr,w),vm_area(j2,kcr,w))) =l= p30_max_protection(j);

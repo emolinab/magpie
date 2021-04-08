@@ -7,6 +7,7 @@
 
 parameters
  pm_croparea_start(j,kcr)        Agricultural land initialization area (mio. ha)
+ p30_max_protection(j)           Maximum area available for cropland
 ;
 
 positive variables
@@ -22,6 +23,7 @@ equations
  q30_carbon(j,ag_pools)          Cropland above ground carbon content calculation (mio. tC)
  q30_bv_ann(j,potnatveg)         Biodiversity value of annual cropland (Mha)
  q30_bv_per(j,potnatveg)         Biodiversity value of perennial cropland (Mha)
+ q30_protect_area(j)             Percentage of protected area from 2020 values (Mha)
 ;
 
 *#################### R SECTION START (OUTPUT DECLARATIONS) ####################
