@@ -5,6 +5,11 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
+*only valid for coup100 CHANGE FOR A PULL REQUEST
+if (ord(t) == 6,
+$ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j) = vm_land(j2,"crop")*(1-s30_perc_protected/100);
+$endif
+);
 
 *#################### R SECTION START (OUTPUT DEFINITIONS) #####################
  ov_area(t,j,kcr,w,"marginal")             = vm_area.m(j,kcr,w);

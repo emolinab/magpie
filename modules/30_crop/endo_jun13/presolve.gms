@@ -5,9 +5,6 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
-$setglobal c30_protect_crop  off
-*   options:   on  protect on
-*              off protect on
 
 $ifthen "%c30_bioen_type%" == "all" bioen_type_30(kbe30) = yes;
 $else bioen_type_30("%c30_bioen_type%") = yes;
@@ -30,12 +27,3 @@ crpmax30(crp30) = yes$(f30_rotation_max_shr(crp30) < 1);
 crpmin30(crp30) = yes$(f30_rotation_min_shr(crp30) > 0);
 
 vm_area.up(j,bioen_type_30,bioen_water_30)=Inf;
-
-p30_max_protection(j) = Inf;
-
-*only valid for coup100 CHANGE FOR A PULL REQUEST
-if (ord(t) > 6,
-$ifthen "%c30_protect_crop%" == "on" p30_max_protection(j) = (sum(kcr,w),ov_area("y2020",j,kcr,w,"level")*(1-s30_perc_protected));
-$else p30_max_protection(j) = Inf;
-$endif
-);

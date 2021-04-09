@@ -11,6 +11,10 @@ $setglobal c30_bioen_type  all
 $setglobal c30_bioen_water  rainfed
 * options: rainfed, irrigated, all
 
+$setglobal c30_protect_crop  unprotect
+*   options:   protect
+*              unprotect 
+
 ********* CROPAREA INITIALISATION **********************************************
 
 table fm_croparea(t_all,j,w,kcr) Different croparea type areas (mio. ha)

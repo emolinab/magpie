@@ -68,13 +68,13 @@ climate<-c("cc")
 calib<-c("calibration_H13_calibLPJ5_sticky_feb18_free_07Apr21.tgz"
          ,"calibration_H12_calibLPJ5_sticky_feb18_06Apr21.tgz")
 
-percent<-c(0.1,0.3,0.5,0.7,0.9)
-percent1<-c(01,03,05,07,09)
+percent<-c(10)
+
 
 for (p in 1:length(percent)){
 for (so in 1:length(sticky_modes)){
 
-cfg$title <- paste0("ProtectLand_fix_",percent1[p],"_",sticky_modes[so],"_")
+cfg$title <- paste0("ProtectLand_fixTest2_",percent[p],"_",sticky_modes[so],"_")
 cfg$input <- c(inputs,calib[so])
 
 #configuration of scenarios
@@ -88,7 +88,7 @@ cfg$gms$factor_costs <- "sticky_feb18"
 cfg$gms$c38_sticky_mode  <- sticky_modes[so]
 cfg$gms$s38_depreciation_rate <- 0.05
 
-cfg$gms$c30_protect_crop  <- "on"
+cfg$gms$c30_protect_crop  <- "protect"
 cfg$gms$s30_perc_protected  <- percent[1]
 
 cfg$output <- c("rds_report")

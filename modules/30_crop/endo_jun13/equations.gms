@@ -59,9 +59,8 @@
  					=e=
  					sum((crop_ann30,w), vm_area(j2,crop_ann30,w)) * fm_bii_coeff("crop_ann",potnatveg) * fm_luh2_side_layers(j2,potnatveg);
 
- q30_bv_per(j2,potnatveg) .. vm_bv(j2,"crop_per",potnatveg)
- 					=e=
+ q30_bv_per(j2,potnatveg) .. vm_bv(j2,"crop_per",potnatveg) =e=
  					sum((crop_per30,w), vm_area(j2,crop_per30,w)) * fm_bii_coeff("crop_per",potnatveg) * fm_luh2_side_layers(j2,potnatveg);
 
 *' Protected areas
- q30_protect_area(j2) .. sum((kcr,w),vm_area(j2,kcr,w)) =l= p30_max_protection(j2);
+ q30_protect_area(j2) .. vm_land(j2,"crop") =l= p30_max_protection(j2);
