@@ -5,6 +5,10 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
+$setglobal c30_protect_crop  off
+*   options:   on  protect on
+*              off protect on
+
 $ifthen "%c30_bioen_type%" == "all" bioen_type_30(kbe30) = yes;
 $else bioen_type_30("%c30_bioen_type%") = yes;
 $endif
