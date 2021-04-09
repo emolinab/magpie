@@ -17,6 +17,12 @@ climate<-c("cc","nocc")
 gcms<-c("GFDL")
 rcps<-c("70")
 SSPs<-c("SSP1","SSP2","SSP3","SSP4","SSP5")
+input<-c("rev4.59_8f7b9423_validation_debug.tgz",
+         "additional_data_rev3.98.tgz",
+         "rev4.59_8f7b9423_024608f1_cellularmagpie_debug.tgz",
+         "rev4.59_8f7b9423_magpie_debug.tgz",
+         "ZabelPatch.tgz")
+
 
 
 for (g in gcms){
@@ -40,10 +46,7 @@ for (g in gcms){
 
         if(r=="sticky_feb18"){
           #this could be extended for different gcms and rcps
-          cfg$input <- c("rev4.58_h12_validation.tgz",
-                   "additional_data_rev3.98.tgz",
-                   "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
-                   "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz",
+          cfg$input <- c(,
                    "calibration_H12_NLPjsticky_feb18__15Mar21.tgz")
 
         }else if(r=="mixed_feb17"){
