@@ -7,7 +7,7 @@
 
 *only valid for coup100 CHANGE FOR A PULL REQUEST
 if (ord(t) == 6,
-$ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j) = vm_land(j,"crop")*(1-s30_perc_protected/100);
+$ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j) = vm_land.l(j,"crop")*(1-s30_perc_protected/100);
 $endif
 );
 
