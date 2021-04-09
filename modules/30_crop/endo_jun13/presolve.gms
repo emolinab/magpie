@@ -25,7 +25,7 @@ vm_area.up(j,bioen_type_30,bioen_water_30)=Inf;
 crpmax30(crp30) = yes$(f30_rotation_max_shr(crp30) < 1);
 crpmin30(crp30) = yes$(f30_rotation_min_shr(crp30) > 0);
 
-vm_area.up(j,bioen_type_30,bioen_water_30)=Inf
+vm_area.up(j,bioen_type_30,bioen_water_30)=Inf;
 
 p30_max_protection(j) = Inf;
 
