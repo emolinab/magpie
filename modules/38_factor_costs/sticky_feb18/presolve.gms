@@ -11,11 +11,9 @@ $endif
 p38_capital_cost_share(i) = 0;
 
 if (ord(t)<5,
-$ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i2) = f38_historical_share(i2,t);
-$endif
+p38_capital_cost_share(i) = f38_historical_share(t,i);
 elseif (ord(t)>=5),
-$ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i2) = 0.1870421*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.4917691+f38_share_error2010(i2);
-$endif
+p38_capital_cost_share(i) = 0.1870421*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.4917691+f38_share_error2010(i);
 );
 
 
