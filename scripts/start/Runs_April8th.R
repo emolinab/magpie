@@ -19,7 +19,7 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 realization<-c("sticky_feb18")
-sticky_modes<-c("free","dynamic")
+sticky_modes<-c("dynamic")
 inputs <- c("rev4.59_8f7b9423_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "rev4.59_8f7b9423_024608f1_cellularmagpie_debug.tgz",
@@ -74,7 +74,7 @@ percent<-c(10)
 for (p in 1:length(percent)){
 for (so in 1:length(sticky_modes)){
 
-cfg$title <- paste0("ProtectLand_fixTest2_",percent[p],"_",sticky_modes[so],"_")
+cfg$title <- paste0("ProtectLand_fixTest_calib2_",percent[p],"_",sticky_modes[so],"_")
 cfg$input <- c(inputs,calib[so])
 
 #configuration of scenarios
@@ -88,7 +88,7 @@ cfg$gms$factor_costs <- "sticky_feb18"
 cfg$gms$c38_sticky_mode  <- sticky_modes[so]
 cfg$gms$s38_depreciation_rate <- 0.05
 
-cfg$gms$c30_protect_crop  <- "protect"
+cfg$gms$c30_protect_crop  <- "unprotect"
 cfg$gms$s30_perc_protected  <- percent[1]
 
 cfg$output <- c("rds_report")

@@ -5,7 +5,7 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
-$setglobal c38_sticky_mode  regional
+$setglobal c38_sticky_mode  dynamic
 
 scalars
 *' share of capital in the factor costs are based on the AgTFP Agricultural total factor productivity document by the USDA
@@ -45,10 +45,18 @@ $ondelim
 $include "./modules/38_factor_costs/sticky_feb18/input/f38_region_yield.csv"
 $offdelim;
 
-parameter f38_share_calibration(i) Correction value to match regression with historical values
+parameter f38_share_error2010(i) Correction value for dynamic regression
 /
 $ondelim
 $include "./modules/38_factor_costs/input/f38_GDP_correction.csv"
+$offdelim
+/
+;
+
+parameter f38_historical_share(t_sh,i)
+/
+$ondelim
+$include "./modules/38_factor_costs/input/f38_historical_share.cs3"
 $offdelim
 /
 ;

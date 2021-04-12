@@ -5,20 +5,29 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
-p38_capital_cost_share(i) = 0;
-
 $ifthen "%c38_sticky_mode%" == "free" f38_capital_cost_share(i) = 0;
-*$elseif "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1778*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.44459+f38_Share_calibration(i) ; H12
-$elseif "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1870421*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.4917691+f38_Share_calibration(i) ;
 $endif
 
+p38_capital_cost_share(i) = 0;
+
+if (ord(t)<5,
+$ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = f38_historical_share(t,i);
+$endif
+elseif (ord(t)>=5),
+$ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1870421*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.4917691+f38_share_error2010(i);
+$endif
+);
+
+
+
+
 $ifthen "%c38_sticky_mode%" == "free" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr) * f38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * (1-s38_immobile);
-$elseif "%c38_sticky_mode%" == "regional" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr) * f38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * (1-s38_immobile);
+*$elseif "%c38_sticky_mode%" == "regional" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr) * f38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * (1-s38_immobile);
 $elseif "%c38_sticky_mode%" == "dynamic" i38_capital_need(i,kcr,"mobile") = f38_fac_req(kcr)  * p38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * (1-s38_immobile);
 $endif
 
 $ifthen "%c38_sticky_mode%" == "free" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * s38_immobile;
-$elseif "%c38_sticky_mode%" == "regional" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * s38_immobile;
+*$elseif "%c38_sticky_mode%" == "regional" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr)  * f38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * s38_immobile;
 $elseif "%c38_sticky_mode%" == "dynamic" i38_capital_need(i,kcr,"immobile") = f38_fac_req(kcr) *p38_capital_cost_share(i) / (pm_interest(t,i)+s38_depreciation_rate) * s38_immobile;
 $endif
 
@@ -26,7 +35,7 @@ $endif
 if (ord(t) = 1,
 
 $ifthen "%c38_sticky_mode%" == "free" i38_variable_costs(i2,kcr) = f38_fac_req(kcr)  * (1-f38_capital_cost_share(i2)) * (1-s38_mi_start);
-$elseif "%c38_sticky_mode%" == "regional" i38_variable_costs(i2,kcr) = f38_fac_req(kcr)  * (1-f38_capital_cost_share(i2)) * (1-s38_mi_start);
+*$elseif "%c38_sticky_mode%" == "regional" i38_variable_costs(i2,kcr) = f38_fac_req(kcr)  * (1-f38_capital_cost_share(i2)) * (1-s38_mi_start);
 $elseif "%c38_sticky_mode%" == "dynamic"  i38_variable_costs(i2,kcr) = f38_fac_req(kcr)  * (1-p38_capital_cost_share(i2)) * (1-s38_mi_start);
 $endif
 
