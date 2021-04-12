@@ -56,7 +56,7 @@ $offdelim
 parameter f38_historical_share(t_sh,i) Historical capital share
 /
 $ondelim
-$include "./modules/38_factor_costs/sticky_feb18/input/38_historical_share.cs3"
+$include "./modules/38_factor_costs/sticky_feb18/input/f38_historical_share.cs3"
 $offdelim
 /
 ;
