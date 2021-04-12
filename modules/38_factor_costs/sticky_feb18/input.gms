@@ -53,7 +53,7 @@ $offdelim
 /
 ;
 
-parameter f38_historical_share(t_sh,i)
+parameter f38_historical_share(t_sh,i) Historical capital share
 /
 $ondelim
 $include "./modules/38_factor_costs/input/f38_historical_share.cs3"
