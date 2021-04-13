@@ -70,7 +70,7 @@ climate<-c("cc","nocc")
  for (so in 1:length(sticky_modes)){
    for (c in 1:length(climate)){
 
-    cfg$title <- paste0("LPJ_St_",sticky_modes[so],"_",climate[c],"_")
+    cfg$title <- paste0("LPJ_St_fx_",sticky_modes[so],"_",climate[c],"_")
 
      #configuration of scenarios
     cfg <- setScenario(cfg,climate[c])
@@ -82,7 +82,7 @@ climate<-c("cc","nocc")
 
      #Selects factor costs realization
      cfg$gms$factor_costs <- "sticky_feb18"
-     cfg$gms$c38_sticky_mode  <- so
+     cfg$gms$c38_sticky_mode  <- sticky_modes[so]
      cfg$gms$s38_depreciation_rate <- 0.05
      cfg$gms$c30_protect_crop  <- "unprotect"
 
@@ -101,7 +101,7 @@ percent<-c(10,20,30,40,50)
 for (p in 1:length(percent)){
 for (so in 1:length(sticky_modes)){
 
-cfg$title <- paste0("LPJ_St_protectSce_",percent[p],"_",sticky_modes[so],"_")
+cfg$title <- paste0("LPJ_St_fx_protectSce_",percent[p],"_",sticky_modes[so],"_")
 cfg$input <- c(inputs,normal_calib[so])
 
 #configuration of scenarios
@@ -116,7 +116,7 @@ cfg$gms$c38_sticky_mode  <- sticky_modes[so]
 cfg$gms$s38_depreciation_rate <- 0.05
 
 cfg$gms$c30_protect_crop  <- "protect"
-cfg$gms$s30_perc_protected  <- percent[1]
+cfg$gms$s30_perc_protected  <- percent[p]
 
 cfg$output <- c("rds_report")
 
@@ -139,7 +139,7 @@ start_run(cfg=cfg)
    for (c in 1:length(climate)){
 
 
- cfg$title <- paste0("LPJ5_Sticky_Dep_",dep[d],"_",climate[c],"_")
+ cfg$title <- paste0("LPJ_St_fx_",dep[d],"_",climate[c],"_")
  cfg$input <- c(inputs,dep_calib[d])
 
  #configuration of scenarios
