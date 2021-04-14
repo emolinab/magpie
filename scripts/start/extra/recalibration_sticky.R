@@ -19,9 +19,6 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
-cfg$results_folder <- "output/:title::date:"
-cfg$recalibrate <- TRUE
-
 realization<-c("sticky_feb18")
 sticky_modes<-c("free","dynamic")
 input <- c("rev4.59SmashingPumpkins_8f7b9423_validation_debug.tgz",
@@ -38,6 +35,9 @@ for (i in realization){
 
 cfg$title <- paste0("calib_run_",i,"_",so,"_SP_")
 cfg$input <- input
+
+cfg$results_folder <- "output/:title::date:"
+cfg$recalibrate <- TRUE
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- i
@@ -59,9 +59,11 @@ dep<-("0","001","01")
 
 for (d in 1:length(depreciation)){
 
-
 cfg$title <- paste0("calib_run_dp_",dep[d],"_")
 cfg$input <- input
+
+cfg$results_folder <- "output/:title::date:"
+cfg$recalibrate <- TRUE
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- "sticky_feb18"
