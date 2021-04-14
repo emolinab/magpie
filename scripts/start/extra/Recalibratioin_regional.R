@@ -23,26 +23,34 @@ cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
 ###################################################################################################
-realization<-c("sticky_feb18")
-mode<-c("regional","global")
-resolution<-c("c200")
-rcp<-c("6p0")
-#realization<-c("sticky_feb18")
+realization<-c("mixed_feb17","sticky_feb18")
+mode_sticky<-c("dynamic")
+H<-c("H12","H13")
+input1<-list()
+input1[["H12"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
+         "additional_data_rev3.99.tgz",
+         "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
+         "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
+         "additional_sticky.tgz",
+         "ZabelPatch.tgz"
+         )
+
+input1[["H13"]]<-c("rev4.59SmashingPumpkins_8f7b9423_validation_debug.tgz",
+         "additional_data_rev3.99.tgz",
+         "rev4.59SmashingPumpkins_8f7b9423_024608f1_cellularmagpie_debug.tgz",
+         "rev4.59SmashingPumpkins_8f7b9423_magpie_debug.tgz",
+         "additional_sticky.tgz",
+         "ZabelPatchH13.tgz"
+         )
+
 
 for (i in realization){
-for (r in resolution){
-for (rc in rcp){
-  for (m in mode){
+    for (hn in H){
 
-cfg$title <- paste0("calib_run_best_",i,"_",m,"_")
+cfg$title <- paste0("calib_run_",hn,"_SP_",i)
 
 
-cfg$input <- c(paste0("isimip_rcp-IPSL_CM5A_LR-rcp",rc,"-co2_rev48_",r,"_690d3718e151be1b450b394c1064b1c5.tgz"),
- "rev4.52_h12_magpie.tgz",
- "rev4.52_h12_validation.tgz",
- "additional_data_rev3.86.tgz",
-"additional_regional_sticky.tgz")
-
+cfg$input <-input1[[hn]]
 #Selects factor costs realization
 cfg$gms$factor_costs <- i
 cfg$gms$c38_sticky_mode<-m
@@ -54,9 +62,7 @@ cfg$sequential <- TRUE
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H12","_",i,"_",r,"_",m,"_"))
+magpie4::submitCalibration(paste0(hn,"_",i,"_SP"))
 
-}
-}
 }
 }
