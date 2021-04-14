@@ -19,6 +19,7 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
+
 realization<-c("sticky_feb18")
 sticky_modes<-c("free","dynamic")
 input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
@@ -32,6 +33,7 @@ input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
 for (i in realization){
   for (so in sticky_modes){
 
+cfg$force_download <- TRUE
 cfg$title <- paste0("calib_run_",i,"_",so,"_SP_")
 cfg$input <- input
 
@@ -60,6 +62,7 @@ for (d in 1:length(depreciation)){
 
 cfg$title <- paste0("calib_run_dp_",dep[d],"_")
 cfg$input <- input
+cfg$force_download <- TRUE
 
 cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
