@@ -24,7 +24,7 @@ equations
  q30_bv_ann(j,potnatveg)         Biodiversity value of annual cropland (Mha)
  q30_bv_per(j,potnatveg)         Biodiversity value of perennial cropland (Mha)
  q30_protect_area(j)             Percentage of protected area from 2020 values (Mha)
-;
+ ;
 
 *#################### R SECTION START (OUTPUT DECLARATIONS) ####################
 parameters
