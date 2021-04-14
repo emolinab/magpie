@@ -24,44 +24,19 @@ cfg$recalibrate <- TRUE
 
 realization<-c("sticky_feb18")
 sticky_modes<-c("free","dynamic")
-input <- c("rev4.59_8f7b9423_validation_debug.tgz",
+input <- c("rev4.59SmashingPumpkins_8f7b9423_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
-         "rev4.59_8f7b9423_024608f1_cellularmagpie_debug.tgz",
-         "rev4.59_8f7b9423_magpie_debug.tgz",
+         "rev4.59SmashingPumpkins_8f7b9423_024608f1_cellularmagpie_debug.tgz",
+         "rev4.59SmashingPumpkins_8f7b9423_magpie_debug.tgz",
          "additional_sticky.tgz",
          "ZabelPatchH13.tgz"
          )
 
-
-##for (i in realization){
-#  if(i != "sticky_feb18"){
-#  for (so in sticky_modes){
-
-#cfg$title <- paste0("calib_run_",i,"_HalfEarth_")
-#cfg$input <- input
-
-#Selects factor costs realization
-#cfg$gms$factor_costs <- i
-#cfg$gms$c38_sticky_mode  <- so
-
-# Half earth scenario
-#cfg$gms$c35_protect_scenario <- "HalfEarth"
-
-#cfg$gms$c_timesteps <- 1
-#cfg$output <- c("rds_report")
-#cfg$sequential <- TRUE
-#cfg$crop_calib_max <- 2
-
-
-#start_run(cfg,codeCheck=FALSE)
-#magpie4::submitCalibration(paste0("H12","_HE_",i))
-
-#}}}
-
+### Normal
 for (i in realization){
   for (so in sticky_modes){
 
-cfg$title <- paste0("calib_run_",i,"_",so,"_")
+cfg$title <- paste0("calib_run_",i,"_",so,"_SP_")
 cfg$input <- input
 
 #Selects factor costs realization
@@ -75,22 +50,23 @@ cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H13","_calibNormal_",i,"_",so))
+magpie4::submitCalibration(paste0("H13","_SP_",i,"_",so))
 
 }}
 
-depreciation<-c(0,0.01,0.1,1)
+depreciation<-c(0,0.01,0.1)
+dep<-("0","001","01")
 
-for (d in depreciation){
+for (d in 1:length(depreciation)){
 
 
-cfg$title <- paste0("calib_run_dep_",d,"_")
+cfg$title <- paste0("calib_run_dp_",dep[d],"_")
 cfg$input <- input
 
 #Selects factor costs realization
 cfg$gms$factor_costs <- "sticky_feb18"
 cfg$gms$c38_sticky_mode  <- "dynamic"
-cfg$gms$s38_depreciation_rate <- d
+cfg$gms$s38_depreciation_rate <- depreciation[d]
 
 cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
@@ -99,6 +75,6 @@ cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H13","_dep_",d))
+magpie4::submitCalibration(paste0("H13","_dep_SP_",dep[d]))
 
 }
