@@ -14,7 +14,8 @@ if (ord(t)<5,
 $ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = f38_historical_share(t,i);
 $endif
 elseif (ord(t)>=5),
-$ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1870421*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.4917691+f38_share_error2010(i);
+*$ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1870421*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.4917691+f38_share_error2010(i);
+$ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1778*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.44459+f38_share_error2010(i);
 $endif
 );
 

@@ -21,11 +21,11 @@ source("config/default.cfg")
 
 realization<-c("sticky_feb18")
 sticky_modes<-c("free","dynamic")
-input <- c("rev4.59SmashingPumpkins_8f7b9423_validation_debug.tgz",
+input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
-         "rev4.59SmashingPumpkins_8f7b9423_024608f1_cellularmagpie_debug.tgz",
-         "rev4.59SmashingPumpkins_8f7b9423_magpie_debug.tgz",
-         "additional_sticky.tgz"
+         "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
+         "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
+         "additiona_stickyH12.tgz"
          )
 
 ### Normal
