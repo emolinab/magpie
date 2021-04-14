@@ -31,16 +31,14 @@ input1[["H12"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
          "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
-         "additional_sticky.tgz",
-         "ZabelPatch.tgz"
+         "additional_sticky.tgz"
          )
 
 input1[["H13"]]<-c("rev4.59SmashingPumpkins_8f7b9423_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "rev4.59SmashingPumpkins_8f7b9423_024608f1_cellularmagpie_debug.tgz",
          "rev4.59SmashingPumpkins_8f7b9423_magpie_debug.tgz",
-         "additional_sticky.tgz",
-         "ZabelPatchH13.tgz"
+         "additional_sticky.tgz"
          )
 
 
