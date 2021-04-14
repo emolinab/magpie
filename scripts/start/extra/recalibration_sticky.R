@@ -49,7 +49,7 @@ cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H13","_SP_",i,"_",so))
+magpie4::submitCalibration(paste0("H12","_SP_",i,"_",so))
 
 }}
 
@@ -76,6 +76,6 @@ cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H13","_dep_SP_",dep[d]))
+magpie4::submitCalibration(paste0("H12","_dep_SP_",dep[d]))
 
 }
