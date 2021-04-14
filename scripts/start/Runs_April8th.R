@@ -29,37 +29,6 @@ input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
 
 climate<-c("cc","nocc")
 
-##half-earth
-#
-# he_calib<-c("calibration_H13_calibLPJ5_sticky_feb18_freeHE_07Apr21.tgz"
-#             ,"calibration_H12_HE_sticky_feb18_06Apr21.tgz")
-#
-# for (c in climate){
-#   for (so in 1:length(sticky_modes)){
-#
-# cfg$title <- paste0("LPj5__HalfEarth_",sticky_modes[so],"_")
-#
-# #configuration of scenarios
-# cfg <- setScenario(cfg,c)
-#
-# #inputs
-# cfg$input <- c(inputs,he_calib[so])
-# cfg$force_download <- TRUE
-# cfg$recalibrate <- FALSE
-#
-# #Selects factor costs realization
-# cfg$gms$factor_costs <- "sticky_feb18"
-# cfg$gms$c38_sticky_mode  <- sticky_modes[so]
-#
-# # Half earth scenario
-# cfg$gms$c35_protect_scenario <- "HalfEarth"
-#
-# cfg$output <- c("rds_report")
-#
-# start_run(cfg=cfg)
-#
-# }}
-
 ## Normal runs
 
  normal_calib<-c("calibration_H12_SP_sticky_feb18_dynamic_14Apr21.tgz",
@@ -75,7 +44,7 @@ climate<-c("cc","nocc")
     cfg <- setScenario(cfg,climate[c])
 
      #inputs
-     cfg$input <- c(inputs,normal_calib[so])
+     cfg$input <- c(input,normal_calib[so])
      cfg$force_download <- TRUE
      cfg$recalibrate <- FALSE
 
@@ -101,7 +70,7 @@ for (p in 1:length(percent)){
 for (so in 1:length(sticky_modes)){
 
 cfg$title <- paste0("LPJ_St_SP_protectSce_",percent[p],"_",sticky_modes[so],"_")
-cfg$input <- c(inputs,normal_calib[so])
+cfg$input <- c(input,normal_calib[so])
 
 #configuration of scenarios
 cfg <- setScenario(cfg,climate[1])
