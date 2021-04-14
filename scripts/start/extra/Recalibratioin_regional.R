@@ -53,7 +53,7 @@ cfg$title <- paste0("calib_run_",hn,"_SP_",i)
 cfg$input <-input1[[hn]]
 #Selects factor costs realization
 cfg$gms$factor_costs <- i
-cfg$gms$c38_sticky_mode<-m
+cfg$gms$c38_sticky_mode<-mode_sticky[1]
 
 
 cfg$gms$c_timesteps <- 1
