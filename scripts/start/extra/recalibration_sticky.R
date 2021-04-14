@@ -28,35 +28,35 @@ input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
          "additiona_stickyH12.tgz"
          )
-
-### Normal
-for (i in realization){
-  for (so in sticky_modes){
-
-cfg$force_download <- TRUE
-cfg$title <- paste0("calib_run_",i,"_",so,"_SP_")
-cfg$input <- input
-
-cfg$results_folder <- "output/:title::date:"
-cfg$recalibrate <- TRUE
-
-#Selects factor costs realization
-cfg$gms$factor_costs <- i
-cfg$gms$c38_sticky_mode  <- so
-
-cfg$gms$c_timesteps <- 1
-cfg$output <- c("rds_report")
-cfg$sequential <- TRUE
-cfg$crop_calib_max <- 2
-
-
-start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0("H12","_SP_",i,"_",so))
-
-}}
+# 
+# ### Normal
+# for (i in realization){
+#   for (so in sticky_modes){
+# 
+# cfg$force_download <- TRUE
+# cfg$title <- paste0("calib_run_",i,"_",so,"_SP_")
+# cfg$input <- input
+# 
+# cfg$results_folder <- "output/:title::date:"
+# cfg$recalibrate <- TRUE
+# 
+# #Selects factor costs realization
+# cfg$gms$factor_costs <- i
+# cfg$gms$c38_sticky_mode  <- so
+# 
+# cfg$gms$c_timesteps <- 1
+# cfg$output <- c("rds_report")
+# cfg$sequential <- TRUE
+# cfg$crop_calib_max <- 2
+# 
+# 
+# start_run(cfg,codeCheck=FALSE)
+# magpie4::submitCalibration(paste0("H12","_SP_",i,"_",so))
+# 
+# }}
 
 depreciation<-c(0,0.01,0.1)
-dep<-("0","001","01")
+dep<-c("0","001","01")
 
 for (d in 1:length(depreciation)){
 
