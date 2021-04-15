@@ -11,7 +11,7 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 #Factor cost realizations
-realization<-c("mixed_feb17","sticky_feb18")
+realization<-c("mixed_feb17")
 #realization<-c("mixed_feb17")
 climate<-c("cc","nocc")
 gcms<-c("GFDL")
@@ -23,14 +23,13 @@ input<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
          "additiona_stickyH12.tgz",
          "Zabel_SmPumH12.tgz")
-calibration<-c()
+calibration<-c("calibration_H12_NLP_mixed_feb17_SP_15Apr21.tgz")
 
 
 aux<-0
 
 for (g in gcms){
     for(r in realization){
-      aux<-aux+1
       for(c in climate){
            for (s in SSPs){
 
@@ -48,7 +47,7 @@ for (g in gcms){
         #configuration of scenarios
         cfg <- setScenario(cfg,c(c,s))
 
-        cfg$input <- c(input,calibration[aux])
+        cfg$input <- c(input,calibration[1])
 
         #BAU or policy
         if (m == "BAU") {
