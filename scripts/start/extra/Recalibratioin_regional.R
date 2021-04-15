@@ -32,7 +32,7 @@ input1[["H12"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
          "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
          "additiona_stickyH12.tgz",
-         "ZabelPatch.tgz"
+         "Zabel_SmPumH12.tgz"
          )
 
 input1[["H13"]]<-c("rev4.59SmashingPumpkins2_8f7b9423_validation_debug.tgz",
