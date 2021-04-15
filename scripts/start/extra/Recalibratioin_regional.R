@@ -31,21 +31,23 @@ input1[["H12"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
          "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
-         "additional_sticky.tgz"
+         "additiona_stickyH12.tgz",
+         "ZabelPatch.tgz"
          )
 
-input1[["H13"]]<-c("rev4.59SmashingPumpkins_8f7b9423_validation_debug.tgz",
+input1[["H13"]]<-c("rev4.59SmashingPumpkins2_8f7b9423_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
-         "rev4.59SmashingPumpkins_8f7b9423_024608f1_cellularmagpie_debug.tgz",
-         "rev4.59SmashingPumpkins_8f7b9423_magpie_debug.tgz",
-         "additional_sticky.tgz"
+         "rev4.59SmashingPumpkins2_8f7b9423_dc80b559_cellularmagpie_debug.tgz",
+         "rev4.59SmashingPumpkins2_8f7b9423_magpie_debug.tgz",
+         "additional_sticky.tgz",
+         "ZabelPatchH13.tgz "
          )
 
 
 for (i in realization){
     for (hn in H){
 
-cfg$title <- paste0("calib_run_",hn,"_SP_",i)
+cfg$title <- paste0("calib_NLP_",hn,"_SP_",i)
 
 
 cfg$input <-input1[[hn]]
@@ -60,7 +62,7 @@ cfg$sequential <- TRUE
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0(hn,"_",i,"_SP"))
+magpie4::submitCalibration(paste0(hn,"_NLP_",i,"_SP"))
 
 }
 }
