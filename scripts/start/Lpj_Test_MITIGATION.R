@@ -11,22 +11,26 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 #Factor cost realizations
-realization<-c("mixed_feb17")
+realization<-c("mixed_feb17","sticky_feb18")
 #realization<-c("mixed_feb17")
 climate<-c("cc","nocc")
 gcms<-c("GFDL")
 rcps<-c("70")
 SSPs<-c("SSP1","SSP2","SSP3","SSP4","SSP5")
-input<-c("rev4.59_8f7b9423_validation_debug.tgz",
-         "additional_data_rev3.98.tgz",
-         "rev4.59_8f7b9423_024608f1_cellularmagpie_debug.tgz",
-         "rev4.59_8f7b9423_magpie_debug.tgz",
-         "ZabelPatch.tgz")
+input<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
+         "additional_data_rev3.99.tgz",
+         "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
+         "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
+         "additiona_stickyH12.tgz",
+         "Zabel_SmPumH12.tgz")
+calibration<-c()
 
 
+aux<-0
 
 for (g in gcms){
     for(r in realization){
+      aux<-aux+1
       for(c in climate){
            for (s in SSPs){
 
@@ -39,24 +43,12 @@ for (g in gcms){
             for (m in mitigation_scenario){
 
         #Title
-        cfg$title<-paste0("T_LPJmL5_split_CAZ",g,"_rcp",m,"_",r,"_",c,"_",s)
+        cfg$title<-paste0("LPJmL_SP_H12_",g,"_rcp",m,"_",r,"_",c,"_",s)
 
         #configuration of scenarios
         cfg <- setScenario(cfg,c(c,s))
 
-        if(r=="sticky_feb18"){
-          #this could be extended for different gcms and rcps
-          cfg$input <- c(,
-                   "calibration_H12_NLPjsticky_feb18__15Mar21.tgz")
-
-        }else if(r=="mixed_feb17"){
-          cfg$input <- c("rev4.58_h12_validation.tgz",
-                   "additional_data_rev3.98.tgz",
-                   "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
-                   "rev4.59+mrmagpie_LPJmL_new2_h12_magpie_debug.tgz",
-                   "calibration_H12_NLPjmixed_feb17__15Mar21.tgz")
-
-        }
+        cfg$input <- c(input,calibration[aux])
 
         #BAU or policy
         if (m == "BAU") {

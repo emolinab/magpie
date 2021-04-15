@@ -60,6 +60,7 @@ cfg$gms$c38_sticky_mode<-mode_sticky[1]
 cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
 cfg$sequential <- TRUE
+cfg$crop_calib_max <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
