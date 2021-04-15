@@ -63,7 +63,7 @@ climate<-c("cc","nocc")
 #
 #
 # ##Protection scenarios
-percent<-c(10,20,30,40,50)
+percent<-c(10,20,30,40,50,60)
 
 
 for (p in 1:length(percent)){

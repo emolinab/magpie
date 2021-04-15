@@ -10,7 +10,7 @@ if (ord(t) = 6,
 *$ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j) = vm_land.l(j,"crop")*(1-s30_perc_protected/100);
 $ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j)$(vm_land.l(j,"crop")) = vm_land.l(j,"crop");
 $endif
-$ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j)$(vm_land.l(j,"crop")=0) = f30_land_si(j2,"si0")*(1-s30_perc_protected/100);
+$ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j)$(vm_land.l(j,"crop")=0) = f30_land_si(j,"si0")*(1-s30_perc_protected/100);
 $endif
 
 );
