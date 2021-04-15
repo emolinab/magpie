@@ -44,8 +44,9 @@ input1[["H13"]]<-c("rev4.59SmashingPumpkins2_8f7b9423_validation_debug.tgz",
          )
 
 
-for (i in realization){
+
     for (hn in H){
+      for (i in realization){
 
 cfg$title <- paste0("calib_NLP_",hn,"_SP_",i)
 
