@@ -23,11 +23,12 @@ cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
 ###################################################################################################
-realization<-c("mixed_feb17","sticky_feb18")
-mode_sticky<-c("dynamic")
-H<-c("H12","H13")
+realization<-c("mixed_feb17","sticky_feb18","sticky_feb18")
+mode_sticky<-c("dynamic","dynamic","free")
+name<-c("","dy","fr")
+H<-c("SP_old","SP_new")
 input1<-list()
-input1[["H12"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
+input1[["SP_old"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
          "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
@@ -35,36 +36,47 @@ input1[["H12"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "Zabel_SmPumH12.tgz"
          )
 
-input1[["H13"]]<-c("rev4.59SmashingPumpkins2_8f7b9423_validation_debug.tgz",
+input1[["SP_new"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
-         "rev4.59SmashingPumpkins2_8f7b9423_dc80b559_cellularmagpie_debug.tgz",
-         "rev4.59SmashingPumpkins2_8f7b9423_magpie_debug.tgz",
-         "additional_sticky.tgz",
-         "ZabelPatchH13.tgz "
+         "rev4.59SmashingPumpkins_h12_83796d6b_cellularmagpie_debug.tgz",
+         "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
+         "additiona_stickyH12.tgz",
+         "Zabel_SmPumH12.tgz"
          )
 
 
 
     for (hn in H){
-      for (i in realization){
+      for (i in 1:length(realization)){
 
-cfg$title <- paste0("calib_NLP_",hn,"_SP_",i)
+
+cfg$title <- paste0("calib_NewLPJ_",hn,"_",realization[i],"_",name[i],"_")
 
 
 cfg$input <-input1[[hn]]
 #Selects factor costs realization
-cfg$gms$factor_costs <- i
-cfg$gms$c38_sticky_mode<-mode_sticky[1]
+cfg$gms$factor_costs <- realization[i]
+cfg$gms$c38_sticky_mode<-mode_sticky[i]
+cfg$force_download <- TRUE
 
 
 cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
 cfg$sequential <- TRUE
-cfg$crop_calib_max <- 2
+
+if(realization[i]=="sticky_feb18"){
+  cfg$crop_calib_max <- 2
+}else{
+  cfg$crop_calib_max <- 1
+}
+
+cfg$results_folder <- "output/:title::date:"
+cfg$recalibrate <- TRUE
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0(hn,"_NLP_",i,"_SP"))
+magpie4::submitCalibration(paste0(hn,"_",realization[i],"_",name[i],"_"))
 
+}
 }
 }
