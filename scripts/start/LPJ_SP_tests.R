@@ -10,6 +10,10 @@ source("scripts/start_functions.R")
 # Sources the default configuration file
 source("config/default.cfg")
 
+input1<-list()
+calibration_mixed<-list()
+calibration_sticky<-list()
+
 #Factor cost realizations
 realization<-c("mixed_feb17","sticky_feb18")
 climate<-c("cc","nocc")
