@@ -10,8 +10,8 @@ p38_capital_immobile_t(j,kcr) = p38_capital_immobile_t(j,kcr) + v38_investment_i
 p38_capital_immobile(t+1,j,kcr) =p38_capital_immobile_t(j,kcr);
 
 *                  (1-s38_depreciation_rate)**(m_year(t+1)-m_year(t));
-(p38_capital_mobile_t(j) = (p38_capital_mobile_t(j) + v38_investment_mobile.l(j));
-p38_capital_mobile(t+1,j) =(p38_capital_mobile_t(j);
+p38_capital_mobile_t(j) = p38_capital_mobile_t(j) + v38_investment_mobile.l(j);
+p38_capital_mobile(t+1,j) =p38_capital_mobile_t(j);
 *                  (1-s38_depreciation_rate)**(m_year(t+1)-m_year(t));
 
 *#################### R SECTION START (OUTPUT DEFINITIONS) #####################
