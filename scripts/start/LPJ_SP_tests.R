@@ -61,19 +61,19 @@ calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_SP_new_sticky_feb18_dy
         for (so in sticky_mode){
            for (s in SSPs){
 
-             if(s == "SSP2"){
-               mitigation_scenario<-c("BAU","POL")
-             }else{
+          #   if(s == "SSP2"){
+        #       mitigation_scenario<-c("BAU","POL")
+          #   }else{
                mitigation_scenario<-c("BAU")
-             }
+        #     }
 
             for (m in mitigation_scenario){
 
         #Title
         if (r == "mixed_feb17"){
-          cfg$title<-paste0("LPJmL_",sp,"_",r,"_",c,"_",m,"_")
+          cfg$title<-paste0("TestInv_",sp,"_",r,"_",c,"_",m,"_")
         }else{
-          cfg$title<-paste0("LPJmL_",sp,"_",r,"_",so,"_",c,"_",m,"_")
+          cfg$title<-paste0("TestInv_",sp,"_",r,"_",so,"_",c,"_",m,"_")
         }
 
 
