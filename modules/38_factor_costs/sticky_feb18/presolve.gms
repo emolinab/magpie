@@ -48,5 +48,4 @@ $endif
 
 
 *' The maximum allocation of mobile and immobile capital is equal to the existing capital
-vm_cost_inv.up(i)=im_gdp_pc_mer(t,i)*im_pop(t,i)*s38_fraction_gdp;
-*$offtext
+*vm_cost_inv.up(i)=im_gdp_pc_mer(t,i)*im_pop(t,i)*s38_fraction_gdp;
