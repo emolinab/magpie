@@ -5,6 +5,12 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
+*' Update of existing stocks
+p38_capital_immobile_t(j,kcr)=p38_capital_immobile_t(j,kcr)*(1-s38_depreciation_rate)**(m_timestep_length);
+p38_capital_mobile(j)=p38_capital_mobile_t(j)(1-s38_depreciation_rate)**(m_timestep_length);
+
+
+
 $ifthen "%c38_sticky_mode%" == "free" f38_capital_cost_share(i) = 0;
 $endif
 
