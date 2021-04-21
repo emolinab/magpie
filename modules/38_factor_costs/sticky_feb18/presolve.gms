@@ -14,8 +14,7 @@ if (ord(t)<5,
 $ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = f38_historical_share(t,i);
 $endif
 elseif (ord(t)>=5),
-*$ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1870421*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.4917691+f38_share_error2010(i);
-$ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1778*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.44459+f38_share_error2010(i);
+$ifthen "%c38_sticky_mode%" == "dynamic" p38_capital_cost_share(i) = 0.1870421*log10(sum(i_to_iso(i,iso),im_gdp_pc_ppp_iso(t,iso)))-0.4917691+f38_share_error2010(i);
 $endif
 );
 
@@ -41,13 +40,21 @@ $elseif "%c38_sticky_mode%" == "dynamic"  i38_variable_costs(i2,kcr) = f38_fac_r
 $endif
 
 *' Estimate capital stock based on capital remuneration
-  p38_capital_immobile(t,j,kcr)   = sum(cell(i,j), i38_capital_need(i,kcr,"immobile")*pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
-  p38_capital_mobile(t,j)   = sum((cell(i,j),kcr), i38_capital_need(i,kcr,"mobile")*pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
+  p38_capital_immobile_t(j,kcr)   = sum(cell(i,j), i38_capital_need(i,kcr,"immobile")*pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
+  p38_capital_mobile_t(j)   = sum((cell(i,j),kcr), i38_capital_need(i,kcr,"mobile")*pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
+
+  p38_capital_immobile(t,j,kcr)   = p38_capital_immobile_t(j,kcr) ;
+  p38_capital_mobile(t,j)   = p38_capital_mobile_t(j);
 
   vm_prod.l(j,kcr)=sum(cell(i,j),pm_croparea_start(j,kcr)*f38_region_yield(i,kcr)* fm_tau1995(i));
+else
+*' Update of existing stocks
+    p38_capital_immobile_t(j,kcr)=p38_capital_immobile_t(j,kcr)*(1-s38_depreciation_rate)**(m_timestep_length);
+    p38_capital_mobile_t(j)=p38_capital_mobile_t(j)*(1-s38_depreciation_rate)**(m_timestep_length);
+
     );
 
 
 *' The maximum allocation of mobile and immobile capital is equal to the existing capital
 vm_cost_inv.up(i)=im_gdp_pc_mer(t,i)*im_pop(t,i)*s38_fraction_gdp;
-*$offtext
+vm_cost_inv.up(i)=Inf;

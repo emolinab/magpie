@@ -11,11 +11,13 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 #Factor cost realizations
-realization<-c("sticky_feb18")
+realization<-c("mixed_feb17","sticky_feb18")
 #realization<-c("mixed_feb17")
-climate<-c("cc")
+climate<-c("cc","nocc")
 #sticky_modes<-c("regional","dynamic","free")
-sticky_modes<-c("dynamic")
+sticky_modes<-c("dynamic","free")
+SmashPump<-c()
+
 inputs<-c("rev4.58_h12_validation.tgz",
          "additional_data_rev3.98.tgz",
          "rev4.59+mrmagpie_LPJmL_new2_h12_5e4fb8e4d1e7450f19bf2d682b4a8338_cellularmagpie_debug.tgz",
