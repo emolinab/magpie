@@ -71,9 +71,9 @@ calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_SP_new_sticky_feb18_dy
 
         #Title
         if (r == "mixed_feb17"){
-          cfg$title<-paste0("TestInvUn_",sp,"_",r,"_",c,"_",m,"_")
+          cfg$title<-paste0("TestInvUn2_",sp,"_",r,"_",c,"_",m,"_")
         }else{
-          cfg$title<-paste0("TestInvUn_",sp,"_",r,"_",so,"_",c,"_",m,"_")
+          cfg$title<-paste0("TestInvUn2_",sp,"_",r,"_",so,"_",c,"_",m,"_")
         }
 
 
