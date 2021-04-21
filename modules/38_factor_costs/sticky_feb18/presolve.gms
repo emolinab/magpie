@@ -7,7 +7,7 @@
 
 *' Update of existing stocks
 p38_capital_immobile_t(j,kcr)=p38_capital_immobile_t(j,kcr)*(1-s38_depreciation_rate)**(m_timestep_length);
-p38_capital_mobile(j)=p38_capital_mobile_t(j)(1-s38_depreciation_rate)**(m_timestep_length);
+p38_capital_mobile_t(j)=p38_capital_mobile_t(j)(1-s38_depreciation_rate)**(m_timestep_length);
 
 
 
