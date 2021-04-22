@@ -39,7 +39,7 @@ climate<-c("cc","nocc")
  for (so in 1:length(sticky_modes)){
    for (c in 1:length(climate)){
 
-    cfg$title <- paste0("LPJ_SF_SP_",sticky_modes[so],"_",climate[c],"_")
+    cfg$title <- paste0("LPJ_SF2_SP_",sticky_modes[so],"_",climate[c],"_")
 
      #configuration of scenarios
     cfg <- setScenario(cfg,climate[c])
@@ -70,7 +70,7 @@ percent<-c(10,20,30,40,50,60)
 for (p in 1:length(percent)){
 for (so in 1:length(sticky_modes)){
 
-cfg$title <- paste0("LPJ_SF_SP_ProSce_Force_",percent[p],"_",sticky_modes[so],"_")
+cfg$title <- paste0("LPJ_SF2_SP_ProSce_Force_",percent[p],"_",sticky_modes[so],"_")
 cfg$input <- c(input,normal_calib[so])
 
 #configuration of scenarios
@@ -108,7 +108,7 @@ start_run(cfg=cfg)
    for (c in 1:length(climate)){
 
 
- cfg$title <- paste0("LPJ_SF_",dep[d],"_",climate[c],"_")
+ cfg$title <- paste0("LPJ_SF2_",dep[d],"_",climate[c],"_")
  cfg$input <- c(inputs,dep_calib[d])
 
  #configuration of scenarios
