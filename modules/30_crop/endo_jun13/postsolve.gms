@@ -8,7 +8,8 @@
 *only valid for coup100 CHANGE FOR A PULL REQUEST
 if (ord(t) = 6,
 *$ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j) = vm_land.l(j,"crop")*(1-s30_perc_protected/100);
-$ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j)$(vm_land.l(j,"crop")) = vm_land.l(j,"crop");
+$ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j)$(vm_land.l(j,"crop")) = vm_land.l(j,"crop")*s30_perc_protected;
+$ifthen "%c30_protect_crop%" == "protect" p30_max_protection_area(j,kcr,w)$(vm_area.l(j,kcr,w)) = vm_area.l(j,kcr,w)*s30_perc_protected;
 $endif
 $ifthen "%c30_protect_crop%" == "protect" p30_max_protection(j)$(vm_land.l(j,"crop")=0) = f30_land_si(j,"si0")*(1-s30_perc_protected/100);
 $endif

@@ -8,6 +8,7 @@
 parameters
  pm_croparea_start(j,kcr)        Agricultural land initialization area (mio. ha)
  p30_max_protection(j)           Maximum area available for cropland
+ p30_max_protection_area(j,kcr,w) Maximum area available for croparea
 ;
 
 positive variables
@@ -24,6 +25,7 @@ equations
  q30_bv_ann(j,potnatveg)         Biodiversity value of annual cropland (Mha)
  q30_bv_per(j,potnatveg)         Biodiversity value of perennial cropland (Mha)
  q30_protect_area(j)             Percentage of protected area from 2020 values (Mha)
+ q30_protect_croparea(j,kcr,w)   Percentage of protected area from 2020 values (Mha)
  ;
 
 *#################### R SECTION START (OUTPUT DECLARATIONS) ####################

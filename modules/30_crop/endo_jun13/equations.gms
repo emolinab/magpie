@@ -64,3 +64,4 @@
 
 *' Protected areas
  q30_protect_area(j2) .. vm_land(j2,"crop") =l= p30_max_protection(j2);
+ q30_protect_croparea(j2,kcr,w)..vm_area(j2,kcr,w)=l=p30_max_protection_area(j,kcr,w);
