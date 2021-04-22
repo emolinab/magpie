@@ -32,8 +32,8 @@ climate<-c("cc","nocc")
 
 # ## Normal runs
 #
- #  normal_calib<-c("calibration_H12_SP_SF_sticky_feb18_dynamic_21Apr21.tgz",
- #                  "calibration_H12_SP_SF_sticky_feb18_free_21Apr21.tgz")
+   normal_calib<-c("calibration_H12_SP_SF_sticky_feb18_dynamic_21Apr21.tgz",
+                   "calibration_H12_SP_SF_sticky_feb18_free_21Apr21.tgz")
  # 
  # 
  # for (so in 1:length(sticky_modes)){
