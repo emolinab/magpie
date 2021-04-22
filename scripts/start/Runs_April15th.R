@@ -24,44 +24,45 @@ input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
          "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
-         "additiona_stickyH12.tgz"
+         "additiona_stickyH12.tgz",
+         "ZabelH12NLPJ.tgz"
          )
 
 climate<-c("cc","nocc")
 
 # ## Normal runs
 #
-  normal_calib<-c("calibration_H12_SP_sticky_feb18_dynamic_14Apr21.tgz",
-                  "calibration_H12_SP_sticky_feb18_free_14Apr21.tgz")
-#
-#
-#  for (so in 1:length(sticky_modes)){
-#    for (c in 1:length(climate)){
-#
-#     cfg$title <- paste0("LPJ_St_SP_",sticky_modes[so],"_",climate[c],"_")
-#
-#      #configuration of scenarios
-#     cfg <- setScenario(cfg,climate[c])
-#
-#      #inputs
-#      cfg$input <- c(input,normal_calib[so])
-#      cfg$force_download <- TRUE
-#      cfg$recalibrate <- FALSE
-#
-#      #Selects factor costs realization
-#      cfg$gms$factor_costs <- "sticky_feb18"
-#      cfg$gms$c38_sticky_mode  <- sticky_modes[so]
-#      cfg$gms$s38_depreciation_rate <- 0.05
-#      cfg$gms$c30_protect_crop  <- "unprotect"
-#
-#      cfg$output <- c("rds_report")
-#
-#      start_run(cfg=cfg)
-#
-#  }}
-#
-#
-#
+  normal_calib<-c("calibration_H12_SP_SF_sticky_feb18_dynamic_21Apr21.tgz",
+                  "calibration_H12_SP_SF_sticky_feb18_free_21Apr21.tgz")
+
+
+ for (so in 1:length(sticky_modes)){
+   for (c in 1:length(climate)){
+
+    cfg$title <- paste0("LPJ_SF_SP_",sticky_modes[so],"_",climate[c],"_")
+
+     #configuration of scenarios
+    cfg <- setScenario(cfg,climate[c])
+
+     #inputs
+     cfg$input <- c(input,normal_calib[so])
+     cfg$force_download <- TRUE
+     cfg$recalibrate <- FALSE
+
+     #Selects factor costs realization
+     cfg$gms$factor_costs <- "sticky_feb18"
+     cfg$gms$c38_sticky_mode  <- sticky_modes[so]
+     cfg$gms$s38_depreciation_rate <- 0.05
+     cfg$gms$c30_protect_crop  <- "unprotect"
+
+     cfg$output <- c("rds_report")
+
+     start_run(cfg=cfg)
+
+ }}
+
+
+
 # ##Protection scenarios
 percent<-c(10,20,30,40,50,60)
 
@@ -69,7 +70,7 @@ percent<-c(10,20,30,40,50,60)
 for (p in 1:length(percent)){
 for (so in 1:length(sticky_modes)){
 
-cfg$title <- paste0("LPJ_St_SP_ProSce_Force_",percent[p],"_",sticky_modes[so],"_")
+cfg$title <- paste0("LPJ_SF_SP_ProSce_Force_",percent[p],"_",sticky_modes[so],"_")
 cfg$input <- c(input,normal_calib[so])
 
 #configuration of scenarios
@@ -95,37 +96,37 @@ start_run(cfg=cfg)
 
 
 
- # ##### Depreciation for cc and nocc
- # dep_calib<-c("calibration_H13_dep_0_12Apr21.tgz",
- #             "calibration_H13_dep_0.01_13Apr21.tgz",
- #             "calibration_H13_dep_0.1_13Apr21.tgz",
- #             "calibration_H13_dep_1_13Apr21.tgz")
- # depreciation<-c(0,0.01,0.1,1)
- # dep<-c("0","001","01","1")
- #
- # for (d in 1:length(depreciation)){
- #   for (c in 1:length(climate)){
- #
- #
- # cfg$title <- paste0("LPJ_St_fx_",dep[d],"_",climate[c],"_")
- # cfg$input <- c(inputs,dep_calib[d])
- #
- # #configuration of scenarios
- # cfg <- setScenario(cfg,climate[c])
- #
- # cfg$force_download <- TRUE
- # cfg$recalibrate <- FALSE
- #
- # #Selects factor costs realization
- # cfg$gms$factor_costs <- "sticky_feb18"
- # cfg$gms$c38_sticky_mode  <- "dynamic"
- #  cfg$gms$s38_depreciation_rate <- depreciation[d]
- #  cfg$gms$c30_protect_crop  <- "unprotect"
- #
- #
- # cfg$output <- c("rds_report")
- #
- # start_run(cfg=cfg)
- #
- # }
- # }
+ ##### Depreciation for cc and nocc
+ dep_calib<-c("calibration_H12_dep_SP_SF_0_21Apr21.tgz",
+             "calibration_H12_dep_SP_SF_001_21Apr21.tgz",
+             "calibration_H12_dep_SP_SF_01_22Apr21.tgz"
+             )
+ depreciation<-c(0,0.01,0.1)
+ dep<-c("0","001","01")
+
+ for (d in 1:length(depreciation)){
+   for (c in 1:length(climate)){
+
+
+ cfg$title <- paste0("LPJ_SF_",dep[d],"_",climate[c],"_")
+ cfg$input <- c(inputs,dep_calib[d])
+
+ #configuration of scenarios
+ cfg <- setScenario(cfg,climate[c])
+
+ cfg$force_download <- TRUE
+ cfg$recalibrate <- FALSE
+
+ #Selects factor costs realization
+ cfg$gms$factor_costs <- "sticky_feb18"
+ cfg$gms$c38_sticky_mode  <- "dynamic"
+  cfg$gms$s38_depreciation_rate <- depreciation[d]
+  cfg$gms$c30_protect_crop  <- "unprotect"
+
+
+ cfg$output <- c("rds_report")
+
+ start_run(cfg=cfg)
+
+ }
+ }
