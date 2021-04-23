@@ -44,8 +44,6 @@ input1[["SP_new"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "Zabelirrig_SP.tgz"
          )
 
-
-
     for (hn in H){
       for (i in 1:length(realization)){
 
