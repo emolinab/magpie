@@ -22,19 +22,19 @@ SSPs<-c("SSP2")
 #SP1<-c("SP_new","SP_old")
 SP1<-c("SP_new")
 
-input1[["SP_new"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
+input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
-         "rev4.59SmashingPumpkins_h12_83796d6b_cellularmagpie_debug.tgz",
-         "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
+         "rev4.59irrig_is_rainf_h12_83796d6b_cellularmagpie_debug.tgz",
+         "rev4.59irrig_is_rainf_h12_magpie_debug.tgz",
          "additiona_stickyH12.tgz",
          "Zabelirrig_SP.tgz"
          )
 
 #calibration_mixed[["mixed_feb17"]][["SP_old"]]<-"calibration_SP_old_mixed_feb17___19Apr21.tgz"
-calibration_mixed[["mixed_feb17"]][["SP_new"]]<-"calibration_SP_new_mixed_feb17___20Apr21.tgz"
+calibration_mixed[["mixed_feb17"]][["SP_new"]]<-"calibration_H12_irrigSP_mixed_feb17__23Apr21.tgz"
 
 #calibration_sticky[["SP_new"]][["free"]]<-"calibration_SP_new_sticky_feb18_fr__20Apr21.tgz"
-calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_SP_new_sticky_feb18_dy__20Apr21.tgz"
+calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_H12_irrigSP_sticky_feb18__23Apr21.tgz"
 
   for(sp in SP1){
     for(r in realization){
@@ -50,11 +50,11 @@ calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_SP_new_sticky_feb18_dy
         for (so in sticky_mode){
            for (s in SSPs){
 
-          #   if(s == "SSP2"){
-        #       mitigation_scenario<-c("BAU","POL")
-          #   }else{
+             if(s == "SSP2"){
+               mitigation_scenario<-c("BAU","POL")
+             }else{
                mitigation_scenario<-c("BAU")
-        #     }
+             }
 
             for (m in mitigation_scenario){
 
