@@ -22,7 +22,7 @@ SSPs<-c("SSP2")
 #SP1<-c("SP_new","SP_old")
 SP1<-c("SP_new")
 
-input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
+input[["SP_new"]] <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "rev4.59irrig_is_rainf_h12_83796d6b_cellularmagpie_debug.tgz",
          "rev4.59irrig_is_rainf_h12_magpie_debug.tgz",
