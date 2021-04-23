@@ -23,25 +23,25 @@ cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
 ###################################################################################################
-realization<-c("mixed_feb17","sticky_feb18","sticky_feb18")
-mode_sticky<-c("dynamic","dynamic","free")
-name<-c("","dy","fr")
-H<-c("SP_old","SP_new")
+realization<-c("mixed_feb17","sticky_feb18")
+mode_sticky<-c("dynamic","dynamic")
+name<-c("","dy")
+H<-c("SP_new")
 input1<-list()
-input1[["SP_old"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
-         "additional_data_rev3.99.tgz",
-         "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
-         "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
-         "additiona_stickyH12.tgz",
-         "Zabel_SmPumH12.tgz"
-         )
+#input1[["SP_old"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
+##         "additional_data_rev3.99.tgz",
+´#         "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
+#         "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
+#         "additiona_stickyH12.tgz",
+#         "Zabel_SmPumH12.tgz"
+#         )
 
 input1[["SP_new"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
-         "rev4.59SmashingPumpkins_h12_83796d6b_cellularmagpie_debug.tgz",
-         "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
+         "rev4.59irrig_is_rainf_h12_83796d6b_cellularmagpie_debug.tgz",
+         "rev4.59irrig_is_rainf_h12_magpie_debug.tgz",
          "additiona_stickyH12.tgz",
-         "Zabel_SmPumH12.tgz"
+         "Zabelirrig_SP.tgz"
          )
 
 
@@ -50,7 +50,7 @@ input1[["SP_new"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
       for (i in 1:length(realization)){
 
 
-cfg$title <- paste0("calib_NewLPJ_",hn,"_",realization[i],"_",name[i],"_")
+cfg$title <- paste0("calib_LPJ_irrigSP_",hn,"_",realization[i],"_",name[i],"_")
 
 
 cfg$input <-input1[[hn]]
@@ -75,8 +75,7 @@ cfg$recalibrate <- TRUE
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0(hn,"_",realization[i],"_",name[i],"_"))
+magpie4::submitCalibration(paste0(hn,"_GP_",realization[i],"_",name[i],"_"))
 
-}
 }
 }

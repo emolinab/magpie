@@ -22,14 +22,6 @@ SSPs<-c("SSP2")
 #SP1<-c("SP_new","SP_old")
 SP1<-c("SP_new")
 
-input1[["SP_old"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
-         "additional_data_rev3.99.tgz",
-         "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
-         "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
-         "additiona_stickyH12.tgz",
-         "Zabel_SmPumH12.tgz"
-         )
-
 input1[["SP_new"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "rev4.59SmashingPumpkins_h12_83796d6b_cellularmagpie_debug.tgz",
@@ -41,10 +33,7 @@ input1[["SP_new"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
 calibration_mixed[["mixed_feb17"]][["SP_old"]]<-"calibration_SP_old_mixed_feb17___19Apr21.tgz"
 calibration_mixed[["mixed_feb17"]][["SP_new"]]<-"calibration_SP_new_mixed_feb17___20Apr21.tgz"
 
-calibration_sticky[["SP_old"]][["free"]]<-"calibration_SP_old_sticky_feb18_fr__19Apr21.tgz"
 calibration_sticky[["SP_new"]][["free"]]<-"calibration_SP_new_sticky_feb18_fr__20Apr21.tgz"
-
-calibration_sticky[["SP_old"]][["dynamic"]]<-"calibration_SP_old_sticky_feb18_dy__19Apr21.tgz"
 calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_SP_new_sticky_feb18_dy__20Apr21.tgz"
 
   for(sp in SP1){
@@ -56,7 +45,7 @@ calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_SP_new_sticky_feb18_dy
     #    }else{
   #        sticky_mode<-c("dynamic","free")
   #      }
-  sticky_mode<-c("dynamic")
+        sticky_mode<-c("dynamic")
 
         for (so in sticky_mode){
            for (s in SSPs){
@@ -71,9 +60,9 @@ calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_SP_new_sticky_feb18_dy
 
         #Title
         if (r == "mixed_feb17"){
-          cfg$title<-paste0("TestInvUn2_",sp,"_",r,"_",c,"_",m,"_")
+          cfg$title<-paste0("LPJ_GP_",sp,"_",r,"_",c,"_",m,"_")
         }else{
-          cfg$title<-paste0("TestInvUn2_",sp,"_",r,"_",so,"_",c,"_",m,"_")
+          cfg$title<-paste0("LPJ_GP_",sp,"_",r,"_",so,"_",c,"_",m,"_")
         }
 
 
