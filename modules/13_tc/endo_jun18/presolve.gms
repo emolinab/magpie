@@ -14,7 +14,8 @@ else
 	vm_tau.lo(i) =    pc13_tau(i);
 );
 
-	vm_tau.up(i) =  2*pc13_tau(i);
+*	vm_tau.up(i) =  2*pc13_tau(i);
+vm_tau.up(i) =  1.5;
 
 * educated guess for vm_tau.l:
 	vm_tau.l(i) = pc13_tau(i)*(1+pc13_tcguess(i))**m_yeardiff(t);
