@@ -15,7 +15,7 @@ calibration_mixed<-list()
 calibration_sticky<-list()
 
 #Factor cost realizations
-realization<-c("mixed_feb17","sticky_feb18")
+realization<-c("sticky_feb18")
 #realization<-c("sticky_feb18")
 climate<-c("cc","nocc")
 SSPs<-c("SSP2")
@@ -34,7 +34,7 @@ input1[["SP_new"]] <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
 calibration_mixed[["mixed_feb17"]][["SP_new"]]<-"calibration_H12_irrigSP_mixed_feb17__23Apr21.tgz"
 
 #calibration_sticky[["SP_new"]][["free"]]<-"calibration_SP_new_sticky_feb18_fr__20Apr21.tgz"
-calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_H12_irrigSP_sticky_feb18__23Apr21.tgz"
+calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_H12_irrigSP_sticky_feb18_free__27Apr21.tgz"
 
   for(sp in SP1){
     for(r in realization){
@@ -45,7 +45,7 @@ calibration_sticky[["SP_new"]][["dynamic"]]<-"calibration_H12_irrigSP_sticky_feb
     #    }else{
   #        sticky_mode<-c("dynamic","free")
   #      }
-        sticky_mode<-c("dynamic")
+        sticky_mode<-c("free")
 
         for (so in sticky_mode){
            for (s in SSPs){
