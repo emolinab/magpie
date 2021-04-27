@@ -20,7 +20,7 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 
-realization<-c("mixed_feb17","sticky_feb18")
+realization<-c("sticky_feb18")
 #sticky_modes<-c("dynamic","dynamic")
 input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
@@ -33,7 +33,7 @@ input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
 for (i in realization){
 
  cfg$force_download <- TRUE
- cfg$title <- paste0("calib_run_irrigSP_",i,"_")
+ cfg$title <- paste0("calib_run_irrigSP_",i,"_free_")
  cfg$input <- input
 
  cfg$results_folder <- "output/:title::date:"
@@ -41,7 +41,7 @@ for (i in realization){
 #
 #Selects factor costs realization
  cfg$gms$factor_costs <- i
- cfg$gms$c38_sticky_mode  <- "dynamic"
+ cfg$gms$c38_sticky_mode  <- "free"
 
  if(i=="sticky_feb18"){
    cfg$crop_calib_max <- 2
@@ -57,5 +57,5 @@ for (i in realization){
 
 
  start_run(cfg,codeCheck=FALSE)
- magpie4::submitCalibration(paste0("H12","_irrigSP_",i,"_"))
+ magpie4::submitCalibration(paste0("H12","_irrigSP_",i,"_free_"))
  }
