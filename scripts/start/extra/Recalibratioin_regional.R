@@ -23,9 +23,9 @@ cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
 ###################################################################################################
-realization<-c("mixed_feb17","sticky_feb18")
-mode_sticky<-c("dynamic","dynamic")
-name<-c("","dy")
+realization<-c("sticky_feb18")
+mode_sticky<-c("free")
+name<-c("free")
 H<-c("SP_new")
 input1<-list()
 #input1[["SP_old"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
