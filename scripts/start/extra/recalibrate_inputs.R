@@ -27,7 +27,8 @@ input <- c("rev4.59irrig_is_rainf_h12_83796d6b_cellularmagpie_debug.tgz",
          "rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "additiona_stickyH12.tgz",
-         "Zabelirrig_SP.tgz"
+         "Zabelirrig_SP.tgz",
+         "rev4.59SmashingPumpkins+ISIMIPyields_h12_83796d6b_cellularmagpie_debug.tgz"         
          )
 # ### Normal
 for (i in realization){
