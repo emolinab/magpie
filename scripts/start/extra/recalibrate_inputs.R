@@ -20,20 +20,27 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 
-realization<-c("sticky_feb18")
-#sticky_modes<-c("dynamic","dynamic")
+realization<-c("mixed_feb17","sticky_feb18","sticky_feb18")
+sticky_modes<-c("dynamic","dynamic","free")
 input <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
-         "rev4.59irrig_is_rainf_h12_83796d6b_cellularmagpie_debug.tgz",
-         "rev4.59irrig_is_rainf_h12_magpie_debug.tgz",
+         "rev4.59SmashingPumpkins+ISIMIPyields_h12_83796d6b_cellularmagpie_debug.tgz",
+         "rev4.59SmashingPumpkins+ISIMIPyields_h12_magpie_debug.tgz",
          "additiona_stickyH12.tgz",
          "Zabelirrig_SP.tgz"
          )
 # ### Normal
 for (i in realization){
+  for (so in sticky_modes) {
 
  cfg$force_download <- TRUE
- cfg$title <- paste0("calib_run_irrigSP_",i,"_free_")
+
+ if(i=="sticky_feb18"){
+   cfg$title <- paste0("calib_run_EPIC_",i,"_",so)
+ }else{
+    cfg$title <- paste0("calib_run_EPIC_",i,"_")
+ }
+
  cfg$input <- input
 
  cfg$results_folder <- "output/:title::date:"
@@ -41,7 +48,7 @@ for (i in realization){
 #
 #Selects factor costs realization
  cfg$gms$factor_costs <- i
- cfg$gms$c38_sticky_mode  <- "free"
+ cfg$gms$c38_sticky_mode  <- so
 
  if(i=="sticky_feb18"){
    cfg$crop_calib_max <- 2
@@ -57,5 +64,10 @@ for (i in realization){
 
 
  start_run(cfg,codeCheck=FALSE)
- magpie4::submitCalibration(paste0("H12","_irrigSP_",i,"_free_"))
+ if(i=="sticky_feb18"){
+   magpie4::submitCalibration(paste0("H12","_EPIC_",i,"_",so))
+ }else{
+   magpie4::submitCalibration(paste0("H12","_EPIC_",i,"_"))
  }
+ }
+}
