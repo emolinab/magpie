@@ -22,12 +22,12 @@ source("config/default.cfg")
 
 realization<-c("mixed_feb17","sticky_feb18","sticky_feb18")
 sticky_modes<-c("dynamic","dynamic","free")
-input <- c("rev4.59irrig_is_rainf_h12_magpie_debug.tgz",
+input <- c("rev4.59SmashingPumpkins+ISIMIPyields_h12_83796d6b_cellularmagpie_debug.tgz",
+         "rev4.59SmashingPumpkins+ISIMIPyields_h12_magpie_debug.tgz",
          "rev4.59SmashingPumpkins_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
          "additiona_stickyH12.tgz",
-         "Zabelirrig_SP.tgz",
-         "rev4.59SmashingPumpkins+ISIMIPyields_h12_83796d6b_cellularmagpie_debug.tgz"
+         "Zabelirrig_SP.tgz"
          )
 #,
 # ### Normal
