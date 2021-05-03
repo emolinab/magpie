@@ -15,8 +15,8 @@ calibration_mixed<-list()
 calibration_sticky<-list()
 
 #Factor cost realizations
-realization<-c("mixed_feb17")
-#realization<-c("sticky_feb18")
+#realization<-c("mixed_feb17")
+realization<-c("sticky_feb18")
 climate<-c("cc","nocc")
 SSPs<-c("SSP2")
 #SP1<-c("SP_new","SP_old")
@@ -28,13 +28,13 @@ input1[["EPIC"]] <- c("rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPI
          "additional_data_rev3.99.tgz",
          "additiona_stickyH12.tgz",
          "Zabelirrig_SP.tgz"
-         )
+       )#
 
 #calibration_mixed[["mixed_feb17"]][["SP_old"]]<-"calibration_SP_old_mixed_feb17___19Apr21.tgz"
 calibration_mixed[["mixed_feb17"]][["EPIC"]]<-"calibration_H12_EPIC_mixed_feb17__03May21.tgz"
 
-#calibration_sticky[["SP_new"]][["free"]]<-"calibration_SP_new_sticky_feb18_fr__20Apr21.tgz"
-calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_irrigSP_sticky_feb18_free__27Apr21.tgz"
+calibration_sticky[["EPIC"]][["dynamic"]]<-"calibration_SP_new_sticky_feb18_fr__20Apr21.tgz"
+calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_EPIC_sticky_feb18_free_03May21.tgz"
 
   for(sp in SP1){
     for(r in realization){
@@ -43,7 +43,7 @@ calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_irrigSP_sticky_feb18_fr
        if(r == "mixed_feb17"){
           sticky_mode<-c("free")
         }else{
-          sticky_mode<-c("dynamic","free")
+          sticky_mode<-c("free")
         }
         #sticky_mode<-c("free")
 
