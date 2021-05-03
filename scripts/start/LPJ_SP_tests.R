@@ -15,43 +15,44 @@ calibration_mixed<-list()
 calibration_sticky<-list()
 
 #Factor cost realizations
-realization<-c("sticky_feb18")
+realization<-c("mixed_feb17")
 #realization<-c("sticky_feb18")
 climate<-c("cc","nocc")
 SSPs<-c("SSP2")
 #SP1<-c("SP_new","SP_old")
-SP1<-c("SP_new")
+SP1<-c("EPIC")
 
-input1[["SP_new"]] <- c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
+input1[["EPIC"]] <- c("rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPIC-IIASA:ukesm1-0-ll:ssp585:default_h12_df1b093f_cellularmagpie_debug.tgz",
+         "rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPIC-IIASA:ukesm1-0-ll:ssp585:default_h12_magpie_debug.tgz",
+         "rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPIC-IIASA:ukesm1-0-ll:ssp585:default_h12_validation_debug.tgz",
          "additional_data_rev3.99.tgz",
-         "rev4.59irrig_is_rainf_h12_83796d6b_cellularmagpie_debug.tgz",
-         "rev4.59irrig_is_rainf_h12_magpie_debug.tgz",
          "additiona_stickyH12.tgz",
          "Zabelirrig_SP.tgz"
          )
 
 #calibration_mixed[["mixed_feb17"]][["SP_old"]]<-"calibration_SP_old_mixed_feb17___19Apr21.tgz"
-calibration_mixed[["mixed_feb17"]][["SP_new"]]<-"calibration_H12_irrigSP_mixed_feb17__23Apr21.tgz"
+calibration_mixed[["mixed_feb17"]][["EPIC"]]<-"calibration_H12_EPIC_mixed_feb17__03May21.tgz"
 
 #calibration_sticky[["SP_new"]][["free"]]<-"calibration_SP_new_sticky_feb18_fr__20Apr21.tgz"
-calibration_sticky[["SP_new"]][["free"]]<-"calibration_H12_irrigSP_sticky_feb18_free__27Apr21.tgz"
+calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_irrigSP_sticky_feb18_free__27Apr21.tgz"
 
   for(sp in SP1){
     for(r in realization){
       for(c in climate){
 
-    #    if(r == "mixed_feb17"){
-    #      sticky_mode<-c("free")
-    #    }else{
-  #        sticky_mode<-c("dynamic","free")
-  #      }
-        sticky_mode<-c("free")
+       if(r == "mixed_feb17"){
+          sticky_mode<-c("free")
+        }else{
+          sticky_mode<-c("dynamic","free")
+        }
+        #sticky_mode<-c("free")
 
         for (so in sticky_mode){
            for (s in SSPs){
 
              if(s == "SSP2"){
-               mitigation_scenario<-c("BAU","POL")
+               #mitigation_scenario<-c("BAU","POL")
+               mitigation_scenario<-c("BAU")
              }else{
                mitigation_scenario<-c("BAU")
              }
@@ -60,9 +61,9 @@ calibration_sticky[["SP_new"]][["free"]]<-"calibration_H12_irrigSP_sticky_feb18_
 
         #Title
         if (r == "mixed_feb17"){
-          cfg$title<-paste0("LPJ_irrig_",sp,"_",r,"_",c,"_",m,"_")
+          cfg$title<-paste0("LPJ_EPIC_",sp,"_",r,"_",c,"_",m,"_")
         }else{
-          cfg$title<-paste0("LPJ_irrig_",sp,"_",r,"_",so,"_",c,"_",m,"_")
+          cfg$title<-paste0("LPJ_EPIC_",sp,"_",r,"_",so,"_",c,"_",m,"_")
         }
 
 
