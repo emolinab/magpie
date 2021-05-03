@@ -169,24 +169,24 @@ $title magpie
 *
 * Number of cells per region:
 *   CAZ  CHA  EUR  IND  JPN  LAM  MEA  NEU  OAS  REF  SSA  USA
-*     8   22    7    7    1   39   27    7   11   13   39   19
+*     7   22    9    7    1   37   26    8   14   16   33   20
 *
-* Regionscode: 690d3718e151be1b450b394c1064b1c5
+* Regionscode: 62eff8f7
 *
-* Regions data revision: 4.58
+* Regions data revision: 4.59
 *
 * lpj2magpie settings:
 * * LPJmL data: GFDL-ESM4:ssp370
-* * Revision: 4.58
+* * Revision: 4.59
 *
 * aggregation settings:
 * * Input resolution: 0.5
 * * Output resolution: c200
-* * Regionscode: 690d3718e151be1b450b394c1064b1c5
+* * Regionscode: 62eff8f7
 * * Call: do.call(functiononly, args)
 *
 *
-* Last modification (input data): Fri Mar  5 19:31:40 2021
+* Last modification (input data): Fri Apr 30 14:21:52 2021
 *
 *###################### R SECTION END (VERSION INFO) ###########################
 
@@ -212,7 +212,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  default
+$setglobal c_title  default_lpjml5
 
 scalars
 s_use_gdx   use of gdx files                                       / 2 /
