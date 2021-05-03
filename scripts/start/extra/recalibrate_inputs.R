@@ -20,8 +20,8 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 
-realization<-c("mixed_feb17","sticky_feb18","sticky_feb18")
-sticky_modes<-c("dynamic","dynamic","free")
+realization<-c("sticky_feb18")
+sticky_modes<-c("dynamic")
 
 input <- c("rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPIC-IIASA:ukesm1-0-ll:ssp585:default_h12_df1b093f_cellularmagpie_debug.tgz",
          "rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPIC-IIASA:ukesm1-0-ll:ssp585:default_h12_magpie_debug.tgz",
@@ -33,12 +33,6 @@ input <- c("rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPIC-IIASA:uke
 #,
 # ### Normal
 for (i in realization){
-  if(realization=="mixed_feb17")
-  {
-    sticky_modes<-"free"
-  }else{
-    sticky_modes<-c("dynamic","free")
-  }
   for (so in sticky_modes) {
 
  cfg$force_download <- TRUE
