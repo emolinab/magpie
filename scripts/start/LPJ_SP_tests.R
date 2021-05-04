@@ -33,7 +33,7 @@ input1[["EPIC"]] <- c("rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPI
 #calibration_mixed[["mixed_feb17"]][["SP_old"]]<-"calibration_SP_old_mixed_feb17___19Apr21.tgz"
 calibration_mixed[["mixed_feb17"]][["EPIC"]]<-"calibration_H12_EPIC_mixed_feb17__03May21.tgz"
 
-calibration_sticky[["EPIC"]][["dynamic"]]<-"calibration_SP_new_sticky_feb18_fr__20Apr21.tgz"
+calibration_sticky[["EPIC"]][["dynamic"]]<-"calibration_H12_EPIC_sticky_feb18_dynamic_03May21.tgz"
 calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_EPIC_sticky_feb18_free_03May21.tgz"
 
   for(sp in SP1){
@@ -43,7 +43,7 @@ calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_EPIC_sticky_feb18_free_
        if(r == "mixed_feb17"){
           sticky_mode<-c("free")
         }else{
-          sticky_mode<-c("free")
+          sticky_mode<-c("dynamic")
         }
         #sticky_mode<-c("free")
 
