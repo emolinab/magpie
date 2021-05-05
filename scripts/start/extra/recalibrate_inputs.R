@@ -20,7 +20,7 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 
-realization<-c("sticky_feb18")
+realization<-c("mixed_feb17","sticky_feb18")
 sticky_modes<-c("dynamic")
 
 input <- c("rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPIC-IIASA:ukesm1-0-ll:ssp585:default_h12_df1b093f_cellularmagpie_debug.tgz",
@@ -38,25 +38,20 @@ for (i in realization){
  cfg$force_download <- TRUE
 
  if(i=="sticky_feb18"){
-   cfg$title <- paste0("calib_run_EPIC_",i,"_",so)
+   cfg$title <- paste0("calib_run_EPIC_mang",i,"_",so)
+   cfg$gms$c38_sticky_mode  <- so
+   cfg$crop_calib_max <- 2
  }else{
-    cfg$title <- paste0("calib_run_EPIC_",i,"_")
+    cfg$title <- paste0("calib_run_EPIC_mang",i,"_")
+    cfg$crop_calib_max <- 1
  }
 
  cfg$input <- input
 
  cfg$results_folder <- "output/:title::date:"
  cfg$recalibrate <- TRUE
-#
-#Selects factor costs realization
- cfg$gms$factor_costs <- i
- cfg$gms$c38_sticky_mode  <- so
+ cfg$gms$yields  <- "managementcalib_aug19"
 
- if(i=="sticky_feb18"){
-   cfg$crop_calib_max <- 2
- }else{
-   cfg$crop_calib_max <- 1
- }
 
  cfg$gms$c_timesteps <- 1
  cfg$output <- c("rds_report")
@@ -67,9 +62,9 @@ for (i in realization){
 
  start_run(cfg,codeCheck=FALSE)
  if(i=="sticky_feb18"){
-   magpie4::submitCalibration(paste0("H12","_EPIC_",i,"_",so))
+   magpie4::submitCalibration(paste0("H12","_EPIC_",i,"_mang_",so))
  }else{
-   magpie4::submitCalibration(paste0("H12","_EPIC_",i,"_"))
+   magpie4::submitCalibration(paste0("H12","_EPIC_",i,"_mang_"))
  }
  }
 }
