@@ -17,5 +17,6 @@ $include "./modules/43_water_availability/input/lpj_watavail_grper.cs2"
 $offdelim
 /
 ;
-$if "%c43_watavail_scenario%" == "nocc" f43_wat_avail(t_nocc,j) = f43_wat_avail("y2020",j);
+*$if "%c43_watavail_scenario%" == "nocc" f43_wat_avail(t_nocc,j) = f43_wat_avail("y2020",j);
+$if "%c43_watavail_scenario%" == "nocc" f43_wat_avail(t_nocc,j) = f43_wat_avail("y1995",j);
 m_fillmissingyears(f43_wat_avail,"j");

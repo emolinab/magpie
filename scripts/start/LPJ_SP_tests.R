@@ -31,7 +31,7 @@ input1[["EPIC"]] <- c("rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPI
        )#
 
 #calibration_mixed[["mixed_feb17"]][["SP_old"]]<-"calibration_SP_old_mixed_feb17___19Apr21.tgz"
-calibration_mixed[["mixed_feb17"]][["EPIC"]]<-"calibration_H12_EPIC_mixed_feb17_mang__05May21.tgz"
+#calibration_mixed[["mixed_feb17"]][["EPIC"]]<-"calibration_H12_EPIC_mixed_feb17_mang__05May21.tgz"
 
 calibration_sticky[["EPIC"]][["dynamic"]]<-"calibration_H12_EPIC_sticky_feb18_dynamic_03May21.tgz"
 calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_EPIC_sticky_feb18_free_03May21.tgz"
@@ -61,18 +61,19 @@ calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_EPIC_sticky_feb18_free_
 
         #Title
         if (r == "mixed_feb17"){
-          cfg$title<-paste0("LPJ_mang_",sp,"_",r,"_",c,"_",m,"_")
+          cfg$title<-paste0("LPJ_mangY95_",sp,"_",r,"_",c,"_",m,"_")
         }else{
-          cfg$title<-paste0("LPJ_mang_",sp,"_",r,"_",so,"_",c,"_",m,"_")
+          cfg$title<-paste0("LPJ_mangY95_",sp,"_",r,"_",so,"_",c,"_",m,"_")
         }
 
+        cfg$input <-c(input1[[sp]])
 
 
-        if (r == "mixed_feb17"){
-          cfg$input <-c(input1[[sp]],calibration_mixed[["mixed_feb17"]][[sp]])
-        }else{
-          cfg$input <-c(input1[[sp]],calibration_sticky[[sp]][[so]])
-        }
+        #if (r == "mixed_feb17"){
+      #    cfg$input <-c(input1[[sp]],calibration_mixed[["mixed_feb17"]][[sp]])
+    #    }else{
+  #        cfg$input <-c(input1[[sp]],calibration_sticky[[sp]][[so]])
+  #      }
 
 
 
@@ -91,7 +92,7 @@ calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_EPIC_sticky_feb18_free_
 
         #Force download? recalibrate?
         cfg$force_download <- TRUE
-        cfg$recalibrate <- FALSE
+        cfg$recalibrate <- TRUE
 
         #Factor costs realization
         cfg$gms$factor_costs <- r
