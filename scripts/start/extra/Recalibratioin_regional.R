@@ -19,9 +19,7 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
-cfg$results_folder <- "output/:title::date:"
-cfg$recalibrate <- TRUE
-
+input1<-list()
 ###################################################################################################
 realization<-c("mixed_feb17")
 H<-c("newparam")
