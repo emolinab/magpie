@@ -23,38 +23,26 @@ cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
 ###################################################################################################
-realization<-c("sticky_feb18")
-mode_sticky<-c("free")
-name<-c("free")
-H<-c("SP_new")
-input1<-list()
-#input1[["SP_old"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
-##         "additional_data_rev3.99.tgz",
-´#         "rev4.59SmashingPumpkins_h12_024608f1_cellularmagpie_debug.tgz",
-#         "rev4.59SmashingPumpkins_h12_magpie_debug.tgz",
-#         "additiona_stickyH12.tgz",
-#         "Zabel_SmPumH12.tgz"
-#         )
+realization<-c("mixed_feb17")
+H<-c("newparam")
+input1[["newparam"]]<-c("rev4.59irrig_is_rainf_h12_magpie_debug.tgz",
+               "rev4.59irrig_is_rainf_h12_83796d6b_cellularmagpie_debug.tgz",
+               "rev4.59irrig_is_rainf_h12_validation_debug.tgz",
+               "additional_data_rev4.02.tgz"
+             )
 
-input1[["SP_new"]]<-c("rev4.59SmashingPumpkins_h12_validation_debug.tgz",
-         "additional_data_rev3.99.tgz",
-         "rev4.59irrig_is_rainf_h12_83796d6b_cellularmagpie_debug.tgz",
-         "rev4.59irrig_is_rainf_h12_magpie_debug.tgz",
-         "additiona_stickyH12.tgz",
-         "Zabelirrig_SP.tgz"
-         )
+
 
     for (hn in H){
       for (i in 1:length(realization)){
 
 
-cfg$title <- paste0("calib_LPJ_irrigSP_",hn,"_",realization[i],"_",name[i],"_")
+cfg$title <- paste0("calib_",hn,"_",realization[i],"_")
 
 
 cfg$input <-input1[[hn]]
 #Selects factor costs realization
 cfg$gms$factor_costs <- realization[i]
-cfg$gms$c38_sticky_mode<-mode_sticky[i]
 cfg$force_download <- TRUE
 
 
@@ -65,15 +53,21 @@ cfg$sequential <- TRUE
 if(realization[i]=="sticky_feb18"){
   cfg$crop_calib_max <- 2
 }else{
-  cfg$crop_calib_max <- 1
+  cfg$crop_calib_max <- 1.5
 }
 
 cfg$results_folder <- "output/:title::date:"
 cfg$recalibrate <- TRUE
 
+cfg$gms$yields                       <- "managementcalib_aug19"
+cfg$gms$s14_yld_past_switch          <- 0.25
+cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
+cfg                                  <- setScenario(cfg,"cc")
+
+
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration(paste0(hn,"_GP_",realization[i],"_",name[i],"_"))
+magpie4::submitCalibration(paste0(hn,"_",realization[i],))
 
 }
 }
