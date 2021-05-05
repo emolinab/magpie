@@ -15,8 +15,8 @@ calibration_mixed<-list()
 calibration_sticky<-list()
 
 #Factor cost realizations
-#realization<-c("mixed_feb17")
-realization<-c("sticky_feb18")
+realization<-c("mixed_feb17")
+#realization<-c("sticky_feb18")
 climate<-c("cc","nocc")
 SSPs<-c("SSP2")
 #SP1<-c("SP_new","SP_old")
@@ -31,7 +31,7 @@ input1[["EPIC"]] <- c("rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPI
        )#
 
 #calibration_mixed[["mixed_feb17"]][["SP_old"]]<-"calibration_SP_old_mixed_feb17___19Apr21.tgz"
-calibration_mixed[["mixed_feb17"]][["EPIC"]]<-"calibration_H12_EPIC_mixed_feb17__03May21.tgz"
+calibration_mixed[["mixed_feb17"]][["EPIC"]]<-"calibration_H12_EPIC_mixed_feb17_mang__05May21.tgz"
 
 calibration_sticky[["EPIC"]][["dynamic"]]<-"calibration_H12_EPIC_sticky_feb18_dynamic_03May21.tgz"
 calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_EPIC_sticky_feb18_free_03May21.tgz"
@@ -61,9 +61,9 @@ calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_EPIC_sticky_feb18_free_
 
         #Title
         if (r == "mixed_feb17"){
-          cfg$title<-paste0("LPJ_EPIC_",sp,"_",r,"_",c,"_",m,"_")
+          cfg$title<-paste0("LPJ_mang_",sp,"_",r,"_",c,"_",m,"_")
         }else{
-          cfg$title<-paste0("LPJ_EPIC_",sp,"_",r,"_",so,"_",c,"_",m,"_")
+          cfg$title<-paste0("LPJ_mang_",sp,"_",r,"_",so,"_",c,"_",m,"_")
         }
 
 
@@ -96,6 +96,10 @@ calibration_sticky[["EPIC"]][["free"]]<-"calibration_H12_EPIC_sticky_feb18_free_
         #Factor costs realization
         cfg$gms$factor_costs <- r
         cfg$gms$c38_sticky_mode <- so
+        cfg$gms$yields <- "managementcalib_aug19"
+        cfg$gms$s14_yld_past_switch          <- 0.25
+        cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
+
 
         #priority
         cfg$output <- c("rds_report")

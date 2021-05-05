@@ -9,7 +9,7 @@
 # description: calculate and store new calibration for different factor costs, AEI and clustering
 # --------------------------------------------------------
 
-
+library(gms)
 library(magpie4)
 library(magclass)
 options(warn=-1)
@@ -20,7 +20,7 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 
-realization<-c("mixed_feb17","sticky_feb18")
+realization<-c("mixed_feb17")
 sticky_modes<-c("dynamic")
 
 input <- c("rev4.59SmashingPumpkins+ISIMIPyieldsTEST+ISIMIPyields_EPIC-IIASA:ukesm1-0-ll:ssp585:default_h12_df1b093f_cellularmagpie_debug.tgz",
