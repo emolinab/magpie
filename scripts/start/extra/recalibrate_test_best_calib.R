@@ -18,9 +18,9 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
-realization<-c("mixed_feb17","sticky_feb18")
+realization<-c("mixed_feb17")
 
-for (best in c(FALSE,TRUE)){
+for (best in c(TRUE)){
 for (i in realization)
 cfg$input <- c("additional_data_rev4.02.tgz",
                "rev4.59newparam+proxyYieldFix_h12_magpie_debug.tgz",
@@ -44,6 +44,6 @@ cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration("H12_best_calib_",best,"_",i,"_")
+magpie4::submitCalibration(paste0("H12_best_calib_",best,"_",i,"_"))
 }
 }
