@@ -18,9 +18,9 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
-realization<-c("mixed_feb17")
+realization<-c("mixed_feb17","sticky_feb18")
 
-for (best in c(TRUE)){
+for (best in c(TRUE,FALSE)){
 for (i in realization)
 cfg$input <- c("additional_data_rev4.02.tgz",
                "rev4.59newparam+proxyYieldFix_h12_magpie_debug.tgz",
