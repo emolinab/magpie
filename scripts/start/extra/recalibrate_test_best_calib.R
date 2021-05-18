@@ -18,7 +18,7 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
-realization<-c("mixed_feb17","sticky_feb18")
+realization<-c("sticky_feb18")
 
 for (best in c(TRUE,FALSE)){
 for (i in realization)
@@ -30,7 +30,7 @@ cfg$input <- c("additional_data_rev4.02.tgz",
 cfg$force_download <- TRUE
 cfg$results_folder <- "output/:title:"
 cfg$recalibrate <- TRUE
-cfg$title <- paste0("calib_run_",best,"-",i,"_")
+cfg$title <- paste0("calib_run_2_",best,"-",i,"_")
 cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
 cfg$sequential <- TRUE
@@ -42,6 +42,7 @@ cfg$gms$yields                       <- "managementcalib_aug19"
 cfg$gms$s14_yld_past_switch          <- 0.25
 cfg$gms$processing                   <- "substitution_may21"
 cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
+cfg$calib_maxiter <- 2
 
 
 start_run(cfg,codeCheck=FALSE)
