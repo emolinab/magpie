@@ -27,6 +27,7 @@ cfg$input <- c("additional_data_rev4.02.tgz",
                "rev4.59newparam+proxyYieldFix_h12_c5cdbf33_cellularmagpie_debug.tgz",
                "rev4.59newparam_h12_validation_debug.tgz")
 
+cfg$force_download <- TRUE
 cfg$results_folder <- "output/:title:"
 cfg$recalibrate <- TRUE
 cfg$title <- paste0("calib_run_",best,"-",i,"_")
