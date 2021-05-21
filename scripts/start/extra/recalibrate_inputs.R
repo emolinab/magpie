@@ -19,10 +19,10 @@ source("scripts/start/extra/lpjml_addon.R")
 #start MAgPIE run
 source("config/default.cfg")
 
-#realization<-c("sticky_feb18")
-#sticky_modes<-c("free")
-realization<-c("mixed_feb17")
-sticky_modes<-c("")
+realization<-c("sticky_feb18")
+sticky_modes<-c("free")
+#realization<-c("mixed_feb17")
+#sticky_modes<-c("")
 
 combo<-c("7p0_CYGMA_GFDL",
         "8p5_CYGMA_UKESM",
