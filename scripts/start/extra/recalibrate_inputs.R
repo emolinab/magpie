@@ -24,25 +24,17 @@ source("config/default.cfg")
 realization<-c("mixed_feb17")
 sticky_modes<-c("")
 
-combo<-c("rcp7p0_CYGMA_GFDL","rcp8p5_CYGMA_GFDL",
-        "rcp8p5_pDSSAT_GFDL","rcp8p5_CYGMA_UKESM",
-        "rcp8p5_pDSSAT_UKESM",
-        "rcp7p0_CYGMA_UKESM",
-        "rcp8p5_EPIC_GFDL",
-        "rcp8p5_EPIC_UKESM",
-        "rcp7p0_EPIC_UKESM",
-        "rcp7p0_EPIC_GFDL"
-        )
+combo<-c("7p0_CYGMA_GFDL",
+        "8p5_CYGMA_UKESM",
+        "8p5_pDSSAT_UKESM",
+        "8p5_EPIC_UKESM",
+        "7p0_EPIC_GFDL")
 
-hashes_combos<-c("c6f10324","d972a1ce",
-                 "5b2b868c","e61ed473",
+hashes_combos<-c("c6f10324",
+                 "e61ed473",
                  "256c3ab7",
-                 "41ad9618",
-                 "82675b72",
                  "c0547439",
-                 "6bd5239a",
-                 "669b91c3"
-)
+                 "669b91c3")
 
 aux<-1
 input<-c("additional_data_rev4.04.tgz",
@@ -69,6 +61,8 @@ for (i in realization){
           cfg$input <- c(input,
                          paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[aux],"_cellularmagpie_debug.tgz"))
 
+          cfg$output <- c("rds_report")
+          cfg$best_calib <- TRUE
           cfg$gms$c_timesteps <- 1
           cfg$sequential <- TRUE
 
@@ -80,7 +74,7 @@ for (i in realization){
 
          start_run(cfg,codeCheck=FALSE)
 
-         magpie4::submitCalibration(paste0("H12_ClIM_",com,"_",i,"_",so))
+         magpie4::submitCalibration(paste0("ClIM_",com,"_",i,"_",so))
 
          aux<-aux+1
        }

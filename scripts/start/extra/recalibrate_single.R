@@ -21,7 +21,7 @@ source("config/default.cfg")
 source("scripts/start/extra/lpjml_addon.R")
 
 realization<-c("mixed_feb17","sticky_feb18")
-combo<-c("rcp7p0_LPJML_GFDL_newParam"
+combo<-c("7p0_LPJML_GFDL_"
         )
 
 input <- c("additional_data_rev4.04.tgz",
@@ -59,6 +59,9 @@ for (i in realization){
           cfg$gms$c_timesteps <- 1
           cfg$sequential <- TRUE
 
+          cfg$output <- c("rds_report")
+          cfg$best_calib <- TRUE
+
           #Special modules
           cfg$gms$factor_costs <- i
           if(i == "sticky_feb18"){
@@ -68,7 +71,7 @@ for (i in realization){
 
          start_run(cfg,codeCheck=FALSE)
 
-         magpie4::submitCalibration(paste0("H12_ClIM_",com,"_",i,"_",so))
+         magpie4::submitCalibration(paste0("ClIM_",com,"_",i,"_",so))
 
         # aux<-aux+1
        }
