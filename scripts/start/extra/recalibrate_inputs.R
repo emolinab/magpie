@@ -64,7 +64,7 @@ for (i in realization){
 
           cfg$recalibrate <- TRUE
           cfg$results_folder <- "output/:title::date:"
-          cfg$input <- c(input,
+          cfg$input <- c(cfg$input,
                          paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[aux],"_cellularmagpie_debug.tgz"))
 
           cfg$gms$c_timesteps <- 1
