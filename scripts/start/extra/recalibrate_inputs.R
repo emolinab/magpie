@@ -45,7 +45,9 @@ hashes_combos<-c("c6f10324","d972a1ce",
 )
 
 aux<-1
-
+input<-c("additional_data_rev4.04.tgz",
+               "rev4.59_h12_magpie.tgz",
+               "rev4.59test_h12_validation.tgz")
 ### Normal
 for (i in realization){
   for (com in combo){
@@ -64,7 +66,7 @@ for (i in realization){
 
           cfg$recalibrate <- TRUE
           cfg$results_folder <- "output/:title::date:"
-          cfg$input <- c(cfg$input,
+          cfg$input <- c(input,
                          paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[aux],"_cellularmagpie_debug.tgz"))
 
           cfg$gms$c_timesteps <- 1
