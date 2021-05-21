@@ -20,7 +20,7 @@ source("scripts/start/extra/lpjml_addon.R")
 source("config/default.cfg")
 
 realization<-c("sticky_feb18")
-sticky_modes<-c("free")
+sticky_modes<-c("dynamic")
 #realization<-c("mixed_feb17")
 #sticky_modes<-c("")
 
