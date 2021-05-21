@@ -18,18 +18,16 @@ source("scripts/start_functions.R")
 
 #start MAgPIE run
 source("config/default.cfg")
-
+source("scripts/start/extra/lpjml_addon.R")
 
 realization<-c("mixed_feb17","sticky_feb18")
 combo<-c("rcp7p0_LPJML_GFDL_newParam"
         )
 
-#hashes_combos<-c("")
-
-
-input<-c("additional_data_rev4.02.tgz",
-         "rev4.59SmashingPumpkins+StickyFiles_h12_magpie_debug.tgz",
-         "rev4.59SmashingPumpkins+ISIMIPyields_h12_validation_debug.tgz")
+input <- c("additional_data_rev4.04.tgz",
+                       "rev4.59_h12_magpie.tgz",
+                       "rev4.59_h12_c5cdbf33_cellularmagpie_c200_GFDL-ESM4-ssp370_lpjml-47a77da3.tgz",
+                       "rev4.59test_h12_validation.tgz")
 
 #aux<-1
 
@@ -38,7 +36,7 @@ for (i in realization){
   for (com in combo){
 
     if(i == "sticky_feb18"){
-    sticky_modes<-c("dynamic")
+    sticky_modes<-c("dynamic","free")
   }else{
     sticky_modes<-c("")
   }
@@ -46,15 +44,19 @@ for (i in realization){
     for (so in sticky_modes) {
 
           #configurations
-          cfg$title <- paste0("calib_",com,"_",i,"_",so)
+          cfg$title <- paste0("calib_PR_ClIM_",com,"_",i,"_",so)
           cfg$force_download <- TRUE
-          cfg$crop_calib_max <- 2
+
+          if(i == "mixed_feb17"){
+          cfg$crop_calib_max<- 1.5
+        }else if(i=="sticky_feb18"){
+          cfg$crop_calib_max<- 2
+        }
+
           cfg$recalibrate <- TRUE
           cfg$results_folder <- "output/:title::date:"
-          cfg$input <- c(input,
-                         paste0("rev4.59newparam_h12_c5cdbf33_cellularmagpie_debug.tgz"))
+          cfg$input <- input
           cfg$gms$c_timesteps <- 1
-          cfg$output <- c("rds_report")
           cfg$sequential <- TRUE
 
           #Special modules
@@ -62,11 +64,11 @@ for (i in realization){
           if(i == "sticky_feb18"){
           cfg$gms$c38_sticky_mode  <- so
            }
-          cfg$gms$yields  <- "managementcalib_aug19"
+
 
          start_run(cfg,codeCheck=FALSE)
 
-         magpie4::submitCalibration(paste0("H12_",com,"_",i,"_",so))
+         magpie4::submitCalibration(paste0("H12_ClIM_",com,"_",i,"_",so))
 
         # aux<-aux+1
        }
