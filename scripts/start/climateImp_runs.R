@@ -60,7 +60,7 @@ for (i in realization){
   for (com in 1:length(combo)){
 
     if(i == "sticky_feb18"){
-    sticky_modes<-c("free")
+    sticky_modes<-c("free","dynamic")
   }else{
     sticky_modes<-c("")
   }
