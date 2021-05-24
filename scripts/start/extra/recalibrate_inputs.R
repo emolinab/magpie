@@ -24,16 +24,16 @@ sticky_modes<-c("dynamic")
 #realization<-c("mixed_feb17")
 #sticky_modes<-c("")
 
-combo<-c("7p0_CYGMA_GFDL",
-        "8p5_CYGMA_UKESM",
-        "8p5_pDSSAT_UKESM",
-        "8p5_EPIC_UKESM",
+combo<-c(#"7p0_CYGMA_GFDL",
+        #"8p5_CYGMA_UKESM",
+        #"8p5_pDSSAT_UKESM",
+        #"8p5_EPIC_UKESM",
         "7p0_EPIC_GFDL")
 
-hashes_combos<-c("c6f10324",
-                 "e61ed473",
-                 "256c3ab7",
-                 "c0547439",
+hashes_combos<-c(#"c6f10324",
+                 #"e61ed473",
+                 #"256c3ab7",
+                 #"c0547439",
                  "669b91c3")
 
 aux<-1
