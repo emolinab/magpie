@@ -76,13 +76,13 @@ for (i in realization){
 
             cfg$input <- c(input,
                            calib2[[so]][[combo[com]]],
-                           paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[com],"_cellularmagpie_debug.tgz")))
+                           paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[com],"_cellularmagpie_debug.tgz"))
 
          }else if(i== "mixed_feb17"){
 
           cfg$input <- c(input,
                          calib1[["mixed_feb17"]][[combo[com]]],
-                         paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[com],"_cellularmagpie_debug.tgz")))
+                         paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[com],"_cellularmagpie_debug.tgz"))
           }
 
 
