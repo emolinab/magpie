@@ -12,7 +12,7 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
-realization<-c("mixed_feb17")
+realization<-c("sticky_feb18")
 
 
 combo<-c("7p0_CYGMA_GFDL",
@@ -60,7 +60,7 @@ for (i in realization){
   for (com in 1:length(combo)){
 
     if(i == "sticky_feb18"){
-    sticky_modes<-c("dynamic","free")
+    sticky_modes<-c("free")
   }else{
     sticky_modes<-c("")
   }
