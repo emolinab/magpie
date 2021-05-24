@@ -26,9 +26,9 @@ source("config/default.cfg")
  calib1<-list()
  calib2<-list()
 
- calib1[["mixed_feb17"]]<-"calibration_H12_rcp7p0_LPJML_GFDL_newParam_mixed_feb17__11May21.tgz"
- calib2[["sticky_feb18"]][["dynamic"]]<-"calibration_H12_rcp7p0_LPJML_GFDL_newParam_sticky_feb18_dynamic_11May21.tgz"
- calib2[["sticky_feb18"]][["free"]]<-"calibration_H12_rcp7p0_LPJML_GFDL_newParam_sticky_feb18_free_11May21.tgz"
+ calib1[["mixed_feb17"]]<-"calibration_ClIM_7p0_LPJML_GFDL__mixed_feb17__21May21.tgz"
+ calib2[["sticky_feb18"]][["dynamic"]]<-"calibration_ClIM_7p0_LPJML_GFDL__sticky_feb18_dynamic_21May21.tgz"
+ calib2[["sticky_feb18"]][["free"]]<-"calibration_ClIM_7p0_LPJML_GFDL__sticky_feb18_free_22May21.tgz"
 
 
 
