@@ -12,7 +12,7 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
-realization<-c("sticky_feb18","mixed_feb17")
+realization<-c("mixed_feb17")
 
 
 combo<-c("7p0_CYGMA_GFDL",
@@ -42,17 +42,17 @@ calib1[["mixed_feb17"]][["8p5_pDSSAT_UKESM"]]<-"calibration_ClIM_8p5_pDSSAT_UKES
 calib1[["mixed_feb17"]][["8p5_EPIC_UKESM"]]<-"calibration_ClIM_8p5_EPIC_UKESM_mixed_feb17__22May21.tgz"
 calib1[["mixed_feb17"]][["7p0_EPIC_GFDL"]]<-"calibration_ClIM_7p0_EPIC_GFDL_mixed_feb17__22May21.tgz"
 
-calib2[["free"]][["7p0_CYGMA_GFDL"]]<-"calibration_ClIM_7p0_CYGMA_GFDL_mixed_feb17__21May21.tgz"
-calib2[["free"]][["8p5_CYGMA_UKESM"]]<-"calibration_ClIM_8p5_CYGMA_UKESM_mixed_feb17__22May21.tgz"
-calib2[["free"]][["8p5_pDSSAT_UKESM"]]<-"calibration_ClIM_8p5_pDSSAT_UKESM_mixed_feb17__22May21.tgz"
-calib2[["free"]][["8p5_EPIC_UKESM"]]<-"calibration_ClIM_8p5_EPIC_UKESM_mixed_feb17__22May21.tgz"
-calib2[["free"]][["7p0_EPIC_GFDL"]]<-"calibration_ClIM_7p0_EPIC_GFDL_mixed_feb17__22May21.tgz"
+calib2[["free"]][["7p0_CYGMA_GFDL"]]<-"calibration_ClIM_7p0_CYGMA_GFDL_sticky_feb18_free_21May21.tgz"
+calib2[["free"]][["8p5_CYGMA_UKESM"]]<-"calibration_ClIM_8p5_CYGMA_UKESM_sticky_feb18_free_22May21.tgz"
+calib2[["free"]][["8p5_pDSSAT_UKESM"]]<-"calibration_ClIM_8p5_pDSSAT_UKESM_sticky_feb18_free_22May21.tgz"
+calib2[["free"]][["8p5_EPIC_UKESM"]]<-"calibration_ClIM_8p5_EPIC_UKESM_sticky_feb18_free_22May21.tgz"
+calib2[["free"]][["7p0_EPIC_GFDL"]]<-"calibration_ClIM_7p0_EPIC_GFDL_sticky_feb18_free_22May21.tgz"
 
-calib2[["dynamic"]][["7p0_CYGMA_GFDL"]]<-"calibration_ClIM_7p0_CYGMA_GFDL_mixed_feb17__21May21.tgz"
-calib2[["dynamic"]][["8p5_CYGMA_UKESM"]]<-"calibration_ClIM_8p5_CYGMA_UKESM_mixed_feb17__22May21.tgz"
-calib2[["dynamic"]][["8p5_pDSSAT_UKESM"]]<-"calibration_ClIM_8p5_pDSSAT_UKESM_mixed_feb17__22May21.tgz"
-calib2[["dynamic"]][["8p5_EPIC_UKESM"]]<-"calibration_ClIM_8p5_EPIC_UKESM_mixed_feb17__22May21.tgz"
-calib2[["dynamic"]][["7p0_EPIC_GFDL"]]<-"calibration_ClIM_7p0_EPIC_GFDL_mixed_feb17__22May21.tgz"
+calib2[["dynamic"]][["7p0_CYGMA_GFDL"]]<-"calibration_ClIM_7p0_CYGMA_GFDL_sticky_feb18_dynamic_22May21.tgz"
+calib2[["dynamic"]][["8p5_CYGMA_UKESM"]]<-"calibration_ClIM_8p5_CYGMA_UKESM_sticky_feb18_dynamic_22May21.tgz"
+calib2[["dynamic"]][["8p5_pDSSAT_UKESM"]]<-"calibration_ClIM_8p5_pDSSAT_UKESM_sticky_feb18_dynamic_22May21.tgz"
+calib2[["dynamic"]][["8p5_EPIC_UKESM"]]<-"calibration_ClIM_8p5_EPIC_UKESM_sticky_feb18_dynamic_22May21.tgz"
+calib2[["dynamic"]][["7p0_EPIC_GFDL"]]<-"calibration_ClIM_7p0_EPIC_GFDL_sticky_feb18_dynamic_24May21.tgz"
 
 
 ### Normal
