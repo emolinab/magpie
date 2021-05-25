@@ -51,7 +51,7 @@ for (i in realization){
 
           if(i == "sticky_feb18"){
 
-            cfg$input <- c(input,
+            cfg$input <- c(input#,
                            #calib2[["sticky_feb18"]][[so]]
                          )
 
