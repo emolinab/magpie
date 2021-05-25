@@ -33,7 +33,8 @@ climate<-c("cc")#,"nocc"
 
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
-               "rev4.59test_h12_validation.tgz")
+               "rev4.59test_h12_validation.tgz",
+               "tau_scenario.tgz")
 calib1<-list()
 calib2<-list()
 
@@ -72,7 +73,11 @@ for (i in realization){
 
           cfg<-gms::setScenario(cfg,c)
           #configurations
-          cfg$title<-paste0("CcIm_NoAd_",combo[com],"_",i,"_",so,"_",c,"_")
+          cfg$title<-paste0("CcIm_TauExo_",combo[com],"_",i,"_",so,"_",c,"_")
+          cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
+                                "/p/projects/landuse/users/mbacca/Additional_data_sets"=NULL),
+                           getOption("magpie_repos"))
+
 
           if(i == "sticky_feb18"){
 
@@ -101,6 +106,7 @@ for (i in realization){
           if(i == "sticky_feb18"){
           cfg$gms$c38_sticky_mode  <- so
            }
+           cfg$gms$tc <- "exo"
 
 
          start_run(cfg,codeCheck=FALSE)
