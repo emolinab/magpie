@@ -22,7 +22,7 @@ source("config/default.cfg")
                         "rev4.59_h12_magpie.tgz",
                         "rev4.59_h12_c5cdbf33_cellularmagpie_c200_GFDL-ESM4-ssp370_lpjml-47a77da3.tgz",
                         "rev4.59test_h12_validation.tgz",
-                        "tau_scenario.tgz")
+                        "tau_scenario_lp.tgz")
 
  calib1<-list()
  calib2<-list()
@@ -72,7 +72,7 @@ for (i in realization){
           cfg$gms$s14_yld_past_switch          <- 0.25
           cfg$gms$processing                   <- "substitution_may21"
           cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
-          cfg$gms$s14_limit_calib <- 0
+          #cfg$gms$s14_limit_calib <- 0
 
           #Special modules
           cfg$gms$factor_costs <- i

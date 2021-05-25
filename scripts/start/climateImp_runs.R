@@ -98,7 +98,7 @@ for (i in realization){
           cfg$gms$s14_yld_past_switch          <- 0.25
           cfg$gms$processing                   <- "substitution_may21"
           cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
-          cfg$gms$s14_limit_calib <- 0
+          #cfg$gms$s14_limit_calib <- 0
 
 
           #Special modules
