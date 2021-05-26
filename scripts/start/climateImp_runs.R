@@ -34,7 +34,7 @@ climate<-c("cc")#,"nocc"
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
                "rev4.59test_h12_validation.tgz",
-               "tau_scenario.tgz")
+               "tau_cygma.tgz")
 calib1<-list()
 calib2<-list()
 
@@ -98,6 +98,7 @@ for (i in realization){
           cfg$gms$s14_yld_past_switch          <- 0.25
           cfg$gms$processing                   <- "substitution_may21"
           cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
+          cfg$crop_calib_max<- 10
           #cfg$gms$s14_limit_calib <- 0
 
 

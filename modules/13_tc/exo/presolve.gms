@@ -16,4 +16,5 @@ p13_cost_tc(i) = pc13_land(i) * i13_tc_factor(t,i)
 p13_tech_cost_annuity(i) = (vm_tau.l(i)/pcm_tau(i)-1) * p13_cost_tc(i)
                                * pm_interest(t,i)/(1+pm_interest(t,i));
 
-vm_tech_cost.fx(i) = p13_tech_cost_annuity(i) + p13_tech_cost_past(t,i);
+vm_tech_cost.fx(i) = p13_tech_cost_annuity(i); 
+*+ p13_tech_cost_past(t,i);
