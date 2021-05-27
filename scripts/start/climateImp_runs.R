@@ -63,7 +63,7 @@ for (i in realization){
   for (com in 1:length(combo)){
 
     if(i == "sticky_feb18"){
-    sticky_modes<-c("dynamic") #"free",
+    sticky_modes<-c("dynamic","free") #,
   }else{
     sticky_modes<-c("")
   }
@@ -73,7 +73,7 @@ for (i in realization){
 
           cfg<-gms::setScenario(cfg,c)
           #configurations
-          cfg$title<-paste0("CcIm_TauExo_",combo[com],"_",i,"_",so,"_",c,"_")
+          cfg$title<-paste0("CcIm_TauExo2_",combo[com],"_",i,"_",so,"_",c,"_")
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
                                 "/p/projects/landuse/users/mbacca/Additional_data_sets"=NULL),
                            getOption("magpie_repos"))
@@ -98,7 +98,7 @@ for (i in realization){
           cfg$gms$s14_yld_past_switch          <- 0.25
           cfg$gms$processing                   <- "substitution_may21"
           cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
-          cfg$crop_calib_max<- 10
+          #cfg$crop_calib_max<- 10
           #cfg$gms$s14_limit_calib <- 0
 
 
