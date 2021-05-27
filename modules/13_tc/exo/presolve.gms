@@ -7,7 +7,7 @@
 
 pc13_land(i) = sum(cell(i,j),pcm_land(j,"crop"));
 
-vm_tau.fx(i) = f13_tau_scenario(t,i)*1.2;
+vm_tau.fx(i) = f13_tau_scenario(t,i);
 
 p13_cost_tc(i) = pc13_land(i) * i13_tc_factor(t,i)
                      * vm_tau.l(i)**i13_tc_exponent(t,i)
