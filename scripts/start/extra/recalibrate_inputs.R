@@ -27,27 +27,32 @@ sticky_modes<-c("dynamic")
 combo<-c(#"7p0_CYGMA_GFDL",
         #"8p5_CYGMA_UKESM",
         #"8p5_pDSSAT_UKESM",
-        #"8p5_EPIC_UKESM",
-        "7p0_EPIC_GFDL")
+        "8p5_EPIC_UKESM",
+        #"7p0_EPIC_GFDL")
 
 hashes_combos<-c(#"c6f10324",
                  #"e61ed473",
                  #"256c3ab7",
-                 #"c0547439",
-                 "669b91c3")
+                 "c0547439",
+                 #"669b91c3")
 
 aux<-1
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
-               "rev4.59test_h12_validation.tgz")
+               "rev4.59test_h12_validation.tgz",
+               "tau_cygma.tgz")
 ### Normal
 for (i in realization){
   for (com in combo){
     for (so in sticky_modes) {
 
           #configurations
-          cfg$title <- paste0("calib_PR_ClIM_",com,"_",i,"_",so)
+          cfg$title <- paste0("calib_ClIM_tauExo",com,"_",i,"_",so)
           cfg$force_download <- TRUE
+
+          cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
+                                "/p/projects/landuse/users/mbacca/Additional_data_sets"=NULL),
+                           getOption("magpie_repos"))
 
           if(i == "mixed_feb17"){
           cfg$crop_calib_max<- 1.5
@@ -71,10 +76,11 @@ for (i in realization){
           if(i == "sticky_feb18"){
           cfg$gms$c38_sticky_mode  <- so
            }
+           cfg$gms$tc <- "exo"
 
          start_run(cfg,codeCheck=FALSE)
 
-         magpie4::submitCalibration(paste0("ClIM_",com,"_",i,"_",so))
+         magpie4::submitCalibration(paste0("ClIM_TauExo",com,"_",i,"_",so))
 
          aux<-aux+1
        }
