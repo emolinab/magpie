@@ -73,7 +73,7 @@ for (i in realization){
 
           cfg<-gms::setScenario(cfg,c)
           #configurations
-          cfg$title<-paste0("CcIm_TauExo2_",combo[com],"_",i,"_",so,"_",c,"_")
+          cfg$title<-paste0("CcIm_TauNoExo_",combo[com],"_",i,"_",so,"_",c,"_")
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
                                 "/p/projects/landuse/users/mbacca/Additional_data_sets"=NULL),
                            getOption("magpie_repos"))
@@ -107,7 +107,7 @@ for (i in realization){
           if(i == "sticky_feb18"){
           cfg$gms$c38_sticky_mode  <- so
            }
-           cfg$gms$tc <- "exo"
+           #cfg$gms$tc <- "exo"
 
 
          start_run(cfg,codeCheck=FALSE)
