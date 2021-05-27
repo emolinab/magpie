@@ -33,7 +33,7 @@ combo<-c(#"7p0_CYGMA_GFDL",
 hashes_combos<-c(#"c6f10324",
                  #"e61ed473",
                  #"256c3ab7",
-                 "c0547439",
+                 "c0547439")
                  #"669b91c3")
 
 aux<-1
