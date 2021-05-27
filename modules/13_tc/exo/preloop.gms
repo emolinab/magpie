@@ -5,6 +5,7 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
+
 loop(t,
  if(m_year(t) <= sm_fix_SSP2,
   i13_tc_factor(t,i) = f13_tc_factor(t,"medium");
