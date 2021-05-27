@@ -27,7 +27,7 @@ sticky_modes<-c("dynamic")
 combo<-c(#"7p0_CYGMA_GFDL",
         #"8p5_CYGMA_UKESM",
         #"8p5_pDSSAT_UKESM",
-        "8p5_EPIC_UKESM",
+        "8p5_EPIC_UKESM")
         #"7p0_EPIC_GFDL")
 
 hashes_combos<-c(#"c6f10324",
