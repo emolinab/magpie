@@ -73,7 +73,7 @@ for (i in realization){
           #Special modules
           cfg$gms$factor_costs <- i
           if(i == "sticky_feb18"){
-          cfg$gms$c38_sticky_mode  <- so
+          cfg$gms$c38_sticky_mode  <- sticky_modes[so]
            }
            #cfg$gms$tc <- "exo"
 
