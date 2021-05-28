@@ -20,7 +20,7 @@ source("scripts/start/extra/lpjml_addon.R")
 source("config/default.cfg")
 
 realization<-c("sticky_feb18")
-sticky_modes<-c("dynamic")
+sticky_modes<-c("dynamic","free")
 #realization<-c("mixed_feb17")
 #sticky_modes<-c("")
 
@@ -36,18 +36,18 @@ hashes_combos<-c(#"c6f10324",
                  "c0547439")
                  #"669b91c3")
 
-aux<-1
+names_sce<-c("Cap+Var","Var")
+
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
-               "rev4.59test_h12_validation.tgz",
-               "tau_cygma.tgz")
+               "rev4.59test_h12_validation.tgz")
 ### Normal
 for (i in realization){
-  for (com in combo){
-    for (so in sticky_modes) {
+  for (com in 1:length(combo)){
+    for (so in 1:length(sticky_modes)) {
 
           #configurations
-          cfg$title <- paste0("calib_ClIM_tauExo",com,"_",i,"_",so)
+          cfg$title <- paste0("calib_ClIM_",combo[com],"_",i,"_",names_sce[so])
           cfg$force_download <- TRUE
 
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
@@ -57,9 +57,8 @@ for (i in realization){
           if(i == "mixed_feb17"){
           cfg$crop_calib_max<- 1.5
         }else if(i=="sticky_feb18"){
-          cfg$crop_calib_max<- 2
+          cfg$crop_calib_max<- 5
         }
-
 
           cfg$recalibrate <- TRUE
           cfg$results_folder <- "output/:title::date:"
@@ -76,13 +75,12 @@ for (i in realization){
           if(i == "sticky_feb18"){
           cfg$gms$c38_sticky_mode  <- so
            }
-           cfg$gms$tc <- "exo"
+           #cfg$gms$tc <- "exo"
 
          start_run(cfg,codeCheck=FALSE)
 
-         magpie4::submitCalibration(paste0("ClIM_TauExo",com,"_",i,"_",so))
+         magpie4::submitCalibration(paste0("CcIm_",combo[com],"_",names_sce[so]))
 
-         aux<-aux+1
        }
      }
    }
