@@ -30,10 +30,10 @@ combo<-c(#"7p0_CYGMA_GFDL",
         "8p5_EPIC_UKESM")
         #"7p0_EPIC_GFDL")
 
-hashes_combos<-c(#"c6f10324",
+hashes_combos<-as.character(c(#"c6f10324",
                  #"e61ed473",
                  #"256c3ab7",
-                 "c0547439")
+                 "c0547439"))
                  #"669b91c3")
 
 names_sce<-c("Cap+Var","Var")
@@ -63,7 +63,7 @@ for (i in realization){
           cfg$recalibrate <- TRUE
           cfg$results_folder <- "output/:title::date:"
           cfg$input <- c(input,
-                         paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[aux],"_cellularmagpie_debug.tgz"))
+                         paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[com],"_cellularmagpie_debug.tgz"))
 
           cfg$output <- c("rds_report")
           cfg$best_calib <- TRUE
