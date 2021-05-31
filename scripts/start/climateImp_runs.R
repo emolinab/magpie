@@ -12,6 +12,9 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
+#Addon
+source("scripts/start/extra/lpjml_addon.R")
+
 realization<-c("sticky_feb18")
 
 
@@ -29,12 +32,13 @@ hashes_combos<-as.character(c(#"c6f10324",
                  #"669b91c3"
                ))
 
-climate<-c("cc")#,"nocc"
+climate<-c("cc","nocc")
+names_sce<-c("Cap+Var","Var")
 
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
-               "rev4.59test_h12_validation.tgz",
-               "tau_cygma.tgz")
+               "rev4.59test_h12_validation.tgz")
+
 calib1<-list()
 calib2<-list()
 

@@ -1,0 +1,80 @@
+# |  (C) 2008-2020 Potsdam Institute for Climate Impact Research (PIK)
+# |  authors, and contributors see CITATION.cff file. This file is part
+# |  of MAgPIE and licensed under AGPL-3.0-or-later. Under Section 7 of
+# |  AGPL-3.0, you are granted additional permissions described in the
+# |  MAgPIE License Exception, version 1.0 (see LICENSE file).
+# |  Contact: magpie@pik-potsdam.de
+
+# --------------------------------------------------------
+# description: Script used to generate runs for the 3rd seminar
+# --------------------------------------------------------
+
+library(gms)
+library(magpie4)
+library(magclass)
+options(warn=-1)
+# Load start_run(cfg) function which is needed to start MAgPIE runs
+source("scripts/start_functions.R")
+source("scripts/start/extra/lpjml_addon.R")
+#start MAgPIE run
+source("config/default.cfg")
+
+realization<-c("sticky_feb18")
+sticky_modes<-c("dynamic","free")
+climate<-c("cc","nocc_hist")
+#realization<-c("mixed_feb17")
+#sticky_modes<-c("")
+
+combo<-c(#"7p0_CYGMA_GFDL",
+        #"8p5_CYGMA_UKESM",
+        #"8p5_pDSSAT_UKESM",
+        "8p5_EPIC_UKESM")
+        #"7p0_EPIC_GFDL")
+
+hashes_combos<-as.character(c(#"c6f10324",
+                 #"e61ed473",
+                 #"256c3ab7",
+                 "c0547439"))
+                 #"669b91c3")
+
+names_sce<-c("Cap+Var","Var")
+calib<-c("calibration_CcIm_8p5_EPIC_UKESM_Cap+Var_28May21.tgz",
+         "calibration_CcIm_8p5_EPIC_UKESM_Var_29May21.tgz")
+
+input<-c("additional_data_rev4.04.tgz",
+               "rev4.59_h12_magpie.tgz",
+               "rev4.59test_h12_validation.tgz")
+### Normal
+for (i in realization){
+  for (com in 1:length(combo)){
+    for (so in 1:length(sticky_modes)) {
+      for (c in climate){
+
+          cfg<-gms::setScenario(cfg,c)
+
+          #configurations
+          cfg$title <- paste0("Climate_Impacts_",names_sce[so],"_",c,"_")
+          cfg$force_download <- TRUE
+          cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
+                                "/p/projects/landuse/users/mbacca/Additional_data_sets"=NULL),
+                           getOption("magpie_repos"))
+
+         cfg$input <- c(input,
+                         paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[com],"_cellularmagpie_debug.tgz")
+                        calib[so])
+
+          cfg$output <- c("rds_report")
+
+          #Special modules
+          cfg$gms$factor_costs <- i
+          if(i == "sticky_feb18"){
+          cfg$gms$c38_sticky_mode  <- sticky_modes[so]
+           }
+
+
+         start_run(cfg,codeCheck=FALSE)
+
+       }
+     }
+   }
+}
