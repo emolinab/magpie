@@ -75,6 +75,8 @@ for (i in realization){
           if(i == "sticky_feb18"){
           cfg$gms$c38_sticky_mode  <- sticky_modes[so]
            }
+
+           cfg$calib_maxiter <- 50   
            #cfg$gms$tc <- "exo"
 
          start_run(cfg,codeCheck=FALSE)
