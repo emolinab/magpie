@@ -25,18 +25,18 @@ sticky_modes<-c("dynamic","free")
 #sticky_modes<-c("")
 
 combo<-c(#"7p0_CYGMA_GFDL",
-        #"8p5_CYGMA_UKESM",
+        "8p5_CYGMA_UKESM")
         #"8p5_pDSSAT_UKESM",
-        "8p5_EPIC_UKESM")
+        #"8p5_EPIC_UKESM")
         #"7p0_EPIC_GFDL")
 
 hashes_combos<-as.character(c(#"c6f10324",
-                 #"e61ed473",
+                 "e61ed473"))
                  #"256c3ab7",
-                 "c0547439"))
+                 #"c0547439"))
                  #"669b91c3")
 
-names_sce<-c("Cap+Var","Var")
+names_sce<-c("Capital+Variable","Variable")
 
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
@@ -57,7 +57,7 @@ for (i in realization){
           if(i == "mixed_feb17"){
           cfg$crop_calib_max<- 1.5
         }else if(i=="sticky_feb18"){
-          cfg$crop_calib_max<- 5
+          cfg$crop_calib_max<- 2
         }
 
           cfg$recalibrate <- TRUE
