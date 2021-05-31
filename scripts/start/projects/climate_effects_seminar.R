@@ -60,7 +60,7 @@ for (i in realization){
                            getOption("magpie_repos"))
 
          cfg$input <- c(input,
-                         paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[com],"_cellularmagpie_debug.tgz")
+                         paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[com],"_cellularmagpie_debug.tgz"),
                         calib[so])
 
           cfg$output <- c("rds_report")
