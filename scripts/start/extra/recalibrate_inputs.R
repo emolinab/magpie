@@ -15,12 +15,11 @@ library(magclass)
 options(warn=-1)
 # Load start_run(cfg) function which is needed to start MAgPIE runs
 source("scripts/start_functions.R")
-source("scripts/start/extra/lpjml_addon.R")
 #start MAgPIE run
 source("config/default.cfg")
 
 realization<-c("sticky_feb18")
-sticky_modes<-c("free")
+sticky_modes<-c("dynamic","free")
 #realization<-c("mixed_feb17")
 #sticky_modes<-c("")
 
@@ -47,7 +46,7 @@ for (i in realization){
     for (so in 1:length(sticky_modes)) {
 
           #configurations
-          cfg$title <- paste0("calib_ClIMp_",combo[com],"_",i,"_",names_sce[so])
+          cfg$title <- paste0("calib_ClIMp_fx_",combo[com],"_",i,"_",names_sce[so])
           cfg$force_download <- TRUE
 
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
@@ -76,12 +75,16 @@ for (i in realization){
           cfg$gms$c38_sticky_mode  <- sticky_modes[so]
            }
 
-           cfg$calib_maxiter <- 20
-           #cfg$gms$tc <- "exo"
+           cfg$gms$yields                       <- "managementcalib_aug19"
+           cfg$gms$s14_yld_past_switch          <- 0.25
+           cfg$gms$processing                   <- "substitution_may21"
+           cfg$gms$crop                         <- "endo_apr21"
+           cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
+
 
          start_run(cfg,codeCheck=FALSE)
 
-         magpie4::submitCalibration(paste0("CcImp_",combo[com],"_",names_sce[so]))
+         magpie4::submitCalibration(paste0("CcImp_fx_",combo[com],"_",names_sce[so]))
 
        }
      }
