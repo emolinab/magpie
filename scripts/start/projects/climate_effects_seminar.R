@@ -20,9 +20,9 @@ source("scripts/start/extra/lpjml_addon.R")
 source("config/default.cfg")
 
 realization<-c("sticky_feb18")
-sticky_modes<-c("dynamic")
+sticky_modes<-c("dynamic","free")
 climate<-c("cc","nocc_hist")
-climate_names<-("cc","nocc")
+climate_names<-c("cc","nocc")
 #realization<-c("mixed_feb17")
 #sticky_modes<-c("")
 
@@ -40,7 +40,7 @@ hashes_combos<-as.character(c(#"c6f10324",
 
 names_sce<-c("Capital+Variable")#,"Variable")
 calib<-c("calibration_CcIm_8p5_CYGMA_UKESM_Capital+Variable_01Jun21.tgz")#,
-         #"calibration_CcIm_8p5_EPIC_UKESM_Var_29May21.tgz")
+         "calibration_CcIm_8p5_CYGMA_UKESM_Variable_01Jun21.tgz")
 
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
