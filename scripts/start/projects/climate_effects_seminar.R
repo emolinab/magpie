@@ -39,7 +39,7 @@ hashes_combos<-as.character(c(#"c6f10324",
                  #"669b91c3")
 
 names_sce<-c("Capital+Variable")#,"Variable")
-calib<-c("calibration_CcIm_8p5_CYGMA_UKESM_Capital+Variable_01Jun21.tgz")#,
+calib<-c("calibration_CcIm_8p5_CYGMA_UKESM_Capital+Variable_01Jun21.tgz",
          "calibration_CcIm_8p5_CYGMA_UKESM_Variable_01Jun21.tgz")
 
 input<-c("additional_data_rev4.04.tgz",
