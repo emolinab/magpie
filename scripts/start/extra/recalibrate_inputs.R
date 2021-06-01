@@ -20,7 +20,7 @@ source("scripts/start/extra/lpjml_addon.R")
 source("config/default.cfg")
 
 realization<-c("sticky_feb18")
-sticky_modes<-c("dynamic","free")
+sticky_modes<-c("free")
 #realization<-c("mixed_feb17")
 #sticky_modes<-c("")
 
@@ -36,7 +36,7 @@ hashes_combos<-as.character(c(#"c6f10324",
                  #"c0547439"))
                  #"669b91c3")
 
-names_sce<-c("Capital+Variable","Variable")
+names_sce<-c("Variable")
 
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
@@ -47,7 +47,7 @@ for (i in realization){
     for (so in 1:length(sticky_modes)) {
 
           #configurations
-          cfg$title <- paste0("calib_ClIM_",combo[com],"_",i,"_",names_sce[so])
+          cfg$title <- paste0("calib_ClIMp_",combo[com],"_",i,"_",names_sce[so])
           cfg$force_download <- TRUE
 
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
@@ -76,12 +76,12 @@ for (i in realization){
           cfg$gms$c38_sticky_mode  <- sticky_modes[so]
            }
 
-           cfg$calib_maxiter <- 50   
+           cfg$calib_maxiter <- 20
            #cfg$gms$tc <- "exo"
 
          start_run(cfg,codeCheck=FALSE)
 
-         magpie4::submitCalibration(paste0("CcIm_",combo[com],"_",names_sce[so]))
+         magpie4::submitCalibration(paste0("CcImp_",combo[com],"_",names_sce[so]))
 
        }
      }
