@@ -46,7 +46,7 @@ for (i in realization){
     for (so in 1:length(sticky_modes)) {
 
           #configurations
-          cfg$title <- paste0("calib_ClIMp_fx_",combo[com],"_",i,"_",names_sce[so])
+          cfg$title <- paste0("calib_ClIMp_fx2_",combo[com],"_",i,"_",names_sce[so])
           cfg$force_download <- TRUE
 
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
@@ -76,15 +76,17 @@ for (i in realization){
            }
 
            cfg$gms$yields                       <- "managementcalib_aug19"
+           cfg$gms$s13_ignore_tau_historical    <- 0
            cfg$gms$s14_yld_past_switch          <- 0.25
            cfg$gms$processing                   <- "substitution_may21"
            cfg$gms$crop                         <- "endo_apr21"
+           cfg$gms$c30_marginal_land            <- "q33_marginal"
            cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
 
 
          start_run(cfg,codeCheck=FALSE)
 
-         magpie4::submitCalibration(paste0("CcImp_fx_",combo[com],"_",names_sce[so]))
+         magpie4::submitCalibration(paste0("CcImp_fx2_",combo[com],"_",names_sce[so]))
 
        }
      }
