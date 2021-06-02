@@ -15,8 +15,6 @@ library(magclass)
 options(warn=-1)
 # Load start_run(cfg) function which is needed to start MAgPIE runs
 source("scripts/start_functions.R")
-source("scripts/start/extra/lpjml_addon.R")
-#start MAgPIE run
 source("config/default.cfg")
 
 realization<-c("sticky_feb18")
@@ -38,9 +36,9 @@ hashes_combos<-as.character(c(#"c6f10324",
                  #"c0547439"))
                  #"669b91c3")
 
-names_sce<-c("Capital+Variable")#,"Variable")
-calib<-c("calibration_CcIm_8p5_CYGMA_UKESM_Capital+Variable_01Jun21.tgz",
-         "calibration_CcIm_8p5_CYGMA_UKESM_Variable_01Jun21.tgz")
+names_sce<-c("Capital+Variable","Variable Inputs")
+calib<-c("calibration_CcImp_fx_8p5_CYGMA_UKESM_Variable_01Jun21.tgz", #Names got messed up
+         "calibration_CcImp_fx_8p5_CYGMA_UKESM_NA_02Jun21.tgz")
 
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
@@ -54,7 +52,7 @@ for (i in realization){
           cfg<-gms::setScenario(cfg,climate[c])
 
           #configurations
-          cfg$title <- paste0("Climate_Impacts_",names_sce[so],"_",climate_names[c],"_")
+          cfg$title <- paste0("Climate_Adaptation_",names_sce[so],"_",climate_names[c],"_")
           cfg$force_download <- TRUE
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
                                 "/p/projects/landuse/users/mbacca/Additional_data_sets"=NULL),
@@ -71,6 +69,12 @@ for (i in realization){
           if(i == "sticky_feb18"){
           cfg$gms$c38_sticky_mode  <- sticky_modes[so]
            }
+
+           cfg$gms$yields                       <- "managementcalib_aug19"
+           cfg$gms$s14_yld_past_switch          <- 0.25
+           cfg$gms$processing                   <- "substitution_may21"
+           cfg$gms$crop                         <- "endo_apr21"
+           cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
 
 
          start_run(cfg,codeCheck=FALSE)
