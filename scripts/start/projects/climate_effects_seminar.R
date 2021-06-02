@@ -52,7 +52,7 @@ for (i in realization){
           cfg<-gms::setScenario(cfg,climate[c])
 
           #configurations
-          cfg$title <- paste0("Climate_Adaptation_",names_sce[so],"_",climate_names[c],"_")
+          cfg$title <- paste0("Climate_Adaptation_",names_sce[so],"_",climate_names[c],"_",combo[com])
           cfg$force_download <- TRUE
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
                                 "/p/projects/landuse/users/mbacca/Additional_data_sets"=NULL),
@@ -75,6 +75,7 @@ for (i in realization){
            cfg$gms$processing                   <- "substitution_may21"
            cfg$gms$crop                         <- "endo_apr21"
            cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
+           cfg$gms$sm_fix_cc                    <- 1995
 
 
          start_run(cfg,codeCheck=FALSE)
