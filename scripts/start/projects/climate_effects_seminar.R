@@ -37,8 +37,8 @@ hashes_combos<-as.character(c(#"c6f10324",
                  #"669b91c3")
 
 names_sce<-c("Capital+Variable","Variable Inputs")
-calib<-c("calibration_CcImp_fx_8p5_pDSSAT_UKESM_Capital+Variable_02Jun21.tgz", #Names got messed up
-         "calibration_CcImp_fx_8p5_pDSSAT_UKESM_Inputs_Variable_02Jun21.tgz")
+calib<-c("calibration_CcImp_fx2_8p5_pDSSAT_UKESM_Capital+Variable_02Jun21.tgz",
+         "calibration_CcImp_fx2_8p5_pDSSAT_UKESM_Inputs_Variable_02Jun21.tgz")
 
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
@@ -52,7 +52,7 @@ for (i in realization){
           cfg<-gms::setScenario(cfg,climate[c])
 
           #configurations
-          cfg$title <- paste0("Climate_Adaptation_",names_sce[so],"_",climate_names[c],"_",combo[com])
+          cfg$title <- paste0("Clim_Adapt_",names_sce[so],"_",climate_names[c],"_",combo[com])
           cfg$force_download <- TRUE
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
                                 "/p/projects/landuse/users/mbacca/Additional_data_sets"=NULL),
@@ -62,7 +62,7 @@ for (i in realization){
                          paste0("rev4.59SmashingPumpkins+ISIMIPyields_h12_",hashes_combos[com],"_cellularmagpie_debug.tgz"),
                         calib[so])
 
-          cfg$output <- c("rds_report")
+          cfg$output <- c("rds_report","extra/disaggregation")
 
           #Special modules
           cfg$gms$factor_costs <- i
@@ -71,11 +71,12 @@ for (i in realization){
            }
 
            cfg$gms$yields                       <- "managementcalib_aug19"
+           cfg$gms$s13_ignore_tau_historical    <- 0
            cfg$gms$s14_yld_past_switch          <- 0.25
            cfg$gms$processing                   <- "substitution_may21"
            cfg$gms$crop                         <- "endo_apr21"
+           cfg$gms$c30_marginal_land            <- "q33_marginal"
            cfg$gms$c41_initial_irrigation_area  <- "LUH2v2"
-           cfg$gms$sm_fix_cc                    <- 1995
 
 
          start_run(cfg,codeCheck=FALSE)
