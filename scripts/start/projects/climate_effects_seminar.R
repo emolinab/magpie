@@ -17,26 +17,28 @@ options(warn=-1)
 source("scripts/start_functions.R")
 source("config/default.cfg")
 
-#realization<-c("sticky_feb18")
+realization<-c("sticky_feb18")
+sticky_modes<-c("dynamic","free")
 climate<-c("cc","nocc_hist")
 climate_names<-c("cc","nocc")
-realization<-c("mixed_feb17")
-sticky_modes<-c("free")
+#realization<-c("mixed_feb17")
+#sticky_modes<-c("free")
 
 combo<-c(#"7p0_CYGMA_GFDL",
-        #"8p5_CYGMA_UKESM")
-        "8p5_pDSSAT_UKESM")
+        "8p5_CYGMA_UKESM")
+        #"8p5_pDSSAT_UKESM")
         #"8p5_EPIC_UKESM")
         #"7p0_EPIC_GFDL")
 
 hashes_combos<-as.character(c(#"c6f10324",
-                 #"e61ed473"))
-                 "256c3ab7"))
+                 "e61ed473"))
+                 #"256c3ab7"))
                  #"c0547439"))
                  #"669b91c3")
 
-names_sce<-c("Variable Inputs")
-calib<-c("calibration_CcImp_mix_8p5_pDSSAT_UKESM_Inputs_Variable_mixed_03Jun21.tgz")
+names_sce<-c("Capital+Variable","Variable_Inputs")
+calib<-c("calibration_CcImp_fx2_8p5_CYGMA_UKESM_Inputs_Variable_03Jun21.tgz",
+         "calibration_CcImp_fx2_8p5_CYGMA_UKESM_Inputs_Variable_03Jun21.tgz")
 
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
@@ -50,7 +52,7 @@ for (i in realization){
           cfg<-gms::setScenario(cfg,climate[c])
 
           #configurations
-          cfg$title <- paste0("Clim_Adapt_mix_",names_sce[so],"_",climate_names[c],"_",combo[com])
+          cfg$title <- paste0("ClimAd_",names_sce[so],"_",climate_names[c],"_",combo[com])
           cfg$force_download <- TRUE
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
                                 "/p/projects/landuse/users/mbacca/Additional_data_sets"=NULL),
