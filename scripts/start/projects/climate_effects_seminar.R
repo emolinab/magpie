@@ -18,7 +18,7 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 #sticky_modes<-c("dynamic","free")
-#climate<-c("cc","nocc_hist")
+climate<-c("cc","nocc_hist")
 climate_names<-c("cc","nocc")
 realization<-c("mixed_feb17")
 sticky_modes<-c("free")
