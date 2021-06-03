@@ -17,12 +17,11 @@ options(warn=-1)
 source("scripts/start_functions.R")
 source("config/default.cfg")
 
-realization<-c("sticky_feb18")
-sticky_modes<-c("dynamic","free")
-climate<-c("cc","nocc_hist")
+#sticky_modes<-c("dynamic","free")
+#climate<-c("cc","nocc_hist")
 climate_names<-c("cc","nocc")
-#realization<-c("mixed_feb17")
-#sticky_modes<-c("free")
+realization<-c("mixed_feb17")
+sticky_modes<-c("free")
 
 combo<-c(#"7p0_CYGMA_GFDL",
         "8p5_CYGMA_UKESM")
@@ -36,9 +35,9 @@ hashes_combos<-as.character(c(#"c6f10324",
                  #"c0547439"))
                  #"669b91c3")
 
-names_sce<-c("Capital+Variable","Variable_Inputs")
-calib<-c("calibration_CcImp_fx2_8p5_CYGMA_UKESM_Inputs_Variable_03Jun21.tgz",
-         "calibration_CcImp_fx2_8p5_CYGMA_UKESM_Inputs_Variable_03Jun21.tgz")
+names_sce<-c("Variable_Inputs_mix")
+calib<-c("calibration_CcImp_fx2_8p5_CYGMA_UKESM_Inputs_Variable_03Jun21.tgz")#,
+        # "calibration_CcImp_fx2_8p5_CYGMA_UKESM_Inputs_Variable_03Jun21.tgz")
 
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
