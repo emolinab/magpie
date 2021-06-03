@@ -25,20 +25,20 @@ climate_names<-c("cc","nocc")
 #sticky_modes<-c("")
 
 combo<-c(#"7p0_CYGMA_GFDL",
-        #"8p5_CYGMA_UKESM")
-        "8p5_pDSSAT_UKESM")
+        "8p5_CYGMA_UKESM")
+        #"8p5_pDSSAT_UKESM")
         #"8p5_EPIC_UKESM")
         #"7p0_EPIC_GFDL")
 
 hashes_combos<-as.character(c(#"c6f10324",
-                 #"e61ed473"))
-                 "256c3ab7"))
+                 "e61ed473"))
+                 #"256c3ab7"))
                  #"c0547439"))
                  #"669b91c3")
 
 names_sce<-c("Capital+Variable","Variable Inputs")
-calib<-c("calibration_CcImp_fx2_8p5_pDSSAT_UKESM_Capital+Variable_02Jun21.tgz",
-         "calibration_CcImp_fx2_8p5_pDSSAT_UKESM_Capital+Variable_02Jun21.tgz")
+calib<-c("calibration_CcImp_fx2_8p5_CYGMA_UKESM_Capital+Variable_03Jun21.tgz",
+         "calibration_CcImp_fx2_8p5_CYGMA_UKESM_Inputs_Variable_03Jun21.tgz")
 
 input<-c("additional_data_rev4.04.tgz",
                "rev4.59_h12_magpie.tgz",
