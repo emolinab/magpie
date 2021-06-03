@@ -47,7 +47,7 @@ for (i in realization){
     for (so in 1:length(sticky_modes)) {
 
           #configurations
-          cfg$title <- paste0("calib_ClIMp_fx2_",combo[com],"_",i,"_",names_sce[so])
+          cfg$title <- paste0("calib_CI_mix_",combo[com],"_",i,"_",names_sce[so])
           cfg$force_download <- TRUE
 
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
@@ -87,7 +87,7 @@ for (i in realization){
 
          start_run(cfg,codeCheck=FALSE)
 
-         magpie4::submitCalibration(paste0("CcImp_fx2_",combo[com],"_",names_sce[so]))
+         magpie4::submitCalibration(paste0("CcImp_mix_",combo[com],"_",names_sce[so]))
 
        }
      }
