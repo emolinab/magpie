@@ -36,7 +36,7 @@ hashes_combos<-as.character(c(#"c6f10324",
                  #"669b91c3")
 
 names_sce<-c("Variable_Inputs_mix")
-calib<-c("calibration_CcImp_fx2_8p5_CYGMA_UKESM_Inputs_Variable_03Jun21.tgz")#,
+calib<-c("calibration_CcImp_mix_8p5_CYGMA_UKESM_Inputs_Variable_mixed_04Jun21.tgz")#,
         # "calibration_CcImp_fx2_8p5_CYGMA_UKESM_Inputs_Variable_03Jun21.tgz")
 
 input<-c("additional_data_rev4.04.tgz",
@@ -51,7 +51,7 @@ for (i in realization){
           cfg<-gms::setScenario(cfg,climate[c])
 
           #configurations
-          cfg$title <- paste0("ClimAd_",names_sce[so],"_",climate_names[c],"_",combo[com])
+          cfg$title <- paste0("Clim_Adapt_scf_",names_sce[so],"_",climate_names[c],"_",combo[com])
           cfg$force_download <- TRUE
           cfg$repositories <- append(list("https://rse.pik-potsdam.de/data/magpie/public"=NULL,
                                 "/p/projects/landuse/users/mbacca/Additional_data_sets"=NULL),
