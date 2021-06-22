@@ -29,7 +29,7 @@ parameters
   im_physical_inactivity(t_all,iso,sex,age)          Share of population which is physically inactive (1)
   im_demography(t_all,iso,sex,age)                   Population by groups (mio. per yr)
 
-* Years where SSPs and nocc/cc scenarios diverge 
+* Years where SSPs and nocc/cc scenarios diverge
   sm_fix_SSP2			        	year until which all parameters are fixed to SSP2 values (year) / 2020 /
-  sm_fix_cc				          year until which all parameters affected by cc are fixed to historical values (year) / 2020 /
+  sm_fix_cc				          year until which all parameters affected by cc are fixed to historical values (year) / 1995 /
 ;
