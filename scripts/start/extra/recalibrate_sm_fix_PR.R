@@ -30,7 +30,7 @@ for (r in 1:length(realizations)){
       #Calibration
       cfg$results_folder <- "output/:title:"
       cfg$recalibrate <- TRUE
-      cfg$title <- paste0("calib_run_sm_fix_",r,"_",s,"_")
+      cfg$title <- paste0("calib_run_sm_fix_",realizations[r],"_",sticky_mode[r],"_")
       cfg$gms$c_timesteps <- 1
       cfg$output <- c("rds_report")
       cfg$sequential <- TRUE
@@ -62,5 +62,5 @@ for (r in 1:length(realizations)){
 
 
       start_run(cfg,codeCheck=FALSE)
-      magpie4::submitCalibration(paste0("Calib_H12_sm_fix_",r,"_",s,"_"))
+      magpie4::submitCalibration(paste0("Calib_H12_sm_fix_",realizations[r],"_",sticky_mode[r],"_"))
 }
