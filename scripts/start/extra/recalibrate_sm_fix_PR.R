@@ -37,7 +37,7 @@ for (r in 1:length(realizations)){
 
       #Addon
       # in case of recalibration, following settings should be applied
-      if (realization[r]=="mixed_feb17"){
+      if (realizations[r]=="mixed_feb17"){
       cfg$crop_calib_max                   <- 1
     }else{
       cfg$crop_calib_max                   <- 2
