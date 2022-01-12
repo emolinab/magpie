@@ -18,7 +18,7 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
-cfg$input <- c(cellular    = "rev4.65+ISIMIP_110122_8f7b9423_7760d2bb_cellularmagpie_c200_GFDL-ESM4-ssp126_lpjml-c5bacf3f.tgz",
+cfg$input <- c(cellular    = "rev4.65+ISIMIP_110122_8f7b9423_615b432c_cellularmagpie_c2000_MPI-ESM1-2-HR-ssp585_lpjml-c5bacf3f.tgz",
                regional    = "rev4.65+ISIMIP_110122_8f7b9423_magpie.tgz",
                validation  = "rev4.65+ISIMIP_110122_8f7b9423_validation.tgz",
                additional  = "additional_data_rev4.07.tgz")
