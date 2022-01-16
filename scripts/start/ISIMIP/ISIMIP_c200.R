@@ -64,7 +64,7 @@ for(s in 1:length(scenarios)){
                      regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
                      validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation",
                      additional  = "additional_data_rev4.07.tgz",
-                     calibration = "calibration_H13_ISIMIP_120122_13Jan22.tgz")
+                     calibration = "calibration_H13_ISIMIP_150122_15Jan22.tgz")
 
       cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau == 1
       cfg$gms$factor_costs<- "sticky_feb18"
