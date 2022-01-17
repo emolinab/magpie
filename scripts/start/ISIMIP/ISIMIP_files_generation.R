@@ -18,8 +18,8 @@ library(ncdf4)
 library(raster)
 
 results<-as.data.frame(read.csv("scripts/start/ISIMIP/runs_names_files.csv"))
-results_folder<-"/p/projects/magpie/data/ISIMIP/ISIMIP_14012022/model/magpie/output/c1000_1401222_ndc"
-save_path<-"/p/projects/magpie/data/ISIMIP/ISIMIP_14012022/results"
+results_folder<-"/p/projects/magpie/data/ISIMIP/ISIMIP_15012022/model/magpie/output/c1000_150122"
+save_path<-"/p/projects/magpie/data/ISIMIP/ISIMIP_15012022/results"
 
 ssps<-as.character(unique(results[,"rcp"]))
 gcms<-as.character(unique(results[,"gcm"]))
@@ -36,7 +36,7 @@ C3_Nfixing <- c("soybean","groundnut","puls_pro")
 for (s in ssps){
   for(g in gcms){
 
-  dir<-if(g!="2015soc") paste0(results_folder,"/ISIMIP_140122_ndc_",s,"_",g,"_cc_",resolution) else paste0(results_folder,"/ISIMIP_140122_ndc_",s,"_GFDL-ESM4_nocc_hist_",resolution)
+  dir<-if(g!="2015soc") paste0(results_folder,"/ISIMIP_150122_",s,"_",g,"_cc_",resolution) else paste0(results_folder,"/ISIMIP_150122_",s,"_MRI-ESM2-0_nocc_hist_",resolution)
   gdx<-paste0(dir,"/fulldata.gdx")
   path<-paste(save_path,g,s,sep="/")
 
@@ -83,42 +83,42 @@ bioenergy_grass<-write.magpie(setNames(dimSums(cropland[,,"begr"],dim=3),"bioene
 
 #### fertilizer
 
-# fer_in_reg<-setNames(readGDX(gdx,"ov50_nr_inputs")[,,"level"],"total")
-# weight_fertilizer_kcr<-NitrogenBudgetWithdrawals2(gdx,kcr="kcr",net=TRUE,level="grid",dir=dir)
-# weight_fertilizer_sum<-dimSums(weight_fertilizer_kcr,dim=3)
-# mapping<-as.data.frame(getNames(weight_fertilizer_kcr,dim=1))
-# colnames(mapping)<-"kcr"
-# mapping$total<-"total"
-#
-# fer_in_grid<-gdxAggregate(gdx,fer_in_cell_kcr,weight=weight_fertilizer_sum,to="grid",absolute=TRUE,dir=dir)
-# fer_in_grid_kcr<-toolAggregate(fer_in_grid,rel=mapping,from="total",to="kcr",weight=weight_fertilizer_kcr,dim=3)
-#
-# fer_in_grid_c3ann<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_annual],dim=3.1),"c3ann"),file_name=paste0(path,"/fertl_c3ann.nc"),file_type="nc")
-# fer_in_grid_c3per<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_perennial],dim=3.1),"c3per"),file_name=paste0(path,"/fertl_c3per.nc"),file_type="nc")
-# fer_in_grid_c3nfx<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_Nfixing],dim=3.1),"c3nfx"),file_name=paste0(path,"/fertl_c3nfx.nc"),file_type="nc")
-# fer_in_grid_c4ann<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C4_annual],dim=3.1),"c4ann"),file_name=paste0(path,"/fertl_c4ann.nc"),file_type="nc")
-# fer_in_grid_c4per<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C4_perennial],dim=3.1),"c4per"),file_name=paste0(path,"/fertl_c4per.nc"),file_type="nc")
+fer_in_reg<-setNames(readGDX(gdx,"ov50_nr_inputs")[,,"level"],"total")
+weight_fertilizer_kcr<-NitrogenBudgetWithdrawals2(gdx,kcr="kcr",net=TRUE,level="grid",dir=dir)
+weight_fertilizer_sum<-dimSums(weight_fertilizer_kcr,dim=3)
+mapping<-as.data.frame(getNames(weight_fertilizer_kcr,dim=1))
+colnames(mapping)<-"kcr"
+mapping$total<-"total"
+
+fer_in_grid<-gdxAggregate(gdx,fer_in_cell_kcr,weight=weight_fertilizer_sum,to="grid",absolute=TRUE,dir=dir)
+fer_in_grid_kcr<-toolAggregate(fer_in_grid,rel=mapping,from="total",to="kcr",weight=weight_fertilizer_kcr,dim=3)
+
+fer_in_grid_c3ann<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_annual],dim=3.1),"c3ann"),file_name=paste0(path,"/fertl_c3ann.nc"),file_type="nc")
+fer_in_grid_c3per<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_perennial],dim=3.1),"c3per"),file_name=paste0(path,"/fertl_c3per.nc"),file_type="nc")
+fer_in_grid_c3nfx<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_Nfixing],dim=3.1),"c3nfx"),file_name=paste0(path,"/fertl_c3nfx.nc"),file_type="nc")
+fer_in_grid_c4ann<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C4_annual],dim=3.1),"c4ann"),file_name=paste0(path,"/fertl_c4ann.nc"),file_type="nc")
+fer_in_grid_c4per<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C4_perennial],dim=3.1),"c4per"),file_name=paste0(path,"/fertl_c4per.nc"),file_type="nc")
 
 #### FAST NOT SO DETAILED DISAGGREGATION
- fer_in_reg<-setNames(readGDX(gdx,"ov50_nr_inputs")[,,"level"],"total")
- weight_fertilizer_kcr<-NitrogenBudgetWithdrawals(gdx,kcr="kcr",net=TRUE,level="reg")
- mapping<-as.data.frame(getNames(weight_fertilizer_kcr,dim=1))
- colnames(mapping)<-"kcr"
- mapping$total<-"total"
-
- fer_in_kcr<-toolAggregate(fer_in_reg,rel=mapping,from="total",to="kcr",weight=weight_fertilizer_kcr,dim=3)
-
- cropland_weight<-dimSums(cropland,dim=3.2)
- mapping<-readRDS(paste0(dir,"/clustermap_rev4.64+ISIMIP_300921_noDeb_c500_h12.rds"))
- fer_in_grid_kcr<-toolAggregate(fer_in_kcr,rel=mapping,from="region",to="cell",weight=cropland_weight,dim=1)
-
-
- fer_in_grid_c3ann<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_annual],dim=3.1),"c3ann"),file_name=paste0(path,"/fertl_c3ann.nc"),file_type="nc")
- fer_in_grid_c3per<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_perennial],dim=3.1),"c3per"),file_name=paste0(path,"/fertl_c3per.nc"),file_type="nc")
- fer_in_grid_c3nfx<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_Nfixing],dim=3.1),"c3nfx"),file_name=paste0(path,"/fertl_c3nfx.nc"),file_type="nc")
- fer_in_grid_c4ann<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C4_annual],dim=3.1),"c4ann"),file_name=paste0(path,"/fertl_c4ann.nc"),file_type="nc")
- fer_in_grid_c4per<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C4_perennial],dim=3.1),"c4per"),file_name=paste0(path,"/fertl_c4per.nc"),file_type="nc")
-
+ # fer_in_reg<-setNames(readGDX(gdx,"ov50_nr_inputs")[,,"level"],"total")
+ # weight_fertilizer_kcr<-NitrogenBudgetWithdrawals(gdx,kcr="kcr",net=TRUE,level="reg")
+ # mapping<-as.data.frame(getNames(weight_fertilizer_kcr,dim=1))
+ # colnames(mapping)<-"kcr"
+ # mapping$total<-"total"
+ #
+ # fer_in_kcr<-toolAggregate(fer_in_reg,rel=mapping,from="total",to="kcr",weight=weight_fertilizer_kcr,dim=3)
+ #
+ # cropland_weight<-dimSums(cropland,dim=3.2)
+ # mapping<-readRDS(paste0(dir,"/clustermap_rev4.64+ISIMIP_300921_noDeb_c500_h12.rds"))
+ # fer_in_grid_kcr<-toolAggregate(fer_in_kcr,rel=mapping,from="region",to="cell",weight=cropland_weight,dim=1)
+ #
+ #
+ # fer_in_grid_c3ann<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_annual],dim=3.1),"c3ann"),file_name=paste0(path,"/fertl_c3ann.nc"),file_type="nc")
+ # fer_in_grid_c3per<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_perennial],dim=3.1),"c3per"),file_name=paste0(path,"/fertl_c3per.nc"),file_type="nc")
+ # fer_in_grid_c3nfx<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C3_Nfixing],dim=3.1),"c3nfx"),file_name=paste0(path,"/fertl_c3nfx.nc"),file_type="nc")
+ # fer_in_grid_c4ann<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C4_annual],dim=3.1),"c4ann"),file_name=paste0(path,"/fertl_c4ann.nc"),file_type="nc")
+ # fer_in_grid_c4per<-write.magpie(setNames(dimSums(fer_in_grid_kcr[,,C4_perennial],dim=3.1),"c4per"),file_name=paste0(path,"/fertl_c4per.nc"),file_type="nc")
+ #
 
   }
 }
