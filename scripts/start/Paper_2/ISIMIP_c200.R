@@ -18,32 +18,31 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 cfg$force_download <- TRUE
-dir.create("output/c200_ggcms_091121")
-cfg$results_folder <- "output/c200_ggcms_091121/:title:"
+dir.create("output/c200_ggcms_180122")
+cfg$results_folder <- "output/c200_ggcms_180122/:title:"
 
 #the high resolution can be adjusted in the output script "highres.R"
-cfg$output <- c("rds_report")#,"extra/disaggregation")
+cfg$output <- c("rds_report","extra/disaggregation")
 
 scenarios<-c("ssp126",
-             #"ssp370",
              "ssp585"
            )
 
 SSP <- c("SSP1",
-         #"SSP3",
          "SSP5"
        )
 
 gcms<-c("GFDL-ESM4",
         "MRI-ESM2-0",
         "UKESM1-0-LL",
-       "MPI-ESM1-2-HR",
+        "MPI-ESM1-2-HR",
         "IPSL-CM6A-LR"
       )
 
 ggcms<-c("EPIC-IIASA",
-         "pDSSAT"#,
-         #"LPjmL"
+         "pDSSAT",
+         "LPjmL",
+         "CYGMA1p74"
        )
 
 bioen_ghg<-list()
@@ -59,7 +58,7 @@ cfg$gms$sm_fix_SSP2 <-2015
 for (gg in ggcms){
 for(s in 1:length(scenarios)){
   for(g in 1:length(gcms)){
-    climate<-if(gcms[g]=="MRI-ESM2-0") c("cc","nocc_hist") else c("cc")
+    climate<-if(gcms[g]=="MRI-ESM2-0" & gg=="LPjmL") c("cc","nocc_hist") else c("cc")
     for(c in 1:length(climate)){
 
       cfg <- gms::setScenario(cfg,c(climate[c],SSP[s],"NDC"))
@@ -67,17 +66,17 @@ for(s in 1:length(scenarios)){
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==scenarios[s] & gcm==gcms[g] & resolution == "c200" & ggcm==gg)[1,"name_tgz"]),
                      #cellular    = "rev4.64+ISIMIP_11102021_h12_23d4d8fb_cellularmagpie_c200_MRI-ESM2-0-ssp585_lpjml-e8ab65dd.tgz",
-                     regional    = "rev4.64+ISIMIP_291021_h12_magpie.tgz",
-                     validation  = "rev4.64+ISIMIP_291021_h12_validation.tgz",
-                     additional  = "additional_data_rev4.04.tgz",
-                     calibration = "calibration_H12_sticky_feb18_dynamic_15Oct21.tgz")
+                     regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
+                     validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation",
+                     additional  = "additional_data_rev4.07.tgz",
+                     calibration = "calibration_H13_ISIMIP_150122_15Jan22.tgz")
 
       cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau == 1
       cfg$gms$factor_costs<- "sticky_feb18"
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("Paper_09112021_gg",gg,scenarios[s],gcms[g],climate[c],sep="_")
+      cfg$title <- paste("Paper_180122_gg",gg,scenarios[s],gcms[g],climate[c],sep="_")
 
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[scenarios[s]]]
