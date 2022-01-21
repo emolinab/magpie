@@ -29,9 +29,9 @@ resolution<-"c1000"
 
 ##### Mapping
 C4_annual <- c("maiz","trce")
-C4_perennial <- c("sugr_cane","begr")
+C4_perennial <- c("sugr_cane")#,"begr")
 C3_annual <- c("tece","rice_pro","rapeseed","sunflower","potato","cassav_sp","sugr_beet","others","cottn_pro","foddr")
-C3_perennial <- c("oilpalm","betr")
+C3_perennial <- c("oilpalm")#,"betr")
 C3_Nfixing <- c("soybean","groundnut","puls_pro")
 
 

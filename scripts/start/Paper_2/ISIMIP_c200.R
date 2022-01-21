@@ -18,8 +18,8 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 cfg$force_download <- TRUE
-dir.create("output/c200_ggcms_180122")
-cfg$results_folder <- "output/c200_ggcms_180122/:title:"
+dir.create("output/c200_ggcms_210122")
+cfg$results_folder <- "output/c200_ggcms_210122/:title:"
 
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report","extra/disaggregation")
@@ -50,6 +50,12 @@ bioen_ghg[["ssp126"]]<-"R21M42-SSP1-PkBudg1300"
 bioen_ghg[["ssp585"]]<-"R21M42-SSP5-NPI"
 bioen_ghg[["ssp370"]]<-"R21M42-SSP2-NPI"
 
+mit<-list()
+mit[["ssp126"]]<-"NDC"
+mit[["ssp585"]]<-"NPI"
+mit[["SSP370"]]<-"NPI"
+
+
 cell_input<-as.data.frame(read.csv("scripts/start/Paper_2/tgz_info_gg.csv"))
 
 cfg$gms$sm_fix_cc <- 2015
@@ -76,7 +82,7 @@ for(s in 1:length(scenarios)){
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("Paper_180122_gg",gg,scenarios[s],gcms[g],climate[c],sep="_")
+      cfg$title <- paste("Paper_210122_gg",gg,scenarios[s],gcms[g],climate[c],sep="_")
 
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[scenarios[s]]]
