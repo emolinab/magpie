@@ -29,7 +29,7 @@ scenarios<-c(#"ssp126",
              "ssp585"
            )
 
-SSP <- c("SSP1",
+SSP <- c(#"SSP1",
          "SSP3",
          "SSP5"
        )
