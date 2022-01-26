@@ -25,8 +25,8 @@ cfg$results_folder <- "output/c200_260122/:title:"
 cfg$output <- c("rds_report")#,"extra/disaggregation")
 
 scenarios<-c("ssp126",
-             "ssp370",
-             "ssp585"
+             "ssp370"#,
+#             "ssp585"
            )
 
 SSP <- c("SSP1",
@@ -49,7 +49,7 @@ bioen_ghg[["ssp370"]]<-"R21M42-SSP2-NPI"
 mit<-list()
 mit[["ssp126"]]<-"ndc"
 mit[["ssp585"]]<-"npi"
-mit[["SSP370"]]<-"npi"
+mit[["ssp370"]]<-"npi"
 
 cell_input<-as.data.frame(read.csv("scripts/start/ISIMIP/tgz_info.csv"))
 
