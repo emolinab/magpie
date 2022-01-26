@@ -18,8 +18,8 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 cfg$force_download <- TRUE
-dir.create("output/c200_ggcms_210122")
-cfg$results_folder <- "output/c200_ggcms_210122/:title:"
+dir.create("output/c200_ggcms_260122")
+cfg$results_folder <- "output/c200_ggcms_260122/:title:"
 
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report","extra/disaggregation")
@@ -67,7 +67,7 @@ for(s in 1:length(scenarios)){
     climate<-if(gcms[g]=="MRI-ESM2-0" & gg=="LPjmL") c("cc","nocc_hist") else c("cc")
     for(c in 1:length(climate)){
 
-      cfg <- gms::setScenario(cfg,c(climate[c],SSP[s],"NDC"))
+      cfg <- gms::setScenario(cfg,c(climate[c],SSP[s]))
 
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==scenarios[s] & gcm==gcms[g] & resolution == "c200" & ggcm==gg)[1,"name_tgz"]),
@@ -82,7 +82,7 @@ for(s in 1:length(scenarios)){
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("Paper_210122_gg",gg,scenarios[s],gcms[g],climate[c],sep="_")
+      cfg$title <- paste("Paper_260122_gg",gg,scenarios[s],gcms[g],climate[c],sep="_")
 
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[scenarios[s]]]
@@ -90,6 +90,11 @@ for(s in 1:length(scenarios)){
       cfg$gms$c60_2ndgen_biodem <- bioen_ghg[[scenarios[s]]]
       cfg$gms$c60_2ndgen_biodem_noselect <- bioen_ghg[[scenarios[s]]]
 
+      cfg$gms$c32_aff_policy<-mit[[scenarios[s]]]
+      cfg$gms$c35_aolc_policy<-mit[[scenarios[s]]]
+      cfg$gms$c35_ad_policy<-mit[[scenarios[s]]]
+
+      cfg$recalc_npi_ndc <- TRUE
 
       #cfg <- gms::setScenario(cfg,"BASE")
       start_run(cfg,codeCheck=FALSE)

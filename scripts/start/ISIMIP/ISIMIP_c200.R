@@ -18,8 +18,8 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 cfg$force_download <- TRUE
-dir.create("output/c200_210122")
-cfg$results_folder <- "output/c200_210122/:title:"
+dir.create("output/c200_260122")
+cfg$results_folder <- "output/c200_260122/:title:"
 
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report")#,"extra/disaggregation")
@@ -47,9 +47,9 @@ bioen_ghg[["ssp585"]]<-"R21M42-SSP5-NPI"
 bioen_ghg[["ssp370"]]<-"R21M42-SSP2-NPI"
 
 mit<-list()
-mit[["ssp126"]]<-"NDC"
-mit[["ssp585"]]<-"NPI"
-mit[["SSP370"]]<-"NPI"
+mit[["ssp126"]]<-"ndc"
+mit[["ssp585"]]<-"npi"
+mit[["SSP370"]]<-"npi"
 
 cell_input<-as.data.frame(read.csv("scripts/start/ISIMIP/tgz_info.csv"))
 
@@ -61,7 +61,7 @@ for(s in 1:length(scenarios)){
     climate<-if(gcms[g]=="MRI-ESM2-0") c("cc","nocc_hist") else c("cc")
     for(c in 1:length(climate)){
 
-      cfg <- gms::setScenario(cfg,c(climate[c],SSP[s],mit[[scenarios[s]]]))
+      cfg <- gms::setScenario(cfg,c(climate[c],SSP[s]))
 
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==scenarios[s] & gcm==gcms[g] & resolution == "c200")[1,"name_tgz"]),
@@ -76,7 +76,7 @@ for(s in 1:length(scenarios)){
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("ISIMIP_210122",scenarios[s],gcms[g],climate[c],sep="_")
+      cfg$title <- paste("ISIMIP_260122",scenarios[s],gcms[g],climate[c],sep="_")
 
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[scenarios[s]]]
@@ -84,6 +84,11 @@ for(s in 1:length(scenarios)){
       cfg$gms$c60_2ndgen_biodem <- bioen_ghg[[scenarios[s]]]
       cfg$gms$c60_2ndgen_biodem_noselect <- bioen_ghg[[scenarios[s]]]
 
+      cfg$gms$c32_aff_policy<-mit[[scenarios[s]]]
+      cfg$gms$c35_aolc_policy<-mit[[scenarios[s]]]
+      cfg$gms$c35_ad_policy<-mit[[scenarios[s]]]
+
+      cfg$recalc_npi_ndc <- TRUE
 
       #cfg <- gms::setScenario(cfg,"BASE")
       start_run(cfg,codeCheck=FALSE)
