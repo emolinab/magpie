@@ -125,9 +125,9 @@ for(re in resolution){
       write.magpie(round(f21_trade_balance,6),paste0("modules/21_trade/input/f21_trade_balance.cs3"))
 
       #cfg <- gms::setScenario(cfg,"BASE")
-      cfg$gms$c32_aff_policy<-mit[[scenarios[s]]]
-      cfg$gms$c35_aolc_policy<-mit[[scenarios[s]]]
-      cfg$gms$c35_ad_policy<-mit[[scenarios[s]]]
+      cfg$gms$c32_aff_policy<-mit[[rcp]]
+      cfg$gms$c35_aolc_policy<-mit[[rcp]]
+      cfg$gms$c35_ad_policy<-mit[[rcp]]
 
       cfg$recalc_npi_ndc <- TRUE
 
