@@ -24,12 +24,12 @@ cfg$results_folder <- "output/c200_260122/:title:"
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report")#,"extra/disaggregation")
 
-scenarios<-c(#"ssp126",
+scenarios<-c("ssp126",
              "ssp370",
              "ssp585"
            )
 
-SSP <- c(#"SSP1",
+SSP <- c("SSP1",
          "SSP3",
          "SSP5"
        )
