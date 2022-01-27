@@ -78,7 +78,7 @@ for(re in resolution){
   for (ru in 1:length(runs)){
 
   dir.create("output/",re)
-  cfg$results_folder <- paste0("output/",re,"_270122/:title:")
+  cfg$results_folder <- paste0("output/",re,"_260122/:title:")
 
 
   for (s in scenarios){
@@ -110,7 +110,7 @@ for(re in resolution){
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("ISIMIP_270122_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+      cfg$title <- paste("ISIMIP_260122_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[rcp_re[ru]]]
       cfg$gms$c56_pollutant_prices_noselect <- bioen_ghg[[rcp_re[ru]]]
@@ -118,7 +118,7 @@ for(re in resolution){
       cfg$gms$c60_2ndgen_biodem_noselect <- bioen_ghg[[rcp_re[ru]]]
 
       #get trade pattern from low resolution run with c200
-      gdx<-paste0("output/c200_270122/",as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),"/fulldata.gdx")
+      gdx<-paste0("output/c200_260122/",as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),"/fulldata.gdx")
       ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
       ov_supply <- readGDX(gdx,"ov_supply",select=list(type="level"))
       f21_trade_balance <- ov_prod_reg - ov_supply
@@ -130,7 +130,7 @@ for(re in resolution){
       cfg$gms$c35_ad_policy<-mit[[scenarios[s]]]
 
       cfg$recalc_npi_ndc <- TRUE
-      
+
       #parallel
       cfg$gms$trade <- "exo"
       cfg$gms$optimization <- "nlp_par"
