@@ -24,25 +24,28 @@ cfg$results_folder <- "output/c200_ggcms_260122/:title:"
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report","extra/disaggregation")
 
-scenarios<-c("ssp126",
-             "ssp585"
+scenarios<-c(#"ssp126",
+             #"ssp585"
+             "ssp370"
+
            )
 
-SSP <- c("SSP1",
-         "SSP5"
+SSP <- c(#"SSP1",
+         #"SSP5"
+         "SSP3"
        )
 
 gcms<-c("GFDL-ESM4",
-        "MRI-ESM2-0",
-        "UKESM1-0-LL",
-        "MPI-ESM1-2-HR",
-        "IPSL-CM6A-LR"
+        #"MRI-ESM2-0",
+        "UKESM1-0-LL"#,
+        #"MPI-ESM1-2-HR",
+        #"IPSL-CM6A-LR"
       )
 
-ggcms<-c("EPIC-IIASA",
-         "pDSSAT",
-         "LPjmL",
-         "CYGMA1p74"
+ggcms<-c(#"EPIC-IIASA",
+         #"pDSSAT",
+         "LPjmL"#,
+         #"CYGMA1p74"
        )
 
 bioen_ghg<-list()
@@ -64,7 +67,7 @@ cfg$gms$sm_fix_SSP2 <-2015
 for (gg in ggcms){
 for(s in 1:length(scenarios)){
   for(g in 1:length(gcms)){
-    climate<-if(gcms[g]=="MRI-ESM2-0" & gg=="LPjmL") c("cc","nocc_hist") else c("cc")
+    climate<-if(gcms[g]=="GFDL-ESM4" & gg=="LPjmL") c("cc","nocc_hist") else c("cc")
     for(c in 1:length(climate)){
 
       cfg <- gms::setScenario(cfg,c(climate[c],SSP[s]))

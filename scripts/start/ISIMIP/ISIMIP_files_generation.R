@@ -19,8 +19,8 @@ library(raster)
 library(madrat)
 
 results<-as.data.frame(read.csv("scripts/start/ISIMIP/runs_names_files.csv"))
-results_folder<-"/p/projects/magpie/data/ISIMIP/ISIMIP_15012022/model/magpie/output/c1000_150122"
-save_path<-"/p/projects/magpie/data/ISIMIP/ISIMIP_15012022/results"
+results_folder<-"/p/projects/magpie/data/ISIMIP/ISIMIP_26012022/model/magpie/output/c1000_260122"
+save_path<-"/p/projects/magpie/data/ISIMIP/ISIMIP_26012022/ISIMIP-Output/"
 
 ssps<-as.character(unique(results[,"rcp"]))
 gcms<-as.character(unique(results[,"gcm"]))
@@ -37,10 +37,10 @@ C3_Nfixing <- c("soybean","groundnut","puls_pro")
 
 
 for (s in ssps){
-  gcms2<- if (s == "ssp126") gcms[gcms!="GFDL-ESM4"] else gcms
+  gcms2<- if (s == "ssp126") gcms[gcms=="2015soc"] else gcms
   for(g in gcms2){
-
-  dir<-if(g!="2015soc") paste0(results_folder,"/ISIMIP_150122_ndc_",s,"_",g,"_cc_",resolution) else paste0(results_folder,"/ISIMIP_150122_ndc_",s,"_MRI-ESM2-0_nocc_hist_",resolution)
+#  for(g in gcms){
+      dir<-if(g!="2015soc") paste0(results_folder,"/ISIMIP_260122__",s,"_",g,"_cc_",resolution) else paste0(results_folder,"/ISIMIP_260122__",s,"_MRI-ESM2-0_nocc_hist_",resolution)
   gdx<-paste0(dir,"/fulldata.gdx")
   path<-paste(save_path,g,s,sep="/")
 
