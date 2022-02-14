@@ -17,6 +17,7 @@ library(luscale)
 library(ncdf4)
 library(raster)
 library(madrat)
+library(mrcommons)
 
 results<-as.data.frame(read.csv("scripts/start/ISIMIP/runs_names_files.csv"))
 results_folder<-"/p/projects/magpie/data/ISIMIP/ISIMIP_26012022/model/magpie/output/c1000_260122"
