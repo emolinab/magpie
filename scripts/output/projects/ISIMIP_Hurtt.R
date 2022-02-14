@@ -203,7 +203,7 @@ states <- mbind(dimSums(crop_hr_shr_LUH2_FAO,dim=3.2),
 
 rm(avl_land_full,past_range_hr_shr,forestry_hr_shr,other_hr_shr)
 gc()
-saveRDS(states,"states.rds")
+saveRDS(states,paste0(out_dir,"states.rds"))
 gc()
 states <- convertLUH2(states)
 gc()
@@ -296,10 +296,10 @@ if(file.exists(file.path(outputdir,"NitrogenBudget.rds")) & file.exists(file.pat
 } else {
   #read-in NR budget in mio t N
   a <- NitrogenBudget(gdx,level="grid",dir = outputdir)
-  saveRDS(a,file.path(outputdir,"NitrogenBudget.rds"))
+  saveRDS(a,paste0(out_dir,"NitrogenBudget.rds"))
   #read-in crop specific weight
   weight_kr <- NitrogenBudgetWithdrawals(gdx,kcr="kcr",level="grid",net=TRUE,dir=outputdir)
-  saveRDS(weight_kr,file.path(outputdir,"NitrogenBudgetWeight.rds"))
+  saveRDS(weight_kr,paste0(out_dir,"NitrogenBudgetWeight.rds"))
 }
 #Rename and aggregate crop types in weight from MAgPIE to LUH2
 #weight <- madrat::toolAggregate(weight, map_crops, from="MAgPIE", to="LUH2",dim = 3.1)
