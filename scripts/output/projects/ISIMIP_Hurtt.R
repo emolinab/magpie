@@ -39,7 +39,7 @@ land_total<-land(gdx,level="grid",dir=dir)
 #cropland_total<-croparea(gdx,level="grid",products="kcr",product_aggr=FALSE,water_aggr=FALSE,dir=dir)
 
 #### Saving results
-save_path<-"/p/projects/magpie/transfers/ISIMIP_Hertt_Harm"
+save_path<-"/p/projects/magpie/transfers/ISIMIP_Hurtt_Harm"
 scenarios<-c("ssp126", "ssp370", "ssp585")
 
 gcms<-c("GFDL-ESM4","MRI-ESM2-0","UKESM1-0-LL","MPI-ESM1-2-HR","IPSL-CM6A-LR")
@@ -207,7 +207,7 @@ saveRDS(states,"states.rds")
 gc()
 states <- convertLUH2(states)
 gc()
-write.magpie(states,file.path(out_dir,"LUH2_states.nc"),comment = "unit: fraction of grid-cell area")
+write.magpie(states,paste0(out_dir,"LUH2_states.nc"),comment = "unit: fraction of grid-cell area")
 rm(states)
 gc()
 
