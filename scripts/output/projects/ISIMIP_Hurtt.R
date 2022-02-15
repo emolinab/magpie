@@ -200,7 +200,7 @@ states <- mbind(dimSums(crop_hr_shr_LUH2_FAO,dim=3.2),
 
 rm(avl_land_full,past_range_hr_shr,forestry_hr_shr,other_hr_shr)
 gc()
-saveRDS(states,paste0(out_dir,"/states.rds"))
+saveRDS(states,paste0(outputdir,"/states.rds"))
 gc()
 states <- convertLUH2(states)
 gc()
@@ -225,6 +225,63 @@ write.magpie(b,paste0(out_dir,"/LUH2_protected_area.nc"),comment = "unit: fracti
 rm(b)
 gc()
 
+
+####### ONLY DYNAMIC FORESTRY ON#############
+
+#### Wood
+land_lr <- madrat::toolAggregate(dimSums(land_hr,dim=3), map_file, from = "cell",to = "cluster")
+
+### Wood: Harvested Area
+a <- harvested_area_timber(gdx,level = "cell")
+b <- a / land_lr
+b <- madrat::toolAggregate(b, map_file, from = "cluster",to = "cell")
+luh2 <- data.frame(matrix(nrow=4,ncol=2))
+names(luh2) <- c("LUH2","MAgPIE")
+luh2[1,] <- c("timber_harv","Forestry")
+luh2[2,] <- c("primf_harv","Primary forest")
+luh2[3,] <- c("secdf_harv","Secondary forest")
+luh2[4,] <- c("primn_secdn_harv","Other land")
+b <- madrat::toolAggregate(b, luh2, from="MAgPIE", to="LUH2",dim = 3)
+gc()
+b <- convertLUH2(b)
+gc()
+write.magpie(b,file.path(outputdir,"LUH2_wood_harvest_area.nc"),comment = "unit: fraction of grid-cell area per year")
+rm(a,b)
+gc()
+
+
+### Wood: Yields
+a <- ForestYield(gdx,level="cell")
+b <- madrat::toolAggregate(a, map_file, from = "cluster",to = "cell")
+luh2 <- data.frame(matrix(nrow=4,ncol=2))
+names(luh2) <- c("LUH2","MAgPIE")
+luh2[1,] <- c("timber_bioh","Forestry")
+luh2[2,] <- c("primf_bioh","Primary forest")
+luh2[3,] <- c("secdf_bioh","Secondary forest")
+luh2[4,] <- c("primn_secdn_bioh","Other land")
+b <- madrat::toolAggregate(b, luh2, from="MAgPIE", to="LUH2",dim = 3)
+gc()
+b <- convertLUH2(b)
+gc()
+write.magpie(b,file.path(outputdir,"LUH2_wood_harvest_yields.nc"),comment = "unit: m3 per ha per year")
+rm(a,b)
+gc()
+
+
+### Wood: Harvested Biomass Product Split
+b <- TimberProductionVolumetric(gdx,level = "cell",sumSource = FALSE,sumProduct = FALSE)
+b <- dimSums(b,dim=3.1)
+b <- b/dimSums(b,dim=3)
+getNames(b) <- c("rndwd","fulwd")
+b <- madrat::toolAggregate(b, map_file, from = "cluster",to = "cell")
+b <- convertLUH2(b)
+gc()
+write.magpie(b,file.path(outputdir,"LUH2_wood_harvest_biomass_split.nc"),comment = "unit: fraction of wood harvest biomass")
+rm(b)
+gc()
+
+
+####### ONLY DYNAMIC FORESTRY ON#############
 
 ### Irrigation
 irrig_hr_shr <- collapseNames(crop_hr_shr_LUH2_FAO[,,"irrigated"],collapsedim = 3.2)
@@ -286,16 +343,16 @@ crop_hr_ir <- collapseNames(crop[,,"irrigated"],collapsedim = 3.2)
 crop_hr_ir_shr <- collapseNames(crop_hr_shr_LUH2_FAO[,,"irrigated"])
 
 ### Nitrogen fertilizer
-if(file.exists(paste0(out_dir,"/NitrogenBudget.rds")) & file.exists(paste0(out_dir,"/NitrogenBudgetWeight.rds"))) {
-  a <- readRDS(paste0(out_dir,"/NitrogenBudget.rds"))
-  weight_kr <- readRDS(paste0(out_dir,"/NitrogenBudgetWeight.rds"))
+if(file.exists(paste0(outputdir,"/NitrogenBudget.rds")) & file.exists(paste0(outputdir,"/NitrogenBudgetWeight.rds"))) {
+  a <- readRDS(paste0(outputdir,"/NitrogenBudget.rds"))
+  weight_kr <- readRDS(paste0(outputdir,"/NitrogenBudgetWeight.rds"))
 } else {
   #read-in NR budget in mio t N
   a <- NitrogenBudget(gdx,level="grid",dir = outputdir)
-  saveRDS(a,paste0(out_dir,"/NitrogenBudget.rds"))
+  saveRDS(a,paste0(outputdir,"/NitrogenBudget.rds"))
   #read-in crop specific weight
   weight_kr <- NitrogenBudgetWithdrawals(gdx,kcr="kcr",level="grid",net=TRUE,dir=outputdir)
-  saveRDS(weight_kr,paste0(out_dir,"/NitrogenBudgetWeight.rds"))
+  saveRDS(weight_kr,paste0(outputdir,"/NitrogenBudgetWeight.rds"))
 }
 #Rename and aggregate crop types in weight from MAgPIE to LUH2
 #weight <- madrat::toolAggregate(weight, map_crops, from="MAgPIE", to="LUH2",dim = 3.1)

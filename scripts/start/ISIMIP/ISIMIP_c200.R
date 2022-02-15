@@ -61,7 +61,7 @@ for(s in 1:length(scenarios)){
     climate<-if(gcms[g]=="MRI-ESM2-0") c("cc","nocc_hist") else c("cc")
     for(c in 1:length(climate)){
 
-      cfg <- gms::setScenario(cfg,c(climate[c],SSP[s]))
+      cfg <- gms::setScenario(cfg,c(climate[c],SSP[s],"ForestryEndo"))
 
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==scenarios[s] & gcm==gcms[g] & resolution == "c200")[1,"name_tgz"]),
@@ -89,6 +89,8 @@ for(s in 1:length(scenarios)){
       cfg$gms$c35_ad_policy<-mit[[scenarios[s]]]
 
       cfg$recalc_npi_ndc <- TRUE
+
+
 
       #cfg <- gms::setScenario(cfg,"BASE")
       start_run(cfg,codeCheck=FALSE)
