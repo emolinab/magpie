@@ -35,8 +35,6 @@ if (!file.exists(file.path(outputdir,"cell.land_0.5.mz"))) stop('No disaggrated 
 
 ### Total land and cropland
 dir<-outputdir
-land_total<-land(gdx,level="grid",dir=dir)
-#cropland_total<-croparea(gdx,level="grid",products="kcr",product_aggr=FALSE,water_aggr=FALSE,dir=dir)
 
 #### Saving results
 save_path<-"/p/projects/magpie/transfers/ISIMIP_Hurtt_Harm"
@@ -67,15 +65,14 @@ convertLUH2 <- function(x) {
   #interpolate years
   years <- getYears(x,as.integer = TRUE)
   x <- toolFillYears(x,seq(range(years)[1],range(years)[2],by=1))
-  x1<-as.RasterBrick(x[,1995:2016,])
-  x2<-as.RasterBrick(x[,2017:2028,])
-  x3<-as.RasterBrick(x[,2029:2060,])
-  x4<-as.RasterBrick(x[,2061:2082,])
-  x5<-as.RasterBrick(x[,2083:2100,])
-  #convert from magclass to raster object
-  x<-stack(x1,x2,x3,x4,x5)
+
+
+  for(n in seq(1995,2085,15)){
+      x_1<- if(n==1995) as.RasterBrick(x[,n:(n+15),]) else  as.RasterBrick(x[,(n+1):(n+15),])
+      x_aux<- if(n==1995) x_1 else stack(x_aux,x_1)
+  }
   #re-project raster from 0.5 to 0.25 degree
-  x <- suppressWarnings(projectRaster(x,raster(res=c(0.25,0.25)),method = "ngb"))
+  x <- suppressWarnings(projectRaster(x_aux,raster(res=c(0.25,0.25)),method = "ngb"))
   return(x)
 
 }
@@ -171,11 +168,11 @@ avl_land_full_his <- read.magpie(land_hr_file)
 past_range <- c("past","range")
 past_range_his_shr <- avl_land_full_his[,,past_range]/dimSums(avl_land_full_his[,,past_range],dim=3)
 past_range_his_shr[!is.finite(past_range_his_shr)] <- 0.5
-past_range_hr_shr<- new.magpie(cells_and_regions=getCells(past_range_his_shr),years=getYears(land_total),
+past_range_hr_shr<- new.magpie(cells_and_regions=getCells(past_range_his_shr),years=getYears(land_hr),
                      names=past_range)
-past_range_land<- new.magpie(cells_and_regions=getCells(past_range_his_shr),years=getYears(land_total),
+past_range_land<- new.magpie(cells_and_regions=getCells(past_range_his_shr),years=getYears(land_hr),
                       names=past_range)
-past_range_land[,getYears(past_range_his_shr),]<-past_range_his_shr*land_total[,getYears(past_range_his_shr),"past"]
+past_range_land[,getYears(past_range_his_shr),]<-past_range_his_shr*land_hr[,getYears(past_range_his_shr),"past"]
 range_land_2015<-setYears(past_range_land[,2015,"range"],NULL)
 past_range_land[,-(1:5),"range"]<-range_land_2015[,,"range"]
 past_range_land[,-(1:5),"past"]<-land_hr[,-(1:5),"past"]-setNames(range_land_2015,NULL)
@@ -203,11 +200,11 @@ states <- mbind(dimSums(crop_hr_shr_LUH2_FAO,dim=3.2),
 
 rm(avl_land_full,past_range_hr_shr,forestry_hr_shr,other_hr_shr)
 gc()
-saveRDS(states,paste0(out_dir,"states.rds"))
+saveRDS(states,paste0(out_dir,"/states.rds"))
 gc()
 states <- convertLUH2(states)
 gc()
-write.magpie(states,paste0(out_dir,"LUH2_states.nc"),comment = "unit: fraction of grid-cell area")
+write.magpie(states,paste0(out_dir,"/LUH2_states.nc"),comment = "unit: fraction of grid-cell area")
 rm(states)
 gc()
 
@@ -225,14 +222,14 @@ gc()
 b <- convertLUH2(b)
 gc()
 write.magpie(b,paste0(out_dir,"/LUH2_protected_area.nc"),comment = "unit: fraction of grid-cell")
-rm(a,b)
+rm(b)
 gc()
 
 
 ### Irrigation
 irrig_hr_shr <- collapseNames(crop_hr_shr_LUH2_FAO[,,"irrigated"],collapsedim = 3.2)
 getNames(irrig_hr_shr) <- paste("irrig",getNames(irrig_hr_shr),sep="_")
-irrig_hr_shr <- irrig_hr_shr/(land_hr_shr[,,"crop"])
+irrig_hr_shr <- collapseNames(irrig_hr_shr/(land_hr_shr[,,"crop"]))
 irrig_hr_shr[!is.finite(irrig_hr_shr)]<-0
 d <- dimSums(irrig_hr_shr*dimSums(land_hr[,,"crop"],dim=3),dim=c(1,3))-croparea(gdx,level="glo",product_aggr = T,water_aggr = FALSE)[,,"irrigated"]
 if (any(abs(d) > 0.1 )) message(paste0("Difference between cluster and grid cell production > 0.1 detected!"))
@@ -260,20 +257,19 @@ bio_hr_shr <- dimSums(crop_hr_shr[,,c("begr","betr")],dim=3.2)
 getNames(bio_hr_shr,dim=1) <- c("c4per","c3per")
 bio_hr_shr <- bio_hr_shr / dimSums(crop_hr_shr_LUH2_FAO[,,c("c4per","c3per")],dim=3.2)
 bio_hr_shr[!is.finite(bio_hr_shr)]<-0
-getNames(bio_hr_shr,dim=1) <- c("crpbf_c4per","crpbf_c3per")
-d<-dimSums(setNames(bio_hr_shr[,,c("c4per","c3per")])*dimSums(crop_hr_shr_LUH2_FAO[,,c("c4per","c3per")],dim=3.2)*dimSums(land_hr,dim=3),dim=c(1,3))-croparea(gdx,level="glo",products = c("begr","betr"),product_aggr = T)
+d<-dimSums((bio_hr_shr[,,c("c4per","c3per")])*dimSums(crop_hr_shr_LUH2_FAO[,,c("c4per","c3per")],dim=3.2)*dimSums(land_hr,dim=3),dim=c(1,3))-croparea(gdx,level="glo",products = c("begr","betr"),product_aggr = T)
 if (any(abs(d) > 0.1 )) message(paste0("Difference between cluster and grid cell production > 0.1 detected!"))
 getNames(bio_hr_shr,dim=1) <- c("crpbf_c4per","crpbf_c3per")
 
 bio_hr_shr <- convertLUH2(bio_hr_shr)
 gc()
-write.magpie(bio_hr_shr,paste0(out_dir,"LUH2_bioenergy.nc"),comment = "unit: fraction of crop type area occupied by biofuel crops")
+write.magpie(bio_hr_shr,paste0(out_dir,"/LUH2_bioenergy.nc"),comment = "unit: fraction of crop type area occupied by biofuel crops")
 rm(bio_hr_shr,d)
 gc()
 
-#Croparea
+#Croparea from LUH to avoid re-mapping LUH and magpie
 crop_threshold <- 0.0001
-crop<- croparea(gdx,level="grid",dir = outputdir,products = "kcr",product_aggr = FALSE,water_aggr = FALSE)
+crop<- crop_hr_LUH
 crop_hr<-dimSums(crop,dim=3.2)
 #crop_hr <- madrat::toolAggregate(crop_hr, map_crops, from="MAgPIE", to="LUH2",dim = 3.1)
 #crop_hr_shr <- crop_hr / dimSums(land_hr,dim=3)
@@ -290,23 +286,23 @@ crop_hr_ir <- collapseNames(crop[,,"irrigated"],collapsedim = 3.2)
 crop_hr_ir_shr <- collapseNames(crop_hr_shr_LUH2_FAO[,,"irrigated"])
 
 ### Nitrogen fertilizer
-if(file.exists(file.path(outputdir,"NitrogenBudget.rds")) & file.exists(file.path(outputdir,"NitrogenBudgetWeight.rds"))) {
-  a <- readRDS(file.path(outputdir,"NitrogenBudget.rds"))
-  weight <- readRDS(file.path(outputdir,"NitrogenBudgetWeight.rds"))
+if(file.exists(paste0(out_dir,"/NitrogenBudget.rds")) & file.exists(paste0(out_dir,"/NitrogenBudgetWeight.rds"))) {
+  a <- readRDS(paste0(out_dir,"/NitrogenBudget.rds"))
+  weight_kr <- readRDS(paste0(out_dir,"/NitrogenBudgetWeight.rds"))
 } else {
   #read-in NR budget in mio t N
   a <- NitrogenBudget(gdx,level="grid",dir = outputdir)
-  saveRDS(a,paste0(out_dir,"NitrogenBudget.rds"))
+  saveRDS(a,paste0(out_dir,"/NitrogenBudget.rds"))
   #read-in crop specific weight
   weight_kr <- NitrogenBudgetWithdrawals(gdx,kcr="kcr",level="grid",net=TRUE,dir=outputdir)
-  saveRDS(weight_kr,paste0(out_dir,"NitrogenBudgetWeight.rds"))
+  saveRDS(weight_kr,paste0(out_dir,"/NitrogenBudgetWeight.rds"))
 }
 #Rename and aggregate crop types in weight from MAgPIE to LUH2
 #weight <- madrat::toolAggregate(weight, map_crops, from="MAgPIE", to="LUH2",dim = 3.1)
 weight_kr_luh<-weight_kr*mapping_grid
 rm(weight_kr)
-names<-unique(getNames(dimSums(mapping_grid,dim=3.1)))
-weight<-new.magpie(cells_and_regions=getCells(weight_kr),years=getYears(weight_kr),names=names)
+names<-unique(getNames(dimSums(mapping_grid,dim=3.2)))
+weight<-new.magpie(cells_and_regions=getCells(weight_kr_luh),years=getYears(weight_kr_luh),names=names)
 
 for(n in names){
 weight[,,n]<-dimSums(weight_kr_luh[,,n],dim=3.1)
@@ -320,21 +316,24 @@ a <- ((a * weight) / dimSums(weight,dim=3,na.rm = TRUE))
 #filter
 a[crop_hr_shr<crop_threshold] <- NA
 #divide by croparea -> tN/ha; convert from tN/ha to kgN/ha: tN/ha*1000kg/t = 1000 kgN/ha
+
 a <- (a/crop_hr)*1000
 x <- convertLUH2(clean_magpie(collapseNames(a[,,"fertilizer"],collapsedim = 3.1)))
 gc()
 write.magpie(x,paste0(out_dir,"/LUH2_Nitrogen_fertilizer.nc"),comment = "unit: kgN-per-ha")
+
 x <- convertLUH2(clean_magpie(collapseNames(a[,,"manure"],collapsedim = 3.1)))
 gc()
 write.magpie(x,paste0(out_dir,"/LUH2_Nitrogen_manure.nc"),comment = "unit: kgN-per-ha")
+
 x <- convertLUH2(clean_magpie(collapseNames(a[,,"surplus"],collapsedim = 3.1)))
 gc()
 write.magpie(x,paste0(out_dir,"/LUH2_Nitrogen_surplus.nc"),comment = "unit: kgN-per-ha")
+
 rm(a,x,weight)
 gc()
 
 ### Yields DM
-#read-in production in mio tDM
 yield_kr <- collapseNames(yields(gdx,level="cell",products = "kcr",product_aggr = FALSE,water_aggr = TRUE,attributes = "dm"))
 yield_kr <-gdxAggregate(gdx,yield_kr,weight=NULL, absolute=FALSE,to="grid",dir=outputdir)
 yield_kr_su <- yield_kr*mapping_grid
@@ -364,7 +363,7 @@ a[,,n]<-dimSums(yield_kr_su[,,n],dim=3)/dimSums(mapping_grid[,,n],dim=3)
 a <- convertLUH2(a)
 gc()
 write.magpie(a,paste0(out_dir,"/LUH2_Yield_DM_rainfed.nc"),comment = "unit: tDM-per-ha")
-rm(a)
+rm(a,yield_kr,yield_kr_su)
 gc()
 
 ### Yields DM irrigated
@@ -382,7 +381,7 @@ a[,,n]<-dimSums(yield_kr_su[,,n],dim=3)/dimSums(mapping_grid[,,n],dim=3)
 a <- convertLUH2(a)
 gc()
 write.magpie(a,paste0(out_dir,"/LUH2_Yield_DM_irrigated.nc"),comment = "unit: tDM-per-ha")
-rm(a)
+rm(a,yield_kr,yield_kr_su)
 gc()
 
 ### Yields Nr
@@ -400,5 +399,5 @@ a[,,n]<-dimSums(yield_kr_su[,,n],dim=3)/dimSums(mapping_grid[,,n],dim=3)
 a <- convertLUH2(a)
 gc()
 write.magpie(a,paste0(out_dir,"/LUH2_Yield_Nr.nc"),comment = "unit: kgN-per-ha")
-rm(a)
+rm(a,yield_kr,yield_kr_su)
 gc()
