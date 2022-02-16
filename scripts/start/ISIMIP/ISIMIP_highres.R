@@ -75,7 +75,7 @@ cfg$gms$sm_fix_SSP2 <-2015
 resolution<-c("c1000")
 
 for(re in resolution){
-  for (ru in 1:length(runs)){
+  for (ru in 15:length(runs)){
 
   dir.create("output/",re)
   cfg$results_folder <- paste0("output/",re,"_160222/:title:")
