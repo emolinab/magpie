@@ -78,7 +78,7 @@ for(re in resolution){
   for (ru in 1:length(runs)){
 
   dir.create("output/",re)
-  cfg$results_folder <- paste0("output/",re,"_260122/:title:")
+  cfg$results_folder <- paste0("output/",re,"_160222/:title:")
 
 
   for (s in scenarios){
@@ -97,7 +97,7 @@ for(re in resolution){
      gcm_re[ru]<-gcm
      cc_re[ru]<-cc
 
-      cfg <- gms::setScenario(cfg,c(cc,SSPs[[rcp]]))
+      cfg <- gms::setScenario(cfg,c(cc,SSPs[[rcp]],"ForestryEndo"))
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==rcp_re[ru] & gcm==gcm_re[ru] & resolution == re)[1,"name_tgz"]),
                      regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
@@ -110,7 +110,7 @@ for(re in resolution){
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("ISIMIP_260122_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+      cfg$title <- paste("ISIMIP_160222_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[rcp_re[ru]]]
       cfg$gms$c56_pollutant_prices_noselect <- bioen_ghg[[rcp_re[ru]]]
