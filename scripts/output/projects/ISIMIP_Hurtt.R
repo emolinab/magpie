@@ -90,8 +90,8 @@ if(length(map_file)>1) {
 ### Crops mapping and
 mapping_map<-readRDS(map_file)
 gdx<-paste0(outputdir,"/fulldata.gdx")
-mapping<-calcOutput(type = "LUH2MAgPIE", aggregate = TRUE, share = "LUHofMAG", bioenergy = "fix", missing = "fill",rice="total")[,2010,]
-if(!file.exists(paste0(save_path,"/LUH2MAgPIE.csv"))) write.csv(as.data.frame(mapping),file=paste0(save_path,"/LUH2MAgPIE.csv"))
+mapping<-calcOutput(type = "LUH2MAgPIE", aggregate = FALSE, share = "LUHofMAG", bioenergy = "fix", missing = "fill",rice="total")[,2010,]
+if(!file.exists(paste0(save_path,"/mappingLUH2MAgPIE/LUH2MAgPIE.csv"))) write.csv(as.data.frame(mapping),file=paste0(save_path,"/mappingLUH2MAgPIE/LUH2MAgPIE.csv"))
 countries<-intersect(getCells(mapping),unique(mapping_map$country))
 mapping_map<-subset(mapping_map,country %in% countries)
 mapping_grid<-setYears(speed_aggregate(mapping[countries,,],rel=mapping_map,weight=NULL,from="country",to="cell",dim=1),NULL)
