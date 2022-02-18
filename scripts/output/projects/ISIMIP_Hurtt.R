@@ -40,7 +40,7 @@ dir<-outputdir
 save_path<-"/p/projects/magpie/transfers/ISIMIP_Hurtt_Harm"
 scenarios<-c("ssp126", "ssp370", "ssp585")
 
-gcms<-c("GFDL-ESM4","MRI-ESM2-0","UKESM1-0-LL","MPI-ESM1-2-HR","IPSL-CM6A-LR")
+gcms<-c("GFDL-ESM4","MRI-ESM2-0","UKESM1-0-LL","MPI-ESM1-2-HR","IPSL-CM6A-LR","2015soc")
 
 rcp<-NULL
 gcm<-NULL
@@ -58,7 +58,7 @@ for (c in c("cc","nocc_hist")){
 cc<-if(grepl(c, outputdir, fixed=TRUE)) c else cc
 }
 
-out_dir<-paste(save_path,gcm,rcp,sep="/")
+out_dir<-if (cc=="cc") paste(save_path,gcm,rcp,sep="/") paste(save_path,"2015soc",rcp,sep="/")
 ### define functions
 
 convertLUH2 <- function(x) {
