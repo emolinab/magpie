@@ -75,7 +75,7 @@ cfg$gms$sm_fix_SSP2 <-2015
 resolution<-c("c1000")
 
 for(re in resolution){
-  for (ru in 14:14){
+  for (ru in 16:16){
 #  for (ru in 15:length(runs)){
 
   dir.create("output/",re)
@@ -136,7 +136,7 @@ for(re in resolution){
       cfg$gms$trade <- "exo"
       cfg$gms$optimization <- "nlp_par"
       #cfg$gms$s80_maxiter <- 10
-      #cfg$qos <- "priority"
+      cfg$qos <- "medium"
       start_run(cfg,codeCheck=FALSE)
 }
 }
