@@ -58,7 +58,7 @@ for (c in c("cc","nocc_hist")){
 cc<-if(grepl(c, outputdir, fixed=TRUE)) c else cc
 }
 
-out_dir<-if (cc=="cc") paste(save_path,gcm,rcp,sep="/") paste(save_path,"2015soc",rcp,sep="/")
+out_dir<-if (cc=="cc") paste(save_path,gcm,rcp,sep="/") else paste(save_path,"2015soc",rcp,sep="/")
 ### define functions
 
 convertLUH2 <- function(x) {
