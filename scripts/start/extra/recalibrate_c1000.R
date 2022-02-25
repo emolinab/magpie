@@ -39,7 +39,7 @@ f21_trade_balance <- ov_prod_reg - ov_supply
 write.magpie(round(f21_trade_balance,6),paste0("modules/21_trade/input/f21_trade_balance.cs3"))
 
 
-cfg$results_folder <- "output/calibration/:title:"
+cfg$results_folder <- "output/:title:"
 cfg$recalibrate <- FALSE
 cfg$recalibrate_landconversion_cost <- TRUE
 cfg$title <- "calib_c1000_H13_250222"
