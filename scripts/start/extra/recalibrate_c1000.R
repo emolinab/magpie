@@ -32,7 +32,7 @@ cfg$gms$c38_sticky_mode <- "dynamic"
 cfg$force_download <- TRUE
 
 #get trade pattern from low resolution run with c200
-gdx<-paste0("/output/c200_260122/ISIMIP_260122_ssp126_IPSL-CM6A-LR_cc/fulldata.gdx")
+gdx<-"/p/projects/magpie/data/ISIMIP/ISIMIP_15022022/magpie/output/c200_260122/ISIMIP_260122_ssp126_IPSL-CM6A-LR_cc/fulldata.gdx"
 ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
 ov_supply <- readGDX(gdx,"ov_supply",select=list(type="level"))
 f21_trade_balance <- ov_prod_reg - ov_supply
