@@ -46,8 +46,6 @@ cfg$title <- "calib_c1000_H13_250222"
 cfg$output <- c("rds_report")
 
 #parallel
-cfg$gms$trade <- "exo"
-cfg$gms$optimization <- "nlp_par"
 cfg$qos <- "medium"
 
 start_run(cfg,codeCheck=FALSE)
