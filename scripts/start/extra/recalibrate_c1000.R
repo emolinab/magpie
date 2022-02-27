@@ -38,7 +38,7 @@ cfg$title <- "calib_c1000_H13_270222"
 cfg$output <- c("rds_report")
 
 #parallel
-cfg$qos <- "medium"
+cfg$qos <- "standby_maxMem"
 
 start_run(cfg,codeCheck=FALSE)
 magpie4::submitCalibration("H13_c1000_270222")
