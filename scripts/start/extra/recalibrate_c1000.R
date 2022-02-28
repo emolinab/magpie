@@ -39,7 +39,7 @@ cfg$output <- c("rds_report")
 
 #parallel
 #get trade pattern from low resolution run with c200
-gdx<-"/p/projects/magpie/data/ISIMIP/ISIMIP_15022022/magpie/output/ISIMIP_260122_ssp126_GFDL-ESM4_cc/fulldata.gdx"
+gdx<-"/p/projects/magpie/data/ISIMIP/ISIMIP_15022022/magpie/output/c200_260122/ISIMIP_260122_ssp126_GFDL-ESM4_cc/fulldata.gdx"
 ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
 ov_supply <- readGDX(gdx,"ov_supply",select=list(type="level"))
 f21_trade_balance <- ov_prod_reg - ov_supply
