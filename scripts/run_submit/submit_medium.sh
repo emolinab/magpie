@@ -6,6 +6,6 @@
 #SBATCH --mail-type=END
 #SBATCH --cpus-per-task=3
 #SBATCH --partition=standard
-#SBATCH --mem=32000
+#SBATCH --mem=758000
 
 Rscript submit.R
