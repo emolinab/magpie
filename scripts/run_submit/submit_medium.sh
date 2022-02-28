@@ -4,8 +4,9 @@
 #SBATCH --job-name=mag-run
 #SBATCH --output=slurm.log
 #SBATCH --mail-type=END
-#SBATCH --cpus-per-task=3
+#SBATCH --mem-per-cpu=0
+#SBATCH --cpus-per-task=16
 #SBATCH --partition=standard
-#SBATCH --mem=60000
+
 
 Rscript submit.R
