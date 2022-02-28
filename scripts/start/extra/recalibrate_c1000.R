@@ -48,7 +48,7 @@ write.magpie(round(f21_trade_balance,6),paste0("modules/21_trade/input/f21_trade
 cfg$gms$trade <- "exo"
 cfg$gms$optimization <- "nlp_par"
 
-cfg$qos <- "standby_maxMem"
+cfg$qos <- "medium"
 
 
 
