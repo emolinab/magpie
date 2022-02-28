@@ -32,9 +32,9 @@ cfg$gms$c38_sticky_mode <- "dynamic"
 cfg$force_download <- TRUE
 
 cfg$results_folder <- "output/:title:"
-cfg$recalibrate <- FALSE
+cfg$recalibrate <- TRUE
 cfg$recalibrate_landconversion_cost <- TRUE
-cfg$title <- "calib_c1000_H13_270222"
+cfg$title <- "calib_c1000_H13_280222"
 cfg$output <- c("rds_report")
 
 #parallel
@@ -53,4 +53,4 @@ cfg$qos <- "standby_maxMem"
 
 
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration("H13_c1000_270222")
+magpie4::submitCalibration("H13_c1000_280222")
