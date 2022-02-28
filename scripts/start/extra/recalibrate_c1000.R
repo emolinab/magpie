@@ -32,7 +32,7 @@ cfg$gms$c38_sticky_mode <- "dynamic"
 cfg$force_download <- TRUE
 
 cfg$results_folder <- "output/:title:"
-cfg$recalibrate <- TRUE
+cfg$recalibrate <- FALSE
 cfg$recalibrate_landconversion_cost <- TRUE
 cfg$title <- "calib_c1000_H13_280222"
 cfg$output <- c("rds_report")
