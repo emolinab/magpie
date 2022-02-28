@@ -21,8 +21,8 @@ source("config/default.cfg")
 cfg$input <- c(cellular    = "rev4.65+ISIMIP_140122_8f7b9423_f0244510_cellularmagpie_c1000_IPSL-CM6A-LR-ssp126_lpjml-c5bacf3f.tgz",
                regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
                validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation.tgz",
-               additional  = "additional_data_rev4.07.tgz",
-               calibration = "calibration_H13_ISIMIP_150122_15Jan22.tgz"
+               additional  = "additional_data_rev4.07.tgz"#,
+          #     calibration = "calibration_H13_ISIMIP_150122_15Jan22.tgz"
                )
 
 
@@ -39,7 +39,7 @@ cfg$output <- c("rds_report")
 
 #parallel
 #get trade pattern from low resolution run with c200
-gdx<-"/p/projects/magpie/data/ISIMIP/ISIMIP_15022022/magpie/output/c200_260122/ISIMIP_260122_ssp126_IPSL-CM6A-LR_cc/fulldata.gdx"
+gdx<-"/p/projects/magpie/data/ISIMIP/ISIMIP_15022022/magpie/output/ISIMIP_260122_ssp126_GFDL-ESM4_cc/fulldata.gdx"
 ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
 ov_supply <- readGDX(gdx,"ov_supply",select=list(type="level"))
 f21_trade_balance <- ov_prod_reg - ov_supply
