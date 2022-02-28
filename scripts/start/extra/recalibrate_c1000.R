@@ -38,7 +38,19 @@ cfg$title <- "calib_c1000_H13_270222"
 cfg$output <- c("rds_report")
 
 #parallel
+#get trade pattern from low resolution run with c200
+gdx<-"/p/projects/magpie/data/ISIMIP/ISIMIP_15022022/magpie/output/c200_260122/ISIMIP_260122_ssp126_IPSL-CM6A-LR_cc/fulldata.gdx"
+ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
+ov_supply <- readGDX(gdx,"ov_supply",select=list(type="level"))
+f21_trade_balance <- ov_prod_reg - ov_supply
+write.magpie(round(f21_trade_balance,6),paste0("modules/21_trade/input/f21_trade_balance.cs3"))
+
+cfg$gms$trade <- "exo"
+cfg$gms$optimization <- "nlp_par"
+
 cfg$qos <- "standby_maxMem"
+
+
 
 start_run(cfg,codeCheck=FALSE)
 magpie4::submitCalibration("H13_c1000_270222")
