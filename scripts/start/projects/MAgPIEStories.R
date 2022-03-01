@@ -43,7 +43,8 @@ for(cc in c("cc","nocc")){
     cfg$input <- c(cellular    = "rev4.65Paper_170122_8f7b9423_f2acbfe3_cellularmagpie_c200_UKESM1-0-LL-ssp585_lpjml-8e6c5eb1.tgz",
                    regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
                    validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation.tgz",
-                   additional  = "calibration_H13_ISIMIP_150122_15Jan22.tgz")
+                   calibration  = "calibration_H13_ISIMIP_150122_15Jan22.tgz",
+                   additional  = "additional_data_rev4.07.tgz",)
 
 
 
