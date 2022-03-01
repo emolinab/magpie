@@ -17,11 +17,21 @@ source("scripts/start_functions.R")
 
 #start MAgPIE run
 source("config/default.cfg")
+cfg$input <- c(cellular    = "rev4.65Paper_170122_8f7b9423_f2acbfe3_cellularmagpie_c200_UKESM1-0-LL-ssp585_lpjml-8e6c5eb1.tgz",
+               regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
+               validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation.tgz",
+               calibration  = "calibration_H13_ISIMIP_150122_15Jan22.tgz",
+               additional  = "additional_data_rev4.07.tgz")
+
 cfg$results_folder <- "output/:title:"
 cfg$recalibrate <- TRUE
-cfg$recalibrate_landconversion_cost <- "ifneeded"
-cfg$title <- "calib_run"
-cfg$output <- c("rds_report","validation_short")
+cfg$recalibrate_landconversion_cost <- TRUE
+cfg$title <- "calib_run_free"
+cfg$output <- c("rds_report")
 cfg$force_replace <- TRUE
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration("H12")
+
+cfg$gms$factor_costs     <-   "sticky_feb18"
+cfg$gms$c38_sticky_mode  <-   "free"
+
+magpie4::submitCalibration("H13_free")
