@@ -92,7 +92,7 @@ runOutputs <- function(runscripts=NULL, submit=NULL) {
         system(paste(sbatch_command,"--qos=priority"))
         Sys.sleep(1)
       } else if(submit=="slurmstandby") {
-        system(paste(sbatch_command,"--qos=standby"))
+        system(paste(sbatch_command,"--qos=standby \ --mem=60000"))
         Sys.sleep(1)
       } else if(submit=="slurmmedium") {
         system(paste(sbatch_command,"--qos=medium \ --mem=60000"))
