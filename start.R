@@ -89,7 +89,7 @@ runOutputs <- function(runscripts=NULL, submit=NULL) {
         log <- format(Sys.time(), paste0(rout_name,"-%Y-%H-%M-%S-%OS3.log"))
         system2("Rscript",name, stderr = log, stdout = log, wait=FALSE)
       } else if(submit=="slurmpriority") {
-        system(paste(sbatch_command,"--qos=priority"))
+        system(paste(sbatch_command,"--qos=priority \ --mem=60000"))
         Sys.sleep(1)
       } else if(submit=="slurmstandby") {
         system(paste(sbatch_command,"--qos=standby \ --mem=60000"))
