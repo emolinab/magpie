@@ -95,8 +95,7 @@ runOutputs <- function(runscripts=NULL, submit=NULL) {
         system(paste(sbatch_command,"--qos=standby"))
         Sys.sleep(1)
       } else if(submit=="slurmmedium") {
-        system(c(paste(sbatch_command,"--qos=medium"),
-                 paste(sbatch_command,"--mem=60000")))
+        system(paste(sbatch_command,"--qos=medium"))
         Sys.sleep(1)
       } else if(submit=="debug") {
         tmp.env <- new.env()
