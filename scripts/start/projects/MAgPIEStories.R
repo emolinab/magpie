@@ -44,7 +44,7 @@ for(cc in c("cc","nocc")){
                    regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
                    validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation.tgz",
                    calibration  = "calibration_H13_ISIMIP_150122_15Jan22.tgz",
-                   additional  = "additional_data_rev4.07.tgz",)
+                   additional  = "additional_data_rev4.07.tgz")
 
 
 
