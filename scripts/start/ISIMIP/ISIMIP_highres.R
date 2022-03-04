@@ -75,11 +75,11 @@ cfg$gms$sm_fix_SSP2 <-2015
 resolution<-c("c1000")
 
 for(re in resolution){
-  for (ru in 16:16){
-#  for (ru in 15:length(runs)){
+  #for (ru in 16:16){
+  for (ru in 1:length(runs)){
 
   dir.create("output/",re)
-  cfg$results_folder <- paste0("output/",re,"_160222/:title:")
+  cfg$results_folder <- paste0("output/",re,"_040322/:title:")
 
 
   for (s in scenarios){
@@ -102,16 +102,16 @@ for(re in resolution){
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==rcp_re[ru] & gcm==gcm_re[ru] & resolution == re)[1,"name_tgz"]),
                      regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
-                     validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation",
+                     validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation.tgz",
                      additional  = "additional_data_rev4.07.tgz",
-                     calibration = "calibration_H13_ISIMIP_150122_15Jan22.tgz")
+                     calibration = "calibration_H13_c1000_Par_02Mar22.tgz")
 
       cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau ==1
       cfg$gms$factor_costs<- "sticky_feb18"
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("ISIMIP_160222_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+      cfg$title <- paste("ISIMIP_040322_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[rcp_re[ru]]]
       cfg$gms$c56_pollutant_prices_noselect <- bioen_ghg[[rcp_re[ru]]]
@@ -119,7 +119,7 @@ for(re in resolution){
       cfg$gms$c60_2ndgen_biodem_noselect <- bioen_ghg[[rcp_re[ru]]]
 
       #get trade pattern from low resolution run with c200
-      gdx<-paste0("output/c200_260122/",as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),"/fulldata.gdx")
+      gdx<-paste0("/p/projects/magpie/data/ISIMIP/ISIMIP_15022022/magpie/output/c200_260122/",as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),"/fulldata.gdx")
       ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
       ov_supply <- readGDX(gdx,"ov_supply",select=list(type="level"))
       f21_trade_balance <- ov_prod_reg - ov_supply
