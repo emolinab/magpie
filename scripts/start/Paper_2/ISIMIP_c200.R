@@ -24,22 +24,22 @@ cfg$results_folder <- "output/c200_ggcms_260122/:title:"
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report","extra/disaggregation")
 
-scenarios<-c(#"ssp126",
-             #"ssp585"
-             "ssp370"
+scenarios<-c("ssp126",
+             "ssp585"
+             #"ssp370"
 
            )
 
-SSP <- c(#"SSP1",
-         #"SSP5"
-         "SSP3"
+SSP <- c("SSP1",
+         "SSP5"
+         #"SSP3"
        )
 
 gcms<-c("GFDL-ESM4",
-        #"MRI-ESM2-0",
-        "UKESM1-0-LL"#,
-        #"MPI-ESM1-2-HR",
-        #"IPSL-CM6A-LR"
+        "MRI-ESM2-0",
+        "UKESM1-0-LL",
+        "MPI-ESM1-2-HR",
+        "IPSL-CM6A-LR"
       )
 
 ggcms<-c(#"EPIC-IIASA",
@@ -85,7 +85,7 @@ for(s in 1:length(scenarios)){
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("Paper_260122_gg",gg,scenarios[s],gcms[g],climate[c],sep="_")
+      cfg$title <- paste("Paper_260122_gg_ag_",gg,scenarios[s],gcms[g],climate[c],sep="_")
 
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[scenarios[s]]]
