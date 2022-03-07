@@ -19,7 +19,7 @@ source("config/default.cfg")
 
 cfg$force_download <- TRUE
 dir.create("output/c200_ggcms_260122")
-cfg$results_folder <- "output/c200_ggcms_260122/:title:"
+cfg$results_folder <- "output/c200_ggcms_070322/:title:"
 
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report","extra/disaggregation")
