@@ -79,7 +79,7 @@ for(re in resolution){
   for (ru in 1:length(runs)){
 
   dir.create("output/",re)
-  cfg$results_folder <- paste0("output/",re,"_040322/:title:")
+  cfg$results_folder <- paste0("output/",re,"_08032022/:title:")
 
 
   for (s in scenarios){
@@ -104,14 +104,14 @@ for(re in resolution){
                      regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
                      validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation.tgz",
                      additional  = "additional_data_rev4.07.tgz",
-                     calibration = "calibration_H13_c1000_Par_02Mar22.tgz")
+                     calibration = "calibration_H13_c1000_ParFor_04Mar22.tgz")
 
       cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau ==1
       cfg$gms$factor_costs<- "sticky_feb18"
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("ISIMIP_040322_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+      cfg$title <- paste("ISIMIP_080322_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[rcp_re[ru]]]
       cfg$gms$c56_pollutant_prices_noselect <- bioen_ghg[[rcp_re[ru]]]
