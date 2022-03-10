@@ -5,7 +5,7 @@ if(file.exists("~/.Rprofile")) source("~/.Rprofile")
 
 # This profile can be used to link the model to a specified library snapshot
 # (e.g. if your model version is from an older date and does not work with the
-# newest libraries anymore) 
+# newest libraries anymore)
 # By default it is not active. Just uncomment the following lines and set the
 # snapshot path to a path of your choice
 # Please make also sure that in your config file this .Rprofile file is copied
@@ -13,10 +13,10 @@ if(file.exists("~/.Rprofile")) source("~/.Rprofile")
 # default library set!
 
 
-# snapshot <- "/p/projects/rd3mod/R/libraries/snapshots/2020_03_10"
-# if(file.exists(snapshot)) {
-#   cat("Setting libPaths to",snapshot,"\n")
-#   .libPaths(snapshot)
-# } else {
-#   cat("Could not find",snapshot,"\n")
-# }
+snapshot <- "/p/projects/rd3mod/R/libraries/snapshots/2022_03_10"
+if(file.exists(snapshot)) {
+  cat("Setting libPaths to",snapshot,"\n")
+  .libPaths(snapshot)
+} else {
+  cat("Could not find",snapshot,"\n")
+}
