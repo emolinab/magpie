@@ -37,7 +37,7 @@ if (!file.exists(file.path(outputdir,"cell.land_0.5.mz"))) stop('No disaggrated 
 dir<-outputdir
 
 #### Saving results
-save_path<-"/p/projects/magpie/transfers/ISIMIP_Hurtt_Harm"
+save_path<-"/p/projects/magpie/transfers/ISIMIP_Hurtt_100322/"
 scenarios<-c("ssp126", "ssp370", "ssp585")
 
 gcms<-c("GFDL-ESM4","MRI-ESM2-0","UKESM1-0-LL","MPI-ESM1-2-HR","IPSL-CM6A-LR","2015soc")
