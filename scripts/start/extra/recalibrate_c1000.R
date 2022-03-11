@@ -84,10 +84,9 @@ if(cfg$gms$s32_max_aff_area < Inf) {
 }
 
 cfg$gms$optimization <- "nlp_par"
-
+cfg$gms$c_timesteps <- 18
 cfg$qos <- "medium"
 
 
-
+magpie4::submitCalibration("c1000_H13")
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration("H13_c1000_ParFor")
