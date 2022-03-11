@@ -70,7 +70,7 @@ cfg$recalc_npi_ndc <- TRUE
 cfg$results_folder <- "output/:title:"
 cfg$recalibrate <- FALSE
 cfg$recalibrate_landconversion_cost <- TRUE
-cfg$title <- "calib_c1000_H13_ParFor"
+cfg$title <- title
 cfg$output <- c("rds_report")
 
 #### Fixed parameters
