@@ -24,10 +24,10 @@ gdx<-"/p/projects/magpie/data/ISIMIP/ISIMIP_100322/magpie/output/c200_110322/ISI
 ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
 ov_supply <- readGDX(gdx,"ov_supply",select=list(type="level"))
 f21_trade_balance <- ov_prod_reg - ov_supply
-write.magpie(f21_trade_balance,file_name=paste0(folder,"/",title,"/f21_trade_balance.cs3"))
+write.magpie(round(f21_trade_balance,6),file_name=paste0(folder,"/",title,"/f21_trade_balance.cs3"))
 #tc
 ov_tau <- readGDX(gdx, "ov_tau",select=list(type="level"))
-write.magpie(ov_tau,paste0(folder,"/",title,"/f13_tau_scenario.csv"))
+write.magpie(round(ov_tau,6),paste0(folder,"/",title,"/f13_tau_scenario.csv"))
 #afforestation
 #get regional afforestation patterns from low resolution run with c200
  aff <- dimSums(landForestry(gdx)[,,c("aff","ndc")],dim=3)
