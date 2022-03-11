@@ -37,5 +37,5 @@ cfg$title <- "calib_ISIMIP_H13_100322"
 cfg$gms$c_timesteps <- 18
 cfg$output <- c("rds_report")
 cfg$sequential <- TRUE
-start_run(cfg,codeCheck=FALSE)
 magpie4::submitCalibration("H13_ISIMIP_100322")
+start_run(cfg,codeCheck=FALSE)
