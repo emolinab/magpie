@@ -87,6 +87,7 @@ for(s in 1:length(scenarios)){
       cfg$gms$c35_ad_policy<-mit[[scenarios[s]]]
 
       cfg$recalc_npi_ndc <- TRUE
+      cfg$qos <- "medium"
 
       start_run(cfg,codeCheck=FALSE)
     }
