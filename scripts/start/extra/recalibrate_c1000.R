@@ -13,7 +13,7 @@ library(magpie4)
 library(magclass)
 
 # Load start_run(cfg) function which is needed to start MAgPIE runs
-title<-"calib_c1000_H13_11032022"
+title<-"calib_c1000_H13_11032022_B"
 
 ##########PREPARES FILES#########################
 #parallel
@@ -88,5 +88,5 @@ cfg$gms$c_timesteps <- 18
 cfg$qos <- "medium"
 
 
-magpie4::submitCalibration("c1000_H13")
+magpie4::submitCalibration("c1000_H13_B")
 start_run(cfg,codeCheck=FALSE)
