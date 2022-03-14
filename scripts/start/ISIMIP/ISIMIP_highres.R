@@ -99,7 +99,7 @@ for(re in resolution){
     folder<-"/p/projects/landuse/users/mbacca/Additional_data_sets/"
     runName<-paste(rcp_re[ru],gcm_re[ru],cc_re[ru],"med",sep="_")
     dir.create(paste0(folder,runName))
-    gdx<-paste0("//p/projects/magpie/data/ISIMIP/ISIMIP_100322/magpie/output/c200_110322/",
+    gdx<-paste0("/p/projects/magpie/data/ISIMIP/ISIMIP_100322_all/ISIMIP_100322/magpie/output/c200_110322/",
               as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),
               "/fulldata.gdx")
       ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
