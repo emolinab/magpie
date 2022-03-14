@@ -76,7 +76,7 @@ resolution<-c("c1000")
 
 for(re in resolution){
   #for (ru in 1:length(runs)){
-for (ru in 1:1){
+for (ru in 16:16){
   dir.create("output/",re,"_test")
 
   ################ c200 files preparation ############################################################################################################
