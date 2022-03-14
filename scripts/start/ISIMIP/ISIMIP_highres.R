@@ -76,13 +76,29 @@ resolution<-c("c1000")
 
 for(re in resolution){
   #for (ru in 1:length(runs)){
-for (ru in 16:16){
-  dir.create("output/",re,"_test")
+for (ru in 15:15){
+
+  dir.create(paste0("output/",re,"_140322/",title))
+  for (s in scenarios){
+  rcp<- if(grepl(s, runs[ru], fixed=TRUE)) s else rcp
+  }
+
+  for (g in gcms){
+  gcm<-if(grepl(g, runs[ru], fixed=TRUE)) g else gcm
+  }
+
+  for (c in c("cc","nocc_hist")){
+  cc<-if(grepl(c, runs[ru], fixed=TRUE)) c else cc
+  }
+
+     rcp_re[ru]<-rcp
+     gcm_re[ru]<-gcm
+     cc_re[ru]<-cc
 
   ################ c200 files preparation ############################################################################################################
     #get trade pattern,tc, and afforestation from low resolution run with c200
     folder<-"/p/projects/landuse/users/mbacca/Additional_data_sets/"
-    runName<-paste0(rcp_re[ru],gcm_re[ru],cc_re[ru])
+    runName<-paste(rcp_re[ru],gcm_re[ru],cc_re[ru],sep="_")
     dir.create(paste0(folder,runName))
     gdx<-paste0("//p/projects/magpie/data/ISIMIP/ISIMIP_100322/magpie/output/c200_110322/",
               as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),
@@ -111,22 +127,6 @@ for (ru in 16:16){
       tarfile=paste0(folder,runName,".tgz"))
 
   ###################################################################################################################################################
-
-  for (s in scenarios){
-  rcp<- if(grepl(s, runs[ru], fixed=TRUE)) s else rcp
-  }
-
-  for (g in gcms){
-  gcm<-if(grepl(g, runs[ru], fixed=TRUE)) g else gcm
-  }
-
-  for (c in c("cc","nocc_hist")){
-  cc<-if(grepl(c, runs[ru], fixed=TRUE)) c else cc
-  }
-
-     rcp_re[ru]<-rcp
-     gcm_re[ru]<-gcm
-     cc_re[ru]<-cc
 
       title<-paste("ISIMIP_140322_T_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
       cfg$results_folder <- paste0("output/",re,"_140322/",title)
