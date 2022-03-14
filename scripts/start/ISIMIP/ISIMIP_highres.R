@@ -74,7 +74,7 @@ cfg$gms$sm_fix_SSP2 <-2015
 
 resolution<-c("c1000")
 
-#for(re in resolution){
+for(re in resolution){
 #  for (ru in 1:length(runs)){
 for (ru in c(7)){
 
