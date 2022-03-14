@@ -78,7 +78,6 @@ for(re in resolution){
   #for (ru in 1:length(runs)){
 for (ru in 15:15){
 
-  dir.create(paste0("output/",re,"_140322/",title))
   for (s in scenarios){
   rcp<- if(grepl(s, runs[ru], fixed=TRUE)) s else rcp
   }
@@ -129,6 +128,7 @@ for (ru in 15:15){
   ###################################################################################################################################################
 
       title<-paste("ISIMIP_140322_T_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+        dir.create(paste0("output/",re,"_140322/",title))
       cfg$results_folder <- paste0("output/",re,"_140322/",title)
       cfg <- gms::setScenario(cfg,c(cc,SSPs[[rcp]],"ForestryEndo"))
 
