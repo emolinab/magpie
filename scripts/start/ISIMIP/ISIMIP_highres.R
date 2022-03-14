@@ -76,7 +76,7 @@ resolution<-c("c1000")
 
 for(re in resolution){
   #for (ru in 1:length(runs)){
-for (ru in 15:15){
+for (ru in c(1:14,16:18)){
 
   for (s in scenarios){
   rcp<- if(grepl(s, runs[ru], fixed=TRUE)) s else rcp
@@ -172,7 +172,7 @@ for (ru in 15:15){
 
       cfg$gms$optimization <- "nlp_par"
       #cfg$gms$s80_maxiter <- 10
-      cfg$qos <- "priority_maxMem"
+      cfg$qos <- "short_maxMem"
       start_run(cfg,codeCheck=FALSE)
 }
 }
