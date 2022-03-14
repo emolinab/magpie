@@ -97,7 +97,7 @@ for(re in resolution){
   ################ c200 files preparation ############################################################################################################
     #get trade pattern,tc, and afforestation from low resolution run with c200
     folder<-"/p/projects/landuse/users/mbacca/Additional_data_sets/"
-    runName<-paste(rcp_re[ru],gcm_re[ru],cc_re[ru],sep="_")
+    runName<-paste(rcp_re[ru],gcm_re[ru],cc_re[ru],"med",sep="_")
     dir.create(paste0(folder,runName))
     gdx<-paste0("//p/projects/magpie/data/ISIMIP/ISIMIP_100322/magpie/output/c200_110322/",
               as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),
