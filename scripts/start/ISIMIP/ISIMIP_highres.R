@@ -127,16 +127,16 @@ for(re in resolution){
 
   ###################################################################################################################################################
 
-      title<-paste("ISIMIP_140322_med_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
-        dir.create(paste0("output/",re,"_140322_noCalib/"))
-      cfg$results_folder <- paste0("output/",re,"_140322_noCalib/",title)
+      title<-paste("ISIMIP_150322_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+        dir.create(paste0("output/",re,"_150322_Calib/"))
+      cfg$results_folder <- paste0("output/",re,"_150322_Calib/",title)
       cfg <- gms::setScenario(cfg,c(cc,SSPs[[rcp]],"ForestryEndo"))
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==rcp_re[ru] & gcm==gcm_re[ru] & resolution == re)[1,"name_tgz"]),
                      regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
                      validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation.tgz",
                      additional  = "additional_data_rev4.07.tgz",
-                     calibration = "caib_H13_ISIMIP_11Mar22.tgz",
+                     calibration = "calib_c1000_H13_ISIMIP_E.tgz",
                      patch = paste0(runName,".tgz"))
 
       cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau ==1

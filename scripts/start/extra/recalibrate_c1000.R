@@ -89,5 +89,6 @@ cfg$qos <- "medium"
 cfg$calib_maxiter_landconversion_cost <- 11
 
 
-magpie4::submitCalibration("c1000_H13_B")
+
 start_run(cfg,codeCheck=FALSE)
+magpie4::submitCalibration("c1000_H13_B")
