@@ -75,8 +75,8 @@ cfg$gms$sm_fix_SSP2 <-2015
 resolution<-c("c1000")
 
 for(re in resolution){
-  #for (ru in 1:length(runs)){
-for (ru in c(1:14,16:18)){
+  for (ru in 1:length(runs)){
+#for (ru in c(1:14,16:18)){
 
   for (s in scenarios){
   rcp<- if(grepl(s, runs[ru], fixed=TRUE)) s else rcp
@@ -127,9 +127,9 @@ for (ru in c(1:14,16:18)){
 
   ###################################################################################################################################################
 
-      title<-paste("ISIMIP_140322_T_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
-        dir.create(paste0("output/",re,"_140322/"))
-      cfg$results_folder <- paste0("output/",re,"_140322/",title)
+      title<-paste("ISIMIP_140322_med_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+        dir.create(paste0("output/",re,"_140322_noCalib/"))
+      cfg$results_folder <- paste0("output/",re,"_140322_noCalib/",title)
       cfg <- gms::setScenario(cfg,c(cc,SSPs[[rcp]],"ForestryEndo"))
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==rcp_re[ru] & gcm==gcm_re[ru] & resolution == re)[1,"name_tgz"]),
@@ -172,7 +172,7 @@ for (ru in c(1:14,16:18)){
 
       cfg$gms$optimization <- "nlp_par"
       #cfg$gms$s80_maxiter <- 10
-      cfg$qos <- "short_maxMem"
+      cfg$qos <- "medium"
       start_run(cfg,codeCheck=FALSE)
 }
 }
