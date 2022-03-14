@@ -75,12 +75,42 @@ cfg$gms$sm_fix_SSP2 <-2015
 resolution<-c("c1000")
 
 for(re in resolution){
-  #for (ru in 16:16){
-  for (ru in 1:length(runs)){
+  #for (ru in 1:length(runs)){
+for (ru in 1:1){
+  dir.create("output/",re,"_test")
 
-  dir.create("output/",re)
-  cfg$results_folder <- paste0("output/",re,"_08032022/:title:")
+  ################ c200 files preparation ############################################################################################################
+    #get trade pattern,tc, and afforestation from low resolution run with c200
+    folder<-"/p/projects/landuse/users/mbacca/Additional_data_sets/"
+    runName<-paste0(rcp_re[ru],gcm_re[ru],cc_re[ru])
+    dir.create(paste0(folder,runName))
+    gdx<-paste0("//p/projects/magpie/data/ISIMIP/ISIMIP_100322/magpie/output/c200_110322/",
+              as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),
+              "/fulldata.gdx")
+      ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
+      ov_supply <- readGDX(gdx,"ov_supply",select=list(type="level"))
+      f21_trade_balance <- ov_prod_reg - ov_supply
+      write.magpie(round(f21_trade_balance,6),file_name=paste0(folder,runName,"/","/f21_trade_balance.cs3"))
+      #tc
+      ov_tau <- readGDX(gdx, "ov_tau",select=list(type="level"))
+      write.magpie(round(ov_tau,6),paste0(folder,runName,"/","/f13_tau_scenario.csv"))
+      #afforestation
+      #get regional afforestation patterns from low resolution run with c200
+       aff <- dimSums(landForestry(gdx)[,,c("aff","ndc")],dim=3)
+       #Take away initial NDC area for consistency with global afforestation limit
+       aff <- aff-setYears(aff[,1,],NULL)
+       #calculate maximum regional afforestation over time
+       aff_max <- setYears(aff[,1,],NULL)
+       for (r in getRegions(aff)) {
+         aff_max[r,,] <- max(aff[r,,])
+       }
+       aff_max[aff_max<0] <- 0
+       write.magpie(aff_max,file_name=paste0(folder,runName,"/","/f32_max_aff_area.cs4"))
 
+      gms::tardir(dir=paste0(folder,runName,"/"),
+      tarfile=paste0(folder,runName,".tgz"))
+
+  ###################################################################################################################################################
 
   for (s in scenarios){
   rcp<- if(grepl(s, runs[ru], fixed=TRUE)) s else rcp
@@ -98,51 +128,48 @@ for(re in resolution){
      gcm_re[ru]<-gcm
      cc_re[ru]<-cc
 
+      title<-paste("ISIMIP_140322_T_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+      cfg$results_folder <- paste0("output/",re,"_140322/",title)
       cfg <- gms::setScenario(cfg,c(cc,SSPs[[rcp]],"ForestryEndo"))
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==rcp_re[ru] & gcm==gcm_re[ru] & resolution == re)[1,"name_tgz"]),
                      regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
                      validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation.tgz",
                      additional  = "additional_data_rev4.07.tgz",
-                     calibration = "calibration_H13_c1000_ParFor_04Mar22.tgz")
+                     calibration = "caib_H13_ISIMIP_11Mar22.tgz",
+                     patch = paste0(runName,".tgz"))
 
       cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau ==1
       cfg$gms$factor_costs<- "sticky_feb18"
       cfg$gms$c38_sticky_mode <- "dynamic"
-      cfg$force_download <- TRUE
+      cfg$force_replace <- TRUE
+      cfg$recalc_npi_ndc <- TRUE
 
-      cfg$title <- paste("ISIMIP_080322_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+
+      cfg$title <- title
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[rcp_re[ru]]]
       cfg$gms$c56_pollutant_prices_noselect <- bioen_ghg[[rcp_re[ru]]]
       cfg$gms$c60_2ndgen_biodem <- bioen_ghg[[rcp_re[ru]]]
       cfg$gms$c60_2ndgen_biodem_noselect <- bioen_ghg[[rcp_re[ru]]]
 
-### PARALLEL PART
-      #get trade pattern from low resolution run with c200
-
-      gdx<-paste0("/p/projects/magpie/data/ISIMIP/ISIMIP_15022022/magpie/output/c200_260122/",
-            as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),
-            "/fulldata.gdx")
-      ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
-      ov_supply <- readGDX(gdx,"ov_supply",select=list(type="level"))
-      f21_trade_balance <- ov_prod_reg - ov_supply
-      write.magpie(round(f21_trade_balance,6),paste0("modules/21_trade/input/f21_trade_balance.cs3"))
-
-      #Afforestation
-
-      #TC
-
-###################################################################################################################################################
       #cfg <- gms::setScenario(cfg,"BASE")
       cfg$gms$c32_aff_policy<-mit[[rcp]]
       cfg$gms$c35_aolc_policy<-mit[[rcp]]
       cfg$gms$c35_ad_policy<-mit[[rcp]]
 
-      cfg$recalc_npi_ndc <- TRUE
+      #### Fixed parameters
+      cfg$gms$trade <- "exo"
+      cfg$gms$tc <- "exo"
+      cfg$gms$c32_max_aff_area <- "regional"
+      #check
+      if(cfg$gms$s32_max_aff_area < Inf) {
+        indicator <- abs(sum(aff_max)-cfg$gms$s32_max_aff_area)
+        if(indicator > 1e-06) warning(paste("Global and regional afforestation limit differ by",indicator,"Mha"))
+      }
 
       #parallel
-      cfg$gms$trade <- "exo"
+
       cfg$gms$optimization <- "nlp_par"
       #cfg$gms$s80_maxiter <- 10
       cfg$qos <- "medium"
