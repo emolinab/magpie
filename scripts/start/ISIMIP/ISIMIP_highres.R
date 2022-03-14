@@ -128,7 +128,7 @@ for (ru in 15:15){
   ###################################################################################################################################################
 
       title<-paste("ISIMIP_140322_T_",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
-        dir.create(paste0("output/",re,"_140322/",title))
+        dir.create(paste0("output/",re,"_140322/"))
       cfg$results_folder <- paste0("output/",re,"_140322/",title)
       cfg <- gms::setScenario(cfg,c(cc,SSPs[[rcp]],"ForestryEndo"))
 
@@ -172,7 +172,7 @@ for (ru in 15:15){
 
       cfg$gms$optimization <- "nlp_par"
       #cfg$gms$s80_maxiter <- 10
-      cfg$qos <- "medium"
+      cfg$qos <- "priority_maxMem"
       start_run(cfg,codeCheck=FALSE)
 }
 }
