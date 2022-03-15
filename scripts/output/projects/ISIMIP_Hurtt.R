@@ -38,6 +38,8 @@ dir<-outputdir
 
 #### Saving results
 save_path<-"/p/projects/magpie/data/ISIMIP/ISIMIP_150322_short/HurttMaps"
+    if(!dir.exists(save_path)) dir.create(save_path)
+
 scenarios<-c("ssp126", "ssp370", "ssp585")
 
 gcms<-c("GFDL-ESM4","MRI-ESM2-0","UKESM1-0-LL","MPI-ESM1-2-HR","IPSL-CM6A-LR","2015soc")
@@ -59,7 +61,7 @@ cc<-if(grepl(c, outputdir, fixed=TRUE)) c else cc
 }
 
   if(cc=="cc"){
-    if(!dir.exists(paste(save_path,gcm,sep="/"))) dir.create(paste(save_path,rcp,sep="/"))
+    if(!dir.exists(paste(save_path,gcm,sep="/"))) dir.create(paste(save_path,gcm,sep="/"))
       if(!dir.exists(paste(save_path,gcm,rcp,sep="/"))) dir.create(paste(save_path,gcm,rcp,sep="/"))
   }else{
     if(!dir.exists(paste(save_path,"2015soc",sep="/"))) dir.create(paste(save_path,"2015soc",sep="/"))
