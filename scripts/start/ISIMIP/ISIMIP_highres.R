@@ -172,7 +172,7 @@ for (ru in c(7)){
 
       cfg$gms$optimization <- "nlp_par"
       #cfg$gms$s80_maxiter <- 10
-      cfg$qos <- "short_maxMem"
+      cfg$qos <- "priority_maxMem"
       start_run(cfg,codeCheck=FALSE)
 }
 }
