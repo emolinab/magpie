@@ -75,8 +75,8 @@ cfg$gms$sm_fix_SSP2 <-2015
 resolution<-c("c1000")
 
 for(re in resolution){
-#  for (ru in 1:length(runs)){
-for (ru in c(7)){
+  for (ru in 1:length(runs)){
+#for (ru in c(7)){
 
   for (s in scenarios){
   rcp<- if(grepl(s, runs[ru], fixed=TRUE)) s else rcp
@@ -96,8 +96,11 @@ for (ru in c(7)){
 
   ################ c200 files preparation ############################################################################################################
     #get trade pattern,tc, and afforestation from low resolution run with c200
+
+
     folder<-"/p/projects/landuse/users/mbacca/Additional_data_sets/"
-    runName<-paste(rcp_re[ru],gcm_re[ru],cc_re[ru],"sh",sep="_")
+    runName<-paste(rcp_re[ru],gcm_re[ru],cc_re[ru],"med",sep="_")
+    if(!file.exists(paste0(folder,runName,".tgz"))){
     dir.create(paste0(folder,runName))
     gdx<-paste0("/p/projects/magpie/data/ISIMIP/ISIMIP_100322_all/ISIMIP_100322/magpie/output/c200_110322/",
               as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),
@@ -124,10 +127,10 @@ for (ru in c(7)){
 
       gms::tardir(dir=paste0(folder,runName,"/"),
       tarfile=paste0(folder,runName,".tgz"))
-
+}
   ###################################################################################################################################################
 
-      title<-paste("ISIMIP_150322_sh",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+      title<-paste("ISIMIP_150322_med",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
         dir.create(paste0("output/",re,"_150322_Calib/"))
       cfg$results_folder <- paste0("output/",re,"_150322_Calib/",title)
       cfg <- gms::setScenario(cfg,c(cc,SSPs[[rcp]],"ForestryEndo"))
@@ -171,8 +174,7 @@ for (ru in c(7)){
       #parallel
 
       cfg$gms$optimization <- "nlp_par"
-      #cfg$gms$s80_maxiter <- 10
-      cfg$qos <- "priority_maxMem"
+      cfg$qos <- "medium"
       start_run(cfg,codeCheck=FALSE)
 }
 }
