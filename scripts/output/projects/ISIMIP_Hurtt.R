@@ -101,6 +101,7 @@ if(length(map_file)>1) {
 mapping_map<-readRDS(map_file)
 gdx<-paste0(outputdir,"/fulldata.gdx")
 mapping<-calcOutput(type = "LUH2MAgPIE", aggregate = FALSE, share = "LUHofMAG", bioenergy = "fix", missing = "fill",rice="total")[,2010,]
+if(!dir.exists(paste0(save_path,"/mappingLUH2MAgPIE/"))) dir.create(paste0(save_path,"/mappingLUH2MAgPIE"))
 if(!file.exists(paste0(save_path,"/mappingLUH2MAgPIE/LUH2MAgPIE.csv"))) write.csv(as.data.frame(mapping),file=paste0(save_path,"/mappingLUH2MAgPIE/LUH2MAgPIE.csv"))
 countries<-intersect(getCells(mapping),unique(mapping_map$country))
 mapping_map<-subset(mapping_map,country %in% countries)
