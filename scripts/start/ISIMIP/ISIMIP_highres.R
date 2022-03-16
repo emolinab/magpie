@@ -75,8 +75,8 @@ cfg$gms$sm_fix_SSP2 <-2015
 resolution<-c("c1000")
 
 for(re in resolution){
-  for (ru in 1:length(runs)){
-#for (ru in c(7)){
+#  for (ru in 1:length(runs)){
+for (ru in c(15)){
 
   for (s in scenarios){
   rcp<- if(grepl(s, runs[ru], fixed=TRUE)) s else rcp
@@ -174,7 +174,7 @@ for(re in resolution){
       #parallel
 
       cfg$gms$optimization <- "nlp_par"
-      cfg$qos <- "medium"
+      cfg$qos <- "priority_maxMem"
       start_run(cfg,codeCheck=FALSE)
 }
 }
