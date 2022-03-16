@@ -76,7 +76,7 @@ resolution<-c("c1000")
 
 for(re in resolution){
 #  for (ru in 1:length(runs)){
-for (ru in c(15)){
+for (ru in c(15,13)){
 
   for (s in scenarios){
   rcp<- if(grepl(s, runs[ru], fixed=TRUE)) s else rcp
