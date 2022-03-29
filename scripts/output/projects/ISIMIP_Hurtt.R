@@ -18,7 +18,7 @@ library(raster)
 library(mrcommons)
 
 if(!exists("source_include")) {
-  outputdir <- "/p/projects/magpie/data/ISIMIP/ISIMIP_26012022/model/magpie/output/c1000_260122/ISIMIP_260122__ssp126_GFDL-ESM4_cc_c1000/"
+  outputdir <- "/p/projects/magpie/data/ISIMIP/ISIMIP_150322/magpie/output/c1000_150322_Calib/ISIMIP_150322_med_ssp585_IPSL-CM6A-LR_cc_c1000/"
 
   readArgs("outputdir")
 }
@@ -37,7 +37,7 @@ if (!file.exists(file.path(outputdir,"cell.land_0.5.mz"))) stop('No disaggrated 
 dir<-outputdir
 
 #### Saving results
-save_path<-"/p/projects/magpie/transfers/HurttMaps"
+save_path<-"/p/projects/magpie/transfers/HurttMaps2"
     if(!dir.exists(save_path)) dir.create(save_path)
 
 scenarios<-c("ssp126", "ssp370", "ssp585")
@@ -187,8 +187,9 @@ past_range_land<- new.magpie(cells_and_regions=getCells(past_range_his_shr),year
 past_range_land[,getYears(past_range_his_shr),]<-past_range_his_shr*land_hr[,getYears(past_range_his_shr),"past"]
 range_land_2015<-setYears(past_range_land[,2015,"range"],NULL)
 past_range_land[,-(1:5),"range"]<-range_land_2015[,,"range"]
-past_range_land[,-(1:5),"past"]<-land_hr[,-(1:5),"past"]-setNames(range_land_2015,NULL)
-past_range_hr_shr<-past_range_land/dimSums(land_hr,dim=3)
+past_range_land[,-(1:5),"range"]<-magpply(X = mbind(past_range_land[,-(1:5),"range"],land_hr[,-(1:5),"past"]), FUN = min, DIM = 3)
+past_range_land[,-(1:5),"past"]<-land_hr[,-(1:5),"past"]-past_range_land[,-(1:5),"range"]
+past_range_hr_shr<-round(past_range_land/dimSums(land_hr,dim=3),3)
 past_range_hr_shr[!is.finite(past_range_hr_shr)]<-0
 rm(past_range_his_shr,past_range_land,range_land_2015)
 
@@ -264,7 +265,16 @@ gc()
 
 ### Wood: Yields
 a <- ForestYield(gdx,level="cell")
+a_fix<- new.magpie(cells_and_regions=getCells(a),years=getYears(a),
+                      names=getNames(a))
+##BugFix in the mean time
+a_fix[,1,]<-0
+a_fix[,-1,]<-setYears(a[,2100,,invert=TRUE],getYears(a_fix[,-1,]))
+a[a>500]<-a_fix[a>500]
 b <- madrat::toolAggregate(a, map_file, from = "cluster",to = "cell")
+b_1<-setYears(b[,2100,,invert=TRUE],)
+
+b[b>500]<-b_1[b>500]
 luh2 <- data.frame(matrix(nrow=4,ncol=2))
 names(luh2) <- c("LUH2","MAgPIE")
 luh2[1,] <- c("timber_bioh","Forestry")
