@@ -272,9 +272,6 @@ a_fix[,1,]<-0
 a_fix[,-1,]<-setYears(a[,2100,,invert=TRUE],getYears(a_fix[,-1,]))
 a[a>500]<-a_fix[a>500]
 b <- madrat::toolAggregate(a, map_file, from = "cluster",to = "cell")
-b_1<-setYears(b[,2100,,invert=TRUE],)
-
-b[b>500]<-b_1[b>500]
 luh2 <- data.frame(matrix(nrow=4,ncol=2))
 names(luh2) <- c("LUH2","MAgPIE")
 luh2[1,] <- c("timber_bioh","Forestry")
