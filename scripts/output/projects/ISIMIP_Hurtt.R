@@ -326,7 +326,9 @@ share<-speed_aggregate(share_rice_flooded,rel=mapping_map,from="region",to="cell
 
 rice <- dimSums(crop_hr_shr[,,"rice_pro"],dim=3.2)
 rice[,c(1995,2000,2005,2010),]<-rice[,c(1995,2000,2005,2010),]*share[,c(1995,2000,2005,2010),]
-rice[,c(1995,2000,2005,2010),,invert=TRUE]<-rice[,c(1995,2000,2005,2010),,invert=TRUE]*setYears(share[,2010,],NULL)
+ye<-getYears(rice, as.integer=T)[!(getYears(rice, as.integer=T) %in% c(1995,2000,2005,2010))]
+rice[,ye,]<-rice[,ye,]*setYears(share[,2010,],NULL)
+flooded<-rice
 getNames(flooded,dim=1) <- "flood"
 flooded <- flooded / dimSums(crop_hr_shr_LUH2_FAO[,,"c3ann"],dim=3)
 flooded[!is.finite(flooded)]<-0
