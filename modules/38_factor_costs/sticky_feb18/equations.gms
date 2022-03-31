@@ -42,5 +42,5 @@ q38_investment_immobile(j2,kcr).. v38_investment_immobile(j2,kcr)
 q38_investment_mobile(j2,kcr).. v38_investment_mobile(j2,kcr)
                              =g=
                              sum((cell(i2,j2)),vm_prod(j2,kcr)*sum(ct,p38_capital_need(ct,i2,kcr,"mobile")))-
-                             sum(ct,p38_capital_mobile(ct,j2));
+                             sum(ct,p38_capital_mobile(ct,j2,kcr));
 *
