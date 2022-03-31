@@ -37,7 +37,7 @@ if (!file.exists(file.path(outputdir,"cell.land_0.5.mz"))) stop('No disaggrated 
 dir<-outputdir
 
 #### Saving results
-save_path<-"/p/projects/magpie/transfers/HurttMaps2"
+save_path<-"/p/projects/magpie/transfers/HurttMaps310322"
     if(!dir.exists(save_path)) dir.create(save_path)
 
 scenarios<-c("ssp126", "ssp370", "ssp585")
