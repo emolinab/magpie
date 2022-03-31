@@ -186,9 +186,11 @@ past_range_land<- new.magpie(cells_and_regions=getCells(past_range_his_shr),year
                       names=past_range)
 past_range_land[,getYears(past_range_his_shr),]<-past_range_his_shr*land_hr[,getYears(past_range_his_shr),"past"]
 range_land_2015<-setYears(past_range_land[,2015,"range"],NULL)
-past_range_land[,-(1:5),"range"]<-range_land_2015[,,"range"]
-past_range_land[,-(1:5),"range"]<-magpply(X = mbind(past_range_land[,-(1:5),"range"],land_hr[,-(1:5),"past"]), FUN = min, DIM = 3)
-past_range_land[,-(1:5),"past"]<-land_hr[,-(1:5),"past"]-past_range_land[,-(1:5),"range"]
+
+yer<-getYears(past_range_land,as.integer=TRUE)[getYears(past_range_land,as.integer=TRUE)>2015]
+past_range_land[,yer,"range"]<-range_land_2015[,,"range"]
+past_range_land[,yer,"range"]<-magpply(X = mbind(past_range_land[,yer,"range"],land_hr[,yer,"past"]), FUN = min, DIM = 3)
+past_range_land[,yer,"past"]<-land_hr[,yer,"past"]-past_range_land[,yer,"range"]
 past_range_hr_shr<-round(past_range_land/dimSums(land_hr,dim=3),3)
 past_range_hr_shr[!is.finite(past_range_hr_shr)]<-0
 rm(past_range_his_shr,past_range_land,range_land_2015)
@@ -316,7 +318,15 @@ rm(irrig_hr_shr,d)
 gc()
 
 ### Flood
-flooded <- dimSums(crop_hr_shr[,,"rice_pro"],dim=3.2)
+
+rice_historical<-calcOutput("Ricearea",cellular=TRUE,aggregate=FALSE, share = FALSE)
+rice_historical<-speed_aggregate(rice_historical,rel=mapping_map,from="cell",to="region",weight=NULL)
+share_rice_flooded<-setNames(1-(rice_historical[,,"nonflooded"]/rice_historical[,,"total"])[,c(1995,2000,2005,2010),],NULL)
+share<-speed_aggregate(share_rice_flooded,rel=mapping_map,from="region",to="cell",weight=NULL)
+
+rice <- dimSums(crop_hr_shr[,,"rice_pro"],dim=3.2)
+rice[,c(1995,2000,2005,2010),]<-rice[,c(1995,2000,2005,2010),]*share[,c(1995,2000,2005,2010),]
+rice[,c(1995,2000,2005,2010),,invert=TRUE]<-rice[,c(1995,2000,2005,2010),,invert=TRUE]*setYears(share[,2010,],NULL)
 getNames(flooded,dim=1) <- "flood"
 flooded <- flooded / dimSums(crop_hr_shr_LUH2_FAO[,,"c3ann"],dim=3)
 flooded[!is.finite(flooded)]<-0
@@ -390,7 +400,7 @@ a[a<0] <- 0
 #make it crop specific
 a <- ((a * weight) / dimSums(weight,dim=3,na.rm = TRUE))
 #filter
-a[crop_hr_shr<crop_threshold] <- NA
+a[crop_hr<crop_threshold] <- NA
 #divide by croparea -> tN/ha; convert from tN/ha to kgN/ha: tN/ha*1000kg/t = 1000 kgN/ha
 
 a <- (a/crop_hr)*1000
