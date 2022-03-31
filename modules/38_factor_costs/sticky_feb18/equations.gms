@@ -11,13 +11,14 @@
 * considering capital costs.
 
 q38_cost_prod_crop(i2,kcr).. vm_cost_prod(i2,kcr)
-                              =e= vm_prod_reg(i2,kcr) * sum(ct,p38_variable_costs(ct,i2,kcr))
+                              =e= vm_prod_reg(i2,kcr) * sum(ct,p38_variable_costs(ct,i2,kcr))+
+                                  vm_cost_inv(i2,kcr)
                                 ;
 
 *' Investment costs: Investment are the summation of investment in mobile and immobile capital. The costs are annuitized,
 *' and corrected to make sure that the annual depreciation of the current time-step is accounted for.
-q38_cost_prod_inv(i2).. vm_cost_inv(i2)=e=(sum((cell(i2,j2),kcr),v38_investment_immobile(j2,kcr))
-                                    +sum((cell(i2,j2)),v38_investment_mobile(j2)))
+q38_cost_prod_inv(i2,kcr).. vm_cost_inv(i2,kcr)=e=sum(cell(i2,j2),(v38_investment_immobile(j2,kcr)+
+                                                                     v38_investment_mobile(j2,kcr)))
                                     *((1-s38_depreciation_rate)*
                                     sum(ct,pm_interest(ct,i2)/(1+pm_interest(ct,i2)))
                                         + s38_depreciation_rate)
@@ -38,7 +39,7 @@ q38_investment_immobile(j2,kcr).. v38_investment_immobile(j2,kcr)
 
 *'On the other hand, the mobile capital is needed by all crop activities in each location, so it is defined over each j2 cell.
 
-q38_investment_mobile(j2).. v38_investment_mobile(j2)
+q38_investment_mobile(j2,kcr).. v38_investment_mobile(j2,kcr)
                              =g=
                              sum((cell(i2,j2),kcr),vm_prod(j2,kcr)*sum(ct,p38_capital_need(ct,i2,kcr,"mobile")))-
                              sum(ct,p38_capital_mobile(ct,j2));

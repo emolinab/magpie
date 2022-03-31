@@ -8,7 +8,7 @@
 *' Capital update from the last investment
 p38_capital_immobile(t+1,j,kcr) = p38_capital_immobile(t,j,kcr) + v38_investment_immobile.l(j,kcr);
 
-p38_capital_mobile(t+1,j) = p38_capital_mobile(t,j) + v38_investment_mobile.l(j);
+p38_capital_mobile(t+1,j,kcr) = p38_capital_mobile(t,j,kcr) + v38_investment_mobile.l(j,kcr);
 
 
 *#################### R SECTION START (OUTPUT DEFINITIONS) #####################

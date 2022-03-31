@@ -18,25 +18,25 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 cfg$force_download <- TRUE
-dir.create("output/c200_110322")
-cfg$results_folder <- "output/c200_110322/:title:"
+dir.create("output/c200_310322")
+cfg$results_folder <- "output/c200_310322/:title:"
 
 cfg$output <- c("rds_report")
 
-scenarios<-c("ssp126",
-             "ssp370",
-             "ssp585"
+scenarios<-c(#"ssp126",
+             "ssp370"#,
+             #"ssp585"
            )
 
-SSP <- c("SSP1",
-         "SSP3",
-         "SSP5"
+SSP <- c(#"SSP1",
+         "SSP3"#,
+        # "SSP5"
        )
 
-gcms<-c("GFDL-ESM4",
-        "MRI-ESM2-0",
-        "UKESM1-0-LL",
-       "MPI-ESM1-2-HR",
+gcms<-c(#"GFDL-ESM4",
+        #"MRI-ESM2-0",
+        #"UKESM1-0-LL",
+       #"MPI-ESM1-2-HR",
         "IPSL-CM6A-LR"
       )
 
