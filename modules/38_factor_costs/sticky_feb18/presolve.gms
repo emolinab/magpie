@@ -38,3 +38,6 @@ else
     p38_capital_mobile(t,j,kcr)=p38_capital_mobile(t,j,kcr)*(1-s38_depreciation_rate)**(m_timestep_length);
 
     );
+
+v38_investment_mobile.l(j,kcr) = 0;
+ 
