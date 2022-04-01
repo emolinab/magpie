@@ -152,7 +152,7 @@ for (n in getNames(crop_hr_Bio)){
   crop_hr_LUH[,,n]<- crop_hr_LUH[,,n]+crop_hr_Bio[,,n]
 }
 
-crop_hr_shr_LUH2_FAO<-crop_hr_LUH/dimSums(land_hr,dim=3)
+crop_hr_shr_LUH2_FAO<-round(crop_hr_LUH/dimSums(land_hr,dim=3),3)
 crop_hr_shr_LUH2_FAO[!is.finite(crop_hr_shr_LUH2_FAO)]<-0
 
 rm(crop_hr_Bio,crop_hr_noBio)
@@ -343,6 +343,7 @@ gc()
 ### Bioenergy
 bio_hr_shr <- dimSums(crop_hr_shr[,,c("begr","betr")],dim=3.2)
 getNames(bio_hr_shr,dim=1) <- c("c4per","c3per")
+bio_hr_shr[bio_hr_shr<0.01]<-0
 bio_hr_shr <- bio_hr_shr / dimSums(crop_hr_shr_LUH2_FAO[,,c("c4per","c3per")],dim=3.2)
 bio_hr_shr[!is.finite(bio_hr_shr)]<-0
 d<-dimSums((bio_hr_shr[,,c("c4per","c3per")])*dimSums(crop_hr_shr_LUH2_FAO[,,c("c4per","c3per")],dim=3.2)*dimSums(land_hr,dim=3),dim=c(1,3))-croparea(gdx,level="glo",products = c("begr","betr"),product_aggr = T)
