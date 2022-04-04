@@ -39,5 +39,4 @@ else
 
     );
 
-v38_investment_mobile.l(j,kcr) = 0;
- 
+*v38_investment_mobile.l(j,kcr) = 0;

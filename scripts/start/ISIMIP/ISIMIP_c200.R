@@ -74,7 +74,7 @@ for(s in 1:length(scenarios)){
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("ISIMIP_110322",scenarios[s],gcms[g],climate[c],sep="_")
+      cfg$title <- paste("ISIMIP_110322",scenarios[s],gcms[g],climate[c],"_2",sep="_")
 
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[scenarios[s]]]
