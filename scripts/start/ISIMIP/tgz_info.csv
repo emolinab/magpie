@@ -29,3 +29,5 @@ ssp585,MRI-ESM2-0,c1000,rev4.65+ISIMIP_140122_8f7b9423_c2d8e976_cellularmagpie_c
 ssp585,UKESM1-0-LL,c1000,rev4.65+ISIMIP_140122_8f7b9423_a725bb41_cellularmagpie_c1000_UKESM1-0-LL-ssp585_lpjml-c5bacf3f.tgz
 ssp585,MPI-ESM1-2-HR,c1000,rev4.65+ISIMIP_140122_8f7b9423_a5923ac6_cellularmagpie_c1000_MPI-ESM1-2-HR-ssp585_lpjml-c5bacf3f.tgz
 ssp585,IPSL-CM6A-LR,c1000,rev4.65+ISIMIP_140122_8f7b9423_d5be67a6_cellularmagpie_c1000_IPSL-CM6A-LR-ssp585_lpjml-c5bacf3f.tgz
+ssp585noco2,GFDL-ESM4,c200,rev4.65ISIMIP_060422_8f7b9423_475037f5_cellularmagpie_c200_GFDL-ESM4-ssp585_2015co2_lpjml-c5bacf3f.tgz
+ssp585noco2,GFDL-ESM5,c1000,rev4.65ISIMIP_060422_8f7b9423_2a1135df_cellularmagpie_c1000_GFDL-ESM4-ssp585_2015co2_lpjml-c5bacf3f.tgz

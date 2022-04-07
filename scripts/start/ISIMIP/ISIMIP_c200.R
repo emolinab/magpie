@@ -23,36 +23,39 @@ cfg$results_folder <- "output/c200_110322/:title:"
 
 cfg$output <- c("rds_report")
 
-scenarios<-c("ssp126",
-             "ssp370",
-             "ssp585"
+scenarios<-c(#"ssp126",
+             #"ssp370",
+             #"ssp585"
+             "ssp585noco2"
            )
 
-SSP <- c("SSP1",
-         "SSP3",
+SSP <- c(#"SSP1",
+         #"SSP3",
          "SSP5"
        )
 
-gcms<-c("GFDL-ESM4",
-        "MRI-ESM2-0",
-        "UKESM1-0-LL",
-       "MPI-ESM1-2-HR",
-        "IPSL-CM6A-LR"
+gcms<-c("GFDL-ESM4"#,
+      #  "MRI-ESM2-0",
+      #  "UKESM1-0-LL",
+       #"MPI-ESM1-2-HR",
+        #"IPSL-CM6A-LR"
       )
 
 bioen_ghg<-list()
 bioen_ghg[["ssp126"]]<-"R21M42-SSP1-PkBudg1300"
 bioen_ghg[["ssp585"]]<-"R21M42-SSP5-NPI"
 bioen_ghg[["ssp370"]]<-"R21M42-SSP2-NPI"
+bioen_ghg[["ssp585noco2"]]<-"R21M42-SSP5-NPI"
 
 mit<-list()
 mit[["ssp126"]]<-"ndc"
 mit[["ssp585"]]<-"npi"
 mit[["ssp370"]]<-"npi"
+bioen_ghg[["ssp585noco2"]]<-"R21M42-SSP5-NPI"
 
 cell_input<-as.data.frame(read.csv("scripts/start/ISIMIP/tgz_info.csv"))
 
-cfg$gms$sm_fix_cc <- 2015
+#cfg$gms$sm_fix_cc <- 2015
 cfg$gms$sm_fix_SSP2 <-2015
 
 for(s in 1:length(scenarios)){
