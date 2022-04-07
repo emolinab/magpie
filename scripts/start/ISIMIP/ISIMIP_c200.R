@@ -31,8 +31,7 @@ scenarios<-c(#"ssp126",
 
 SSP <- c(#"SSP1",
          #"SSP3",
-         "SSP5"
-       )
+         "SSP5")
 
 gcms<-c("GFDL-ESM4"#,
       #  "MRI-ESM2-0",
@@ -51,7 +50,7 @@ mit<-list()
 mit[["ssp126"]]<-"ndc"
 mit[["ssp585"]]<-"npi"
 mit[["ssp370"]]<-"npi"
-bioen_ghg[["ssp585noco2"]]<-"R21M42-SSP5-NPI"
+mit[["ssp585noco2"]]<-"R21M42-SSP5-NPI"
 
 cell_input<-as.data.frame(read.csv("scripts/start/ISIMIP/tgz_info.csv"))
 
