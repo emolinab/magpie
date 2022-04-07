@@ -32,7 +32,8 @@ cfg$output <- c("rds_report","extra/disaggregation")
 
 scenarios<-c("ssp126",
              "ssp370",
-             "ssp585"
+             "ssp585",
+             "ssp585noco2"
            )
 
 gcms<-c("GFDL-ESM4",
@@ -46,6 +47,7 @@ bioen_ghg<-list()
 bioen_ghg[["ssp126"]]<-"R21M42-SSP1-PkBudg1300"
 bioen_ghg[["ssp585"]]<-"R21M42-SSP5-NPI"
 bioen_ghg[["ssp370"]]<-"R21M42-SSP2-NPI"
+bioen_ghg[["ssp585noco2"]]<-"R21M42-SSP5-NPI"
 
 SSPs<-list()
 SSPs[["ssp126"]]<-"SSP1"
@@ -56,6 +58,7 @@ mit<-list()
 mit[["ssp126"]]<-"ndc"
 mit[["ssp585"]]<-"npi"
 mit[["ssp370"]]<-"npi"
+mit[["ssp585noco2"]]<-"npi"
 
 cell_input<-as.data.frame(read.csv("scripts/start/ISIMIP/tgz_info.csv"))
 c200_Runs<-as.data.frame(read.csv("scripts/start/ISIMIP/runs_names.csv"))
@@ -76,7 +79,7 @@ resolution<-c("c1000")
 
 for(re in resolution){
 #  for (ru in 1:length(runs)){
-for (ru in c(15,13)){
+for (ru in c(19)){
 
   for (s in scenarios){
   rcp<- if(grepl(s, runs[ru], fixed=TRUE)) s else rcp
@@ -102,7 +105,7 @@ for (ru in c(15,13)){
     runName<-paste(rcp_re[ru],gcm_re[ru],cc_re[ru],"med",sep="_")
     if(!file.exists(paste0(folder,runName,".tgz"))){
     dir.create(paste0(folder,runName))
-    gdx<-paste0("/p/projects/magpie/data/ISIMIP/ISIMIP_100322_all/ISIMIP_100322/magpie/output/c200_110322/",
+    gdx<-paste0("/p/projects/magpie/data/ISIMIP/ISIMIP_150322/magpie/output/c200_110322/",
               as.character(subset(c200_Runs,rcp==rcp_re[ru] & gcm==gcm_re[ru] & scenario==cc_re[ru])[1,"name"]),
               "/fulldata.gdx")
       ov_prod_reg <- readGDX(gdx,"ov_prod_reg",select=list(type="level"))
@@ -130,9 +133,9 @@ for (ru in c(15,13)){
 }
   ###################################################################################################################################################
 
-      title<-paste("ISIMIP_150322_med",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
-        dir.create(paste0("output/",re,"_150322_Calib/"))
-      cfg$results_folder <- paste0("output/",re,"_150322_Calib/",title)
+      title<-paste("ISIMIP_070422_med",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+        dir.create(paste0("output/",re,"_070422/"))
+      cfg$results_folder <- paste0("output/",re,"_070422/",title)
       cfg <- gms::setScenario(cfg,c(cc,SSPs[[rcp]],"ForestryEndo"))
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==rcp_re[ru] & gcm==gcm_re[ru] & resolution == re)[1,"name_tgz"]),
