@@ -50,7 +50,7 @@ mit<-list()
 mit[["ssp126"]]<-"ndc"
 mit[["ssp585"]]<-"npi"
 mit[["ssp370"]]<-"npi"
-mit[["ssp585noco2"]]<-"R21M42-SSP5-NPI"
+mit[["ssp585noco2"]]<-"npi"
 
 cell_input<-as.data.frame(read.csv("scripts/start/ISIMIP/tgz_info.csv"))
 
