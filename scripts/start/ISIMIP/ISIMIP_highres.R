@@ -134,9 +134,9 @@ for (ru in c(19)){
 }
   ###################################################################################################################################################
 
-      title<-paste("ISIMIP_070422_med",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
-        dir.create(paste0("output/",re,"_070422/"))
-      cfg$results_folder <- paste0("output/",re,"_070422/",title)
+      title<-paste("ISIMIP_080422_med",rcp_re[ru],gcm_re[ru],cc_re[ru],re,sep="_")
+        dir.create(paste0("output/",re,"_080422/"))
+      cfg$results_folder <- paste0("output/",re,"_080422/",title)
       cfg <- gms::setScenario(cfg,c(cc,SSPs[[rcp]],"ForestryEndo"))
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==rcp_re[ru] & gcm==gcm_re[ru] & resolution == re)[1,"name_tgz"]),
