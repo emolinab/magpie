@@ -53,6 +53,7 @@ SSPs<-list()
 SSPs[["ssp126"]]<-"SSP1"
 SSPs[["ssp585"]]<-"SSP5"
 SSPs[["ssp370"]]<-"SSP3"
+SSPs[["ssp585noco2"]]<-"SSP5"
 
 mit<-list()
 mit[["ssp126"]]<-"ndc"

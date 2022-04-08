@@ -54,7 +54,7 @@ mit[["ssp585noco2"]]<-"npi"
 
 cell_input<-as.data.frame(read.csv("scripts/start/ISIMIP/tgz_info.csv"))
 
-#cfg$gms$sm_fix_cc <- 2015
+cfg$gms$sm_fix_cc <- 2015
 cfg$gms$sm_fix_SSP2 <-2015
 
 for(s in 1:length(scenarios)){
