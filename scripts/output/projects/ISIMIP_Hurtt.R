@@ -516,6 +516,7 @@ a[,,n]<-dimSums(yield_kr_su[,,n],dim=3)/dimSums(mapping_grid[,,n],dim=3)
 if(!file.exists(paste0(out_dir,"/LUH2_Yield_Nr.nc"))){
 a <- convertLUH2(a)
 gc()
+
 write.magpie(a,paste0(out_dir,"/LUH2_Yield_Nr.nc"),comment = "unit: kgN-per-ha",datatype="FLT8S",zname="time",xname="lon",yname="lat")
 rm(a,yield_kr,yield_kr_su)
 gc()
