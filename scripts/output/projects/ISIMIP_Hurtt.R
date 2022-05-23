@@ -207,7 +207,7 @@ states <- mbind(dimSums(crop_hr_shr_LUH2_FAO,dim=3.2),
                 setNames(dimSums(crop_hr_shr_LUH2_FAO,dim=3),"cropland"),
                 setNames(past_range_hr_shr[,,"past"],"pastr"),
                 setNames(past_range_hr_shr[,,"range"],"range"),
-                setNames(dimSums(past_range_hr_shr,dim=3),"grazing")
+                setNames(dimSums(past_range_hr_shr,dim=3),"grazing"),
                 setNames(land_hr_shr[,,"primforest"],"primf"),
                 setNames(forestry_hr_shr[,,"plant"],"timber"),
                 setNames(land_hr_shr[,,"secdforest"]+forestry_hr_shr[,,"ndc"]+forestry_hr_shr[,,"aff"],"secdf"),
