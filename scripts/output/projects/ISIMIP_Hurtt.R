@@ -37,10 +37,10 @@ if (!file.exists(file.path(outputdir,"cell.land_0.5.mz"))) stop('No disaggrated 
 dir<-outputdir
 
 #### Saving results
-save_path<-"/p/projects/magpie/transfers/HurttMaps-010422"
+save_path<-"/p/projects/magpie/transfers/ISIMIP3b_MAgPIE_LUH_220523"
     if(!dir.exists(save_path)) dir.create(save_path)
 
-scenarios<-c("ssp126", "ssp370", "ssp585noco2") #"ssp585",
+scenarios<-c("ssp126", "ssp370", "ssp585") #,"ssp585noco2"
 
 gcms<-c("GFDL-ESM4","MRI-ESM2-0","UKESM1-0-LL","MPI-ESM1-2-HR","IPSL-CM6A-LR","2015soc")
 
@@ -222,6 +222,7 @@ saveRDS(states,paste0(outputdir,"/states.rds"))
 gc()
 states <- convertLUH2(states)
 gc()
+
 write.magpie(states,paste0(out_dir,"/LUH2_states.nc"),comment = "unit: fraction of grid-cell area",datatype="FLT8S",zname="time",xname="lon",yname="lat")
 rm(states)
 gc()
