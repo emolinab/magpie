@@ -18,28 +18,28 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 cfg$force_download <- TRUE
-dir.create("output/c200_ggcms_260122")
-cfg$results_folder <- "output/c200_ggcms_070322/:title:"
+dir.create("output/c200_ggcms_270522")
+cfg$results_folder <- "output/c200_ggcms_270522/:title:"
 
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report","extra/disaggregation")
 
-scenarios<-c("ssp126",
-             "ssp585"
+scenarios<-c("ssp2"#,
+             #"ssp585"
              #"ssp370"
 
            )
 
-SSP <- c("SSP1",
-         "SSP5"
+SSP <- c("SSP2"#,
+         #"SSP5"
          #"SSP3"
        )
 
-gcms<-c("GFDL-ESM4",
-        "MRI-ESM2-0",
-        "UKESM1-0-LL",
-        "MPI-ESM1-2-HR",
-        "IPSL-CM6A-LR"
+gcms<-c("GFDL-ESM4"#,
+    #    "MRI-ESM2-0",
+    #    "UKESM1-0-LL",
+    #    "MPI-ESM1-2-HR",
+    #    "IPSL-CM6A-LR"
       )
 
 ggcms<-c(#"EPIC-IIASA",
@@ -52,12 +52,13 @@ bioen_ghg<-list()
 bioen_ghg[["ssp126"]]<-"R21M42-SSP1-PkBudg1300"
 bioen_ghg[["ssp585"]]<-"R21M42-SSP5-NPI"
 bioen_ghg[["ssp370"]]<-"R21M42-SSP2-NPI"
+bioen_ghg[["ssp2"]]<-"R21M42-SSP2-PkBudg1300"
 
 mit<-list()
 mit[["ssp126"]]<-"ndc"
 mit[["ssp585"]]<-"npi"
-mit[["SSP370"]]<-"npi"
-
+mit[["ssp370"]]<-"npi"
+mit[["ssp2"]]<-"ndc"
 
 cell_input<-as.data.frame(read.csv("scripts/start/Paper_2/tgz_info_gg.csv"))
 
@@ -67,7 +68,7 @@ cfg$gms$sm_fix_SSP2 <-2015
 for (gg in ggcms){
 for(s in 1:length(scenarios)){
   for(g in 1:length(gcms)){
-    climate<-if(gcms[g]=="GFDL-ESM4" & gg=="LPjmL") c("cc","nocc_hist") else c("cc")
+    climate<-if(gcms[g]=="GFDL-ESM4" & gg=="LPjmL") c("nocc_hist") else c("cc")
     for(c in 1:length(climate)){
 
       cfg <- gms::setScenario(cfg,c(climate[c],SSP[s]))
@@ -85,7 +86,7 @@ for(s in 1:length(scenarios)){
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("Paper_260122_gg_ag_",gg,scenarios[s],gcms[g],climate[c],sep="_")
+      cfg$title <- paste("Paper_270522_gg_ag_",gg,scenarios[s],gcms[g],climate[c],sep="_")
 
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[scenarios[s]]]

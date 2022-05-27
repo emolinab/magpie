@@ -39,3 +39,4 @@ ssp585,MRI-ESM2-0,c200,CYGMA1p74,rev4.65+Paper_170122_CYGMA1p74_8f7b9423_41cd9c5
 ssp585,UKESM1-0-LL,c200,CYGMA1p74,rev4.65+Paper_170122_CYGMA1p74_8f7b9423_30904a0a_cellularmagpie_c200_UKESM1-0-LL-ssp585_lpjml-8e6c5eb1_isimip-92160ea4.tgz
 ssp585,MPI-ESM1-2-HR,c200,CYGMA1p74,rev4.65+Paper_170122_CYGMA1p74_8f7b9423_128d9839_cellularmagpie_c200_MPI-ESM1-2-HR-ssp585_lpjml-8e6c5eb1_isimip-06204055.tgz
 ssp585,IPSL-CM6A-LR,c200,CYGMA1p74,rev4.65+Paper_170122_CYGMA1p74_8f7b9423_70180eef_cellularmagpie_c200_IPSL-CM6A-LR-ssp585_lpjml-8e6c5eb1_isimip-672af77f.tgz
+ssp2,GFDL-ESM4,c200,LPjmL,rev4.65+Paper_170122_LPJmL_8f7b9423_5a30a6cc_cellularmagpie_c200_GFDL-ESM4-ssp126_lpjml-8e6c5eb1_isimip-e60678a3.tgz
