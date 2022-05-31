@@ -18,10 +18,10 @@ source("scripts/start_functions.R")
 #start MAgPIE run
 source("config/default.cfg")
 
-cfg$input <- c(cellular    = "rev4.64+ISIMIP_300921_noDeb_h12_884ea77c_cellularmagpie_c200_GFDL-ESM4-ssp126_lpjml-e8ab65dd.tgz",
-               regional    = "rev4.64_h12_magpie.tgz",
+cfg$input <- c(cellular    = "rev4.72+FOCUS_h12_6819938d_cellularmagpie_c200_MRI-ESM2-0-ssp126_lpjml-8e6c5eb1.tgz",
+               regional    = "rev4.72+FOCUS_h12_magpie.tgz",
                validation  = "rev4.64+ISIMIP_300921_noDeb_h12_validation.tgz",
-               additional  = "additional_data_rev4.04.tgz")
+               additional  = "rev4.72+FOCUS_h12_validation.tgz")
 
 cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau == 1
 cfg$gms$factor_costs<- "sticky_feb18"
@@ -35,4 +35,4 @@ cfg$gms$c_timesteps <- 1
 cfg$output <- c("rds_report")
 cfg$sequential <- TRUE
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration("H12_ISIMIP")
+magpie4::submitCalibration("H12_FOCUS")
