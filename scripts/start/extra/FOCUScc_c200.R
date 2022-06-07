@@ -76,14 +76,13 @@ for(s in 1:length(scenarios)){
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==scenarios[s] & gcm==gcms[g] & resolution == "c200" & ggcm==gg)[1,"name_tgz"]),
                      #cellular    = "rev4.64+ISIMIP_11102021_h12_23d4d8fb_cellularmagpie_c200_MRI-ESM2-0-ssp585_lpjml-e8ab65dd.tgz",
-                     regional    = "rev4.72_h12_magpie.tgz",
-                     validation  = "rev4.72_h12_validation.tgz",
+                     regional    = "rev4.72+FOCUS_060622__8f7b9423_magpie.tgz",
+                     validation  = "rev4.72+FOCUS_060622__8f7b9423_validation.tgz",
                      additional  = "additional_data_rev4.17.tgz",
                      calibration = "calibration_H12_sticky_feb18_28May22.tgz")
 
       cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau == 1
       cfg$gms$factor_costs<- "sticky_feb18"
-      cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
       cfg$title <- paste("FOCUS_070622_",gg,scenarios[s],gcms[g],climate[c],sep="_")
