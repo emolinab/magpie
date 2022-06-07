@@ -59,7 +59,7 @@ mit[["ssp585"]]<-"npi"
 mit[["SSP370"]]<-"npi"
 
 
-cell_input<-as.data.frame(read.csv("scripts/extra/tgz_info_gg.csv"))
+cell_input<-as.data.frame(read.csv("scripts/start/extra/tgz_info_gg.csv"))
 
 cfg$gms$sm_fix_cc <- 2015
 cfg$gms$sm_fix_SSP2 <-2015
