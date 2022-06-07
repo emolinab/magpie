@@ -66,7 +66,7 @@ cfg$gms$sm_fix_SSP2 <-2015
 
 for (gg in ggcms){
 for(s in 1:length(scenarios)){
- gcms<-  if (gg=="LPJmL") "MPI-ESM1-2-HR" else if (gg=="CYGMA1p74") "UKESM1-0-LL"
+ gcms<-  if (gg=="LPjmL") "MPI-ESM1-2-HR" else if (gg=="CYGMA1p74") "UKESM1-0-LL"
   for(g in 1:length(gcms)){
     climate<-if(gcms[g]=="MPI-ESM1-2-HR" & gg=="LPjmL") c("cc","nocc_hist") else c("cc")
     for(c in 1:length(climate)){
