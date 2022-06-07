@@ -1,0 +1,7 @@
+rcp,gcm,resolution,ggcm,name_tgz
+ssp126,MPI-ESM1-2-HR,c200,LPjmL,rev4.72+FOCUS_060622_LPJmL_8f7b9423_77225b71_cellularmagpie_c200_MPI-ESM1-2-HR-ssp126_lpjml-8e6c5eb1_isimip-12dd7e02.tgz
+ssp585,MPI-ESM1-2-HR,c200,LPjmL,rev4.72+FOCUS_060622_LPJmL_8f7b9423_4501019b_cellularmagpie_c200_MPI-ESM1-2-HR-ssp585_lpjml-8e6c5eb1_isimip-c80a9e35.tgz
+ssp370,MPI-ESM1-2-HR,c200,LPjmL,rev4.72+FOCUS_060622_LPJmL_8f7b9423_dfda3a4c_cellularmagpie_c200_MPI-ESM1-2-HR-ssp370_lpjml-8e6c5eb1_isimip-31acd3d3.tgz
+ssp126,UKESM1-0-LL,c200,CYGMA1p74,rev4.72+FOCUS_060622_CYGMA1p74_8f7b9423_b6fb8482_cellularmagpie_c200_UKESM1-0-LL-ssp126_lpjml-8e6c5eb1_isimip-36242791.tgz
+ssp585,UKESM1-0-LL,c200,CYGMA1p74,rev4.72+FOCUS_060622_CYGMA1p74_8f7b9423_51f4841f_cellularmagpie_c200_UKESM1-0-LL-ssp585_lpjml-8e6c5eb1_isimip-92160ea4.tgz
+ssp370,UKESM1-0-LL,c200,CYGMA1p74,rev4.72+FOCUS_060622_CYGMA1p74_8f7b9423_ca9d86d1_cellularmagpie_c200_UKESM1-0-LL-ssp370_lpjml-8e6c5eb1_isimip-e9c40d63.tgz

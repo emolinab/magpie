@@ -25,8 +25,8 @@ cfg$results_folder <- "output/FOCUS_310522/:title:"
 cfg$output <- c("rds_report","extra/disaggregation")
 
 scenarios<-c("SSP1",
-            "SSP2",
-            "SSP3")
+             "SSP2",
+             "SSP3")
 
 bioen_ghg<-list()
 
