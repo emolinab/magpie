@@ -24,13 +24,13 @@ cfg$results_folder <- "output/c200_ggcms_070622/:title:"
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report","extra/disaggregation")
 
-scenarios<-c(#"ssp126",
-#             "ssp585",
+scenarios<-c("ssp126",
+             "ssp585",
              "ssp370"
             )
 
-SSP <- c(#"SSP1",
-         #"SSP5",
+SSP <- c("SSP1",
+         "SSP5",
          "SSP3"
        )
 
@@ -43,7 +43,7 @@ SSP <- c(#"SSP1",
 
 ggcms<-c(#"EPIC-IIASA",
          #"pDSSAT",
-         "LPjmL",
+#         "LPjmL",
          "CYGMA1p74"
        )
 
@@ -63,7 +63,10 @@ cell_input<-as.data.frame(read.csv("scripts/start/extra/tgz_info_gg.csv"))
 cfg$gms$sm_fix_cc <- 2015
 cfg$gms$sm_fix_SSP2 <-2015
 
-for (gg in ggcms){
+for (gg in ggcms
+
+scenarios<-if(gg=="CYGMA1p74") c("ssp126","ssp585")
+
 for(s in 1:length(scenarios)){
  gcms<-  if (gg=="LPjmL") "MPI-ESM1-2-HR" else if (gg=="CYGMA1p74") "UKESM1-0-LL"
   for(g in 1:length(gcms)){
