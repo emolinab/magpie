@@ -79,7 +79,7 @@ for(s in 1:length(scenarios)){
                      regional    = "rev4.72+FOCUS_060622__8f7b9423_magpie.tgz",
                      validation  = "rev4.72+FOCUS_060622__8f7b9423_validation.tgz",
                      additional  = "additional_data_rev4.17.tgz",
-                     calibration = "calibration_H12_sticky_feb18_28May22.tgz")
+                     calibration = "calibration_H13_FOCUS_07Jun22.tgz")
 
       cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau == 1
       cfg$gms$factor_costs<- "sticky_feb18"
