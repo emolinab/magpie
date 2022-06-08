@@ -56,7 +56,7 @@ bioen_ghg[["ssp370"]]<-"R21M42-SSP2-NPI"
 mit<-list()
 mit[["ssp126"]]<-"ndc"
 mit[["ssp585"]]<-"npi"
-mit[["SSP370"]]<-"npi"
+mit[["ssp370"]]<-"npi"
 
 
 cell_input<-as.data.frame(read.csv("scripts/start/extra/tgz_info_gg.csv"))
