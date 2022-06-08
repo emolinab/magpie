@@ -24,14 +24,13 @@ cfg$results_folder <- "output/c200_ggcms_070622/:title:"
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report","extra/disaggregation")
 
-scenarios<-c("ssp126",
-             "ssp585",
+scenarios<-c(#"ssp126",
+#             "ssp585",
              "ssp370"
+            )
 
-           )
-
-SSP <- c("SSP1",
-         "SSP5",
+SSP <- c(#"SSP1",
+         #"SSP5",
          "SSP3"
        )
 
