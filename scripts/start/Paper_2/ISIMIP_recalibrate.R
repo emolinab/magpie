@@ -21,7 +21,7 @@ source("config/default.cfg")
 cfg$input <- c(cellular    = "rev4.65+Paper_270822_pDSSAT_MPI-ESM1-2-HR_8f7b9423_6fc6400e_cellularmagpie_c200_MPI-ESM1-2-HR-ssp126_lpjml-8e6c5eb1_isimip-aa82a2e6.tgz",
                regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
                validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation",
-               additional  = "additional_data_rev4.07.tgz",)
+               additional  = "additional_data_rev4.07.tgz")
 
 cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau == 1
 cfg$gms$factor_costs<- "sticky_feb18"
