@@ -18,8 +18,8 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 cfg$force_download <- TRUE
-dir.create("output/c200_ggcms_260122")
-cfg$results_folder <- "output/c200_ggcms_070322/:title:"
+dir.create("output/c200_ggcms_280822")
+cfg$results_folder <- "output/c200_ggcms_280822/:title:"
 
 #the high resolution can be adjusted in the output script "highres.R"
 cfg$output <- c("rds_report","extra/disaggregation")
@@ -42,10 +42,15 @@ gcms<-c("GFDL-ESM4",
         "IPSL-CM6A-LR"
       )
 
-ggcms<-c(#"EPIC-IIASA",
-         #"pDSSAT",
-         "LPjmL"#,
-         #"CYGMA1p74"
+ggcms<-c("EPIC-IIASA",
+         "pDSSAT",
+         "LPjmL",
+         "CYGMA1p74",
+         "ISAM",
+         "LDNDC",
+         "CROVER",
+         "PEPIC",
+         "PROMET"
        )
 
 bioen_ghg<-list()
@@ -74,18 +79,17 @@ for(s in 1:length(scenarios)){
 
 
       cfg$input <- c(cellular    = as.character(subset(cell_input,rcp==scenarios[s] & gcm==gcms[g] & resolution == "c200" & ggcm==gg)[1,"name_tgz"]),
-                     #cellular    = "rev4.64+ISIMIP_11102021_h12_23d4d8fb_cellularmagpie_c200_MRI-ESM2-0-ssp585_lpjml-e8ab65dd.tgz",
                      regional    = "rev4.65+ISIMIP_140122_8f7b9423_magpie.tgz",
-                     validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation",
+                     validation  = "rev4.65+ISIMIP_140122_8f7b9423_validation.tgz",
                      additional  = "additional_data_rev4.07.tgz",
-                     calibration = "calibration_H13_ISIMIP_150122_15Jan22.tgz")
+                     calibration = "calibration_H13_Paper_27Aug22.tgz")
 
       cfg$gms$s13_ignore_tau_historical <- 1 #ignoring historical tau == 1
       cfg$gms$factor_costs<- "sticky_feb18"
       cfg$gms$c38_sticky_mode <- "dynamic"
       cfg$force_download <- TRUE
 
-      cfg$title <- paste("Paper_260122_gg_ag_",gg,scenarios[s],gcms[g],climate[c],sep="_")
+      cfg$title <- paste("Paper_280822_gg_ag_",gg,scenarios[s],gcms[g],climate[c],sep="_")
 
 
       cfg$gms$c56_pollutant_prices <- bioen_ghg[[scenarios[s]]]
