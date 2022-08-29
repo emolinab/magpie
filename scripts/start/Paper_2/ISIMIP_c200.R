@@ -42,9 +42,9 @@ gcms<-c("GFDL-ESM4",
         "IPSL-CM6A-LR"
       )
 
-ggcms<-c("EPIC-IIASA",
-         "pDSSAT",
-         "LPjmL",
+ggcms<-c(#"EPIC-IIASA",
+         #"pDSSAT",
+         "LPJmL",
          "CYGMA1p74",
          "ISAM",
          "LDNDC",
@@ -72,7 +72,7 @@ cfg$gms$sm_fix_SSP2 <-2015
 for (gg in ggcms){
 for(s in 1:length(scenarios)){
   for(g in 1:length(gcms)){
-    climate<-if(gcms[g]=="GFDL-ESM4" & gg=="LPjmL") c("cc","nocc_hist") else c("cc")
+    climate<-if(gcms[g]=="GFDL-ESM4" & gg=="LPJmL") c("cc","nocc_hist") else c("cc")
     for(c in 1:length(climate)){
 
       cfg <- gms::setScenario(cfg,c(climate[c],SSP[s]))
