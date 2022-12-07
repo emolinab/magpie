@@ -272,13 +272,16 @@ gc()
 }
 
 ### Wood: Yields
-a <- ForestYield(gdx,level="cell")
+a <- ForestYield(gdx,level="cell") #yields in this function are calculated as yearly production/area in overall time step
+time<-timePeriods(gdx)
+time[,1,]<-5
+a <- a*time
 a_fix<- new.magpie(cells_and_regions=getCells(a),years=getYears(a),
                       names=getNames(a))
 ##BugFix in the mean time
 a_fix[,1,]<-0
 a_fix[,-1,]<-setYears(a[,2100,,invert=TRUE],getYears(a_fix[,-1,]))
-a[a>500]<-a_fix[a>500]
+a[a>1000]<-a_fix[a>1000]
 b <- madrat::toolAggregate(a, map_file, from = "cluster",to = "cell")
 luh2 <- data.frame(matrix(nrow=4,ncol=2))
 names(luh2) <- c("LUH2","MAgPIE")
@@ -291,7 +294,7 @@ gc()
 if(!file.exists(paste0(out_dir,"/LUH2_wood_harvest_yields.nc"))){
 b <- convertLUH2(b)
 gc()
-write.magpie(b,paste0(out_dir,"/LUH2_wood_harvest_yields.nc"),comment = "unit: m3 per ha per year",datatype="FLT8S",zname="time",xname="lon",yname="lat")
+write.magpie(b,paste0(out_dir,"/LUH2_wood_harvest_yields.nc"),comment = "unit: tDM per ha per year",datatype="FLT8S",zname="time",xname="lon",yname="lat")
 rm(a,b)
 gc()
 }
@@ -305,12 +308,13 @@ b <- madrat::toolAggregate(b, map_file, from = "cluster",to = "cell")
 if(!file.exists(paste0(out_dir,"/LUH2_wood_harvest_biomass_split.nc"))){
 b <- convertLUH2(b)
 gc()
-write.magpie(b,paste0(out_dir,"/LUH2_wood_harvest_biomass_split.nc"),comment = "unit: fraction of wood harvest biomass",datatype="FLT8S",zname="time",xname="lon",yname="lat")
+write.magpie(b,paste0(out_dir,"/LUH2_wood_harvest_biomass_split.nc"),comment = "unit: volumetric (m3/m3) fraction of wood harvest biomass",datatype="FLT8S",zname="time",xname="lon",yname="lat")
 rm(b)
 gc()
 }
 
 ####### ONLY DYNAMIC FORESTRY ON#############
+
 
 ### Irrigation
 irrig_hr_shr <- collapseNames(crop_hr_shr_LUH2_FAO[,,"irrigated"],collapsedim = 3.2)
