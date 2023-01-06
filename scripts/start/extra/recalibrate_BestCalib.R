@@ -18,7 +18,7 @@ source("scripts/start_functions.R")
 # get default settings
 source("config/default.cfg")
 
-realizations <- c("per_ton_fao_may22", "sticky_feb18") # "sticky_labor" is very similar to sticky_feb18. No extra calibration needed.
+realizations <- c( "sticky_feb18") # "per_ton_fao_may22", "sticky_labor" is very similar to sticky_feb18. No extra calibration needed.
 type <- NULL
 
 cfg$results_folder <- "output/:title:"
