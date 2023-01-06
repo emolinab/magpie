@@ -25,15 +25,15 @@ cfg$results_folder <- "output/:title:"
 cfg$recalibrate <- TRUE
 cfg$recalibrate_landconversion_cost <- FALSE
 
-cfg$output <- c("rds_report", "validation_short")
+cfg$output <- c("rds_report")
 cfg$force_download <- TRUE
 
 cfg$gms$c_timesteps <- "calib"
 
 for (r in realizations) {
   cfg$gms$factor_costs <- r
-
-for (b in c(TRUE,FALSE)){
+best <- if (r != "per_ton_fao_may22") c(TRUE,FALSE) else FALSE
+for (b in best){
       cfg$best_calib <- b
       cfg$title <- paste("calib_run", r, "bC",b, sep = "_")
     start_run(cfg)
