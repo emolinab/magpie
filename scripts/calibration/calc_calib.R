@@ -101,7 +101,7 @@ update_calib<-function(gdx_file, calib_accuracy=0.1, calibrate_pasture=TRUE,cali
 
   calib_factor     <- old_calib * (damping_factor*(calib_correction-1) + 1)
   calib_factor[reg_tol_crop,1,"crop"] <- old_calib[reg_tol_crop,1,"crop"]
-  calib_factor[reg_tol_past,1,"past"] <- old_calib[reg_tol_crop,1,"past"]
+  calib_factor[reg_tol_past,1,"past"] <- old_calib[reg_tol_past,1,"past"]
 
   if(!is.null(crop_max)) {
     above_limit <- (calib_factor[,,"crop"] > crop_max)
