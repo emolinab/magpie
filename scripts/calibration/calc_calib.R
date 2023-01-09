@@ -172,7 +172,7 @@ update_calib<-function(gdx_file, calib_accuracy=0.1, calibrate_pasture=TRUE,cali
                paste0(" note: Calibration step ",calibration_step),
                " origin: scripts/calibration/calc_calib.R (path relative to model main directory)",
                paste0(" creation date: ",date()))
-  write.magpie(round(setYears(calib_factor_used,NULL),2), calib_file, comment = comment)
+  write.magpie(round(setYears(calib_factor_calc,NULL),2), calib_file, comment = comment)
   return(FALSE)
 }
 
