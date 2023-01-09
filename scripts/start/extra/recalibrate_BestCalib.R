@@ -29,6 +29,7 @@ cfg$output <- c("rds_report")
 cfg$force_download <- TRUE
 
 cfg$gms$c_timesteps <- "1"
+cfg$calib_maxiter <- 1
 
 for (r in realizations) {
   cfg$gms$factor_costs <- r
