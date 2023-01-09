@@ -18,7 +18,7 @@ source("scripts/start_functions.R")
 # get default settings
 source("config/default.cfg")
 
-realizations <- c("per_ton_fao_may22","sticky_feb18") # "per_ton_fao_may22","sticky_labor" is very similar to sticky_feb18. No extra calibration needed.
+realizations <- c("sticky_feb18") # "per_ton_fao_may22","sticky_labor" is very similar to sticky_feb18. No extra calibration needed.
 type <- NULL
 
 cfg$results_folder <- "output/:title:"
@@ -28,14 +28,14 @@ cfg$recalibrate_landconversion_cost <- FALSE
 cfg$output <- c("rds_report")
 cfg$force_download <- TRUE
 
-cfg$gms$c_timesteps <- "calib"
+cfg$gms$c_timesteps <- "1"
 
 for (r in realizations) {
   cfg$gms$factor_costs <- r
 best <- TRUE
 for (b in best){
       cfg$best_calib <- b
-      cfg$title <- paste("calib_run", r, "RegConst",b, sep = "_")
+      cfg$title <- paste("calib_run", r, "Step1",b, sep = "_")
     start_run(cfg)
   #  magpie4::submitCalibration(paste("H12", r, b, sep = "_"))
 
