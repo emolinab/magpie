@@ -28,7 +28,7 @@ cfg$recalibrate_landconversion_cost <- FALSE
 cfg$output <- c("rds_report")
 cfg$force_download <- TRUE
 
-cfg$gms$c_timesteps <- "1"
+cfg$gms$c_timesteps <- "calib"
 #cfg$calib_maxiter <- 1
 
 for (r in realizations) {
