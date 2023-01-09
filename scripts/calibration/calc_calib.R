@@ -136,7 +136,7 @@ update_calib<-function(gdx_file, calib_accuracy=0.1, calibrate_pasture=TRUE,cali
   write_log(tc_factor,        "calib_tc_factor.cs3"  , calibration_step)
   write_log(calib_factor_calc,     "calib_factor_calc.cs3"     , calibration_step)
   write_log(calib_factor_used,     "calib_factor_used.cs3"     , calibration_step)
-  write.csv(table_calib_together, "calib_together.csv")
+#  write.csv(table_calib_together, "calib_together.csv")
 
   # in case of sufficient convergence, stop here (no additional update of
   # calibration factors!)
