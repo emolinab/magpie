@@ -85,30 +85,8 @@ update_calib<-function(gdx_file, calib_accuracy=0.1, calibrate_pasture=TRUE,cali
   calib_correction <- area_factor * tc_factor
   calib_divergence <- abs(calib_correction-1)
 
-###-> in case it is the first step, it forces the initial factors to be equal to 1
-  if(file.exists(calib_file)) {
-    old_calib        <- magpiesort(read.magpie(calib_file))
-  } else {
-    old_calib <- new.magpie(cells_and_regions = getCells(calib_divergence), names = getNames(calib_divergence), fill = 1)
-  }
-
-
-
-  #initial guess equal to 1
-  if(calibration_step==1) old_calib[,,] <- 1
-
-  #reg_tol_crop <- (where(calib_divergence[,1,"crop"] <= calib_accuracy)$true)$regions
-  #reg_tol_past <- (where(calib_divergence[,1,"past"] <= calib_accuracy)$true)$regions
-
   calib_factor_used     <- readGDX(gdx_file,"f14_yld_calib")
-  calib_factor_calc     <- old_calib * (damping_factor*(calib_correction-1) + 1)
-
-#  table_calib_t_aux_f<-as.data.frame(calib_factor)
-#  table_calib_t_aux_d<-as.data.frame(calib_divergence)
-
-#  table_calib_together<- if (file.exists("calib_together.csv")) (read.csv("calib_together.csv")) else table_calib_t_aux
-#  calib_factor[reg_tol_crop,1,"crop"] <- old_calib[reg_tol_crop,1,"crop"]
-#  calib_factor[reg_tol_past,1,"past"] <- old_calib[reg_tol_past,1,"past"]
+  calib_factor_calc     <- calib_factor_used * (damping_factor*(calib_correction-1) + 1)
 
   if(!is.null(crop_max)) {
     above_limit <- (calib_factor_calc[,,"crop"] > crop_max)
@@ -130,13 +108,12 @@ update_calib<-function(gdx_file, calib_accuracy=0.1, calibrate_pasture=TRUE,cali
     try(write.magpie(round(setYears(x,NULL),2), file, append = (calibration_step!=1)))
   }
 
-  write_log(calib_correction, "calib_correction.cs3" , calibration_step)
-  write_log(calib_divergence, "calib_divergence.cs3" , calibration_step)
-  write_log(area_factor,      "calib_area_factor.cs3", calibration_step)
-  write_log(tc_factor,        "calib_tc_factor.cs3"  , calibration_step)
-  write_log(calib_factor_calc,     "calib_factor_calc.cs3"     , calibration_step)
-  write_log(calib_factor_used,     "calib_factor_used.cs3"     , calibration_step)
-#  write.csv(table_calib_together, "calib_together.csv")
+  write_log(calib_correction,  "calib_correction.cs3" , calibration_step)
+  write_log(calib_divergence,  "calib_divergence.cs3" , calibration_step)
+  write_log(area_factor,       "calib_area_factor.cs3", calibration_step)
+  write_log(tc_factor,         "calib_tc_factor.cs3"  , calibration_step)
+  write_log(calib_factor_calc, "calib_factor_calc.cs3"     , calibration_step)
+  write_log(calib_factor_used, "calib_factor_used.cs3"     , calibration_step)
 
   # in case of sufficient convergence, stop here (no additional update of
   # calibration factors!)
@@ -144,14 +121,23 @@ update_calib<-function(gdx_file, calib_accuracy=0.1, calibrate_pasture=TRUE,cali
 
     ### Depending on the selected calibration selection type (best_calib FALSE or TRUE)
     # the reported and used regional calibration factors can be either the ones of the last iteration,
-    # or the "best" based on the iteration value with the lowest standard deviation of regional divergence.
+    # or the "best" based on the iteration value with the lowest divergence.
     if (best_calib == TRUE) {
 
       calib_best<-new.magpie(cells_and_regions = getCells(calib_divergence),years = getYears(calib_divergence),names = c("crop","past"))
       divergence_data<-read.magpie("calib_divergence.cs3")
       factors_data<-read.magpie("calib_factor_used.cs3")
-      calib_best[,,"crop"] <- collapseNames(factors_data[,,"crop"][,,which.min(apply(as.array(divergence_data[,,"crop"]),c(3),sd))])
-      calib_best[,,"past"] <- collapseNames(factors_data[,,"past"][,,which.min(apply(as.array(divergence_data[,,"past"]),c(3),sd))])
+
+      # calib_best[,,"crop"] <- collapseNames(factors_data[,,"crop"][,,which.min(apply(as.array(divergence_data[,,"crop"]),c(3),sd))])
+      # calib_best[,,"past"] <- collapseNames(factors_data[,,"past"][,,which.min(apply(as.array(divergence_data[,,"past"]),c(3),sd))])
+
+      for (i in getCells(calib_best)){
+      factors_data_sub<-subset(factors_data,dummy==i)
+      divergence_data_sub<-subset(divergence_data,dummy==i)
+
+      calib_best[i,NULL,"crop"]<-factors_data_sub[which.min(divergence_data_sub$crop),"crop"]
+      calib_best[i,NULL,"past"]<-factors_data_sub[which.min(divergence_data_sub$past),"past"]
+    }
 
     comment <- c(" description: Regional yield calibration file",
                  " unit: -",
@@ -160,7 +146,7 @@ update_calib<-function(gdx_file, calib_accuracy=0.1, calibrate_pasture=TRUE,cali
                  paste0(" creation date: ",date()))
     write.magpie(round(setYears(calib_best,NULL),2), calib_file, comment = comment)
 
-    write_log(calib_best,     "calib_factor_best.cs3"     , "best")
+    write_log(calib_best,     "calib_factor_used.cs3"     , "best")
 ####
   return(TRUE)
 }else{

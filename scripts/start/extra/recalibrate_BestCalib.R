@@ -36,9 +36,9 @@ for (r in realizations) {
 best <- c(TRUE,FALSE)
 for (b in best){
       cfg$best_calib <- b
-      cfg$title <- paste("calib_run", r, "calibUsedBF",b, sep = "_")
+      cfg$title <- paste("calib_run", r, "calibUsed_BestRegion",b, sep = "_")
     start_run(cfg)
-  #  magpie4::submitCalibration(paste("H12", r, b, sep = "_"))
+    magpie4::submitCalibration(paste("H12-CUBR", r, b, sep = "_"))
 
 }
 }
