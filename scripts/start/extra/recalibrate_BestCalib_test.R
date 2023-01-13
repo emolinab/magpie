@@ -41,7 +41,7 @@ cfg$input <- c(regional    = "rev4.77_h12_magpie.tgz",
 for (r in realizations) {
   cfg$gms$factor_costs <- r
 
-    cfg$title <- paste("calib_run", r, "CUBR2_modLAM",b, sep = "_")
+    cfg$title <- paste("calib_run", r, "CUBR2_modLAM",sep = "_")
     start_run(cfg)
 
 }
