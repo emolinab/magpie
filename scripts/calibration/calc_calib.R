@@ -132,11 +132,13 @@ update_calib<-function(gdx_file, calib_accuracy=0.1, calibrate_pasture=TRUE,cali
       # calib_best[,,"past"] <- collapseNames(factors_data[,,"past"][,,which.min(apply(as.array(divergence_data[,,"past"]),c(3),sd))])
 
       for (i in getCells(calib_best)){
-      factors_data_sub<-subset(factors_data,dummy==i)
-      divergence_data_sub<-subset(divergence_data,dummy==i)
+      factors_data_sub_crop<-as.data.frame(factors_data[i,,"crop"])
+      divergence_data_sub_crop<-as.data.frame(divergence_data[i,,"crop"])
+      factors_data_sub_past<-as.data.frame(factors_data[i,,"past"])
+      divergence_data_sub_past<-as.data.frame(divergence_data[i,,"past"])
 
-      calib_best[i,NULL,"crop"]<-factors_data_sub[which.min(divergence_data_sub$crop),"crop"]
-      calib_best[i,NULL,"past"]<-factors_data_sub[which.min(divergence_data_sub$past),"past"]
+      calib_best[i,NULL,"crop"]<-factors_data_sub_crop[which.min(divergence_data_sub_crop$Value),"Value"]
+      calib_best[i,NULL,"past"]<-factors_data_sub_past[which.min(divergence_data_sub_past$Value),"Value"]
     }
 
     comment <- c(" description: Regional yield calibration file",
