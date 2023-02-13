@@ -40,7 +40,7 @@ cfg$force_download <- TRUE
 
 #Base run
     cfg <- gms::setScenario(cfg, c("nocc_hist","SSP3"))
-    scen<-paste0("gs_FALSE")
+    scen<-paste0("gs_OFF")
 cfg$input <- c(regional    = inputs_reg[[scen]],
                cellular   = inputs_cell[[scen]],
                validation  = "rev4.79+Test_histT_ssp370_MRI-ESM2-0_8f7b9423_validation.tgz",
