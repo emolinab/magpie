@@ -68,35 +68,38 @@ cfg$force_download <- TRUE
 
 
 # Base run + climate change
-cfg$recalibrate <- FALSE
-cfg$recalibrate_landconversion_cost <- FALSE
-   cfg <- gms::setScenario(cfg, c("cc","SSP3"))
-    scen<-paste0("gs_OFF")
-cfg$input <- c(inputs_reg    = inputs_reg[[scen]],
-               inputs_cell   = inputs_cell[[scen]],
-               validation  = "rev4.79+Test_histT_ssp370_MRI-ESM2-0_8f7b9423_validation.tgz",
-               additional  = "additional_data_rev4.36.tgz",
-#####<-
-               calibration = "calibration_H13_mobile_gsadapt_OFF_13Feb23.tgz")
-
-cfg$gms$factor_costs <- "sticky_feb18"
-cfg$gms$s38_depreciation_rate <- 0.03
-cfg$gms$s38_immobile <- 0
-
-    cfg$title <- "P3T130223_baseScenario_+cc_dep03_mobile-gsadapt_OFF"
-
-    cfg$gms$c56_pollutant_prices <- bioen_ghg[["SSP3"]]
-      cfg$gms$c56_pollutant_prices_noselect <- bioen_ghg[["SSP3"]]
-      cfg$gms$c60_2ndgen_biodem <- bioen_ghg[["SSP3"]]
-      cfg$gms$c60_2ndgen_biodem_noselect <- bioen_ghg[["SSP3"]]
-
-      cfg$gms$c32_aff_policy<-mit[["ssp370"]]
-      cfg$gms$c35_aolc_policy<-mit[["ssp370"]]
-      cfg$gms$c35_ad_policy<-mit[["ssp370"]]
-
-    start_run(cfg)
+# cfg$recalibrate <- FALSE
+# cfg$recalibrate_landconversion_cost <- FALSE
+#    cfg <- gms::setScenario(cfg, c("cc","SSP3"))
+#     scen<-paste0("gs_OFF")
+# cfg$input <- c(inputs_reg    = inputs_reg[[scen]],
+#                inputs_cell   = inputs_cell[[scen]],
+#                validation  = "rev4.79+Test_histT_ssp370_MRI-ESM2-0_8f7b9423_validation.tgz",
+#                additional  = "additional_data_rev4.36.tgz",
+# #####<-
+#                calibration = "calibration_H13_mobile_gsadapt_OFF_13Feb23.tgz")
+# 
+# cfg$gms$factor_costs <- "sticky_feb18"
+# cfg$gms$s38_depreciation_rate <- 0.03
+# cfg$gms$s38_immobile <- 0
+# 
+#     cfg$title <- "P3T130223_baseScenario_+cc_dep03_mobile-gsadapt_OFF"
+# 
+#     cfg$gms$c56_pollutant_prices <- bioen_ghg[["SSP3"]]
+#       cfg$gms$c56_pollutant_prices_noselect <- bioen_ghg[["SSP3"]]
+#       cfg$gms$c60_2ndgen_biodem <- bioen_ghg[["SSP3"]]
+#       cfg$gms$c60_2ndgen_biodem_noselect <- bioen_ghg[["SSP3"]]
+# 
+#       cfg$gms$c32_aff_policy<-mit[["ssp370"]]
+#       cfg$gms$c35_aolc_policy<-mit[["ssp370"]]
+#       cfg$gms$c35_ad_policy<-mit[["ssp370"]]
+# 
+#     start_run(cfg)
 
 #Base run + climate change + gsadapt
+cfg$recalibrate <- TRUE
+cfg$recalibrate_landconversion_cost <- TRUE
+cfg$force_download <- TRUE
 
     cfg <- gms::setScenario(cfg, c("cc","SSP3"))
     scen<-paste0("gs_ON")
