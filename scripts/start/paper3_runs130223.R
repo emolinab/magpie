@@ -68,7 +68,8 @@ cfg$force_download <- TRUE
 
 
 # Base run + climate change
-
+cfg$recalibrate <- FALSE
+cfg$recalibrate_landconversion_cost <- FALSE
    cfg <- gms::setScenario(cfg, c("cc","SSP3"))
     scen<-paste0("gs_OFF")
 cfg$input <- c(inputs_reg    = inputs_reg[[scen]],
@@ -96,6 +97,7 @@ cfg$gms$s38_immobile <- 0
     start_run(cfg)
 
 #Base run + climate change + gsadapt
+
     cfg <- gms::setScenario(cfg, c("cc","SSP3"))
     scen<-paste0("gs_ON")
 cfg$input <- c(inputs_reg    = inputs_reg[[scen]],
