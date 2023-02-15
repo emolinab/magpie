@@ -16,7 +16,7 @@ library(magclass)
 source("scripts/start_functions.R")
 source("config/default.cfg")
 
-
+cfg$gms$s13_ignore_tau_historical <- 0
 ###<-
 inputs_cell<-list()
 inputs_reg<-list()
