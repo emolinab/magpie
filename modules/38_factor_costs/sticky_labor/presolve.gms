@@ -1,4 +1,4 @@
-*** |  (C) 2008-2023 Potsdam Institute for Climate Impact Research (PIK)
+*** |  (C) 2008-2024 Potsdam Institute for Climate Impact Research (PIK)
 *** |  authors, and contributors see CITATION.cff file. This file is part
 *** |  of MAgPIE and licensed under AGPL-3.0-or-later. Under Section 7 of
 *** |  AGPL-3.0, you are granted additional permissions described in the
@@ -22,7 +22,7 @@ p38_capital_need(t,i,kcr,"mobile") = i38_fac_req(t,i,kcr) * pm_cost_share_crops(
 p38_capital_need(t,i,kcr,"immobile") = i38_fac_req(t,i,kcr)  * pm_cost_share_crops(t,i,"capital") / (pm_interest(t,i)+s38_depreciation_rate) * s38_immobile;
 
 * minimum labor share based on target and adjustment factor
-if (m_year(t) < s38_startyear_labor_substitution,
+if (m_year(t) <= s38_startyear_labor_substitution,
   p38_min_labor_share(t,j) = 0;
 elseif m_year(t) <= s38_targetyear_labor_share,
   p38_min_labor_share(t,j) = sum(cell(i,j),
