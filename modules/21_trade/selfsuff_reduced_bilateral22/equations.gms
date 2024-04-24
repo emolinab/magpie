@@ -1,4 +1,9 @@
-*** |  (C) 2008-2024 Potsdam Institute for Climate Impact Research (PIK)
+*** |  (C) 2008-2023 Potsdam Institute for Climate Impact Research (PIK)
+*** |  authors, and contributors see CITATION.cff file. This file is part
+*** |  of MAgPIE and licensed under AGPL-3.0-or-later. Under Section 7 of
+*** |  AGPL-3.0, you are granted additional permissions described in the
+*** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
+*** |  Contact: mag*** |  (C) 2008-2024 Potsdam Institute for Climate Impact Research (PIK)
 *** |  authors, and contributors see CITATION.cff file. This file is part
 *** |  of MAgPIE and licensed under AGPL-3.0-or-later. Under Section 7 of
 *** |  AGPL-3.0, you are granted additional permissions described in the
@@ -29,41 +34,20 @@ q21_trade_bilat(h2,k_trade)..
 *' If the trade balance reduction equals 1 (`f21_self_suff(ct,i2,k_trade) = 1`), all demand enters the self-sufficiency pool.
 *' If it equals 0, all demand enters the comparative advantage pool.
 
-*' Lower bound for production.
+q21_total(k_trade).. 
+  v21_total(k_trade) =e= sum((i_ex, i_im), v21_trade(i_ex, i_im, k_trade));
 
- q21_trade_reg(h2,k_trade)..
- sum(supreg(h2,i2),vm_prod_reg(i2,k_trade)) =g=
- ((sum(supreg(h2,i2),vm_supply(i2,k_trade)) + v21_excess_prod(h2,k_trade))
- *sum(ct,i21_trade_bal_reduction(ct,k_trade)))
- $(sum(ct,f21_self_suff(ct,h2,k_trade) >= 1))
- + (sum(supreg(h2,i2),vm_supply(i2,k_trade))*sum(ct,f21_self_suff(ct,h2,k_trade))
- *sum(ct,i21_trade_bal_reduction(ct,k_trade)) - v21_import_for_feasibility(h2,k_trade))
- $(sum(ct,f21_self_suff(ct,h2,k_trade) < 1));
+*' define i_ex2 sets as alias of i_ex in 80_optimization
 
-*' Upper bound for production.
+* Bilateral trade relationship shares are fixed to historical patterns in the self-sufficiency pool 
+*' q21_total(i2, k_trade).. 
+*'   v21_total(i2, k_trade) =e= vm_prod_reg(i2, k_trade) - vm_supply(i2, k_trade) ;
 
- q21_trade_reg_up(h2,k_trade) ..
- sum(supreg(h2,i2),vm_prod_reg(i2,k_trade)) =l=
- ((sum(supreg(h2,i2),vm_supply(i2,k_trade)) + v21_excess_prod(h2,k_trade))/sum(ct,i21_trade_bal_reduction(ct,k_trade)))
- $(sum(ct,f21_self_suff(ct,h2,k_trade) >= 1))
- + (sum(supreg(h2,i2),vm_supply(i2,k_trade))*sum(ct,f21_self_suff(ct,h2,k_trade))/sum(ct,i21_trade_bal_reduction(ct,k_trade)))
- $(sum(ct,f21_self_suff(ct,h2,k_trade) < 1));
-
-*' The global excess demand of each tradable good `v21_excess_demad` equals to
-*' the sum over all the imports of importing regions.
-
- q21_excess_dem(k_trade)..
- v21_excess_dem(k_trade) =g=
- (sum(h2, sum(supreg(h2,i2),vm_supply(i2,k_trade))*(1 - sum(ct,f21_self_suff(ct,h2,k_trade)))
- $(sum(ct,f21_self_suff(ct,h2,k_trade)) < 1))
- + sum(ct,f21_trade_balanceflow(ct,k_trade))) + sum(h2, v21_import_for_feasibility(h2,k_trade));
-
-*' Distributing the global excess demand to exporting regions is based on regional export shares [@schmitz_trading_2012].
-*' Export shares are derived from FAO data (see @schmitz_trading_2012 for details). They are 0 for importing regions.
-
- q21_excess_supply(h2,k_trade)..
- v21_excess_prod(h2,k_trade) =e=
- v21_excess_dem(k_trade)*sum(ct,f21_exp_shr(ct,h2,k_trade));
+q21_trade_hist(i_ex, i_im, k_trade)..
+ v21_trade(i_ex, i_im, k_trade)  =g= sum(i2, v21_total(i2, k_trade))
+                               *i21_trade_hist_bilat(i_ex, i_im, k_trade)
+                               *sum(ct,i21_trade_bal_reduction(ct,k_trade));
+*' test if excluding same-country trade makes it faster
 
 *' Trade tariffs are associated with exporting regions. They are dependent on net exports and tariff levels.
  q21_costs_tariffs(i2,k_trade)..
@@ -75,12 +59,11 @@ q21_costs_margins(i2,k_trade)..
  v21_cost_margin_reg(i2,k_trade) =g=
   sum(i_im, i21_trade_margin(i2,i_im,k_trade) * v21_trade(i2,i_im,k_trade));
 
-*' regional trade values are the sum of transport margin and tariff costs
+*' regional trade costs are the sum of transport margin and tariff costs
 q21_cost_trade_reg(i2,k_trade)..
   v21_cost_trade_reg(i2,k_trade) =g=
-  v21_cost_tariff_reg(i2,k_trade) + v21_cost_margin_reg(i2,k_trade) 
- + sum(supreg(h2,i2), v21_import_for_feasibility(h2,k_trade)) * s21_cost_import;
+  v21_cost_tariff_reg(i2,k_trade) + v21_cost_margin_reg(i2,k_trade);
 
-*' Regional trade costs are the costs for each region aggregated over all the tradable commodities.
+*' Total trade costs are the costs for each region aggregated over all the tradable commodities.
  q21_cost_trade(i2)..
  vm_cost_trade(i2) =e= sum(k_trade, v21_cost_trade_reg(i2,k_trade));
