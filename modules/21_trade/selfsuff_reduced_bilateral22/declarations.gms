@@ -19,12 +19,12 @@ positive variables
  v21_cost_margin_reg(i,k_trade)          Rregional trade margins for each tradable commodity (mio. USD05MER per yr)
  vm_cost_trade(i)                        Regional  trade costs (mio. USD05MER per yr)
  v21_cost_trade_reg(i,k_trade)           Superregional trade costs for each tradable commodity (mio. USD05MER per yr)
- v21_total(i, k_trade)                      Total trade (mio. USD05MER per yr)
+ v21_total(k_trade)                      Total trade (mio. USD05MER per yr)
 ;
 
 equations
  q21_trade_glo(k_trade)                  Global production constraint (mio. tDM per yr)
- q21_total(i, k_trade)                      Total trade constraint  (mio. tDM per yr)
+ q21_total(k_trade)                      Total trade constraint  (mio. tDM per yr)
  q21_notrade(h,k_notrade)                Superregional production constraint of non-tradable commodities (mio. tDM per yr)
  q21_trade_bilat(h, k_trade)             Superregional bilateral trade requirements (mio. tDM per yr)
  q21_trade_hist(i_ex, i_im, k_trade)     Historical trade patterns (mio. tDM per yr)
@@ -41,9 +41,9 @@ parameters
  ov21_cost_margin_reg(t,i,k_trade,type)    Rregional trade margins for each tradable commodity (mio. USD05MER per yr)
  ov_cost_trade(t,i,type)                   Regional  trade costs (mio. USD05MER per yr)
  ov21_cost_trade_reg(t,i,k_trade,type)     Superregional trade costs for each tradable commodity (mio. USD05MER per yr)
- ov21_total(t,i,k_trade,type)              Total trade (mio. USD05MER per yr)
+ ov21_total(t,k_trade,type)                Total trade (mio. USD05MER per yr)
  oq21_trade_glo(t,k_trade,type)            Global production constraint (mio. tDM per yr)
- oq21_total(t,i,k_trade,type)              Total trade constraint  (mio. tDM per yr)
+ oq21_total(t,k_trade,type)                Total trade constraint  (mio. tDM per yr)
  oq21_notrade(t,h,k_notrade,type)          Superregional production constraint of non-tradable commodities (mio. tDM per yr)
  oq21_trade_bilat(t,h,k_trade,type)        Superregional bilateral trade requirements (mio. tDM per yr)
  oq21_trade_hist(t,i_ex,i_im,k_trade,type) Historical trade patterns (mio. tDM per yr)

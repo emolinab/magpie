@@ -11,9 +11,9 @@
  ov21_cost_margin_reg(t,i,k_trade,"marginal")    = v21_cost_margin_reg.m(i,k_trade);
  ov_cost_trade(t,i,"marginal")                   = vm_cost_trade.m(i);
  ov21_cost_trade_reg(t,i,k_trade,"marginal")     = v21_cost_trade_reg.m(i,k_trade);
- ov21_total(t,i,k_trade,"marginal")              = v21_total.m(i,k_trade);
+ ov21_total(t,k_trade,"marginal")                = v21_total.m(k_trade);
  oq21_trade_glo(t,k_trade,"marginal")            = q21_trade_glo.m(k_trade);
- oq21_total(t,i,k_trade,"marginal")              = q21_total.m(i,k_trade);
+ oq21_total(t,k_trade,"marginal")                = q21_total.m(k_trade);
  oq21_notrade(t,h,k_notrade,"marginal")          = q21_notrade.m(h,k_notrade);
  oq21_trade_bilat(t,h,k_trade,"marginal")        = q21_trade_bilat.m(h,k_trade);
  oq21_trade_hist(t,i_ex,i_im,k_trade,"marginal") = q21_trade_hist.m(i_ex,i_im,k_trade);
@@ -26,9 +26,9 @@
  ov21_cost_margin_reg(t,i,k_trade,"level")       = v21_cost_margin_reg.l(i,k_trade);
  ov_cost_trade(t,i,"level")                      = vm_cost_trade.l(i);
  ov21_cost_trade_reg(t,i,k_trade,"level")        = v21_cost_trade_reg.l(i,k_trade);
- ov21_total(t,i,k_trade,"level")                 = v21_total.l(i,k_trade);
+ ov21_total(t,k_trade,"level")                   = v21_total.l(k_trade);
  oq21_trade_glo(t,k_trade,"level")               = q21_trade_glo.l(k_trade);
- oq21_total(t,i,k_trade,"level")                 = q21_total.l(i,k_trade);
+ oq21_total(t,k_trade,"level")                   = q21_total.l(k_trade);
  oq21_notrade(t,h,k_notrade,"level")             = q21_notrade.l(h,k_notrade);
  oq21_trade_bilat(t,h,k_trade,"level")           = q21_trade_bilat.l(h,k_trade);
  oq21_trade_hist(t,i_ex,i_im,k_trade,"level")    = q21_trade_hist.l(i_ex,i_im,k_trade);
@@ -41,9 +41,9 @@
  ov21_cost_margin_reg(t,i,k_trade,"upper")       = v21_cost_margin_reg.up(i,k_trade);
  ov_cost_trade(t,i,"upper")                      = vm_cost_trade.up(i);
  ov21_cost_trade_reg(t,i,k_trade,"upper")        = v21_cost_trade_reg.up(i,k_trade);
- ov21_total(t,i,k_trade,"upper")                 = v21_total.up(i,k_trade);
+ ov21_total(t,k_trade,"upper")                   = v21_total.up(k_trade);
  oq21_trade_glo(t,k_trade,"upper")               = q21_trade_glo.up(k_trade);
- oq21_total(t,i,k_trade,"upper")                 = q21_total.up(i,k_trade);
+ oq21_total(t,k_trade,"upper")                   = q21_total.up(k_trade);
  oq21_notrade(t,h,k_notrade,"upper")             = q21_notrade.up(h,k_notrade);
  oq21_trade_bilat(t,h,k_trade,"upper")           = q21_trade_bilat.up(h,k_trade);
  oq21_trade_hist(t,i_ex,i_im,k_trade,"upper")    = q21_trade_hist.up(i_ex,i_im,k_trade);
@@ -56,9 +56,9 @@
  ov21_cost_margin_reg(t,i,k_trade,"lower")       = v21_cost_margin_reg.lo(i,k_trade);
  ov_cost_trade(t,i,"lower")                      = vm_cost_trade.lo(i);
  ov21_cost_trade_reg(t,i,k_trade,"lower")        = v21_cost_trade_reg.lo(i,k_trade);
- ov21_total(t,i,k_trade,"lower")                 = v21_total.lo(i,k_trade);
+ ov21_total(t,k_trade,"lower")                   = v21_total.lo(k_trade);
  oq21_trade_glo(t,k_trade,"lower")               = q21_trade_glo.lo(k_trade);
- oq21_total(t,i,k_trade,"lower")                 = q21_total.lo(i,k_trade);
+ oq21_total(t,k_trade,"lower")                   = q21_total.lo(k_trade);
  oq21_notrade(t,h,k_notrade,"lower")             = q21_notrade.lo(h,k_notrade);
  oq21_trade_bilat(t,h,k_trade,"lower")           = q21_trade_bilat.lo(h,k_trade);
  oq21_trade_hist(t,i_ex,i_im,k_trade,"lower")    = q21_trade_hist.lo(i_ex,i_im,k_trade);
