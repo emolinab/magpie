@@ -41,6 +41,13 @@ $ondelim
 $include "./modules/21_trade/input/f21_trade_balanceflow.cs3"
 $offdelim;
 
+parameter f21_trade_hist_bilat_qt(i_ex,i_im,k_trade)  Historical trade patterns (1)
+/
+$ondelim
+$include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_trade_hist_bilat_qt.cs5"
+$offdelim
+/;
+
 parameter f21_trade_hist_bilat(i_ex,i_im,k_trade)  Historical trade patterns (1)
 /
 $ondelim

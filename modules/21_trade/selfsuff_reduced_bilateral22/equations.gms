@@ -34,19 +34,40 @@ q21_trade_bilat(h2,k_trade)..
 *' If the trade balance reduction equals 1 (`f21_self_suff(ct,i2,k_trade) = 1`), all demand enters the self-sufficiency pool.
 *' If it equals 0, all demand enters the comparative advantage pool.
 
+
+*' lower bound based on historical trade patterns (quantity)
+q21_trade_hist_lower(i_ex, i_im, k_trade)..
+v21_trade(i_ex, i_im, k_trade) =g= i21_trade_hist_bilat_qt(i_ex, i_im, k_trade);
+
+
+*' total amount of trade globally
 q21_total(k_trade).. 
   v21_total(k_trade) =e= sum((i_ex, i_im), v21_trade(i_ex, i_im, k_trade));
 
+
+*' upper bound based on historical trade patterns (shares) multiplied by balance reduction 
+q21_trade_hist_upper(i_ex, i_im, k_trade)..
+v21_trade(i_ex, i_im, k_trade) =l= v21_total(k_trade)
+                                *(i21_trade_hist_bilat_shr(i_ex, i_im, k_trade)
+                             /sum(ct,i21_trade_bal_reduction(ct,k_trade)));
+
+
+
+*' q21_total(k_trade).. 
+*'   v21_total(k_trade) =e= sum((i_ex, i_im), v21_trade(i_ex, i_im, k_trade));
+
 *' define i_ex2 sets as alias of i_ex in 80_optimization
 
-* Bilateral trade relationship shares are fixed to historical patterns in the self-sufficiency pool 
+*' define i_ex2 sets as alias of i_ex in 80_optimization
+*' define i_ex2 sets as alias of i_ex in 80_optimization
+*' Bilateral trade relationship shares are fixed to historical patterns in the self-sufficiency pool 
 *' q21_total(i2, k_trade).. 
 *'   v21_total(i2, k_trade) =e= vm_prod_reg(i2, k_trade) - vm_supply(i2, k_trade) ;
 
-q21_trade_hist(i_ex, i_im, k_trade)..
- v21_trade(i_ex, i_im, k_trade)  =g= v21_total(k_trade)
-                               *i21_trade_hist_bilat(i_ex, i_im, k_trade)
-                               *sum(ct,i21_trade_bal_reduction(ct,k_trade));
+*' q21_trade_hist(i_ex, i_im, k_trade)..
+*'  v21_trade(i_ex, i_im, k_trade)  =g= v21_total(k_trade)
+*'                              *i21_trade_hist_bilat(i_ex, i_im, k_trade)
+*'                                *sum(ct,i21_trade_bal_reduction(ct,k_trade));
 *' test if excluding same-country trade makes it faster
 
 *' Trade tariffs are associated with exporting regions. They are dependent on net exports and tariff levels.

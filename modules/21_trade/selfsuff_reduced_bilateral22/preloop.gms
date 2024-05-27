@@ -10,7 +10,8 @@ i21_trade_bal_reduction(t_all,k_hardtrade21)=f21_trade_bal_reduction(t_all,"hard
 
 i21_trade_margin(i_ex,i_im,k_trade) = f21_trade_margin(i_ex,i_im,k_trade);
 
-i21_trade_hist_bilat(i_ex,i_im,k_trade) = f21_trade_hist_bilat(i_ex,i_im,k_trade);
+i21_trade_hist_bilat_qt(i_ex,i_im,k_trade) = f21_trade_hist_bilat_qt(i_ex,i_im,k_trade);
+i21_trade_hist_bilat_shr(i_ex,i_im,k_trade) = sum((i_ex, i_im), i21_trade_hist_bilat_qt(i_ex,i_im,k_trade));
 
 
 if ((s21_trade_tariff=1),
