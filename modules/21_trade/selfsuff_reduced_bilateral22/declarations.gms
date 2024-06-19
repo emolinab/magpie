@@ -14,12 +14,16 @@ parameters
  pm_selfsuff_ext(t_ext,h,kforestry)             Self sufficiency for timber products in extended time frame (1)
 ;
 
+variables
+ v21_cost_tariff_reg(i,k_trade)          Regional trade tariffs for each tradable commodity (mio. USD05MER per yr)
+ v21_cost_trade_reg(i,k_trade)           Superregional trade costs for each tradable commodity (mio. USD05MER per yr)
+ vm_cost_trade(i)                        Regional  trade costs (mio. USD05MER per yr)
+
+;
+
 positive variables
  v21_trade(i_ex,i_im,k_trade)            Amounts traded bilaterally (mio. tDM per yr)
- v21_cost_tariff_reg(i,k_trade)          Regional trade tariffs for each tradable commodity (mio. USD05MER per yr)
  v21_cost_margin_reg(i,k_trade)          Rregional trade margins for each tradable commodity (mio. USD05MER per yr)
- vm_cost_trade(i)                        Regional  trade costs (mio. USD05MER per yr)
- v21_cost_trade_reg(i,k_trade)           Superregional trade costs for each tradable commodity (mio. USD05MER per yr)
  v21_total(k_trade)                      Total trade (mio. USD05MER per yr)
 ;
 
@@ -38,11 +42,11 @@ equations
 
 *#################### R SECTION START (OUTPUT DECLARATIONS) ####################
 parameters
- ov21_trade(t,i_ex,i_im,k_trade,type)            Amounts traded bilaterally (mio. tDM per yr)
  ov21_cost_tariff_reg(t,i,k_trade,type)          Regional trade tariffs for each tradable commodity (mio. USD05MER per yr)
- ov21_cost_margin_reg(t,i,k_trade,type)          Rregional trade margins for each tradable commodity (mio. USD05MER per yr)
- ov_cost_trade(t,i,type)                         Regional  trade costs (mio. USD05MER per yr)
  ov21_cost_trade_reg(t,i,k_trade,type)           Superregional trade costs for each tradable commodity (mio. USD05MER per yr)
+ ov_cost_trade(t,i,type)                         Regional  trade costs (mio. USD05MER per yr)
+ ov21_trade(t,i_ex,i_im,k_trade,type)            Amounts traded bilaterally (mio. tDM per yr)
+ ov21_cost_margin_reg(t,i,k_trade,type)          Rregional trade margins for each tradable commodity (mio. USD05MER per yr)
  ov21_total(t,k_trade,type)                      Total trade (mio. USD05MER per yr)
  oq21_trade_glo(t,k_trade,type)                  Global production constraint (mio. tDM per yr)
  oq21_total(t,k_trade,type)                      Total trade constraint  (mio. tDM per yr)

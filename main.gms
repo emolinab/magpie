@@ -221,7 +221,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  BilatTest1605_qt4
+$setglobal c_title  BilatTest1306_Test50EURtecem100
 
 scalars
 s_use_gdx   use of gdx files                                       / 0 /
