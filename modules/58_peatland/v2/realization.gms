@@ -15,12 +15,15 @@
 *' GHG emissions from drained and rewetted peatlands as well as from peat extraction are calculated based on GHG emission factors.
 *' In this realisation, peatland GHG emission factors for boreal and tropical climates are based on @IPCC_wetland_2013 and @wilson_2016.
 *' Peatland GHG emission factors for temperate climates are based on more recent estimates from @tiemeyer_peatland_2020. 
+*' 
 *' Assumed rules for changes in peatland area: 
-*' Sum over total peatland area (degraded, intact, rewetted) is assumed constant. 
-*' Intact peatland area can only decrease. 
-*' Degraded peatland area (crop, past, forestry and unused) depends on managed land. 
-*' Area for peat extraction (peatExtract) is fixed. 
-*' Rewetted and intact peatland have the same GHG emission factors, which avoids that intact is converted to rewetted peatland area.
+*' 
+*'   * Sum over total peatland area (degraded, intact, rewetted) is assumed constant. 
+*'   * Intact peatland area can only decrease. 
+*'   * Degraded peatland area (crop, past, forestry and unused) depends on managed land. 
+*'   * Area for peat extraction (peatExtract) is fixed. 
+*'   * Rewetted and intact peatland have the same GHG emission factors, which avoids that intact is converted to rewetted peatland area.
+*'
 *' @stop
 
 
@@ -33,6 +36,7 @@ $Ifi "%phase%" == "sets" $include "./modules/58_peatland/v2/sets.gms"
 $Ifi "%phase%" == "declarations" $include "./modules/58_peatland/v2/declarations.gms"
 $Ifi "%phase%" == "input" $include "./modules/58_peatland/v2/input.gms"
 $Ifi "%phase%" == "equations" $include "./modules/58_peatland/v2/equations.gms"
+$Ifi "%phase%" == "scaling" $include "./modules/58_peatland/v2/scaling.gms"
 $Ifi "%phase%" == "preloop" $include "./modules/58_peatland/v2/preloop.gms"
 $Ifi "%phase%" == "presolve" $include "./modules/58_peatland/v2/presolve.gms"
 $Ifi "%phase%" == "postsolve" $include "./modules/58_peatland/v2/postsolve.gms"

@@ -9,9 +9,8 @@ parameters
  i21_trade_hist_bilat_qt(i_ex,i_im,k_trade)           historical trade patterns as shares (1)
 *' i21_trade_upper_growth(t, i_ex,i_im,k_trade)           growth in trade as upper bound (1)
  i21_trade_bal_reduction(t_all,k_trade)         Trade balance reduction (1)
- i21_trade_margin(i_ex,i_im,k_trade)            Trade transport and admin costs (USD05MER per tDM)
- i21_trade_tariff(t_all, i_ex,i_im,k_trade)            Trade tariffs (USD05MER per tDM)
- pm_selfsuff_ext(t_ext,h,kforestry)             Self sufficiency for timber products in extended time frame (1)
+ i21_trade_margin(i_ex,i_im,k_trade)            Trade transport and admin costs (USD17MER per tDM)
+ i21_trade_tariff(t_all, i_ex,i_im,k_trade)            Trade tariffs (USD17MER per tDM)
 ;
 
 variables

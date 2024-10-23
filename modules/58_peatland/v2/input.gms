@@ -6,19 +6,20 @@
 *** |  Contact: magpie@pik-potsdam.de
 
 scalars
-  s58_cost_rewet_recur Recurring costs for rewetted peatland (USD05MER per ha) / 200 /
-  s58_cost_rewet_onetime One-time costs for peatland rewetting (USD05MER per ha) / 7000 /
-  s58_cost_drain_recur Recurring costs for drained and managed peatlands (USD05MER per ha) / 0 /
-  s58_cost_drain_intact_onetime One-time costs for drainage of intact peatland (USD05MER per ha) / 0 /
-  s58_cost_drain_rewet_onetime One-time costs for drainage of rewetted peatland (USD05MER per ha) / 0 /
+  s58_cost_rewet_recur Recurring costs for rewetted peatland (USD17MER per ha) / 37 /
+  s58_cost_rewet_onetime One-time costs for peatland rewetting (USD17MER per ha) / 1230 /
+  s58_cost_drain_recur Recurring costs for drained and managed peatlands (USD17MER per ha) / 0 /
+  s58_cost_drain_intact_onetime One-time costs for drainage of intact peatland (USD17MER per ha) / 0 /
+  s58_cost_drain_rewet_onetime One-time costs for drainage of rewetted peatland (USD17MER per ha) / 0 /
   s58_rewetting_switch Peatland rewetting on (Inf) or off (0) / Inf /
   s58_fix_peatland Year indicating until when peatland area should be fixed (year) / 2020 /
+  s58_balance_penalty Penalty for technical peatland balance term (USD17MER) / 1e+06 /
 ;
 
 *Peatland area based on Global Peatland Map 2.0 and Global Peatland Database
 table f58_peatland_area(j,land58) Peatland area (mio. ha)
 $ondelim
-$include "./modules/58_peatland/input/f58_peatland_area.cs2"
+$include "./modules/58_peatland/input/f58_peatland_area.cs3"
 $offdelim
 ;
 

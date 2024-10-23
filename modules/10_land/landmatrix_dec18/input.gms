@@ -6,7 +6,7 @@
 *** |  Contact: magpie@pik-potsdam.de
 
 scalars
-  s10_cost_balance Artificial cost for balance variable (USD05MER per ha) / 1e+06 /
+  s10_cost_balance Artificial cost for balance variable (USD17MER per ha) / 1e+06 /
 ;
 
 table f10_land(t_ini10,j,land) Different land type areas (mio. ha)
@@ -14,6 +14,11 @@ $ondelim
 $include "./modules/10_land/input/avl_land_t.cs3"
 $offdelim
 ;
+*due to some rounding errors the input data currently may contain in some cases
+*very small, negative numbers. These numbers have to be set to 0 as area
+*cannot be smaller than 0!
+f10_land(t_ini10,j,land)$(f10_land(t_ini10,j,land)<0) = 0;
+
 
 table fm_luh2_side_layers(j,luh2_side_layers10) luh2 side layers (grid cell share)
 $ondelim
