@@ -40,19 +40,10 @@ q21_trade_hist_lower(i_ex, i_im, k_trade)..
 v21_trade(i_ex, i_im, k_trade) =g= i21_trade_hist_bilat_qt(i_ex, i_im, k_trade)
                                          *sum(ct,i21_trade_bal_reduction(ct,k_trade));
 
-
-*' total amount of trade globally
-q21_total(k_trade).. 
-  v21_total(k_trade) =e= sum((i_ex, i_im), v21_trade(i_ex, i_im, k_trade));
-
-
 *' upper bound based on historical trade patterns (shares) multiplied by balance reduction 
 q21_trade_hist_upper(i_ex, i_im, k_trade)..
-v21_trade(i_ex, i_im, k_trade) =l= v21_total(k_trade)
-                                *(i21_trade_hist_bilat_shr(i_ex, i_im, k_trade)
-                                   /sum(ct,i21_trade_bal_reduction(ct,k_trade)));
-
-
+ v21_trade(i_ex, i_im, k_trade) =l= sum(ct, i21_trade_upper_growth(ct, i_ex, i_im, k_trade))
+                                 /sum(ct,i21_trade_bal_reduction(ct,k_trade));
 
 *' Trade tariffs are associated with exporting regions. They are dependent on net exports and tariff levels.
  q21_costs_tariffs(i2,k_trade)..

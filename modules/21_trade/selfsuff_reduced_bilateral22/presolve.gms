@@ -6,4 +6,14 @@
 *** |  Contact: magpie@pik-potsdam.de
 
 
-v21_trade.lo(i_ex,i_im,k_trade) = f21_trade_hist_bilat_qt(i_ex,i_im,k_trade);
+if(m_year(t) <= sm_fix_SSP2,
+
+ v21_trade.up(i_ex,i_im,k_trade)  = i21_trade_hist_bilat_qt(i_ex,i_im,k_trade) ;
+
+ else 
+
+ v21_trade.up(i_ex,i_im,k_trade) = 5000 ;
+ 
+*' (i21_trade_hist_bilat_qt(i_ex,i_im,k_trade) * 1.02**(m_year(t) - sm_fix_SSP2)) / 
+*'                                      i21_trade_bal_reduction(t,k_trade)    ;
+

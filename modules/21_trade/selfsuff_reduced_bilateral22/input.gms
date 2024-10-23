@@ -5,7 +5,7 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
-$setglobal c21_trade_liberalization  test50
+$setglobal c21_trade_liberalization  l909090r808080
 *   options are "regionalized" and "globalized" and "fragmented"
 
 sets
@@ -45,13 +45,6 @@ parameter f21_trade_hist_bilat_qt(i_ex,i_im,k_trade)  Historical trade patterns 
 /
 $ondelim
 $include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_trade_hist_bilat_qt.cs5"
-$offdelim
-/;
-
-parameter f21_trade_hist_bilat(i_ex,i_im,k_trade)  Historical trade patterns (1)
-/
-$ondelim
-$include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_trade_hist_bilat.cs5"
 $offdelim
 /;
 

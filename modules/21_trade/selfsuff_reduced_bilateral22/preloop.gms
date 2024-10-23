@@ -11,27 +11,28 @@ i21_trade_bal_reduction(t_all,k_hardtrade21)=f21_trade_bal_reduction(t_all,"hard
 i21_trade_margin(i_ex,i_im,k_trade) = f21_trade_margin(i_ex,i_im,k_trade);
 
 i21_trade_hist_bilat_qt(i_ex,i_im,k_trade) = f21_trade_hist_bilat_qt(i_ex,i_im,k_trade);
-i21_trade_hist_bilat_shr(i_ex,i_im,k_trade)$(sum((i_ex2, i_im2), i21_trade_hist_bilat_qt(i_ex2,i_im2,k_trade)) = 0) = 0;
-i21_trade_hist_bilat_shr(i_ex,i_im,k_trade)$(sum((i_ex2, i_im2), i21_trade_hist_bilat_qt(i_ex2,i_im2,k_trade)) > 0) = i21_trade_hist_bilat_qt(i_ex, i_im,k_trade) / 
-                                                                                                                    (sum((i_ex2, i_im2), i21_trade_hist_bilat_qt(i_ex2,i_im2,k_trade)));
-i21_trade_margin(i_ex,i_im,k_trade)$(i21_trade_margin(i_ex,i_im,k_trade) = 0) = 5;
+ 
+i21_trade_margin(i_ex,i_im,k_trade)$(i21_trade_margin(i_ex,i_im,k_trade) < 1e-6) = 5;
 
 
 if ((s21_trade_tariff=1),
     i21_trade_tariff(t_all, i_ex,i_im,k_trade) = f21_trade_tariff(i_ex,i_im,k_trade);
-elseif (s21_trade_tariff=0),
-    i21_trade_tariff(t_all, i_ex,i_im,k_trade) = 0;
-);
+  elseif (s21_trade_tariff=0),
+     i21_trade_tariff(t_all, i_ex,i_im,k_trade) = 0;
+ );
 
-if ((s21_trade_tariff_fadeout=1),
-loop(t_all,
-   i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) > s21_trade_tariff_startyear AND m_year(t_all) < s21_trade_tariff_targetyear) = (1-((m_year(t_all)-s21_trade_tariff_startyear) /
-                                                                                                                                           (s21_trade_tariff_targetyear-s21_trade_tariff_startyear)) * 
-                                                                                                                                           i21_trade_tariff(t_all,i_ex,i_im,k_trade));
-i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) <= s21_trade_tariff_startyear) = i21_trade_tariff(t_all,i_ex,i_im,k_trade); 
-i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) >= s21_trade_tariff_targetyear) = 0 ; 
-);
-);
+ if ((s21_trade_tariff_fadeout=1),
+ loop(t_all,
+    i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) > s21_trade_tariff_startyear AND m_year(t_all) < s21_trade_tariff_targetyear) = (1-((m_year(t_all)-s21_trade_tariff_startyear) /
+                                                                                                                                            (s21_trade_tariff_targetyear-s21_trade_tariff_startyear)) * 
+                                                                                                                                            i21_trade_tariff(t_all,i_ex,i_im,k_trade));
+ i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) <= s21_trade_tariff_startyear) = i21_trade_tariff(t_all,i_ex,i_im,k_trade); 
+ i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) >= s21_trade_tariff_targetyear) = 0 ; 
+ );
+ );
+
+*' same tariff
+*' i21_trade_tariff(t_all, i_ex,i_im,k_trade) = 10;
 
 pm_selfsuff_ext(t_ext,h,kforestry) = f21_self_suff("y2150",h,kforestry);
 pm_selfsuff_ext(t_all,h,kforestry) = f21_self_suff(t_all,h,kforestry);
