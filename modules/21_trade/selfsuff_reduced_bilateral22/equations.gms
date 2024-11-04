@@ -27,23 +27,23 @@ q21_trade_bilat(h2,k_trade)..
  q21_notrade(h2,k_notrade)..
   sum(supreg(h2,i2),vm_prod_reg(i2,k_notrade)) =g= sum(supreg(h2,i2), vm_supply(i2,k_notrade));
 
-*' The following equation indicates the regional trade constraint for the self-sufficiency pool.
-*' The share of regional demand that has to be fulfilled through the self-sufficiency pool is
-*' determined by a trade balance reduction factor for each commodity  `i21_trade_bal_reduction(ct,k_trade)`
-*' according to the following equations [@schmitz_trading_2012].
-*' If the trade balance reduction equals 1 (`f21_self_suff(ct,i2,k_trade) = 1`), all demand enters the self-sufficiency pool.
-*' If it equals 0, all demand enters the comparative advantage pool.
+*' Amount traded is based on historic ratio of imports to domestic supply, bounded by historically observed standard deviations
+
+q21_trade_lower(i_ex, i_im, k_trade)..
+   v21_trade(i_ex, i_im, k_trade) =g= 
+   vm_supply(i2, k_trade) * i21_import_supply_ratio(i_ex, i2, k_trade) * s21_import_supply_ratio_factor -
+   vm_supply(i2, k_trade) * sum(ct, i21_trade_bilat_stddev(ct, i_ex, i2, k_trade)) * s21_bilateral_lib_factor
+ ;
 
 
-*' lower bound based on historical trade patterns (quantity)
-q21_trade_hist_lower(i_ex, i_im, k_trade)..
-v21_trade(i_ex, i_im, k_trade) =g= i21_trade_hist_bilat_qt(i_ex, i_im, k_trade)
-                                         *sum(ct,i21_trade_bal_reduction(ct,k_trade));
+q21_trade_upper(i_ex, i_im, k_trade)..
+v21_trade(i_ex, i_im, k_trade) =l= 
+ vm_supply(i2, k_trade) * i21_import_supply_ratio(i_ex, i_im, k_trade) * s21_import_supply_ratio_factor +
+ vm_supply(i2, k_trade) * sum(ct, i21_trade_bilat_stddev(ct, i_ex, i_im, k_trade)) * s21_bilateral_lib_factor
+ ;
 
-*' upper bound based on historical trade patterns (shares) multiplied by balance reduction 
-q21_trade_hist_upper(i_ex, i_im, k_trade)..
- v21_trade(i_ex, i_im, k_trade) =l= sum(ct, i21_trade_upper_growth(ct, i_ex, i_im, k_trade))
-                                 /sum(ct,i21_trade_bal_reduction(ct,k_trade));
+
+
 
 *' Trade tariffs are associated with exporting regions. They are dependent on net exports and tariff levels.
  q21_costs_tariffs(i2,k_trade)..

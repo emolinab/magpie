@@ -51,6 +51,9 @@ sets
    trade_groups21 Trade groups
    / easytrade,hardtrade /
 
+   trade_stddev21 Standard deviation of observed bilateral trade
+   / min, mean, max /
+
 ;
 
 alias(h,h3);

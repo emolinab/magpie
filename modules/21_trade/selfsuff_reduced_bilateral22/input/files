@@ -1,5 +1,5 @@
 * list of files that are required here   
 f21_trade_margin_bilat.cs5
 f21_trade_tariff_bilat.cs5
-f21_trade_hist_bilat.cs5
-f21_trade_hist_bilat_qt.cs5
+f21_import_supply_ratio.cs5
+f21_trade_bilat_stddev.cs5
