@@ -29,12 +29,12 @@ cfg$gms$sm_fix_cc <- 2020
 cfg$gms$sm_fix_SSP2 <- 2020
 
 
-cellular<-c(ssp245="WARNINGS13_rev4.111BrBsk2024_38b49b50_1b5c3817_cellularmagpie_c200_MRI-ESM2-0-ssp245_lpjml-8e6c5eb1.tgz",
-            ssp370="WARNINGS13_rev4.111BrBsk2024_38b49b50_1b5c3817_cellularmagpie_c200_MRI-ESM2-0-ssp245_lpjml-8e6c5eb1.tgz",
-            ssp119="WARNINGS13_rev4.111BrBsk2024_38b49b50_1b5c3817_cellularmagpie_c200_MRI-ESM2-0-ssp245_lpjml-8e6c5eb1.tgz")
+cellular<-c(ssp245="rev4.115_38b49b50_1b5c3817_cellularmagpie_c200_MRI-ESM2-0-ssp245_lpjml-8e6c5eb1.tgz",
+            ssp370="rev4.115_38b49b50_fd712c0b_cellularmagpie_c200_MRI-ESM2-0-ssp370_lpjml-8e6c5eb1.tgz",
+            ssp119="rev4.115_38b49b50_0bd54110_cellularmagpie_c200_MRI-ESM2-0-ssp119_lpjml-8e6c5eb1.tgz")
 
-regional <- "WARNINGS93_rev4.111BrBsk2024_38b49b50_magpie.tgz"
-validation <- "WARNINGS78_rev4.111BrBsk2024_38b49b50_validation.tgz"
+regional <- "rev4.115_38b49b50_magpie.tgz"
+validation <- "rev4.114+BB-Risk_38b49b50_validation"
 cc <-  "cc"
 
 for (s in 1:length(scenarios)) { 
@@ -50,7 +50,7 @@ cfg$gms$tc <- "endo_jan22"
 
 }else{
 cfg$recalibrate_landconversion_cost <- FALSE
-calib <- "calibration_c200R4415_07Nov24.tgz"
+calib <- "calibration_c200R4415_07ÖNov24.tgz"
 additional2 <- paste0(fold,"/",tag,".tgz")
 cfg$gms$tc <- "endo_jan22"
 }
