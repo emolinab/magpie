@@ -60,7 +60,7 @@ write.report(report, file = mif)
 qu <- as.quitte(report)
 # as.quitte converts "World" into "GLO". But we want to keep "World" and therefore undo these changes
 qu <- droplevels(qu)
-levels(qu$region)[levels(qu$region) == "GLO"] <- "World"
+levels(qu$region)[levels(qu$region) == "GLO"] <- "GLO"
 qu$region <- factor(qu$region,levels = sort(levels(qu$region)))
 
 if (all(is.na(qu$value))) {
