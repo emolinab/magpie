@@ -32,15 +32,15 @@ q21_trade_bilat(h2,k_trade)..
 
 q21_trade_lower(i_ex, i_im, k_trade)..
    v21_trade(i_ex, i_im, k_trade) =g= 
-   vm_supply(i_im, k_trade) * i21_import_supply_historical(t, i_ex, i_im, k_trade) * s21_import_supply_scenario -
-   vm_supply(i_im, k_trade) * sum(ct, i21_trade_bilat_stddev(ct, i_ex, i_im, k_trade)) * s21_stddev_lib_factor
+   vm_supply(i_im, k_trade) * sum(ct, i21_import_supply_historical(ct, i_ex, i_im, k_trade)) * s21_import_supply_scenario -
+   vm_supply(i_im, k_trade) * i21_trade_bilat_stddev(ct, i_ex, i_im, k_trade) * s21_stddev_lib_factor
  ;
 
 
 q21_trade_upper(i_ex, i_im, k_trade)..
 v21_trade(i_ex, i_im, k_trade) =l= 
- vm_supply(i2, k_trade) * i21_import_supply_historical(i_ex, i_im, k_trade) * s21_import_supply_scenario +
- vm_supply(i2, k_trade) * sum(ct, i21_trade_bilat_stddev(ct, i_ex, i_im, k_trade)) * s21_bilateral_lib_factor
+ vm_supply(i2, k_trade) * sum(ct, i21_import_supply_historical(ct, i_ex, i_im, k_trade)) * s21_import_supply_scenario +
+ vm_supply(i2, k_trade) * i21_trade_bilat_stddev(i_ex, i_im, k_trade) * s21_stddev_lib_factor
  ;
 
 

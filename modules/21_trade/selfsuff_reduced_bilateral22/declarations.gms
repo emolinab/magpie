@@ -11,7 +11,8 @@ parameters
  i21_trade_bal_reduction(t_all,k_trade)         Trade balance reduction (1)
  i21_trade_margin(i_ex,i_im,k_trade)            Trade transport and admin costs (USD17MER per tDM)
  i21_trade_tariff(t_all, i_ex,i_im,k_trade)            Trade tariffs (USD17MER per tDM)
- i21_import_supply_historical(t, i_ex,i_im,k_trade)    historical time steps
+ i21_import_supply_historical(t, i_ex, i_im, k_trade)     historical time steps
+ i21_trade_bilat_stddev(t, i_ex, i_im, k_trade)        historically observed standard deviations
 ;
 
 variables
@@ -31,8 +32,8 @@ equations
 *' q21_total(k_trade)                      Total trade constraint  (mio. tDM per yr)
  q21_notrade(h,k_notrade)                Superregional production constraint of non-tradable commodities (mio. tDM per yr)
  q21_trade_bilat(h, k_trade)             Superregional bilateral trade requirements (mio. tDM per yr)
-*' q21_trade_hist_upper(i_ex, i_im, k_trade)     Historical trade patterns (mio. tDM per yr)
- q21_trade_hist_lower(i_ex, i_im, k_trade)     Historical trade patterns (mio. tDM per yr)
+ q21_trade_lower(i_ex, i_im, k_trade)    Trade Lower BOund (mio. tDM per yr)
+ q21_trade_upper(i_ex, i_im, k_trade)       Trade upper Bound (mio. tDM per yr)
  q21_costs_tariffs(i, k_trade)           Regional  trade tariff costs (mio. USD05MER per yr)
  q21_costs_margins(i,k_trade)            Regional bilateral trade requirements
  q21_cost_trade_reg(i,k_trade)           Regional trade costs for each tradable commodity (mio. USD05MER per yr)

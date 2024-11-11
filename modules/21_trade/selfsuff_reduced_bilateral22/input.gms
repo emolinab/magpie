@@ -8,9 +8,6 @@
 $setglobal c21_trade_liberalization  l909090r808080
 *   options are "regionalized" and "globalized" and "fragmented"
 
-$setglobal c21_trade_stddev21  mean
-*   options are "min" and "mean" and "max"
-
 sets
   k_import21(k_trade) Commodities that can have additional imports to maintain feasibility
                     / wood, woodfuel /
@@ -48,7 +45,7 @@ $include "./modules/21_trade/input/f21_trade_balanceflow.cs3"
 $offdelim;
 
 
-parameter f21_import_supply_historical(t,i_ex,i_im,k_trade)  Historical import to domestic supply  (1)
+parameter f21_import_supply_historical(t_all,i_ex,i_im,k_trade)  Historical import to domestic supply  (1)
 /
 $ondelim
 $include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_import_supply_historical.cs5"

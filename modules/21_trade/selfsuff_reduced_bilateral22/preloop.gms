@@ -16,7 +16,7 @@ i21_trade_margin(i_ex,i_im,k_trade)$(i21_trade_margin(i_ex,i_im,k_trade) < 1e-6)
 
 i21_trade_bal_reduction(i_ex, i_im ,k_trade)=f21_trade_bal_reduction(i_ex, i_im ,k_trade, "%c21_trade_stddev21%");
 
-i21_import_supply_historical(i_ex,i_im,t_all,k_trade) = f21_import_supply_historical(i_ex,i_im,t_all,k_trade);
+i21_import_supply_historical(t_all,i_ex,i_im,k_trade) = f21_import_supply_historical(t_all,i_ex,i_im,k_trade);
 
 
 
