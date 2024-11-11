@@ -21,8 +21,8 @@ scalars
   s21_trade_tariff_fadeout fadeout scenario setting for trade tariffs              / 0 / 
   s21_trade_tariff_startyear year to start fading out trade tariffs                / 2025 /
   s21_trade_tariff_targetyear year to finish fading out trade tariffs              / 2050 /
-  s21_bilateral_lib_targetyear year to reach the full standard dev window          / 2050 /
-  s21_bilateral_lib_factor multiplicative factor on the window                     / 1 /
+  s21_import_supply_scenario multiplicative factor on the line                     / 1 /
+  s21_stddev_lib_factor    multplicative factor on the window                     / 1 /
   s21_cost_import Cost for additional imports to maintain feasibility (USD17MER per tDM) / 12300 /
   s21_min_trade_margin_forestry Minimum trade margin for forestry products (USD17MER per tDM) / 62 /
 ;
@@ -48,14 +48,14 @@ $include "./modules/21_trade/input/f21_trade_balanceflow.cs3"
 $offdelim;
 
 
-parameter f21_import_supply_ratio(i_ex,i_im,k_trade)  Historical import to domestic supply  (1)
+parameter f21_import_supply_historical(t,i_ex,i_im,k_trade)  Historical import to domestic supply  (1)
 /
 $ondelim
-$include "./modules/21_trade/selfsuff_reduced_bilateral22/input/i21_import_supply_ratio.cs5"
+$include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_import_supply_historical.cs5"
 $offdelim
 /;
 
-parameter f21_trade_bilat_stddev(i_ex,i_im,k_trade)  Historical standard deviations observed as share of domestic supply (1)
+parameter f21_trade_bilat_stddev(i_ex,i_im,k_trade,trade_stddev21)  Historical standard deviations observed as share of domestic supply (1)
 /
 $ondelim
 $include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_trade_bilat_stddev.cs5"

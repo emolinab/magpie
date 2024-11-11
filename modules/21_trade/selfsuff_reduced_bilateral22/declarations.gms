@@ -11,6 +11,7 @@ parameters
  i21_trade_bal_reduction(t_all,k_trade)         Trade balance reduction (1)
  i21_trade_margin(i_ex,i_im,k_trade)            Trade transport and admin costs (USD17MER per tDM)
  i21_trade_tariff(t_all, i_ex,i_im,k_trade)            Trade tariffs (USD17MER per tDM)
+ i21_import_supply_historical(t, i_ex,i_im,k_trade)    historical time steps
 ;
 
 variables

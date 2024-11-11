@@ -52,7 +52,8 @@ sets
    / easytrade,hardtrade /
 
    trade_stddev21 Standard deviation of observed bilateral trade
-   / min, mean, max /
+   /  meansd5, maxsd5, minsd5, meansd10, maxsd10,  minsd10,  meansd15,
+    maxsd15,  minsd15 /
 
 ;
 

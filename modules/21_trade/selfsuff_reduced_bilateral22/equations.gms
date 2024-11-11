@@ -27,18 +27,19 @@ q21_trade_bilat(h2,k_trade)..
  q21_notrade(h2,k_notrade)..
   sum(supreg(h2,i2),vm_prod_reg(i2,k_notrade)) =g= sum(supreg(h2,i2), vm_supply(i2,k_notrade));
 
+
 *' Amount traded is based on historic ratio of imports to domestic supply, bounded by historically observed standard deviations
 
 q21_trade_lower(i_ex, i_im, k_trade)..
    v21_trade(i_ex, i_im, k_trade) =g= 
-   vm_supply(i2, k_trade) * i21_import_supply_ratio(i_ex, i2, k_trade) * s21_import_supply_ratio_factor -
-   vm_supply(i2, k_trade) * sum(ct, i21_trade_bilat_stddev(ct, i_ex, i2, k_trade)) * s21_bilateral_lib_factor
+   vm_supply(i_im, k_trade) * i21_import_supply_historical(t, i_ex, i_im, k_trade) * s21_import_supply_scenario -
+   vm_supply(i_im, k_trade) * sum(ct, i21_trade_bilat_stddev(ct, i_ex, i_im, k_trade)) * s21_stddev_lib_factor
  ;
 
 
 q21_trade_upper(i_ex, i_im, k_trade)..
 v21_trade(i_ex, i_im, k_trade) =l= 
- vm_supply(i2, k_trade) * i21_import_supply_ratio(i_ex, i_im, k_trade) * s21_import_supply_ratio_factor +
+ vm_supply(i2, k_trade) * i21_import_supply_historical(i_ex, i_im, k_trade) * s21_import_supply_scenario +
  vm_supply(i2, k_trade) * sum(ct, i21_trade_bilat_stddev(ct, i_ex, i_im, k_trade)) * s21_bilateral_lib_factor
  ;
 

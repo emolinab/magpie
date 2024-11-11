@@ -14,17 +14,17 @@ i21_trade_margin(i_ex,i_im,k_trade) = f21_trade_margin(i_ex,i_im,k_trade);
 
 i21_trade_margin(i_ex,i_im,k_trade)$(i21_trade_margin(i_ex,i_im,k_trade) < 1e-6) = 5;
 
-i21_import_supply_ratio(i_ex,i_im,k_trade) = f21_import_supply_ratio(i_ex,i_im,k_trade);
-
 i21_trade_bal_reduction(i_ex, i_im ,k_trade)=f21_trade_bal_reduction(i_ex, i_im ,k_trade, "%c21_trade_stddev21%");
 
- loop(t_all,
-    i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) > s21_bilateral_lib_targetyear AND m_year(t_all) < sm_fix_SSP2) = (1-((m_year(t_all)-sm_fix_SSP2) /
-                                                                                                                                            (s21_bilateral_lib_targetyear-sm_fix_SSP2)) * 
-                                                                                                                                            i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade));
- i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) <= sm_fix_SSP2) = 0; 
- i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) >= s21_bilateral_lib_targetyear) = 1 ; 
- );
+i21_import_supply_historical(i_ex,i_im,t_all,k_trade) = f21_import_supply_historical(i_ex,i_im,t_all,k_trade);
+
+
+
+  loop(t_all,
+     i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) = sm_fix_SSP2 + 5) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"meansd5");
+     i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) = sm_fix_SSP2 + 10) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"meansd10");
+    i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all)  >= sm_fix_SSP2 + 15) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"meansd15");
+  );
  
 
 
