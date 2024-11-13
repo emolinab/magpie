@@ -19,7 +19,7 @@ $setglobal c09_pal_scenario  SSP2
 
 parameters
 * Years where SSPs and nocc/cc scenarios diverge
-  sm_fix_SSP2               year until which all parameters are fixed to SSP2 values (year) / 2025 /
+  sm_fix_SSP2               year until which all parameters are fixed to SSP2 values (year) / 2015 /
   sm_fix_cc                 year until which all parameters affected by cc are fixed to historical values (year) / 2025 /
 ;
 

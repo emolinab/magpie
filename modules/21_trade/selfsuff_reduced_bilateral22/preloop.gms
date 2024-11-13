@@ -14,7 +14,6 @@ i21_trade_margin(i_ex,i_im,k_trade) = f21_trade_margin(i_ex,i_im,k_trade);
 
 i21_trade_margin(i_ex,i_im,k_trade)$(i21_trade_margin(i_ex,i_im,k_trade) < 1e-6) = 5;
 
-i21_trade_bal_reduction(i_ex, i_im ,k_trade)=f21_trade_bal_reduction(i_ex, i_im ,k_trade, "%c21_trade_stddev21%");
 
 i21_import_supply_historical(t_all,i_ex,i_im,k_trade) = f21_import_supply_historical(t_all,i_ex,i_im,k_trade);
 
@@ -45,7 +44,6 @@ if ((s21_trade_tariff=1),
  );
 
 
-pm_selfsuff_ext(t_ext,h,kforestry) = f21_self_suff("y2150",h,kforestry);
-pm_selfsuff_ext(t_all,h,kforestry) = f21_self_suff(t_all,h,kforestry);
-*Implausible jumps in selfsuff for wood in some regions.
-pm_selfsuff_ext(tstart21,h,kforestry) = f21_self_suff("y2010",h,kforestry);
+i21_trade_margin(i_ex, i_im,"wood")$(i21_trade_margin(i_ex, i_im,"wood") < s21_min_trade_margin_forestry) = s21_min_trade_margin_forestry;
+i21_trade_margin(i_ex, i_im,"woodfuel")$(i21_trade_margin(i_ex, i_im,"woodfuel") < s21_min_trade_margin_forestry) = s21_min_trade_margin_forestry;
+
