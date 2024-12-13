@@ -225,7 +225,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  1124BilatImportRatioT1
+$setglobal c_title  1124BilatImportRatioT5_RotConstr0
 
 scalars
 s_use_gdx   use of gdx files                                       / 0 /
@@ -254,7 +254,7 @@ $setglobal land_conservation  area_based_apr22
 $setglobal ageclass  oct24
 
 $setglobal cropland  simple_apr24
-$setglobal croparea  simple_apr24
+$setglobal croparea  detail_apr24
 $setglobal past  endo_jun13
 
 $setglobal forestry  dynamic_may24
