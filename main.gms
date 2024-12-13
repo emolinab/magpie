@@ -148,21 +148,21 @@ $title magpie
 
 *##################### R SECTION START (VERSION INFO) ##########################
 * 
-* Used data set: rev4.115_h12_magpie.tgz
-* md5sum: 41959be5c60dd0e60bd3c1a4156ef91a
-* Repository: /p/projects/rd3mod/inputdata/output_1.27
+* Used data set: rev4.116_h12_magpie.tgz
+* md5sum: NA
+* Repository: https://rse.pik-potsdam.de/data/magpie/public
 * 
-* Used data set: rev4.115_h12_0bd54110_cellularmagpie_c200_MRI-ESM2-0-ssp119_lpjml-8e6c5eb1.tgz
-* md5sum: fe9572f5eee33a4bf5f14aae33bb956f
-* Repository: /p/projects/rd3mod/inputdata/output_1.27
+* Used data set: rev4.116_h12_fd712c0b_cellularmagpie_c200_MRI-ESM2-0-ssp370_lpjml-8e6c5eb1.tgz
+* md5sum: NA
+* Repository: https://rse.pik-potsdam.de/data/magpie/public
 * 
-* Used data set: rev4.115_h12_validation.tgz
-* md5sum: fb8698d1db06ff999c38657e6e018f5e
-* Repository: /p/projects/rd3mod/inputdata/output_1.27
+* Used data set: rev4.116_h12_validation.tgz
+* md5sum: NA
+* Repository: https://rse.pik-potsdam.de/data/magpie/public
 * 
-* Used data set: additional_data_rev4.57.tgz
-* md5sum: d370d69962a2fd4fb48ef8d22df26519
-* Repository: /p/projects/landuse/data/input/archive
+* Used data set: additional_data_rev4.59.tgz
+* md5sum: NA
+* Repository: https://rse.pik-potsdam.de/data/magpie/public
 * 
 * Used data set: calibration_H12_27Sep24.tgz
 * md5sum: 2a5acad1807fdbd9f16999af3e7a1cba
