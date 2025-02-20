@@ -61,7 +61,8 @@ sets
                       UGA,UKR,UMI,URY,USA,UZB,VAT,VCT,VEN,VGB,
                       VIR,VNM,VUT,WLF,WSM,YEM,ZAF,ZMB,ZWE /
 
-pollutants_fader(pollutants) pollutants affected by GHG policy fader / co2_c, ch4, n2o_n_direct, n2o_n_indirect, nh3_n, no2_n, no3_n /
+pollutants_fader(pollutants) pollutants affected by GHG policy fader / co2_c,  ch4,  n2o_n_direct,  n2o_n_indirect,  nh3_n,  
+  no2_n,  no3_n /
 
 ;
 

@@ -149,24 +149,24 @@ $title magpie
 *##################### R SECTION START (VERSION INFO) ##########################
 * 
 * Used data set: rev4.116_h12_magpie.tgz
-* md5sum: NA
-* Repository: https://rse.pik-potsdam.de/data/magpie/public
+* md5sum: a020594c956835f8f44fc1b062506a01
+* Repository: /p/projects/rd3mod/mirror/rse.pik-potsdam.de/data/magpie/public
 * 
 * Used data set: rev4.116_h12_fd712c0b_cellularmagpie_c200_MRI-ESM2-0-ssp370_lpjml-8e6c5eb1.tgz
-* md5sum: NA
-* Repository: https://rse.pik-potsdam.de/data/magpie/public
+* md5sum: 6bc13df515d9663430beff24c80280fd
+* Repository: /p/projects/rd3mod/mirror/rse.pik-potsdam.de/data/magpie/public
 * 
 * Used data set: rev4.116_h12_validation.tgz
-* md5sum: NA
-* Repository: https://rse.pik-potsdam.de/data/magpie/public
+* md5sum: 494dbecfb4800872218fc6d791880ff9
+* Repository: /p/projects/rd3mod/mirror/rse.pik-potsdam.de/data/magpie/public
 * 
 * Used data set: additional_data_rev4.59.tgz
-* md5sum: NA
-* Repository: https://rse.pik-potsdam.de/data/magpie/public
+* md5sum: 861fabb00348355ef115c48b1c5360c4
+* Repository: /p/projects/rd3mod/mirror/rse.pik-potsdam.de/data/magpie/public
 * 
 * Used data set: calibration_H12_27Sep24.tgz
 * md5sum: 2a5acad1807fdbd9f16999af3e7a1cba
-* Repository: /p/projects/landuse/data/input/calibration
+* Repository: /p/projects/rd3mod/mirror/rse.pik-potsdam.de/data/magpie/public
 * 
 * Low resolution: c200
 * High resolution: 0.5
@@ -179,11 +179,11 @@ $title magpie
 * 
 * Regionscode: 62eff8f7
 * 
-* Regions data revision: 4.115
+* Regions data revision: 4.116
 * 
 * lpj2magpie settings:
-* * LPJmL data: MRI-ESM2-0:ssp119
-* * Revision: 4.115
+* * LPJmL data: MRI-ESM2-0:ssp370
+* * Revision: 4.116
 * 
 * aggregation settings:
 * * Input resolution: 0.5
@@ -194,12 +194,8 @@ $title magpie
 *    14   23   10    7    4   26   21    9   16   23   32   15
 * * Call: withCallingHandlers(expr, message = messageHandler, warning = warningHandler,     error = errorHandler)
 * 
-* Warning message:
-* renv 0.16.0 was loaded from project library, but this project is configured to use renv 1.0.11.
-* Use `renv::record("renv@0.16.0")` to record renv 0.16.0 in the lockfile.
-* Use `renv::restore(packages = "renv")` to install renv 1.0.11 into the project library.
 * 
-* Last modification (input data): Mon Nov 11 19:17:40 2024
+* Last modification (input data): Fri Dec 13 11:51:11 2024
 * 
 *###################### R SECTION END (VERSION INFO) ###########################
 
@@ -225,7 +221,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  1124BilatImportRatioT5_RotConstr0
+$setglobal c_title  1312BilatImportRatio_RotConstraint_TarfsCorr
 
 scalars
 s_use_gdx   use of gdx files                                       / 0 /
