@@ -161,12 +161,12 @@ $title magpie
 * Repository: /p/projects/rd3mod/mirror/rse.pik-potsdam.de/data/magpie/public
 * 
 * Used data set: additional_data_rev4.60.tgz
-* md5sum: NA
-* Repository: https://rse.pik-potsdam.de/data/magpie/public
+* md5sum: 4a34597095b29a273245a5ba42b60bdc
+* Repository: /p/projects/rd3mod/mirror/rse.pik-potsdam.de/data/magpie/public
 * 
 * Used data set: calibration_H12_FAO30_03Feb25.tgz
 * md5sum: aba0b877f383fefabc558d79180fc43f
-* Repository: /Users/flo/Development/input_data/
+* Repository: /p/projects/rd3mod/mirror/rse.pik-potsdam.de/data/magpie/public
 * 
 * Low resolution: c200
 * High resolution: 0.5
@@ -194,7 +194,8 @@ $title magpie
 *    14   23   10    7    4   26   21    9   16   23   32   15
 * * Call: withCallingHandlers(expr, message = messageHandler, warning = warningHandler,     error = errorHandler)
 * 
-* Last modification (input data): Thu Feb  6 14:08:31 2025
+* 
+* Last modification (input data): Mon Feb 24 16:28:52 2025
 * 
 *###################### R SECTION END (VERSION INFO) ###########################
 
@@ -220,7 +221,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  1312BilatImportRatio_RotConstraint_TarfsCorr
+$setglobal c_title  e1312TestBilatNew_bilat_0p5maxStdDev_noResBioen
 
 scalars
 s_use_gdx   use of gdx files                                       / 0 /
@@ -249,7 +250,7 @@ $setglobal land_conservation  area_based_apr22
 $setglobal ageclass  oct24
 
 $setglobal cropland  detail_apr24
-$setglobal croparea  simple_apr24
+$setglobal croparea  detail_apr24
 $setglobal past  endo_jun13
 
 $setglobal forestry  dynamic_may24
@@ -280,7 +281,7 @@ $setglobal maccs  on_aug22
 $setglobal peatland  v2
 $setglobal som  static_jan19
 
-$setglobal bioenergy  1stgen_priced_dec18
+$setglobal bioenergy  1st2ndgen_priced_feb24
 $setglobal material  exo_flexreg_apr16
 $setglobal livestock  fbask_jan16
 

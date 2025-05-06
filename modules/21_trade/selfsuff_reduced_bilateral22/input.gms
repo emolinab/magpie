@@ -45,7 +45,7 @@ $include "./modules/21_trade/input/f21_trade_balanceflow.cs3"
 $offdelim;
 
 
-parameter f21_import_supply_historical(t_all,i_ex,i_im,k_trade)  Historical import to domestic supply  (1)
+parameter f21_import_supply_historical(t_all,i_ex,i_im,k_trade)  Historical import to domestic supply ratio (1)
 /
 $ondelim
 $include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_import_supply_historical.cs5"

@@ -39,8 +39,6 @@ v21_trade(i_ex, i_im, k_trade) =l=
  ;
 
 
-
-
 *' Trade tariffs are associated with exporting regions. They are dependent on net exports and tariff levels.
  q21_costs_tariffs(i2,k_trade)..
  v21_cost_tariff_reg(i2,k_trade) =g=
