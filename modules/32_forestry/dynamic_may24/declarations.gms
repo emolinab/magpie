@@ -56,6 +56,7 @@ parameters
  p32_demand_forestry_future(t,i,kforestry)          Future forestry demand in current time step (tDM per yr)
  p32_est_cost(type32)                               Establishment cost (USD17MER per ha)
  i32_recurring_cost(type32)                         Recurring costs (USD17MER per ha)
+ p32_plantedforest(i)                               Planted forest (mio. ha)
 ;
 
 positive variables
@@ -113,6 +114,7 @@ equations
  q32_land_expansion_forestry(j,type32)             Forestry land expansion (mio. ha)
  q32_land_reduction_forestry(j,type32)             Forestry land reduction (mio. ha)
  q32_land_replant(j)                               Harvested and replanted area in timber plantations (mio. ha)
+ q32_co2p_aff_limit(j)                             Annual upper limit for re-afforestation (mio. ha per yr)
 ;
 
 
@@ -166,5 +168,6 @@ parameters
  oq32_land_expansion_forestry(t,j,type32,type) Forestry land expansion (mio. ha)
  oq32_land_reduction_forestry(t,j,type32,type) Forestry land reduction (mio. ha)
  oq32_land_replant(t,j,type)                   Harvested and replanted area in timber plantations (mio. ha)
+ oq32_co2p_aff_limit(t,j,type)                 Annual upper limit for re-afforestation (mio. ha per yr)
 ;
 *##################### R SECTION END (OUTPUT DECLARATIONS) #####################

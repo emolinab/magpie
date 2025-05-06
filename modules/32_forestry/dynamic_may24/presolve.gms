@@ -19,7 +19,8 @@ v32_land_reduction.fx(j,type32,ac_est) = 0;
                         + (vm_land.l(j,"past") - vm_land.lo(j,"past")) 
                         - pm_land_conservation(t,j,"other","restore"));
 *** NDC/NPI re/afforesation is further constrained by the remaining forest establishment potential
-   p32_aff_pot(t,j)$(p32_aff_pot(t,j) > pm_max_forest_est(t,j)) = pm_max_forest_est(t,j);
+   p32_aff_pot(t,j)$(p32_aff_pot(t,j) > pm_max_forest_est(t,j) * s32_annual_aff_limit * m_timestep_length) = 
+     pm_max_forest_est(t,j) * s32_annual_aff_limit * m_timestep_length;
 * suitable area `p32_aff_pot` can be negative, if land restoration is switched on (level smaller than lower bound), therefore set negative values to 0
    p32_aff_pot(t,j)$(p32_aff_pot(t,j) < 1e-6) = 0;
 * Limit prescribed NPI/NDC afforestation in `p32_aff_pol_timestep` if not enough suitable area (`p32_aff_pot`) for afforestation is available
@@ -104,8 +105,8 @@ elseif s32_hvarea = 2,
 ** Fix timber plantations until the end of the rotation. "ac.off" identical to "ord(ac)-1".
 ** The offset is needed because the first element of ac is ac0, which is not included in p32_rotation_cellular_harvesting.
   v32_land.fx(j,"plant",ac)$(ac.off < p32_rotation_cellular_harvesting(t,j)) = pc32_land(j,"plant",ac);
-** After the rotation period, all plantations are harvested.
-  v32_land.fx(j,"plant",ac)$(ac.off >= p32_rotation_cellular_harvesting(t,j)) = 0;
+** After the rotation period, all plantations can be harvested.
+  v32_land.lo(j,"plant",ac)$(ac.off >= p32_rotation_cellular_harvesting(t,j)) = 0;
   s32_establishment_static = 0;
   s32_establishment_dynamic = 1;
 );
