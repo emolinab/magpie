@@ -19,7 +19,7 @@ $setglobal c30_rotation_incentives  none
 
 
 scalars
- s30_rotation_scenario_start     Rotation scenario start year      / 2015 /
+ s30_rotation_scenario_start     Rotation scenario start year      / 2025 /
  s30_rotation_scenario_target    Rotation scenario target year     / 2050 /
  s30_implementation              Switch for rule-based (1) or penalty-based (0) implementation of rotation scenarios / 0 /
  s30_betr_scenario_start         Bioenergy land scenario start year       / 2025 /

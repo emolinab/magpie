@@ -23,11 +23,11 @@ cfg$force_download <- FALSE
 cfg$gms$croparea    <- "detail_apr24"               # def = simple_apr24
 
 
-cfg$title   <- paste0("e1312TestBilatNew_default")
+cfg$title   <- paste0("0805TestBilat2_newFAO_off")
 
-#start_run(cfg=cfg)
+start_run(cfg=cfg)
 
-cfg$title   <- paste0("e1312TestBilatNew_bilat_0.5maxStdDev_noResBioen")
+cfg$title   <- paste0("0805TestBilat_newFAO_on")
 #cfg$gms$s35_hvarea <- 0 # def = 2
 #cfg$gms$s73_timber_demand_switch <- 0     # def = 1
 #cfg$gms$s32_hvarea <- 0 # def = 2
@@ -35,17 +35,17 @@ cfg$title   <- paste0("e1312TestBilatNew_bilat_0.5maxStdDev_noResBioen")
 
 
 cfg$gms$trade <- "selfsuff_reduced_bilateral22"             # def = selfsuff_reduced
-cfg$gms$s21_stddev_lib_factor <- 0.5
+#cfg$gms$s21_stddev_lib_factor <- 0.5
 # cfg$gms$s21_trade_tariff <- 0
 
-start_run(cfg=cfg)
+#start_run(cfg=cfg)
+
+cfg$gms$s15_exo_diet <- 3               # def = 0
+
+cfg$title   <- paste0("0805TestBilat_newFAO_on_EAT")
 
 
-
-cfg$title   <- paste0("e1312TestBilatNew_NoTariff")
-
-
- cfg$gms$s21_trade_tariff <- 0
+# cfg$gms$s21_trade_tariff <- 0
 
 #start_run(cfg=cfg)
 
