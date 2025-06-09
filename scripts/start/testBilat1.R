@@ -17,13 +17,13 @@ source("config/default.cfg")
 cfg$recalibrate = FALSE
 
 cfg$gms$sm_fix_SSP2 <- 2025
-cfg$force_download <- FALSE
+cfg$force_download <- TRUE
 
 
 cfg$gms$croparea    <- "detail_apr24"               # def = simple_apr24
 
 
-cfg$title   <- paste0("0805TestBilat2_newFAO_off")
+cfg$title   <- paste0("0806TestBilat2_newFAO_off")
 
 start_run(cfg=cfg)
 

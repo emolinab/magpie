@@ -181,7 +181,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  0805TestBilat2_newFAO_off
+$setglobal c_title  0806TestBilat2_newFAO_off
 
 scalars
 s_use_gdx   use of gdx files                                       / 0 /
