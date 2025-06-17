@@ -17,37 +17,61 @@ source("config/default.cfg")
 cfg$recalibrate = FALSE
 
 cfg$gms$sm_fix_SSP2 <- 2025
-cfg$force_download <- TRUE
+cfg$force_download <- FALSE
 
 
 cfg$gms$croparea    <- "detail_apr24"               # def = simple_apr24
 
 
-cfg$title   <- paste0("0806TestBilat2_newFAO_off")
+cfg$title   <- paste0("1706TestBilat2_newFAO_off")
 
 start_run(cfg=cfg)
 
-cfg$title   <- paste0("0805TestBilat_newFAO_on")
-#cfg$gms$s35_hvarea <- 0 # def = 2
-#cfg$gms$s73_timber_demand_switch <- 0     # def = 1
-#cfg$gms$s32_hvarea <- 0 # def = 2
-
-
-
+cfg$title   <- paste0("1706TestBilat_newFAO_defSSP2")
 cfg$gms$trade <- "selfsuff_reduced_bilateral22"             # def = selfsuff_reduced
-#cfg$gms$s21_stddev_lib_factor <- 0.5
-# cfg$gms$s21_trade_tariff <- 0
+cfg$gms$s21_trade_tariff_fadeout <- 0
+cfg$gms$s21_tariff_factor <- 1
+cfg$gms$s21_stddev_lib_factor <- 1
+cfg$gms$s21_import_supply_scenario <- 1
 
-#start_run(cfg=cfg)
-
-cfg$gms$s15_exo_diet <- 3               # def = 0
-
-cfg$title   <- paste0("0805TestBilat_newFAO_on_EAT")
+start_run(cfg=cfg)
 
 
-# cfg$gms$s21_trade_tariff <- 0
+cfg$title   <- paste0("1706TestBilat_newFAO_SSP1")
+cfg$gms$trade <- "selfsuff_reduced_bilateral22"             # def = selfsuff_reduced
+cfg$gms$s21_trade_tariff_fadeout <- 1
+cfg$gms$s21_tariff_factor <- 1
+cfg$gms$s21_stddev_lib_factor <- 2
+cfg$gms$s21_import_supply_scenario <- 0.5
+start_run(cfg=cfg)
 
-#start_run(cfg=cfg)
+
+cfg$title   <- paste0("1706TestBilat_newFAO_SSP3")
+cfg$gms$trade <- "selfsuff_reduced_bilateral22"             # def = selfsuff_reduced
+cfg$gms$s21_trade_tariff_fadeout <- 0
+cfg$gms$s21_tariff_factor <- 2
+cfg$gms$s21_stddev_lib_factor <- 1
+cfg$gms$s21_import_supply_scenario <- 1
+start_run(cfg=cfg)
+
+
+
+cfg$title   <- paste0("1706TestBilat_newFAO_SSP4")
+cfg$gms$trade <- "selfsuff_reduced_bilateral22"             # def = selfsuff_reduced
+cfg$gms$s21_trade_tariff_fadeout <- 1
+cfg$gms$s21_tariff_factor <- 1
+cfg$gms$s21_stddev_lib_factor <- 5
+cfg$gms$s21_import_supply_scenario <- 2
+start_run(cfg=cfg)
+
+
+cfg$title   <- paste0("1706TestBilat_newFAO_SSP5")
+cfg$gms$trade <- "selfsuff_reduced_bilateral22"             # def = selfsuff_reduced
+cfg$gms$s21_trade_tariff_fadeout <- 1
+cfg$gms$s21_tariff_factor <- 1
+cfg$gms$s21_stddev_lib_factor <- 5
+cfg$gms$s21_import_supply_scenario <- 2
+start_run(cfg=cfg)
 
 
 cfg$title   <- paste0("1312BilatImportRatio_RotConstraint_NoTariff")
@@ -56,34 +80,3 @@ cfg$title   <- paste0("1312BilatImportRatio_RotConstraint_NoTariff")
 cfg$gms$croparea    <- "detail_apr24"               # def = simple_apr24
 cfg$gms$s30_rotation_scenario_start <- 2015    # def = 2025
 cfg$gms$s30_implementation <- 0   # def = 0
-
-#start_run(cfg=cfg)
-
-#cfg$title   <- paste0("BilatPR8_OFF_T0")
-#start_run(cfg=cfg)
-
-#cfg$title   <- paste0("BilatPRFade_ON_fadeout")
-#cfg$gms$trade <- "selfsuff_reduced_bilateral22"             # def = selfsuff_reduced
-#cfg$gms$s21_trade_tariff_fadeout <-1            # def =1
-
-#start_run(cfg=cfg)
-
-
-#cfg$title   <- paste0("BilatPRFade_ON_Nofadeout")
-#cfg$gms$trade <- "selfsuff_reduced_bilateral22"             # def = selfsuff_reduced
-#cfg$gms$s21_trade_tariff_fadeout <-0          # def =1
-
-#start_run(cfg=cfg)
-
-#cfg$recalibrate_landconversion_cost <- "ifneeded"  #def "ifneeded"
-#cfg$force_download = TRUE
-
-
-#cfg$title   <- paste0("BilatPR8_ON_T0")
-#cfg$gms$trade <- "selfsuff_reduced_bilateral22"             # def = selfsuff_reduced
-#cfg$gms$s21_trade_tariff <- 0               # def =1
-
-#cfg$recalibrate = TRUE
-#cfg$recalibrate_landconversion_cost <- TRUE  #def "ifneeded"
-#cfg$force_download = TRUE
-#start_run(cfg=cfg)

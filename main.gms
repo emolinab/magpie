@@ -181,7 +181,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  0806TestBilat2_newFAO_off
+$setglobal c_title  1606TestBilat_newFAO_defSSP5_testTariff2
 
 scalars
 s_use_gdx   use of gdx files                                       / 0 /
@@ -204,7 +204,7 @@ $setglobal production  flexreg_apr16
 $setglobal residues  flexreg_apr16
 $setglobal processing  substitution_may21
 
-$setglobal trade  selfsuff_reduced
+$setglobal trade  selfsuff_reduced_bilateral22
 $setglobal land_conservation  area_based_apr22
 
 $setglobal ageclass  oct24
