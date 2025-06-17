@@ -55,32 +55,32 @@ sets
       VEN, VGB, VIR, VNM, VUT, WLF, WSM, YEM, ZAF, ZMB, ZWE /
 
   j number of LPJ cells
-    / CAZ_1*CAZ_14,
-      CHA_15*CHA_37,
+    / CAZ_1*CAZ_15,
+      CHA_16*CHA_37,
       EUR_38*EUR_47,
       IND_48*IND_54,
       JPN_55*JPN_58,
-      LAM_59*LAM_84,
-      MEA_85*MEA_105,
+      LAM_59*LAM_85,
+      MEA_86*MEA_105,
       NEU_106*NEU_114,
       OAS_115*OAS_130,
-      REF_131*REF_153,
-      SSA_154*SSA_185,
-      USA_186*USA_200 /
+      REF_131*REF_152,
+      SSA_153*SSA_184,
+      USA_185*USA_200 /
 
   cell(i,j) number of LPJ cells per region i
-    / CAZ . (CAZ_1*CAZ_14)
-      CHA . (CHA_15*CHA_37)
+    / CAZ . (CAZ_1*CAZ_15)
+      CHA . (CHA_16*CHA_37)
       EUR . (EUR_38*EUR_47)
       IND . (IND_48*IND_54)
       JPN . (JPN_55*JPN_58)
-      LAM . (LAM_59*LAM_84)
-      MEA . (MEA_85*MEA_105)
+      LAM . (LAM_59*LAM_85)
+      MEA . (MEA_86*MEA_105)
       NEU . (NEU_106*NEU_114)
       OAS . (OAS_115*OAS_130)
-      REF . (REF_131*REF_153)
-      SSA . (SSA_154*SSA_185)
-      USA . (USA_186*USA_200) /
+      REF . (REF_131*REF_152)
+      SSA . (SSA_153*SSA_184)
+      USA . (USA_185*USA_200) /
 
   i_to_iso(i,iso) mapping regions to iso countries
     / CAZ . (AUS, CAN, HMD, NZL, SPM)
@@ -176,6 +176,8 @@ sets time_annual Annual extended time steps
 
 set t_past(t_all) Timesteps with observed data
 $If "%c_past%"== "till_2010" /y1965, y1970, y1975, y1980, y1985, y1990,y1995, y2000, y2005, y2010/;
+$If "%c_past%"== "till_2015" /y1965, y1970, y1975, y1980, y1985, y1990,y1995, y2000, y2005, y2010, y2015/;
+$If "%c_past%"== "till_2020" /y1965, y1970, y1975, y1980, y1985, y1990,y1995, y2000, y2005, y2010, y2015, y2020/;
 $If "%c_past%"== "till_1965" /y1965/;
 $If "%c_past%"== "till_1975" /y1965, y1970, y1975/;
 $If "%c_past%"== "till_1995" /y1965, y1970, y1975, y1980, y1985, y1990, y1995/;
