@@ -7,19 +7,19 @@
 
 parameters
  i21_trade_hist_bilat_qt(i_ex,i_im,k_trade)           historical trade patterns as shares (1)
-*' i21_trade_upper_growth(t, i_ex,i_im,k_trade)           growth in trade as upper bound (1)
  i21_trade_bal_reduction(t_all,k_trade)         Trade balance reduction (1)
  i21_trade_margin(i_ex,i_im,k_trade)            Trade transport and admin costs (USD17MER per tDM)
  i21_trade_tariff(t_all, i_ex,i_im,k_trade)            Trade tariffs (USD17MER per tDM)
  i21_import_supply_historical(t_all, i_ex, i_im, k_trade)     historical time steps
  i21_trade_bilat_stddev(t_all, i_ex, i_im, k_trade)        historically observed standard deviations
+ i21_import_supply_scenario(t_all)      multiplicative scalar on the import supply ratio
+ i21_stddev_lib_factor(t_all)      multiplicative scalar on the std deviation 
 ;
 
 variables
  v21_cost_tariff_reg(i,k_trade)          Regional trade tariffs for each tradable commodity (mio. USD05MER per yr)
  v21_cost_trade_reg(i,k_trade)           Superregional trade costs for each tradable commodity (mio. USD05MER per yr)
  vm_cost_trade(i)                        Regional  trade costs (mio. USD05MER per yr)
-
 ;
 
 positive variables
