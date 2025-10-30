@@ -5,7 +5,7 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
-$setglobal c21_trade_liberalization  l909090r808080
+$setglobal c21_trade_liberalization  l908080r807070
 *   options are "regionalized" and "globalized" and "fragmented"
 
 sets
@@ -19,9 +19,9 @@ scalars
   s21_trade_tariff_startyear year to start fading out trade tariffs                / 2025 /
   s21_trade_tariff_targetyear year to finish fading out trade tariffs              / 2050 /
   s21_tariff_factor multiplicative factor on the trade tariff                      / 1 /
-  s21_import_supply_scenario multiplicative factor on the line                     / 1 /
+  s21_import_supply_scenario multiplicative factor on the line                     / 2 /
   s21_import_supply_scenario_targetyear target year for fade in                    / 2050 /
-  s21_stddev_lib_factor    multplicative factor on the window                     / 1 /
+  s21_stddev_lib_factor    multplicative factor on the window                     / 2 /
   s21_cost_import Cost for additional imports to maintain feasibility (USD17MER per tDM) / 1500 /
   s21_min_trade_margin_forestry Minimum trade margin for forestry products (USD17MER per tDM) / 62 /
 ;
@@ -48,7 +48,7 @@ $offdelim;
 
 table f21_trade_bilat_balanceflow(t_all,i,k_trade) Regional export balance flows (mio. tDM per yr)
 $ondelim
-$include "./modules/21_trade/input/f21_trade_bilat_balanceflow.cs3"
+$include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_trade_bilat_balanceflow.cs3"
 $offdelim;
 
 
