@@ -25,7 +25,7 @@ cfg$gms$c60_res_2ndgenBE_dem <- "ssp2"     # def = ssp2
 # cap those above 1 if newly above 1, re-distribute
 
 cfg$gms$croparea    <- "detail_apr24"               # def = simple_apr24
- cfg$info$flag <- "bT2110"
+ cfg$info$flag <- "testBlocs"
 # support function to create standardized title
 .title <- function(cfg, ...) return(paste(cfg$info$flag, sep = "_", ...))
 
@@ -38,24 +38,96 @@ ssp_params <- data.frame(
   stringsAsFactors = FALSE
 )
 
-for (ssp in c("SSP1", "SSP2", "SSP3", "SSP4", "SSP5")) {
+#for (ssp in c("SSP1", "SSP2", "SSP3", "SSP4", "SSP5")) {
+  for (ssp in c("SSP2")){ #,"SSP4")) {
+
      cfg$gms$trade <- "selfsuff_reduced"
     cfg$title <- .title(cfg, paste("OFF", ssp, "NPi2025", sep = "-"))
     cfg <- setScenario(cfg, c(ssp, "NPI", "rcp4p5"))
     cfg$gms$c56_mute_ghgprices_until <- "y2150"
+    cfg$gms$c56_mute_ghgprices_until <- "y2100"
+
+    if (ssp == "SSP4") { 
+      sspi <- ssp
+      ssp <- "SSP2"
+    } else {
+      sspi <- ssp
+    }
     cfg$gms$c56_pollutant_prices <- paste0("R34M410-", ssp, "-NPi2025")
     cfg$gms$c60_2ndgen_biodem    <- paste0("R34M410-", ssp, "-NPi2025")
    # start_run(cfg, codeCheck = FALSE)
 
-   cfg$title <- .title(cfg, paste("ON", ssp, "NPi2025", sep = "-"))
+       if (sspi == "SSP4") { 
+       ssp <- sspi
+    }
+
+   cfg$title <- .title(cfg, paste("ON_ReduceCross0_intra5_tariff05", ssp, "NPi2025", sep = "-"))
     cfg$gms$trade <- "selfsuff_reduced_bilateral22"
     # Get parameters from mapping
     cfg$gms$s21_trade_tariff_fadeout <- ssp_params$tariff_fadeout[ssp_params$ssp == ssp]
     cfg$gms$s21_tariff_factor <- 1
     cfg$gms$s21_stddev_lib_factor <- ssp_params$stddev_lib[ssp_params$ssp == ssp]
     cfg$gms$s21_import_supply_scenario <- ssp_params$import_supply[ssp_params$ssp == ssp]
+    cfg$gms$s21_intrabloc_tariff_factor <- 0
+    cfg$gms$s21_crossbloc_trade_factor <- 5
+
+   cfg$gms$s21_crossbloc_lower_bound_factor <- 0
+   cfg$gms$s21_intrabloc_lib_factor <- 5
+
+    #cfg$gms$s21_trade_tariff_fadeout <- 1
      start_run(cfg, codeCheck = FALSE)
 }
+
+
+
+
+# ### Step 3: Add scalars to config
+
+# Add to `config/default.cfg`:
+# ```r
+# cfg$gms$s21_intrabloc_lib_factor <- 2
+# cfg$gms$s21_crossbloc_trade_factor <- 0
+# cfg$gms$s21_intrabloc_tariff_factor <- 0
+# cfg$gms$s21_bloc_scenario_startyear <- 2025
+# ```
+
+# ## Scenario Examples
+
+# ### Scenario 1: Trade Fragmentation (Decoupling)
+# Cross-bloc trade collapses, intra-bloc trade increases:
+# ```r
+# s21_intrabloc_lib_factor <- 3      # Triple flexibility within bloc
+# s21_crossbloc_trade_factor <- 0    # Cross-bloc can go to zero
+# s21_intrabloc_tariff_factor <- 0   # No tariffs within bloc
+# ```
+
+# ### Scenario 2: Partial Fragmentation
+# Cross-bloc trade reduced but not eliminated:
+# ```r
+# s21_intrabloc_lib_factor <- 2
+# s21_crossbloc_trade_factor <- 0.5  # 50% of normal minimum
+# s21_intrabloc_tariff_factor <- 0
+# ```
+
+# ### Scenario 3: Bloc Formation Only (No Cross-Bloc Restriction)
+# Blocs form with internal free trade, but cross-bloc trade unchanged:
+# ```r
+# s21_intrabloc_lib_factor <- 2
+# s21_crossbloc_trade_factor <- 1    # Normal cross-bloc trade
+# s21_intrabloc_tariff_factor <- 0   # No tariffs within bloc
+# ```
+
+# ## Equation Logic
+
+# ### Intra-Bloc Trade (`q21_trade_lower_intrabloc`)
+# - Applied when `p21_same_bloc(i_ex,i_im) = 1`
+# - Uses `i21_intrabloc_lib_factor` to widen the trade cone
+# - Tariffs calculated with `i21_trade_tariff_bloc` (can be zero)
+
+# ### Cross-Bloc Trade (`q21_trade_lower_crossbloc`)
+# - Applied when `p21_cross_bloc(i_ex,i_im) = 1`
+# - Entire lower bound multiplied by `i21_crossbloc_trade_factor`
+# - When factor = 0, minimum trade = 0 (can decouple completely)
 
 
 
