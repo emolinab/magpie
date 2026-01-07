@@ -14,14 +14,24 @@ i21_trade_margin(i_ex,i_im,k_trade) = f21_trade_margin(i_ex,i_im,k_trade);
 i21_trade_margin(i_ex,i_im,k_trade)$(i21_trade_margin(i_ex,i_im,k_trade) < 1e-6) = 5;
 
 
+*** Initialize import supply historical from file
 i21_import_supply_historical(i_ex,i_im,t_all,k_trade) = f21_import_supply_historical(i_ex,i_im,t_all,k_trade);
 
+*** Apply scenario adjustments if switch is on
+*** The diff column from f21_trade_scenario_adjustments is added to i21_import_supply_historical
+*** for all time periods after sm_fix_SSP2
+if (s21_trade_scenario_adjustments = 1,
+  loop(t_all$(m_year(t_all) > sm_fix_SSP2),
+    i21_import_supply_historical(i_ex,i_im,t_all,k_trade)$(f21_trade_scenario_adjustments(i_ex,i_im,k_trade,"diff")) = 
+      i21_import_supply_historical(i_ex,i_im,t_all,k_trade) + f21_trade_scenario_adjustments(i_ex,i_im,k_trade,"diff");
+  );
+);
 
 
   loop(t_all,
-     i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) = sm_fix_SSP2 + 5) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"maxsd5");
-     i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) = sm_fix_SSP2 + 10) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"maxsd10");
-    i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all)  >= sm_fix_SSP2 + 15) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"maxsd15");
+     i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) = sm_fix_SSP2 + 5) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"minsd5");
+     i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) = sm_fix_SSP2 + 10) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"minsd10");
+    i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all)  >= sm_fix_SSP2 + 15) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"minsd15");
   );
 
 
@@ -60,22 +70,3 @@ if ((s21_trade_tariff=1),
 
 i21_trade_margin(i_ex, i_im,"wood")$(i21_trade_margin(i_ex, i_im,"wood") < s21_min_trade_margin_forestry) = s21_min_trade_margin_forestry;
 i21_trade_margin(i_ex, i_im,"woodfuel")$(i21_trade_margin(i_ex, i_im,"woodfuel") < s21_min_trade_margin_forestry) = s21_min_trade_margin_forestry;
-
-
-*** Initialize bloc membership indicator (1 = same bloc, 0 = different bloc)
-i21_bloc_trade_indicator(i_ex,i_im) = 0;
-loop(trade_bloc21,
-   i21_bloc_trade_indicator(i_ex,i_im)$(bloc_regions21(trade_bloc21,i_ex) and bloc_regions21(trade_bloc21,i_im)) = 1;
-);
-
-*** Calculate effective tariffs based on bloc membership
-*** Intra-bloc: tariffs can be reduced via s21_intrabloc_tariff_factor
-*** Cross-bloc: tariffs can be increased via s21_crossbloc_tariff_factor
-
-i21_intrabloc_tariff(t_all,i_ex,i_im,k_trade) = i21_trade_tariff(t_all,i_ex,i_im,k_trade) * s21_intrabloc_tariff_factor;
-i21_crossbloc_tariff(t_all,i_ex,i_im,k_trade) = i21_trade_tariff(t_all,i_ex,i_im,k_trade) * s21_crossbloc_tariff_factor;
-
-*** Combined effective tariff: apply intra-bloc tariff if same bloc, cross-bloc if different
-i21_bloc_tariff(t_all,i_ex,i_im,k_trade) =
-    i21_bloc_trade_indicator(i_ex,i_im) * i21_intrabloc_tariff(t_all,i_ex,i_im,k_trade)
-    + (1 - i21_bloc_trade_indicator(i_ex,i_im)) * i21_crossbloc_tariff(t_all,i_ex,i_im,k_trade);

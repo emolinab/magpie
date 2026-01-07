@@ -18,14 +18,25 @@ cfg$recalibrate = FALSE
 
 #cfg$gms$sm_fix_SSP2 <- 2025
 # change sm fix in trade module to 2010
-cfg$force_download <- FALSE
+cfg$force_download <- TRUE
+
+
+# cfg$input <- c(regional    = "rev4.129DCTradeBlocs_ff7773cc_magpie_debug.tgz",
+#                cellular    = "rev4.129DCTradeBlocs_ff7773cc_1b5c3817_cellularmagpie_debug_c200_MRI-ESM2-0-ssp245_lpjml-8e6c5eb1.tgz",
+#                validation  = "rev4.129DCTradeBlocs_ff7773cc_92e02314_validation_debug.tgz",
+#                additional  = "additional_data_rev4.63.tgz")
+# #               calibration = "calibration_H12_FAO_18Sep25.tgz")
+
+
+#fix TC? 
+
 
 #residues bioenergy demand off 
 cfg$gms$c60_res_2ndgenBE_dem <- "ssp2"     # def = ssp2
 # cap those above 1 if newly above 1, re-distribute
 
 cfg$gms$croparea    <- "detail_apr24"               # def = simple_apr24
- cfg$info$flag <- "testBlocs"
+ cfg$info$flag <- "26TestBilatPol"
 # support function to create standardized title
 .title <- function(cfg, ...) return(paste(cfg$info$flag, sep = "_", ...))
 
@@ -43,7 +54,7 @@ ssp_params <- data.frame(
 
      cfg$gms$trade <- "selfsuff_reduced"
     cfg$title <- .title(cfg, paste("OFF", ssp, "NPi2025", sep = "-"))
-    cfg <- setScenario(cfg, c(ssp, "NPI", "rcp4p5"))
+ #   cfg <- setScenario(cfg, c(ssp, "NPI", "rcp4p5"))
     cfg$gms$c56_mute_ghgprices_until <- "y2150"
     cfg$gms$c56_mute_ghgprices_until <- "y2100"
 
@@ -61,18 +72,19 @@ ssp_params <- data.frame(
        ssp <- sspi
     }
 
-   cfg$title <- .title(cfg, paste("ON_ReduceCross0_intra5_tariff05", ssp, "NPi2025", sep = "-"))
+   cfg$title <- .title(cfg, paste("ON_minWindow_H12_noCellLivst", ssp, sep = "-"))
     cfg$gms$trade <- "selfsuff_reduced_bilateral22"
     # Get parameters from mapping
+
+
+cfg$gms$disagg_lvst <- "off"                  # def = foragebased_jul23
+
     cfg$gms$s21_trade_tariff_fadeout <- ssp_params$tariff_fadeout[ssp_params$ssp == ssp]
     cfg$gms$s21_tariff_factor <- 1
     cfg$gms$s21_stddev_lib_factor <- ssp_params$stddev_lib[ssp_params$ssp == ssp]
     cfg$gms$s21_import_supply_scenario <- ssp_params$import_supply[ssp_params$ssp == ssp]
-    cfg$gms$s21_intrabloc_tariff_factor <- 0
-    cfg$gms$s21_crossbloc_trade_factor <- 5
-
-   cfg$gms$s21_crossbloc_lower_bound_factor <- 0
-   cfg$gms$s21_intrabloc_lib_factor <- 5
+    cfg$gms$s21_stddev_lib_factor <- 1
+    cfg$gms$s21_trade_scenario_adjustments <- 1
 
     #cfg$gms$s21_trade_tariff_fadeout <- 1
      start_run(cfg, codeCheck = FALSE)

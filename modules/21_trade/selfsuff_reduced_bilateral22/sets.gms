@@ -52,18 +52,6 @@ sets
    trade_stddev21 Standard deviation of observed bilateral trade
    /  meansd5, maxsd5, minsd5, meansd10, maxsd10,  minsd10,  meansd15,
     maxsd15,  minsd15 /
-
-    
-   trade_bloc21 Geopolitical trade blocs
-      / China_trade, US_trade, Europe_trade /
-
-   bloc_regions21(trade_bloc21, i) Mapping of regions to trade blocs
-      / China_trade . (CHA, OAS, SSA, REF, IND)
-        US_trade    . (USA, LAM, JPN, CAZ, MEA)
-        Europe_trade. (EUR, NEU) /
-;
-
-
 ;
 
 alias(h,h3);
