@@ -181,7 +181,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2015
-$setglobal c_title  26TestBilatPol_ON_minWindow_H12_noCellLivst-SSP2
+$setglobal c_title  26TestBilatNOPol_ON_minWindow_H12_noCellLivst-SSP2
 
 scalars
 s_use_gdx   use of gdx files                                       / 0 /

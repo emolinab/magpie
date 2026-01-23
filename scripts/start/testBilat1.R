@@ -18,7 +18,7 @@ cfg$recalibrate = FALSE
 
 #cfg$gms$sm_fix_SSP2 <- 2025
 # change sm fix in trade module to 2010
-cfg$force_download <- TRUE
+cfg$force_download <- FALSE
 
 
 # cfg$input <- c(regional    = "rev4.129DCTradeBlocs_ff7773cc_magpie_debug.tgz",
@@ -36,7 +36,7 @@ cfg$gms$c60_res_2ndgenBE_dem <- "ssp2"     # def = ssp2
 # cap those above 1 if newly above 1, re-distribute
 
 cfg$gms$croparea    <- "detail_apr24"               # def = simple_apr24
- cfg$info$flag <- "26TestBilatPol"
+ cfg$info$flag <- "26TestBilatNOPol"
 # support function to create standardized title
 .title <- function(cfg, ...) return(paste(cfg$info$flag, sep = "_", ...))
 
@@ -84,7 +84,7 @@ cfg$gms$disagg_lvst <- "off"                  # def = foragebased_jul23
     cfg$gms$s21_stddev_lib_factor <- ssp_params$stddev_lib[ssp_params$ssp == ssp]
     cfg$gms$s21_import_supply_scenario <- ssp_params$import_supply[ssp_params$ssp == ssp]
     cfg$gms$s21_stddev_lib_factor <- 1
-    cfg$gms$s21_trade_scenario_adjustments <- 1
+    cfg$gms$s21_trade_scenario_adjustments <- 0
 
     #cfg$gms$s21_trade_tariff_fadeout <- 1
      start_run(cfg, codeCheck = FALSE)
