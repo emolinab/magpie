@@ -8,27 +8,65 @@
 i21_trade_bal_reduction(t_all,k_trade)=f21_trade_bal_reduction(t_all,"easytrade","%c21_trade_liberalization%");
 i21_trade_bal_reduction(t_all,k_hardtrade21)=f21_trade_bal_reduction(t_all,"hardtrade","%c21_trade_liberalization%");
 
+
 i21_trade_margin(i_ex,i_im,k_trade) = f21_trade_margin(i_ex,i_im,k_trade);
+
+i21_trade_margin(i_ex,i_im,k_trade)$(i21_trade_margin(i_ex,i_im,k_trade) < 1e-6) = 5;
+
+
+*** Initialize import supply historical from file
+i21_import_supply_historical(i_ex,i_im,t_all,k_trade) = f21_import_supply_historical(i_ex,i_im,t_all,k_trade);
+
+*** Apply scenario adjustments if switch is on
+*** The diff column from f21_trade_scenario_adjustments is added to i21_import_supply_historical
+*** for all time periods after sm_fix_SSP2
+if (s21_trade_scenario_adjustments = 1,
+  loop(t_all$(m_year(t_all) > sm_fix_SSP2),
+    i21_import_supply_historical(i_ex,i_im,t_all,k_trade)$(f21_trade_scenario_adjustments(i_ex,i_im,k_trade,"diff")) = 
+      i21_import_supply_historical(i_ex,i_im,t_all,k_trade) + f21_trade_scenario_adjustments(i_ex,i_im,k_trade,"diff");
+  );
+);
+
+
+  loop(t_all,
+     i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) = sm_fix_SSP2 + 5) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"minsd5");
+     i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all) = sm_fix_SSP2 + 10) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"minsd10");
+    i21_trade_bilat_stddev(t_all,i_ex,i_im,k_trade)$(m_year(t_all)  >= sm_fix_SSP2 + 15) = f21_trade_bilat_stddev(i_ex,i_im,k_trade,"minsd15");
+  );
+
+
 
 if ((s21_trade_tariff=1),
     i21_trade_tariff(t_all, i_ex,i_im,k_trade) = f21_trade_tariff(i_ex,i_im,k_trade);
-elseif (s21_trade_tariff=0),
-    i21_trade_tariff(t_all, i_ex,i_im,k_trade) = 0;
-);
+  elseif (s21_trade_tariff=0),
+     i21_trade_tariff(t_all, i_ex,i_im,k_trade) = 0;
+ );
 
-if ((s21_trade_tariff_fadeout=1),
-loop(t_all,
-   i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) > s21_trade_tariff_startyear AND m_year(t_all) < s21_trade_tariff_targetyear) = (1-((m_year(t_all)-s21_trade_tariff_startyear) /
-                                                                                                                                           (s21_trade_tariff_targetyear-s21_trade_tariff_startyear)) * 
-                                                                                                                                           i21_trade_tariff(t_all,i_ex,i_im,k_trade));
-i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) <= s21_trade_tariff_startyear) = i21_trade_tariff(t_all,i_ex,i_im,k_trade); 
-i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) >= s21_trade_tariff_targetyear) = 0 ; 
-);
-);
+ if ((s21_trade_tariff_fadeout=1),
+ loop(t_all,
+    i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) > s21_trade_tariff_startyear and m_year(t_all) < s21_trade_tariff_targetyear) = (1-((m_year(t_all)-s21_trade_tariff_startyear) /
+                                                                                                                                            (s21_trade_tariff_targetyear-s21_trade_tariff_startyear))) * 
+                                                                                                                                            i21_trade_tariff(t_all,i_ex,i_im,k_trade);
+ i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) <= s21_trade_tariff_startyear) = i21_trade_tariff(t_all,i_ex,i_im,k_trade); 
+ i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) >= s21_trade_tariff_targetyear) = 0 ; 
+ );
+ );
 
-i21_trade_margin(h,"wood")$(i21_trade_margin(h,"wood") < s21_min_trade_margin_forestry) = s21_min_trade_margin_forestry;
-i21_trade_margin(h,"woodfuel")$(i21_trade_margin(h,"woodfuel") < s21_min_trade_margin_forestry) = s21_min_trade_margin_forestry;
+ loop(t_all,
+    i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) <= sm_fix_SSP2) =  i21_trade_tariff(t_all,i_ex,i_im,k_trade);
+    i21_trade_tariff(t_all,i_ex,i_im,k_trade)$(m_year(t_all) > sm_fix_SSP2)=  i21_trade_tariff(t_all,i_ex,i_im,k_trade) * s21_tariff_factor;
+  );
 
-v21_import_for_feasibility.fx(h,k_trade) = 0;
-v21_import_for_feasibility.lo(h,k_import21) = 0;
-v21_import_for_feasibility.up(h,k_import21) = Inf;
+
+ loop(t_all,
+    i21_stddev_lib_factor(t_all)$(m_year(t_all) <= sm_fix_SSP2) =  1;
+    i21_stddev_lib_factor(t_all)$(m_year(t_all) > sm_fix_SSP2)=  s21_stddev_lib_factor;
+   );
+
+  i21_import_supply_scenario(t_all) = 1;
+
+ m_linear_time_interpol(i21_import_supply_scenario,sm_fix_SSP2,s21_import_supply_scenario_targetyear,1,s21_import_supply_scenario);
+
+
+i21_trade_margin(i_ex, i_im,"wood")$(i21_trade_margin(i_ex, i_im,"wood") < s21_min_trade_margin_forestry) = s21_min_trade_margin_forestry;
+i21_trade_margin(i_ex, i_im,"woodfuel")$(i21_trade_margin(i_ex, i_im,"woodfuel") < s21_min_trade_margin_forestry) = s21_min_trade_margin_forestry;

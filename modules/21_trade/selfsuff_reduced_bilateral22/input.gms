@@ -14,12 +14,17 @@ sets
 ;
 
 scalars
-  s21_trade_tariff Trade tariff switch (1=on 0=off)  (1)                           / 1 /
-  s21_trade_tariff_fadeout fadeout scenario setting for trade tariffs              / 0 / 
-  s21_trade_tariff_startyear year to start fading out trade tariffs                / 2025 /
-  s21_trade_tariff_targetyear year to finish fading out trade tariffs              / 2050 /
-  s21_cost_import Cost for additional imports to maintain feasibility (USD17MER per tDM) / 1500 /
+  s21_trade_tariff            Trade tariff switch (1=on 0=off)  (1)                           / 1 /
+  s21_trade_tariff_fadeout    Fadeout scenario setting for trade tariffs              / 0 / 
+  s21_trade_tariff_startyear  Year to start fading out trade tariffs                / 2025 /
+  s21_trade_tariff_targetyear Year to finish fading out trade tariffs              / 2050 /
+  s21_tariff_factor           Multiplicative factor on the trade tariff                      / 1 /
+  s21_import_supply_scenario  Multiplicative factor on the line                     / 1 /
+  s21_import_supply_scenario_targetyear Target year for fade in                    / 2050 /
+  s21_stddev_lib_factor       Multplicative factor on the window                     / 1 /
+  s21_cost_import             Cost for additional imports to maintain feasibility (USD17MER per tDM) / 1500 /
   s21_min_trade_margin_forestry Minimum trade margin for forestry products (USD17MER per tDM) / 62 /
+  s21_trade_scenario_adjustments Switch to apply scenario adjustments to import supply (0=off 1=on) / 0 /
 ;
 
 table f21_trade_bal_reduction(t_all,trade_groups21,trade_regime21) Share of inelastic trade pool (1)
@@ -32,17 +37,37 @@ $ondelim
 $include "./modules/21_trade/input/f21_trade_self_suff.cs3"
 $offdelim;
 
-table f21_exp_shr(t_all,h,kall) Superregional and crop-specific export share (1)
+table f21_trade_regional_balanceflow(t_all,i,kall) Domestic balance flows (mio. tDM per yr)
 $ondelim
-$include "./modules/21_trade/input/f21_trade_export_share.cs3"
+$include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_trade_regional_balanceflow.cs3"
 $offdelim;
 
-table f21_trade_balanceflow(t_all,kall) Domestic balance flows (mio. tDM per yr)
+table f21_trade_export_balanceflow(t_all,i,k_trade) Regional export balance flows (mio. tDM per yr)
 $ondelim
-$include "./modules/21_trade/input/f21_trade_balanceflow.cs3"
+$include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_trade_export_balanceflow.cs3"
 $offdelim;
 
-parameter f21_trade_margin(i_ex,i_im,kall) Costs of freight and insurance (USD17MER per tDM)
+table f21_trade_scenario_adjustments(i_ex,i_im,k_trade,*) Scenario adjustments to import supply historical (1)
+$ondelim
+$include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_trade_scenario_adjustments.cs3"
+$offdelim;
+
+parameter f21_import_supply_historical(i_ex,i_im,t_all,k_trade)  Historical import to domestic supply ratio (1)
+/
+$ondelim
+$include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_import_supply_historical.cs5"
+$offdelim
+/;
+
+parameter f21_trade_bilat_stddev(i_ex,i_im,k_trade,trade_stddev21)  Historical standard deviations observed as share of domestic supply (1)
+/
+$ondelim
+$include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_trade_bilat_stddev.cs5"
+$offdelim
+/;
+
+
+parameter f21_trade_margin(i_ex,i_im,kall) Costs of freight and insurance (USD05MER per tDM)
 /
 $ondelim
 $include "./modules/21_trade/selfsuff_reduced_bilateral22/input/f21_trade_margin_bilat.cs5"

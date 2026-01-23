@@ -181,7 +181,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2015
-$setglobal c_title  default
+$setglobal c_title  26TestBilatNOPol_ON_minWindow_H12_noCellLivst-SSP2
 
 scalars
 s_use_gdx   use of gdx files                                       / 0 /
@@ -204,13 +204,13 @@ $setglobal production  flexreg_apr16
 $setglobal residues  flexreg_apr16
 $setglobal processing  substitution_may21
 
-$setglobal trade  selfsuff_reduced
+$setglobal trade  selfsuff_reduced_bilateral22
 $setglobal land_conservation  area_based_apr22
 
 $setglobal ageclass  oct24
 
 $setglobal cropland  detail_apr24
-$setglobal croparea  simple_apr24
+$setglobal croparea  detail_apr24
 $setglobal past  endo_jun13
 
 $setglobal forestry  dynamic_may24
@@ -245,7 +245,7 @@ $setglobal bioenergy  1st2ndgen_priced_feb24
 $setglobal material  exo_flexreg_apr16
 $setglobal livestock  fbask_jan16
 
-$setglobal disagg_lvst  foragebased_jul23
+$setglobal disagg_lvst  off
 
 $setglobal timber  default
 

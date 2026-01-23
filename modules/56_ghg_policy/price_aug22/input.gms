@@ -85,7 +85,7 @@ $setglobal c56_pollutant_prices  R34M410-SSP2-NPi2025
 $setglobal c56_pollutant_prices_noselect  R34M410-SSP2-NPi2025
 $setglobal c56_emis_policy  reddnatveg_nosoil
 $setglobal c56_cprice_aff  secdforest_vegc
-$setglobal c56_mute_ghgprices_until  y2030
+$setglobal c56_mute_ghgprices_until  y2100
 
 $setglobal c56_carbon_stock_pricing  actualNoAcEst
 *   options:  actual, actualNoAcEst
