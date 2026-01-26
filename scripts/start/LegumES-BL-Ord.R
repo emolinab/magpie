@@ -22,7 +22,7 @@ cfg$results_folder <- "output/:title::date:"
 cfg$output <- c("rds_report")
 cfg$force_download <- TRUE
 
-scenarios <- c("SSP1", "SSP2","SSP3") #
+scenarios <- c("SSP2","SSP3","SSP1") #
 cfg$recalc_npi_ndc <- TRUE
 
 
@@ -56,7 +56,7 @@ cfg$recalc_npi_ndc <- TRUE
 
 for(sce in scenarios){
 
-  cfg$title <- paste0("LegumES-Test-H16EU",sce)
+  cfg$title <- paste0("LegumES-Test-H16EU-biTrade-",sce)
 
   cfg$recalibrate_landconversion_cost <- FALSE
 
@@ -65,11 +65,12 @@ for(sce in scenarios){
   # message("Removing existing output folder: ", output_folder)
   # unlink(output_folder, recursive = TRUE)
   # }
-
+  
+  #cfg$input["patch"] <- "AddFile.tgz"
   cfg$recalibrate <- FALSE
   cfg$qos         <- "standby_highMem" 
-  cfg <- setScenario(cfg, sce, scenario_config = "config/projects/LegumES_configF.csv")
-
+  cfg <- setScenario(cfg=cfg, scenario=sce, scenario_config = "config/projects/LegumES_configF.csv")
+  cfg$input["patch"] <- "AddFile.tgz"
 
 
   start_run(cfg = cfg) 

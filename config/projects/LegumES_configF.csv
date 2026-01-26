@@ -10,8 +10,9 @@ gms$s15_food_subst_functional_form;1;1;1
 gms$s15_exo_waste;0;0;0
 gms$s15_exo_diet;3;0;0
 gms$s15_exo_pulses;1;0;0
-gms$trade;selfsuff_reduced;selfsuff_reduced;selfsuff_reduced
-gms$c21_trade_liberalization;l908080r807070;l909090r808080;l909595r809090
+gms$trade;selfsuff_reduced_bilateral22;selfsuff_reduced_bilateral22;selfsuff_reduced_bilateral22
+gms$s21_stddev_lib_factor;1.5;1.0;0.5
+gms$s21_import_supply_scenario;0.5;1.0;0.5
 gms$c22_protect_scenario;KBA;none;none
 gms$s22_base_protect_reversal;Inf;Inf;2030
 gms$s29_snv_shr;0;0;0
@@ -27,7 +28,7 @@ gms$s32_planning_horizon;50;50;50
 gms$c35_pot_forest_scenario;cc;cc;cc
 gms$s35_forest_damage_end;2050;2050;2050
 gms$c35_ad_policy;ndc;ndc;ndc
-gms$c35_aolc_policy ;ndc;ndc;ndc
+gms$c35_aolc_policy;ndc;ndc;ndc
 gms$c42_watdem_scenario;cc;cc;cc
 gms$s42_watdem_nonagr_scenario;1;2;3
 gms$s42_irrig_eff_scenario;2;2;2
@@ -42,7 +43,7 @@ gms$c56_pollutant_prices;R21M42-SSP1-NDC;R21M42-SSP1-NDC;R21M42-SSP1-NDC
 gms$c56_pollutant_prices_noselect;R21M42-SSP1-NDC;R21M42-SSP1-NDC;R21M42-SSP1-NDC
 gms$c56_emis_policy;reddnatveg_nosoil;reddnatveg_nosoil;reddnatveg_nosoil
 gms$s58_intact_prot_exo;1;0;0
-gms$policy_countries58;ALA, AUT, BEL, BGR, CYP, CZE, DEU, DNK, ESP, EST, FIN, FRA, FRO, GBR, GGY, GIB, GRC, HRV, HUN, IMN, IRL, ITA, JEY, LTU, LUX, LVA, MLT, NLD, POL, PRT, ROU, SVK, SVN, SWE;;
+gms$policy_countries58;ALA, AUT, BEL, BGR, CYP, CZE, DEU, DNK, ESP, EST, FIN, FRA, FRO, GBR, GGY, GIB, GRC, HRV, HUN, IMN, IRL, ITA, JEY, LTU, LUX, LVA, MLT, NLD, POL, PRT, ROU, SVK, SVN, SWE;;;
 gms$c59_som_scenario;cc;cc;cc
 gms$c60_2ndgen_biodem;R21M42-SSP1-NDC;R21M42-SSP1-NDC;R21M42-SSP1-NDC
 gms$c60_2ndgen_biodem_noselect;R21M42-SSP1-NDC;R21M42-SSP1-NDC;R21M42-SSP1-NDC

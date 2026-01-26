@@ -52,7 +52,11 @@ sets
    trade_stddev21 Standard deviation of observed bilateral trade
    /  meansd5, maxsd5, minsd5, meansd10, maxsd10,  minsd10,  meansd15,
     maxsd15,  minsd15 /
-;
+
+
+  sce_adj21  set for the scenario adjustments to import supply historical / current, new, diff /
+  
+  ;
 
 alias(h,h3);
 alias(h,h_ex);
