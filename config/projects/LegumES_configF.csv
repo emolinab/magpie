@@ -43,7 +43,7 @@ gms$c56_pollutant_prices;R21M42-SSP1-NDC;R21M42-SSP1-NDC;R21M42-SSP1-NDC
 gms$c56_pollutant_prices_noselect;R21M42-SSP1-NDC;R21M42-SSP1-NDC;R21M42-SSP1-NDC
 gms$c56_emis_policy;reddnatveg_nosoil;reddnatveg_nosoil;reddnatveg_nosoil
 gms$s58_intact_prot_exo;1;0;0
-gms$policy_countries58;ALA, AUT, BEL, BGR, CYP, CZE, DEU, DNK, ESP, EST, FIN, FRA, FRO, GBR, GGY, GIB, GRC, HRV, HUN, IMN, IRL, ITA, JEY, LTU, LUX, LVA, MLT, NLD, POL, PRT, ROU, SVK, SVN, SWE;;;
+gms$policy_countries58;ALA, AUT, BEL, BGR, CYP, CZE, DEU, DNK, ESP, EST, FIN, FRA, FRO, GBR, GGY, GIB, GRC, HRV, HUN, IMN, IRL, ITA, JEY, LTU, LUX, LVA, MLT, NLD, POL, PRT, ROU, SVK, SVN, SWE;;
 gms$c59_som_scenario;cc;cc;cc
 gms$c60_2ndgen_biodem;R21M42-SSP1-NDC;R21M42-SSP1-NDC;R21M42-SSP1-NDC
 gms$c60_2ndgen_biodem_noselect;R21M42-SSP1-NDC;R21M42-SSP1-NDC;R21M42-SSP1-NDC
