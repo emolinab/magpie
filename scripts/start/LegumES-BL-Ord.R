@@ -28,24 +28,24 @@ cfg$recalc_npi_ndc <- TRUE
 
 ###### Calibration run #######
 
-#   cfg$title <- "LegumES-calib-H16EU"
+  cfg$title <- "LegumES-calib-H16EU"
 
-#   output_folder <- paste0("output/", cfg$title)
-#   if(dir.exists(output_folder)) {
-#   message("Removing existing output folder: ", output_folder)
-#   unlink(output_folder, recursive = TRUE)
-# }
-# cfg$recalibrate <- FALSE
-# cfg$recalibrate_landconversion_cost <- TRUE
-# cfg$gms$c_timesteps <- "calib"
-# cfg$output <- c("rds_report")
-# cfg$force_replace <- TRUE
-# cfg$qos <- "priority"
-# cfg <- setScenario(cfg, "SSP1", scenario_config = "config/projects/LegumES_configF.csv")
-# cfg$input["patch"] <- "CalibH16EU.tgz"
+  output_folder <- paste0("output/", cfg$title)
+  if(dir.exists(output_folder)) {
+  message("Removing existing output folder: ", output_folder)
+  unlink(output_folder, recursive = TRUE)
+}
+cfg$recalibrate <- FALSE
+cfg$recalibrate_landconversion_cost <- TRUE
+cfg$gms$c_timesteps <- "calib"
+cfg$output <- c("rds_report")
+cfg$force_replace <- TRUE
+cfg$qos <- "priority"
+cfg <- setScenario(cfg, "SSP1", scenario_config = "config/projects/LegumES_configF.csv")
+cfg$input["patch"] <- "CalibH16EU.tgz"
 
-# start_run(cfg,codeCheck=FALSE)
-# magpie4::submitCalibration("H16EU")
+start_run(cfg,codeCheck=FALSE)
+magpie4::submitCalibration("H16EU")
 
 
 ###############################
@@ -66,7 +66,6 @@ for(sce in scenarios){
   # unlink(output_folder, recursive = TRUE)
   # }
   
-  #cfg$input["patch"] <- "AddFile.tgz"
   cfg$recalibrate <- FALSE
   cfg$qos         <- "standby_highMem" 
   cfg <- setScenario(cfg=cfg, scenario=sce, scenario_config = "config/projects/LegumES_configF.csv")
