@@ -42,16 +42,27 @@ sets
    a809090,
    l909090r808080,
    l908080r807070,
-   l909595r809090
+   l909595r809090,
+   test50
    /
 
    trade_groups21 Trade groups
    / easytrade,hardtrade /
 
-;
+   trade_stddev21 Standard deviation of observed bilateral trade
+   /  meansd5, maxsd5, minsd5, meansd10, maxsd10,  minsd10,  meansd15,
+    maxsd15,  minsd15 /
+
+
+  sce_adj21  set for the scenario adjustments to import supply historical / current, new, diff /
+  
+  ;
 
 alias(h,h3);
 alias(h,h_ex);
 alias(h,h_im);
 alias(i,i_ex);
 alias(i,i_im);
+alias(i,i_ex2);
+alias(i,i_im2);
+
