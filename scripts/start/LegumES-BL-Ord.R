@@ -19,33 +19,33 @@ cfg$force_download <- TRUE
 cfg$results_folder <- "output/:title::date:"
 
 
-cfg$output <- c("rds_report")
+cfg$output <- c("rds_report") #,"rds_report_eu_h16"
 cfg$force_download <- TRUE
 
-scenarios <- c("SSP2","SSP3","SSP1") #
+scenarios <- c("SSP1-EAT") # "SSP2","SSP3","SSP1",
 cfg$recalc_npi_ndc <- TRUE
 
 
 ###### Calibration run #######
 
-  cfg$title <- "LegumES-calib-H16EU"
+#   cfg$title <- "LegumES-calib-H16EU-I"
 
-  output_folder <- paste0("output/", cfg$title)
-  if(dir.exists(output_folder)) {
-  message("Removing existing output folder: ", output_folder)
-  unlink(output_folder, recursive = TRUE)
-}
-cfg$recalibrate <- FALSE
-cfg$recalibrate_landconversion_cost <- TRUE
-cfg$gms$c_timesteps <- "calib"
-cfg$output <- c("rds_report")
-cfg$force_replace <- TRUE
-cfg$qos <- "priority"
-cfg <- setScenario(cfg, "SSP1", scenario_config = "config/projects/LegumES_configF.csv")
-cfg$input["patch"] <- "CalibH16EU.tgz"
+#   output_folder <- paste0("output/", cfg$title)
+#   if(dir.exists(output_folder)) {
+#   message("Removing existing output folder: ", output_folder)
+#   unlink(output_folder, recursive = TRUE)
+# }
+# cfg$recalibrate <- FALSE
+# cfg$recalibrate_landconversion_cost <- TRUE
+# cfg$gms$c_timesteps <- "calib"
+# cfg$output <- c("rds_report")
+# cfg$force_replace <- TRUE
+# cfg$qos <- "priority"
+# cfg <- setScenario(cfg, "SSP2", scenario_config = "config/projects/LegumES_configF.csv")
+# cfg$input["patch"] <- "AddFile.tgz"
 
-start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration("H16EU")
+# start_run(cfg,codeCheck=FALSE)
+# magpie4::submitCalibration("H16EU-I")
 
 
 ###############################
@@ -56,7 +56,7 @@ magpie4::submitCalibration("H16EU")
 
 for(sce in scenarios){
 
-  cfg$title <- paste0("LegumES-Test-H16EU-biTrade-",sce)
+  cfg$title <- paste0("LegumES-Test-H16EU-biTrade1-",sce)
 
   cfg$recalibrate_landconversion_cost <- FALSE
 
@@ -68,7 +68,7 @@ for(sce in scenarios){
   
   cfg$recalibrate <- FALSE
   cfg$qos         <- "standby_highMem" 
-  cfg <- setScenario(cfg=cfg, scenario=sce, scenario_config = "config/projects/LegumES_configF.csv")
+  cfg <- setScenario(cfg=cfg, scenario=sce, scenario_config = "config/projects/LegumES_configF-1.csv")
   cfg$input["patch"] <- "AddFile.tgz"
 
 
