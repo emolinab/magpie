@@ -15,14 +15,13 @@ library(gms)
 source("scripts/start_functions.R")
 source("config/default.cfg")
 
-cfg$force_download <- TRUE
 cfg$results_folder <- "output/:title::date:"
 
 
 cfg$output <- c("output_check", "extra/disaggregation","rds_report_eu_h16") #,"rds_report_eu_h16", "rds_report"
-cfg$force_download <- TRUE
+cfg$force_download <- FALSE
 
-scenarios <- c("SSP2","SSP3","SSP4","SSP5","SSP1") # "SSP2","SSP3","SSP4","SSP5","SSP1"
+scenarios <- c("SSP1") # "SSP2","SSP3","SSP4","SSP5","SSP1"
 cfg$recalc_npi_ndc <- TRUE
 
 
