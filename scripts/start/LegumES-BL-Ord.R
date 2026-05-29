@@ -22,57 +22,59 @@ cfg$results_folder <- "output/:title::date:"
 cfg$output <- c("output_check", "extra/disaggregation","rds_report_eu_h16") #,"rds_report_eu_h16", "rds_report"
 cfg$force_download <- TRUE
 
-scenarios <- c("SSP2") # "SSP2","SSP3","SSP4","SSP5","SSP1"
+scenarios <- c("SSP2","SSP3","SSP4","SSP5","SSP1") # "SSP2","SSP3","SSP4","SSP5","SSP1"
 cfg$recalc_npi_ndc <- TRUE
 
 
 ###### Calibration run #######
 
-  cfg$title <- "LegumES-calib-H16EU-defaultTrade"
+#   cfg$title <- "LegumES-calib-H16EU-bFxTrade"
 
-  output_folder <- paste0("output/", cfg$title)
-  if(dir.exists(output_folder)) {
-  message("Removing existing output folder: ", output_folder)
-  unlink(output_folder, recursive = TRUE)
-}
-cfg$recalibrate_landconversion_cost <- TRUE
-cfg$calib_maxiter_landconversion_cost <- 40
-cfg$best_calib_landconversion_cost <- FALSE
-cfg$calib_accuracy_landconversion_cost <- 0.005    
-cfg$gms$c_timesteps <- "calib"
-cfg$force_replace <- TRUE
-cfg$qos <- "priority"
-cfg <- setScenario(cfg, "SSP2", scenario_config = "config/projects/LegumES_configF-1.csv")
-cfg$gms$trade <- "selfsuff_reduced"
-#cfg$input["patch"] <- "AddFile.tgz"
+#   output_folder <- paste0("output/", cfg$title)
+#   if(dir.exists(output_folder)) {
+#   message("Removing existing output folder: ", output_folder)
+#   unlink(output_folder, recursive = TRUE)
+# }
+# cfg$recalibrate_landconversion_cost <- TRUE
+# cfg$calib_maxiter_landconversion_cost <- 40
+# cfg$best_calib_landconversion_cost <- TRUE
+# cfg$calib_accuracy_landconversion_cost <- 0.01    
+# cfg$gms$c_timesteps <- "calib"
+# cfg$force_replace <- TRUE
+# cfg$qos <- "priority"
+# cfg <- setScenario(cfg, "SSP2", scenario_config = "config/projects/LegumES_configF-1.csv")
+# #cfg$input["patch"] <- "AddFile.tgz"
 
-start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration("H16EU-Leg-defaultT")
+# start_run(cfg,codeCheck=FALSE)
+# magpie4::submitCalibration("H16EU-Leg-bFTrade")
 
 
 ###############################
 
-# cfg$gms$c_timesteps <- "5year"
+cfg$gms$c_timesteps <- "5year"
 
-# ####### Scenarios runs ########
+####### Scenarios runs ########
 
-# for(sce in scenarios){
+for(sce in scenarios){
 
-#   cfg$title <- paste0("LegumES-H16EU-260526-",sce)
+  cfg$title <- paste0("LegumES-H16EU-bFx-",sce)
 
-#   cfg$recalibrate_landconversion_cost <- FALSE
+  cfg$recalibrate_landconversion_cost <- FALSE
   
-#   cfg$qos         <- "standby_highMem" 
-#   cfg <- setScenario(cfg=cfg, scenario=sce, scenario_config = "config/projects/LegumES_configF-1.csv")
+  cfg$qos         <- "standby_highMem" 
+  cfg <- setScenario(cfg=cfg, scenario=sce, scenario_config = "config/projects/LegumES_configF-1.csv")
 
 if(sce == "SSP1"){
 cfg$input["patch"] <- "Patch.tgz"
 cfg$gms$c30_rotation_rules <- "legumes" 
+}else{
+  cfg$input["patch"] <- ""
+cfg$gms$c30_rotation_rules <- "default" 
 }
 
 
-#   start_run(cfg = cfg) 
+  start_run(cfg = cfg) 
 
-# }
+}
 
 ##############################
