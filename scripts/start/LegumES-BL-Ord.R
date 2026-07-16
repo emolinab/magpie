@@ -21,7 +21,7 @@ cfg$results_folder <- "output/:title::date:"
 cfg$output <- c("output_check", "extra/disaggregation","rds_report_eu_h16") #,"rds_report_eu_h16", "rds_report"
 cfg$force_download <- TRUE
 
-scenarios <- c("SSP2","SSP3","SSP4","SSP5") # "SSP2","SSP3","SSP4","SSP5","SSP1"
+scenarios <- c("SSP2-Stp2Leg") # "SSP2","SSP3","SSP4","SSP5","SSP1"
 cfg$recalc_npi_ndc <- TRUE
 
 
