@@ -46,7 +46,7 @@ cfg$recalc_npi_ndc <- TRUE
 # #cfg$input["patch"] <- "AddFile.tgz"
 
 # start_run(cfg,codeCheck=FALSE)
-# magpie4::submitCalibration("H16EU-Leg-level05")
+# magpie4::submitCalibration("H16EU-Leg-level07")
 
 
 ###############################
