@@ -40,6 +40,12 @@ sets
    trade_stddev21 Standard deviation of observed bilateral trade
    / meansd5, maxsd5, minsd5, meansd10, maxsd10, minsd10, meansd15,
     maxsd15, minsd15 /
+
+    trade_legumes(k_trade) legumes considered for the trading barrier 
+   / soybean, groundnut, puls_pro/
+
+   EUR(i) european regions 
+   /EUN,EUW,EUC,EUS,DEU/
 ;
 
 alias(h,h3);

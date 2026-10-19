@@ -35,6 +35,7 @@ equations
 
 parameters
  i50_atmospheric_deposition_rates(t,j,land)   Atmospheric deposition rate (t N per ha)
+ p50_fertilizer_costs(t,i)                   Costs of fertilizer (USD17MER per tN)
 * country-specific scenario switch
  p50_country_switch_cropneff(iso)           Switch indicating whether country is affected by crop neff scenario (1)
  p50_country_switch_pastneff(iso)           Switch indicating whether country is affected by pasture neff scenario (1)
@@ -44,6 +45,7 @@ parameters
  i50_nr_eff_pasture_bau(t_all,i)           Business as usual pasture nitrogen use efficiency before MACCs mitigation (1)
  i50_maccs_mitigation_transf(t,i)          Transformed marginal abatement cost curves to be consistent with cropland SNuPE implementaton (1)
  i50_maccs_mitigation_pasture_transf(t,i)  Transformed marginal abatement cost curves to be consistent with pasture NUE implementaton (1)
+ 
 ;
 
 *#################### R SECTION START (OUTPUT DECLARATIONS) ####################

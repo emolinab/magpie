@@ -20,6 +20,10 @@ p50_country_switch_pastneff(pastneff_countries) = 1;
 p50_cropneff_region_shr(t,i) = sum(i_to_iso(i,iso), p50_country_switch_cropneff(iso) * im_pop_iso(t,iso)) / sum(i_to_iso(i,iso), im_pop_iso(t,iso));
 p50_pastneff_region_shr(t,i) = sum(i_to_iso(i,iso), p50_country_switch_pastneff(iso) * im_pop_iso(t,iso)) / sum(i_to_iso(i,iso), im_pop_iso(t,iso));
 
+
+* Nitrogen price parameter initial filling
+p50_fertilizer_costs(t,i) = 738;
+
 * Nitrogen use efficiency
 loop(t,
 
@@ -36,9 +40,11 @@ loop(t,
                       + f50_snupe_base(t,i,"%c50_scen_neff_noselect%") * (1-p50_cropneff_region_shr(t,i));
      i50_nr_eff_pasture_bau(t,i) = f50_nue_base_pasture(t,i,"%c50_scen_neff_pasture%") * p50_pastneff_region_shr(t,i)
                               + f50_nue_base_pasture(t,i,"%c50_scen_neff_pasture_noselect%") * (1-p50_pastneff_region_shr(t,i));
+     p50_fertilizer_costs(t,EUR)$sameas('%c50_fertilizer_price_high%','ON') = 1100;                         
 
   );
 );
 
 * selecting the scenario for atmospheric deposition
   i50_atmospheric_deposition_rates(t,j,land)=f50_atmospheric_deposition_rates(t,j,land,"%c50_dep_scen%");
+

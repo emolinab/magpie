@@ -96,6 +96,10 @@ if ((s21_trade_scenario_adjustments = 1),
    i21_import_supply_historical(i_ex,i_im,t_all,k_trade) =
     i21_import_supply_historical(i_ex,i_im,t_all,k_trade)
     + f21_trade_scenario_adjustments(i_ex,i_im,t_all,k_trade);
+
+    i21_import_supply_historical(i_ex,EUR,t_all,trade_legumes) = 
+    i21_import_supply_historical(i_ex,EUR,t_all,trade_legumes) - 
+    s21_reduce_legumes*i21_import_supply_historical(i_ex,EUR,t_all,trade_legumes);  
   );
 );
 
@@ -126,3 +130,4 @@ i21_trade_margin(i_ex, i_im,"woodfuel")$(i21_trade_margin(i_ex, i_im,"woodfuel")
 v21_import_for_feasibility.fx(i_ex,i_im,k_trade) = 0;
 v21_import_for_feasibility.lo(i_ex,i_im,k_import21) = 0;
 v21_import_for_feasibility.up(i_ex,i_im,k_import21) = Inf;
+

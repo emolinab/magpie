@@ -16,13 +16,16 @@ source("scripts/start_functions.R")
 source("config/default.cfg")
 
 cfg$results_folder <- "output/:title::date:"
-
-
 cfg$output <- c("output_check", "extra/disaggregation","rds_report_eu_h16") #,"rds_report_eu_h16", "rds_report"
 cfg$force_download <- TRUE
-
-scenarios <- c("SSP2-Stp2Leg") # "SSP2","SSP3","SSP4","SSP5","SSP1"
 cfg$recalc_npi_ndc <- TRUE
+cfg$gms$c_timesteps <- "5year"
+cfg$recalibrate_landconversion_cost <- FALSE
+cfg$qos <- "standby_highMem" 
+
+cfg_base <- cfg  
+
+scenarios <- c("SSP2","SSP2-Diet","SSP2-NitPrice","SSP2-TradeBan") # "SSP2","SSP3","SSP4","SSP5","SSP1"
 
 
 ###### Calibration run #######
@@ -51,30 +54,44 @@ cfg$recalc_npi_ndc <- TRUE
 
 ###############################
 
-cfg$gms$c_timesteps <- "5year"
+
 
 ####### Scenarios runs ########
 
 for(sce in scenarios){
 
-  cfg$title <- paste0("LegumES-H16EU-",sce)
-
-  cfg$recalibrate_landconversion_cost <- FALSE
+  cfg <- cfg_base 
   
-  cfg$qos         <- "standby_highMem" 
+  cfg$title <- paste0("LegumES-H16EU-EUR-T2-",sce)  
+
   cfg <- setScenario(cfg=cfg, scenario=sce, scenario_config = "config/projects/LegumES_configF-1.csv")
 
-# if(sce == "SSP1"){
-# cfg$input["patch"] <- "Patch.tgz"
-# cfg$gms$c30_rotation_rules <- "legumes" 
-# }else{
-#   cfg$input["patch"] <- ""
-# cfg$gms$c30_rotation_rules <- "default" 
-# }
-
-
-  start_run(cfg = cfg) 
+  start_run(cfg = cfg, codeCheck = FALSE) 
 
 }
 
 ##############################
+
+scenarios <- c("SSP2-NitEff","SSP2-BioEnergy") 
+
+for(sce in scenarios){
+  cfg <- cfg_base 
+  
+  cfg$force_download <- TRUE
+  cfg$title <- paste0("LegumES-H16EU-EUR-T2-",sce)
+  cfg <- setScenario(cfg=cfg, scenario="SSP2", scenario_config = "config/projects/LegumES_configF-1.csv")
+
+  if(sce == "SSP2-NitEff"){
+    # file.copy(from = "/p/projects/landuse/users/mbacca/Collaborations/LegumES/Patch/f50_ndfa.cs4", 
+    #           to = "/modules/50_nr_soil_budget/input/")
+    cfg$input["patch"] <- "Patch_NitEff.tgz"
+ }else if(sce == "SSP2-BioEnergy"){
+    # file.copy(from = "/p/projects/landuse/users/mbacca/Collaborations/LegumES/Patch/f20_processing_shares.cs3", 
+    #           to = "/modules/20_processing/input")
+    cfg$input["patch"] <- "Patch_BioEnergy.tgz"
+ }
+
+
+  start_run(cfg = cfg, codeCheck = FALSE) 
+
+}
