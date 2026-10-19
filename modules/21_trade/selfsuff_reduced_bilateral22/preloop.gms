@@ -106,6 +106,10 @@ if ((s21_trade_scenario_adjustments = 1),
    i21_import_supply_historical(i_ex,i_im,t_all,k_trade) =
     i21_import_supply_historical(i_ex,i_im,t_all,k_trade)
     + f21_trade_scenario_adjustments(i_ex,i_im,t_all,k_trade);
+
+    i21_import_supply_historical(i_ex,EUR,t_all,trade_legumes) = 
+    i21_import_supply_historical(i_ex,EUR,t_all,trade_legumes) - 
+    s21_reduce_legumes*i21_import_supply_historical(i_ex,EUR,t_all,trade_legumes); 
   );
 );
 

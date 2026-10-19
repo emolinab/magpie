@@ -35,6 +35,7 @@ equations
 
 parameters
  i50_atmospheric_deposition_rates(t,j,land)   Atmospheric deposition rate (t N per ha)
+ p50_fertilizer_costs(t,i) Costs of fertilizer (USD17MER per tN)
 * country-specific scenario switch
  p50_country_switch_cropneff(iso)           Switch indicating whether country is affected by crop neff scenario (1)
  p50_country_switch_pastneff(iso)           Switch indicating whether country is affected by pasture neff scenario (1)

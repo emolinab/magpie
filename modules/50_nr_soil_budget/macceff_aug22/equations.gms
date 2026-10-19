@@ -93,5 +93,5 @@ q50_nr_surplus_pasture(i2) ..
 *' are part of the objective function.
  q50_nr_cost_fert(i2) ..
                  vm_nr_inorg_fert_costs(i2) =e=
-                 sum(land_ag,vm_nr_inorg_fert_reg(i2,land_ag)) * s50_fertilizer_costs
+                 sum(land_ag,vm_nr_inorg_fert_reg(i2,land_ag)) * sum(ct,p50_fertilizer_costs(ct,i2))
                  ;

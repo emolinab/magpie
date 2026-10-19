@@ -42,6 +42,13 @@ sets
     max15, min15 /
 ;
 
+    trade_legumes(k_trade) legumes considered for the trading barrier 
+   / soybean, groundnut, puls_pro/
+
+   EUR(i) european regions 
+   /EUN,EUW,EUC,EUS,DEU/
+;
+
 alias(h,h3);
 alias(h,h_ex);
 alias(h,h_im);
