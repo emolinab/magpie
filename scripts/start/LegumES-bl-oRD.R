@@ -21,26 +21,30 @@ source("config/default.cfg")
 
 
 cfg$results_folder <- "output/:title::date:"
-cfg$output <- c("output_check", "extra/disaggregation","rds_report_eu_h16") #,"rds_report_eu_h16", "rds_report"
+cfg$output <- c("output_check", "extra/disaggregation","rds_report_h16") #,"rds_report_eu_h16", "rds_report"
 cfg$force_download <- TRUE
 cfg$recalc_npi_ndc <- TRUE
 cfg$gms$c_timesteps <- "5year"
 cfg$recalibrate_landconversion_cost <- FALSE
 cfg$qos <- "standby_highMem" 
 
+  cfg$input['cellular'] <- "rev4.135mbacca-2026-10-29T123547_5ee184cf_582d657c_cellularmagpie_c200_MRI-ESM2-0-ssp245_lpjml-8e6c5eb1_clusterweight-ba4466a8.tgz"
+  cfg$input['regional'] <- "rev4.135mbacca-2026-10-29T123547_5ee184cf_magpie.tgz"
+  cfg$input['validation'] <- "rev4.135mbacca-2026-10-29T123547_5ee184cf_c9f905aa_validation.tgz"
+  cfg$input['calibration'] <- "calibration_H16_FAO_20Oct26.tgz"
 
 cfg_base <- cfg  
 
 
-scenarios <- c("SSP2","SSP2-Diet","SSP2-NitPrice","SSP2-TradeBan") # "SSP2","SSP3","SSP4","SSP5","SSP1"
+scenarios <- c("SSP2","DietEAT","DietLivRep","LegRot","TradeBan","NitPrice") # 
 
 
 
 
-###### Calibration run #######
+# ###### Calibration run #######
 
 
-#   cfg$title <- "LegumES-calib-H16EU-level07"
+#   cfg$title <- "LegumES-calib-H16EU-T2"
 
 
 #   output_folder <- paste0("output/", cfg$title)
@@ -48,6 +52,10 @@ scenarios <- c("SSP2","SSP2-Diet","SSP2-NitPrice","SSP2-TradeBan") # "SSP2","SSP
 #   message("Removing existing output folder: ", output_folder)
 #   unlink(output_folder, recursive = TRUE)
 # }
+
+
+
+
 # cfg$recalibrate_landconversion_cost <- TRUE
 # cfg$calib_maxiter_landconversion_cost <- 20
 # cfg$best_calib_landconversion_cost <- TRUE
@@ -56,17 +64,17 @@ scenarios <- c("SSP2","SSP2-Diet","SSP2-NitPrice","SSP2-TradeBan") # "SSP2","SSP
 # cfg$force_replace <- TRUE
 # cfg$qos <- "priority"
 # cfg$level_gradient_mix  <- 0.7 
-# cfg <- setScenario(cfg, "SSP2", scenario_config = "config/projects/LegumES_configF-1.csv")
+# cfg <- setScenario(cfg, "SSP2", scenario_config = "config/projects/scenario_legumes_P.csv")
 # #cfg$input["patch"] <- "AddFile.tgz"
 
 
 # start_run(cfg,codeCheck=FALSE)
-# magpie4::submitCalibration("H16EU-Leg-level07")
+# magpie4::submitCalibration("H16EU-Leg-T2")
 
 
 
 
-###############################
+# ###############################
 
 
 
@@ -82,11 +90,11 @@ for(sce in scenarios){
   cfg <- cfg_base 
 
 
-  cfg$title <- paste0("LegumES-H16EU-EUR-T2-",sce)  
+  cfg$title <- paste0("LegumES-Paper-T2-",sce)  
+  cfg$input['calibration'] <- "calibration_H16EU-Leg-T2_29Oct26.tgz"
 
-
-  cfg <- setScenario(cfg=cfg, scenario=sce, scenario_config = "config/projects/LegumES_configF-1.csv")
-
+  cfg <- setScenario(cfg=cfg, scenario=sce, scenario_config = "config/projects/scenario_legumes_P.csv")
+  
 
   start_run(cfg = cfg, codeCheck = FALSE) 
 
@@ -94,29 +102,34 @@ for(sce in scenarios){
 }
 
 
-##############################
+#############################
 
 
-scenarios <- c("SSP2-NitEff","SSP2-BioEnergy") 
+scenarios <- c("Processing","Combined","NitEff") # "Processing","NitEff"
 
 
 for(sce in scenarios){
   cfg <- cfg_base 
-
+  cfg$input['calibration'] <- "calibration_H16EU-Leg-T2_29Oct26.tgz"
 
   cfg$force_download <- TRUE
-  cfg$title <- paste0("LegumES-H16EU-EUR-T2-",sce)
-  cfg <- setScenario(cfg=cfg, scenario="SSP2", scenario_config = "config/projects/LegumES_configF-1.csv")
+  cfg$title <- paste0("LegumES-Paper-T2-",sce)
+  
 
-
-  if(sce == "SSP2-NitEff"){
+  if(sce == "NitEff"){
+    cfg <- setScenario(cfg=cfg, scenario="SSP2", scenario_config = "config/projects/scenario_legumes_P.csv")
     # file.copy(from = "/p/projects/landuse/users/mbacca/Collaborations/LegumES/Patch/f50_ndfa.cs4", 
     #           to = "/modules/50_nr_soil_budget/input/")
     cfg$input["patch"] <- "Patch_NitEff.tgz"
- }else if(sce == "SSP2-BioEnergy"){
-    # file.copy(from = "/p/projects/landuse/users/mbacca/Collaborations/LegumES/Patch/f20_processing_shares.cs3", 
-    #           to = "/modules/20_processing/input")
+ }else if(sce == "Processing"){
+    cfg <- setScenario(cfg=cfg, scenario="SSP2", scenario_config = "config/projects/scenario_legumes_P.csv")
+    # file.copy(from = "/p/projects/landuse/users/mbacca/Collaborations/LegumES/Patch/f50_ndfa.cs4", 
+    #           to = "/modules/50_nr_soil_budget/input/")
     cfg$input["patch"] <- "Patch_BioEnergy.tgz"
+ }else if(sce == "Combined"){
+  cfg <- setScenario(cfg=cfg, scenario=sce, scenario_config = "config/projects/scenario_legumes_P.csv")
+  cfg$input["patch1"] <- "Patch_NitEff.tgz"
+  cfg$input["patch2"] <- "Patch_BioEnergy.tgz"
  }
 
 

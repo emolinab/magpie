@@ -40,7 +40,7 @@ sets
    trade_flexBand21 Statistic (mean max min) and horizon of the historical flexibility band (rolling range)
    / mean5, max5, min5, mean10, max10, min10, mean15,
     max15, min15 /
-;
+
 
     trade_legumes(k_trade) legumes considered for the trading barrier 
    / soybean, groundnut, puls_pro/

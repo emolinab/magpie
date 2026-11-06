@@ -25,4 +25,7 @@ scen_neff_pasture50 Scenario for NUE on pastures
 dep_scen50 Scenario for atmospheric deposition
 /history/
 
+*EUR(i) european regions 
+*/EUN,EUW,EUC,EUS,DEU/
+
 ;

@@ -20,9 +20,17 @@ source("config/default.cfg")
 cfg$results_folder <- "output/:title:"
 cfg$recalibrate <- FALSE
 cfg$recalibrate_landconversion_cost <- TRUE
-cfg$title <- "calib_run_H12"
+cfg$title <- "calib_run_H16"
 cfg$output <- c("rds_report")
 cfg$force_replace <- TRUE
 cfg$qos <- "priority"
+
+
+cfg$input['cellular'] <- "rev4.135mbacca-2026-10-19T180649_H16EU_582d657c_cellularmagpie_c200_MRI-ESM2-0-ssp245_lpjml-8e6c5eb1_clusterweight-ba4466a8.tgz"
+cfg$input['regional'] <- "rev4.135mbacca-2026-10-19T180649_H16EU_magpie.tgz"
+cfg$input['validation'] <- "rev4.135mbacca-2026-10-19T180649_H16EU_c9f905aa_validation.tgz"
+cfg$input['calibration'] <- "calibration_H16EU-LegumES_21May26.tgz"
+
+
 start_run(cfg,codeCheck=FALSE)
-magpie4::submitCalibration("H12_FAO")
+magpie4::submitCalibration("H16_FAO")
